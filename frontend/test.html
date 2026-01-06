@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Images</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a1929 0%, #1a3a4a 50%, #0a1929 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(37, 99, 235, 0.3);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+        }
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .image-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        .image-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .image-card h3 {
+            color: #fbbf24;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <img src="/images/logo.png" alt="Logo" class="logo">
+        <h1>🏔️ Sistem Rekomendasi Wisata Toba</h1>
+        <p>Testing Images & Styling</p>
+    </div>
+
+    <div class="images-grid">
+        <div class="image-card">
+            <h3>Logo Batak</h3>
+            <img src="/images/logo.png" alt="Logo">
+        </div>
+        
+        <div class="image-card">
+            <h3>Slide Bar</h3>
+            <img src="/images/slide_bar.jpg" alt="Slide Bar">
+        </div>
+        
+        <div class="image-card">
+            <h3>Background Danau Toba</h3>
+            <img src="/images/latarbelakang.jpg" alt="Latar Belakang">
+        </div>
+        
+        <div class="image-card">
+            <h3>Example Image</h3>
+            <img src="/images/example.jpg" alt="Example">
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem; padding: 2rem; background: rgba(220, 38, 38, 0.2); border-radius: 12px;">
+        <h2 style="color: #fbbf24;">✅ Checklist:</h2>
+        <ul style="font-size: 1.1rem; line-height: 1.8;">
+            <li>✅ Images folder: /images/</li>
+            <li>✅ Logo Batak (logo.png)</li>
+            <li>✅ Background Danau Toba (latarbelakang.jpg)</li>
+            <li>✅ Slide bar image (slide_bar.jpg)</li>
+            <li>✅ Example image (example.jpg)</li>
+            <li>✅ CSS dengan tema Batak (merah, hitam, emas)</li>
+            <li>✅ Gradients warna Danau Toba</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -29,7 +29,6 @@ def load_encoder():
 model = load_model()  # load our models once and then cache it
 encoder = load_encoder()
 
-
 def save_file(uploaded_file):
     """helper function to save documents to disk"""
     file_path = os.path.join(FILES_DIR, uploaded_file.name)
