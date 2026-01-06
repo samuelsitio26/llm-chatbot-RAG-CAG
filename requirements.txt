@@ -1,12 +1,29 @@
-python-dotenv~=1.0.1
-torch~=2.2.2
-transformers~=4.39.3
-bitsandbytes~=0.42.0; sys_platform == 'darwin'
-bitsandbytes~=0.43.1; 'darwin' not in sys_platform 
-accelerate~=0.28.0
-pypdf~=4.1.0
-tiktoken~=0.6.0
-sentence-transformers~=2.5.1
-faiss-cpu~=1.8.0
-langchain~=0.1.16
-streamlit~=1.29.0
+# Core
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# HTTP requests for Gemini API
+requests>=2.31.0
+
+# LangChain for RAG
+langchain>=0.1.0
+langchain-community>=0.0.10
+
+# Vector Store
+faiss-cpu>=1.7.4
+
+# Embeddings
+sentence-transformers>=2.2.0
+
+# PDF Processing
+pypdf>=3.17.0
+pymupdf>=1.23.0
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.66.0
+
+# Streamlit (optional)
+streamlit>=1.29.0

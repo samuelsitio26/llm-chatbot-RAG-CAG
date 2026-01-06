@@ -1,0 +1,89 @@
+INFO:     Started server process [21905]
+INFO:     Waiting for application startup.
+'(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /google/gemma-2b-it/resolve/main/tokenizer_config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fe3f7d0f160>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 89c994d8-5600-4ce5-938f-f9d037ae56d0)')' thrown while requesting HEAD https://huggingface.co/google/gemma-2b-it/resolve/main/tokenizer_config.json
+Retrying in 1s [Retry 1/5].
+'(MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /google/gemma-2b-it/resolve/main/tokenizer_config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fe3f7d0f4f0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 392a8b48-08c9-4554-aead-fcd2fd0897f5)')' thrown while requesting HEAD https://huggingface.co/google/gemma-2b-it/resolve/main/tokenizer_config.json
+Retrying in 2s [Retry 2/5].
+`torch_dtype` is deprecated! Use `dtype` instead!
+============================================================
+🚀 Starting Tourism Recommendation API
+============================================================
+📦 Loading Google Gemma 2B model...
+🔍 Loading model: google/gemma-2b-it
+📍 Device: cuda
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:20<00:20, 20.25s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:20<00:00,  8.47s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:20<00:00, 10.23s/it]
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address alreaINFO:     127.0.0.1:43782 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43788 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43794 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43814 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43842 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43898 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43930 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43958 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43970 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43976 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43982 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43988 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43994 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43998 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44002 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44006 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44010 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44014 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44028 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44048 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44054 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44060 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44066 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44072 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44076 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44080 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44084 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44088 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44092 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44096 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44100 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44104 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44108 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44112 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44116 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44120 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44124 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44128 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44132 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44136 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44140 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44144 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44148 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44152 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44156 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44160 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44164 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44168 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44172 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44176 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44180 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44186 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44192 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44196 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44204 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44208 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44212 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44216 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44220 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44224 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44228 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44238 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44248 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44252 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44256 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44260 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44264 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44268 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [21639]
