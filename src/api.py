@@ -97,8 +97,9 @@ async def lifespan(app: FastAPI):
     
     # Cleanup on shutdown
     print("🛑 Shutting down...")
-    if cache_manager:
-        cache_manager.save_cache()
+    if cag_system:
+        cag_system.kv_cache.save_cache()
+        print("💾 Cache saved on shutdown")
 
 
 # Create FastAPI app

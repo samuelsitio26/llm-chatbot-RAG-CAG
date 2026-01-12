@@ -6,6 +6,7 @@ Pre-generate summaries for faster context retrieval
 import os
 import hashlib
 import json
+from datetime import datetime
 from typing import Optional, Dict
 
 
@@ -75,7 +76,7 @@ class SummaryCache:
         self.summaries[chunk_id] = {
             'content': content[:200],
             'summary': summary,
-            'timestamp': str(os.times())
+            'timestamp': datetime.now().isoformat()
         }
         self._save_index()
     

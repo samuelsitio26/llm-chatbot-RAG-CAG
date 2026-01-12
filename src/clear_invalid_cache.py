@@ -48,6 +48,17 @@ def clear_invalid_cache():
         "informasi tentang kategori",
         "I cannot",
         "I don't have",
+        # API Error responses - should never be cached
+        "gemini api sedang sibuk",
+        "rate limit",
+        "silakan tunggu",
+        "silakan coba lagi",
+        "terjadi kesalahan",
+        "429 client error",
+        "too many requests",
+        "name resolution error",
+        "failed to resolve",
+        "rate limit exceeded",
     ]
     
     # Find invalid entries
