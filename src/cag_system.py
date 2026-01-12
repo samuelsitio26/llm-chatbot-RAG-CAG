@@ -51,6 +51,16 @@ class CAGSystem:
         "Locak Hotel",
         "saya memerlukan dokumen",
         "informasi tentang kategori",
+        # Error responses - should never be cached
+        "gemini api sedang sibuk",
+        "rate limit",
+        "silakan tunggu",
+        "silakan coba lagi",
+        "terjadi kesalahan",
+        "429 client error",
+        "too many requests",
+        "name resolution error",
+        "failed to resolve",
     ]
     
     def __init__(self, model, encoder):
