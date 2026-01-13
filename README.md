@@ -59,7 +59,8 @@ python src/api.py
 
 **Terminal 2 - Frontend:**
 ```bash
-cd frontend && npm run dev
+cd frontend
+npm run dev
 ```
 
 ### 4. Akses
