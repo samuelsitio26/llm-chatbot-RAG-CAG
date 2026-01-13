@@ -1,0 +1,83 @@
+{
+  "test_queries": [
+    {
+      "id": 1,
+      "query": "Apa saja tempat wisata populer di Danau Toba?",
+      "ground_truth": "Tempat wisata populer di Danau Toba meliputi Pulau Samosir, Air Terjun Sipiso-piso, Bukit Holbung, Desa Tomok, dan Huta Bolon.",
+      "required_elements": ["Pulau Samosir", "Sipiso-piso", "Bukit Holbung"],
+      "relevant_chunks": ["chunk_samosir_overview", "chunk_sipiso_waterfall", "chunk_holbung_hill"]
+    },
+    {
+      "id": 2,
+      "query": "Rekomendasi hotel di sekitar Danau Toba",
+      "ground_truth": "Hotel yang direkomendasikan di sekitar Danau Toba antara lain Toledo Inn, Inna Parapat, Toba Village Inn, dan berbagai homestay di Pulau Samosir.",
+      "required_elements": ["hotel", "akomodasi", "penginapan"],
+      "relevant_chunks": ["chunk_hotels_parapat", "chunk_hotels_samosir"]
+    },
+    {
+      "id": 3,
+      "query": "Bagaimana cara menuju Pulau Samosir?",
+      "ground_truth": "Untuk menuju Pulau Samosir, wisatawan dapat naik feri dari Pelabuhan Ajibata atau Pelabuhan Tomok. Feri beroperasi setiap hari dengan jadwal reguler.",
+      "required_elements": ["feri", "Ajibata", "transportasi"],
+      "relevant_chunks": ["chunk_samosir_transport", "chunk_ferry_schedule"]
+    },
+    {
+      "id": 4,
+      "query": "Kuliner khas Danau Toba yang wajib dicoba",
+      "ground_truth": "Kuliner khas Danau Toba yang terkenal adalah Ikan Mas Arsik, Saksang (daging babi bumbu andaliman), Naniura (ikan mentah berbumbu), dan Tuak (minuman tradisional Batak).",
+      "required_elements": ["Arsik", "Saksang", "kuliner"],
+      "relevant_chunks": ["chunk_culinary_batak", "chunk_traditional_food"]
+    },
+    {
+      "id": 5,
+      "query": "Kapan waktu terbaik mengunjungi Danau Toba?",
+      "ground_truth": "Waktu terbaik mengunjungi Danau Toba adalah antara Mei hingga September saat musim kemarau. Cuaca cerah dan cocok untuk aktivitas outdoor.",
+      "required_elements": ["waktu", "musim", "cuaca"],
+      "relevant_chunks": ["chunk_weather_info", "chunk_best_time_visit"]
+    },
+    {
+      "id": 6,
+      "query": "Aktivitas apa yang bisa dilakukan di Danau Toba?",
+      "ground_truth": "Aktivitas di Danau Toba meliputi berenang, memancing, menyewa sepeda mengelilingi Pulau Samosir, trekking ke air terjun, mengunjungi desa tradisional, dan menikmati pertunjukan budaya Batak.",
+      "required_elements": ["aktivitas", "berenang", "sepeda"],
+      "relevant_chunks": ["chunk_activities_water", "chunk_activities_land"]
+    },
+    {
+      "id": 7,
+      "query": "Berapa biaya untuk liburan 3 hari di Danau Toba?",
+      "ground_truth": "Estimasi biaya liburan 3 hari di Danau Toba sekitar Rp 1.500.000 - Rp 3.000.000 per orang, tergantung pilihan akomodasi dan aktivitas.",
+      "required_elements": ["biaya", "budget", "harga"],
+      "relevant_chunks": ["chunk_budget_estimate", "chunk_pricing_accommodation"]
+    },
+    {
+      "id": 8,
+      "query": "Apa yang spesial dari budaya Batak di Danau Toba?",
+      "ground_truth": "Budaya Batak memiliki keunikan seperti rumah adat Batak (Rumah Bolon), tradisi Mangalahat Horbo, Sigale-gale (boneka kayu penari), dan sistem kekerabatan Dalihan Na Tolu.",
+      "required_elements": ["budaya", "Batak", "tradisi"],
+      "relevant_chunks": ["chunk_batak_culture", "chunk_traditional_houses"]
+    },
+    {
+      "id": 9,
+      "query": "Apakah Danau Toba aman untuk dikunjungi?",
+      "ground_truth": "Danau Toba sangat aman untuk dikunjungi. Area wisata well-maintained dengan fasilitas keamanan yang memadai. Masyarakat lokal juga ramah terhadap wisatawan.",
+      "required_elements": ["aman", "keamanan"],
+      "relevant_chunks": ["chunk_safety_info", "chunk_tourist_facilities"]
+    },
+    {
+      "id": 10,
+      "query": "Transportasi dari Medan ke Danau Toba",
+      "ground_truth": "Dari Medan ke Danau Toba dapat ditempuh dengan bus (5-6 jam), travel (4-5 jam), atau mobil pribadi. Jarak sekitar 176 km dengan pemandangan indah sepanjang perjalanan.",
+      "required_elements": ["transportasi", "Medan", "jarak"],
+      "relevant_chunks": ["chunk_medan_transportation", "chunk_travel_options"]
+    }
+  ],
+  "metadata": {
+    "dataset_name": "Danau Toba Tourism Evaluation Dataset",
+    "version": "1.0",
+    "created_date": "2026-01-13",
+    "total_queries": 10,
+    "language": "Indonesian",
+    "domain": "Tourism",
+    "purpose": "RAG/CAG System Evaluation"
+  }
+}
