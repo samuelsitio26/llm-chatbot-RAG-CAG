@@ -66,14 +66,10 @@ class GeminiChatModel:
                 if query_lower.startswith(phrase):
                     return 'greeting'
         
-        # Out of scope keywords - things we definitely can't answer from tourism docs
-        out_of_scope_keywords = [
-            'presiden', 'politik', 'pemerintah', 'menteri', 'game', 'gaming', 'esport',
-            'film', 'movie', 'anime', 'musik', 'lagu', 'artis', 'selebriti', 'bola',
-            'sepakbola', 'football', 'crypto', 'bitcoin', 'saham', 'investasi',
-            'programming', 'coding', 'python', 'javascript', 'machine learning',
-            'cuaca hari ini', 'berita', 'news', 'war', 'perang', 'ekonomi global'
-        ]
+        # Detect general questions (math, basic questions) - answer then redirect
+        import re
+        if re.search(r'\d+\s*[\+\-\*\/x]\s*\d+', query_lower) or 'berapa' in query_lower:
+            return 'general_question'
         
         # Strong tourism keywords that definitely indicate Toba tourism query
         strong_tourism_keywords = [
@@ -87,12 +83,7 @@ class GeminiChatModel:
             if kw in query_lower:
                 return 'tourism'
         
-        # Check out of scope
-        for kw in out_of_scope_keywords:
-            if kw in query_lower:
-                return 'out_of_scope'
-        
-        # Weak tourism keywords (only if no out_of_scope match)
+        # Weak tourism keywords
         weak_tourism_keywords = [
             'rekomendasi', 'destinasi', 'liburan', 'trip', 'travel', 'budget', 
             'harga', 'murah', 'mahal', 'honeymoon', 'keluarga', 'makanan', 
@@ -105,11 +96,17 @@ class GeminiChatModel:
             if kw in query_lower:
                 return 'tourism'
         
-        # If query is very short and doesn't match tourism, likely out of scope
-        if len(words) <= 2:
-            return 'out_of_scope'
+        # General questions - answer then redirect to tourism
+        general_patterns = [
+            'siapa', 'apa itu', 'kapan', 'dimana', 'mengapa', 'bagaimana',
+            'terima kasih', 'makasih', 'thanks'
+        ]
+        for pattern in general_patterns:
+            if pattern in query_lower:
+                return 'general_question'
         
-        return 'general'
+        # Default: treat as general question
+        return 'general_question'
     
     def _is_query_relevant_to_context(self, query: str, context: str) -> bool:
         """Check if query is actually relevant to the retrieved context"""
@@ -153,6 +150,133 @@ class GeminiChatModel:
             return relevance_ratio >= 0.2  # At least 20% of keywords should match
         
         return has_tourism_context
+    
+    def _get_general_answer(self, query: str) -> str:
+        """Answer general questions then redirect to tourism"""
+        import re
+        query_lower = query.lower().strip()
+        
+        # Math calculations
+        calc_match = re.search(r'(\d+)\s*([\+\-\*\/x])\s*(\d+)', query)
+        if calc_match:
+            try:
+                num1 = int(calc_match.group(1))
+                op = calc_match.group(2)
+                num2 = int(calc_match.group(3))
+                
+                if op == '+':
+                    result = num1 + num2
+                    answer = f"**{num1} + {num2} = {result}** ✓"
+                elif op == '-':
+                    result = num1 - num2
+                    answer = f"**{num1} - {num2} = {result}** ✓"
+                elif op in ['*', 'x']:
+                    result = num1 * num2
+                    answer = f"**{num1} × {num2} = {result}** ✓"
+                elif op == '/':
+                    if num2 != 0:
+                        result = num1 / num2
+                        if result == int(result):
+                            answer = f"**{num1} ÷ {num2} = {int(result)}** ✓"
+                        else:
+                            answer = f"**{num1} ÷ {num2} = {result:.2f}** ✓"
+                    else:
+                        answer = "Tidak bisa membagi dengan nol! 🚫"
+                
+                return f"""{answer}
+
+---
+🏔️ *Saya juga adalah asisten **Wisata Danau Toba**!*
+
+Ada yang ingin ditanyakan tentang wisata Danau Toba? 😊"""
+            except:
+                pass
+        
+        # Questions about the bot
+        if any(kw in query_lower for kw in ['siapa kamu', 'siapa anda', 'kamu siapa']):
+            return """Halo! 👋 Saya adalah **Asisten Wisata Danau Toba**!
+
+Saya bisa membantu Anda dengan:
+• 🏖️ Tempat wisata di Danau Toba
+• 🏨 Hotel & penginapan
+• 🍽️ Kuliner khas Batak
+• 🎭 Budaya & tradisi Batak
+
+Ada yang ingin ditanyakan? 😊"""
+        
+        # Thank you
+        if any(kw in query_lower for kw in ['terima kasih', 'makasih', 'thanks', 'thank you']):
+            return "Sama-sama! 😊 Senang bisa membantu. Jika ada pertanyaan lain tentang Danau Toba, silakan tanyakan!"
+        
+        # How are you
+        if any(kw in query_lower for kw in ['apa kabar', 'kabar']):
+            return "Saya baik-baik saja! 😊 Terima kasih sudah bertanya. Ada yang bisa saya bantu tentang wisata Danau Toba?"
+        
+        # Date/time
+        if any(kw in query_lower for kw in ['tanggal', 'hari ini', 'jam']):
+            from datetime import datetime
+            now = datetime.now()
+            return f"""Sekarang tanggal **{now.strftime('%d %B %Y')}**, pukul **{now.strftime('%H:%M')}** WIB.
+
+---
+🏔️ *Ngomong-ngomong, mau tanya tentang wisata Danau Toba?* 😊"""
+        
+        # Default: Try Gemini API
+        try:
+            gemini_answer = self._ask_gemini_simple(query)
+            if gemini_answer:
+                return f"""{gemini_answer}
+
+---
+🏔️ *Saya juga adalah asisten **Wisata Danau Toba**!*
+
+Ada yang ingin ditanyakan tentang wisata Danau Toba? 😊"""
+        except:
+            pass
+        
+        # Fallback
+        return f"""Saya kurang yakin dengan jawaban untuk pertanyaan itu 😊
+
+Saya adalah asisten khusus **Wisata Danau Toba** 🏔️
+
+💡 **Saya bisa membantu Anda dengan:**
+• 🏖️ Tempat wisata di Toba
+• 🏨 Hotel & penginapan
+• 🍽️ Kuliner khas Batak
+• 🎭 Budaya Batak
+
+Mau tanya tentang Danau Toba? 😊"""
+    
+    def _ask_gemini_simple(self, query: str) -> str:
+        """Ask Gemini for simple questions"""
+        api_key = self._get_available_api_key()
+        if not api_key:
+            return None
+        
+        # Rate limiting
+        current_time = time_module.time()
+        time_since_last = current_time - self.last_request_time
+        if time_since_last < self.min_request_interval:
+            wait_time = self.min_request_interval - time_since_last
+            time_module.sleep(wait_time)
+        self.last_request_time = time_module.time()
+        
+        prompt = f"Jawab singkat dalam 1-2 kalimat: {query}"
+        
+        try:
+            url = f"{self.base_url}/{self.model_name}:generateContent?key={api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"temperature": 0.3, "maxOutputTokens": 100}
+            }
+            response = requests.post(url, json=payload, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if "candidates" in data and len(data["candidates"]) > 0:
+                    return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except:
+            pass
+        return None
     
     def _get_out_of_scope_response(self, query: str) -> str:
         """Response for questions outside our knowledge domain"""
