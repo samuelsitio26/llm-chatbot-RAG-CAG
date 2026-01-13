@@ -153,13 +153,26 @@ class CAGSystem:
         """Get response using CAG system"""
         start_time = time.time()
         
-        # Handle greeting without RAG
+        # Classify intent
         intent = self.model._classify_intent(query)
+        
+        # Handle greeting
         if intent == 'greeting':
             response = self.model._get_greeting_response()
             return {
                 "response": response,
                 "source": "greeting",
+                "cache_used": False,
+                "response_time": time.time() - start_time,
+                "num_chunks": 0
+            }
+        
+        # Handle general questions (math, etc.)
+        if intent == 'general_question':
+            response = self.model._get_general_answer(query)
+            return {
+                "response": response,
+                "source": "general_answer",
                 "cache_used": False,
                 "response_time": time.time() - start_time,
                 "num_chunks": 0
