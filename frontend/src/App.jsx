@@ -184,7 +184,7 @@ function App() {
         session_id: sessionId,
         use_cache: true,
         k: 5,
-        max_new_tokens: 512,
+        max_new_tokens: 2048,
         temperature: 0.7
       }, {
         timeout: 120000 // 2 minute timeout for generation

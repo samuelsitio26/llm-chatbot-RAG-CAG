@@ -20,7 +20,7 @@ class GeminiChatModel:
     Includes context-based fallback when API fails
     """
     
-    def __init__(self, model_name: str = "gemini-2.0-flash"):
+    def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
         
         # Support multiple API keys for rotation
@@ -611,23 +611,27 @@ Silakan ajukan pertanyaan lain! 😊"""
         
         self.last_request_time = time_module.time()
         
-        # Models to try (correct names for v1beta API)
+        # Models to try (updated for 2025/2026 - older models deprecated)
         models_to_try = [
-            self.model_name,
-            "gemini-1.5-flash-latest",
-            "gemini-1.5-pro-latest", 
-            "gemini-pro"
+            "gemini-2.5-flash",
+            "gemini-2.5-pro",
+            "gemini-2.0-flash-exp",
+            self.model_name
         ]
         
         headers = {"Content-Type": "application/json"}
         
+        # Disable thinking for faster, more complete responses
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
                 "temperature": temperature,
                 "maxOutputTokens": max_tokens,
                 "topP": 0.9,
-                "topK": 40
+                "topK": 40,
+                "thinkingConfig": {
+                    "thinkingBudget": 0  # Disable thinking to use all tokens for output
+                }
             }
         }
         
@@ -699,7 +703,7 @@ Silakan ajukan pertanyaan lain! 😊"""
         query: str,
         context: str = "",
         chat_history: list = None,
-        max_new_tokens: int = 512,
+        max_new_tokens: int = 2048,
         temperature: float = 0.7,
         top_p: float = 0.9,
         top_k: int = 50
@@ -728,18 +732,19 @@ Silakan ajukan pertanyaan lain! 😊"""
             return self._get_fallback_response(query)
         
         if has_context:
-            prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.
+            prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah, informatif, dan detail.
 
 INSTRUKSI PENTING:
-1. Jawab HANYA berdasarkan INFORMASI DOKUMEN di bawah
-2. Jika pertanyaan TIDAK RELEVAN dengan wisata Toba, katakan "Maaf, pertanyaan tersebut di luar cakupan pengetahuan saya tentang wisata Danau Toba"
-3. Jika informasi tidak ada dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia dalam database wisata Toba"
-4. JANGAN mengarang atau membuat informasi yang tidak ada dalam dokumen
-5. Gunakan bahasa Indonesia yang baik dan sopan
-6. Berikan jawaban terstruktur dengan bullet points
+1. Jawab berdasarkan INFORMASI DOKUMEN di bawah dengan LENGKAP dan DETAIL
+2. Untuk setiap tempat wisata, sebutkan: nama, deskripsi singkat, lokasi, dan keunggulannya
+3. Gunakan format yang rapi dengan emoji dan bullet points
+4. Berikan minimal 3-5 rekomendasi jika tersedia dalam dokumen
+5. Jika informasi tidak ada dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
+6. JANGAN mengarang informasi yang tidak ada dalam dokumen
+7. Akhiri dengan ajakan untuk bertanya lebih lanjut
 
 INFORMASI DOKUMEN:
-{context[:4000]}
+{context[:6000]}
 
 PERTANYAAN: {query}
 
@@ -768,5 +773,5 @@ JAWABAN (hanya berdasarkan dokumen di atas):"""
         else:
             return self._get_fallback_response(query)
     
-    def __call__(self, prompt: str, max_new_tokens: int = 512, **kwargs) -> str:
+    def __call__(self, prompt: str, max_new_tokens: int = 2048, **kwargs) -> str:
         return self.generate_response(query=prompt, max_new_tokens=max_new_tokens, **kwargs)

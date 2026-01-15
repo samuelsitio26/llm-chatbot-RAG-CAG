@@ -33,6 +33,8 @@ class ChatRequest(BaseModel):
     use_cache: bool = True
     k: int = 5
     session_id: Optional[str] = None
+    max_new_tokens: int = 2048
+    temperature: float = 0.7
 
 
 class ChatResponse(BaseModel):
@@ -55,7 +57,7 @@ async def lifespan(app: FastAPI):
     try:
         # Initialize Gemini model
         print("📦 Loading Gemini API model...")
-        model = GeminiChatModel(model_name="gemini-2.0-flash")
+        model = GeminiChatModel(model_name="gemini-2.5-flash")
         
         # Initialize encoder for embeddings
         print("🔍 Loading embeddings encoder...")
@@ -136,7 +138,7 @@ async def get_status():
     """Get system status"""
     return {
         "status": "online",
-        "model": "Gemini 2.0 Flash",
+        "model": "Gemini 2.5 Flash",
         "cache_enabled": True,
         "timestamp": datetime.now().isoformat()
     }
@@ -157,7 +159,9 @@ async def chat(request: ChatRequest):
         result = cag_system.get_response(
             query=request.query,
             use_cache=request.use_cache,
-            k=request.k
+            k=request.k,
+            max_new_tokens=request.max_new_tokens,
+            temperature=request.temperature
         )
         
         response_time = time.time() - start_time

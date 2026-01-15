@@ -146,7 +146,7 @@ class CAGSystem:
         query: str,
         chat_history: List[Dict] = None,
         k: int = 5,
-        max_new_tokens: int = 512,
+        max_new_tokens: int = 2048,
         use_cache: bool = True,
         temperature: float = 0.7
     ) -> Dict:
