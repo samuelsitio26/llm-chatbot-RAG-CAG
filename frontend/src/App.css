@@ -516,6 +516,7 @@ button, input, textarea, select {
   grid-template-columns: 280px 1fr;
   gap: 0;
   align-items: stretch;
+  min-height: calc(100vh - 70px);
   height: calc(100vh - 70px);
   transition: grid-template-columns 0.3s ease;
 }
@@ -528,12 +529,14 @@ button, input, textarea, select {
   background: rgba(10, 25, 41, 0.95);
   border-right: 1px solid rgba(220,38,38,0.2);
   padding: 1rem;
-  overflow: hidden; /* Changed from overflow-y: auto */
+  overflow: hidden;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure full height */
-  max-height: calc(100vh - 70px); /* Limit to viewport minus header */
+  height: calc(100vh - 70px); /* Fixed height - full viewport minus header */
+  min-height: calc(100vh - 70px);
+  position: sticky;
+  top: 70px; /* Stick below header */
 }
 
 .sidebar.collapsed {
@@ -624,6 +627,7 @@ button, input, textarea, select {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .sidebar.collapsed .sidebar-bottom {
@@ -738,6 +742,7 @@ button, input, textarea, select {
   margin-bottom:0.75rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .sidebar-header h3 {
@@ -768,11 +773,10 @@ button, input, textarea, select {
   display: flex; 
   flex-direction: column; 
   gap: 0.5rem; 
-  flex: 1; 
+  flex: 1 1 auto; /* Grow and shrink to fill available space */
   overflow-y: auto; 
   overflow-x: hidden;
-  min-height: 0; /* Important for flex overflow */
-  max-height: calc(100vh - 250px); /* Fixed height constraint */
+  min-height: 100px; /* Minimum height */
   padding-right: 4px; /* Space for scrollbar */
   /* Firefox scrollbar */
   scrollbar-width: thin;
@@ -895,7 +899,8 @@ button, input, textarea, select {
   border: none;
   box-shadow: none;
   overflow: hidden;
-  height: 100%;
+  height: calc(100vh - 70px); /* Match sidebar height */
+  min-height: calc(100vh - 70px);
 }
 
 .messages-container {
