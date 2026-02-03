@@ -50,7 +50,9 @@ const Login = () => {
         const result = await register(username, password, displayName);
         if (result.success) {
           setSuccess('Registrasi berhasil!');
-          setTimeout(() => navigate('/'), 1000);
+          // Redirect ke halaman sebelumnya atau home
+          const redirectTo = location.state?.from || '/';
+          setTimeout(() => navigate(redirectTo), 1000);
         } else {
           setError(result.message);
         }
@@ -62,11 +64,18 @@ const Login = () => {
       try {
         const result = await login(username, password);
         if (result.success) {
-          // Redirect based on role
-          if (result.role === 'admin' || result.role === 'operator') {
+          // Redirect ke halaman sebelumnya (jika ada) atau berdasarkan role
+          const redirectTo = location.state?.from;
+          
+          if (redirectTo && redirectTo !== '/login' && redirectTo !== '/register') {
+            // Ada halaman sebelumnya, redirect kesana
+            navigate(redirectTo);
+          } else if (result.role === 'admin' || result.role === 'operator') {
+            // Admin/operator ke dashboard
             navigate('/admin');
           } else {
-            navigate('/');
+            // User biasa ke chat
+            navigate('/chat');
           }
         } else {
           setError(result.message);

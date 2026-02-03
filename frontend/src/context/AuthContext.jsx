@@ -86,15 +86,32 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [authChecked, setAuthChecked] = useState(false); // Flag untuk memastikan auth sudah dicek
   const [allUsers, setAllUsers] = useState([]);
   const [backendAvailable, setBackendAvailable] = useState(false);
 
   // Check backend availability and validate token
   useEffect(() => {
     const initAuth = async () => {
+      console.log('🔐 Initializing auth...');
       const savedToken = localStorage.getItem('toba_auth_token');
+      const savedUser = localStorage.getItem('toba_current_user');
+      
+      // PENTING: Restore user dari localStorage DULU untuk menghindari flicker
+      if (savedUser) {
+        try {
+          const userData = JSON.parse(savedUser);
+          setUser(userData);
+          console.log('✅ User restored from localStorage:', userData.username);
+        } catch (e) {
+          console.log('❌ Failed to parse saved user');
+          localStorage.removeItem('toba_current_user');
+        }
+      }
       
       if (savedToken) {
+        setToken(savedToken);
+        
         try {
           // Try to validate token with backend
           const result = await apiCall('/auth/validate', 'GET', null, savedToken);
@@ -102,37 +119,39 @@ export const AuthProvider = ({ children }) => {
             setUser(result.user);
             setToken(savedToken);
             setBackendAvailable(true);
+            // Update localStorage dengan data terbaru dari backend
+            localStorage.setItem('toba_current_user', JSON.stringify(result.user));
             logUserActivity(result.user.id, result.user.username, 'session_restored');
+            console.log('✅ Token validated with backend:', result.user.username);
           } else {
             // Token invalid, clear storage
+            console.log('❌ Token invalid, clearing...');
             localStorage.removeItem('toba_auth_token');
+            localStorage.removeItem('toba_current_user');
+            setUser(null);
+            setToken(null);
           }
         } catch (error) {
-          // Backend not available, fallback to localStorage
-          console.log('Backend not available, using localStorage');
-          const savedUser = localStorage.getItem('toba_current_user');
-          if (savedUser) {
-            try {
-              const userData = JSON.parse(savedUser);
-              setUser(userData);
-              logUserActivity(userData.id, userData.username, 'session_restored');
-            } catch (e) {
-              localStorage.removeItem('toba_current_user');
-            }
-          }
+          // Backend not available, keep the localStorage user
+          console.log('⚠️ Backend not available, using localStorage user');
+          // User sudah di-set dari localStorage di atas
         }
       } else {
+        // Tidak ada token
+        console.log('ℹ️ No saved token, user is guest');
         // Try to check if backend is available
         try {
           await apiCall('/status', 'GET');
           setBackendAvailable(true);
         } catch (error) {
-          console.log('Backend not available');
+          console.log('⚠️ Backend not available');
         }
       }
       
       setAllUsers(getStoredUsers());
+      setAuthChecked(true); // Auth sudah selesai dicek
       setIsLoading(false);
+      console.log('🔐 Auth initialization complete');
     };
 
     initAuth();
@@ -456,7 +475,8 @@ export const AuthProvider = ({ children }) => {
       changePassword,
       getUserChatHistory,
       clearChatHistory,
-      isLoading, 
+      isLoading,
+      authChecked, // Flag untuk memastikan auth sudah dicek
       isAuthenticated: !!user,
       isAdmin,
       isOperator,

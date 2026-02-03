@@ -528,10 +528,12 @@ button, input, textarea, select {
   background: rgba(10, 25, 41, 0.95);
   border-right: 1px solid rgba(220,38,38,0.2);
   padding: 1rem;
-  overflow-y: auto;
+  overflow: hidden; /* Changed from overflow-y: auto */
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  height: 100%; /* Ensure full height */
+  max-height: calc(100vh - 70px); /* Limit to viewport minus header */
 }
 
 .sidebar.collapsed {
@@ -762,11 +764,63 @@ button, input, textarea, select {
   box-shadow: 0 4px 16px rgba(220, 38, 38, 0.4);
 }
 
-.conversations-list { display:flex; flex-direction:column; gap:0.5rem; flex:1; overflow-y:auto; }
-.conv-item { padding:0.75rem; border-radius:10px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:0.5rem; transition: all 0.2s ease; }
+.conversations-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.5rem; 
+  flex: 1; 
+  overflow-y: auto; 
+  overflow-x: hidden;
+  min-height: 0; /* Important for flex overflow */
+  max-height: calc(100vh - 250px); /* Fixed height constraint */
+  padding-right: 4px; /* Space for scrollbar */
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--batak-red) rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar for conversations list - Webkit (Chrome, Safari, Edge) */
+.conversations-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversations-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.conversations-list::-webkit-scrollbar-thumb {
+  background: var(--batak-red);
+  border-radius: 10px;
+}
+
+.conversations-list::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c;
+}
+.conv-item { 
+  padding: 0.75rem; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 0.5rem; 
+  transition: all 0.2s ease;
+  flex-shrink: 0; /* Prevent items from shrinking */
+  min-height: 48px; /* Consistent item height */
+}
 .conv-item:hover{ background: rgba(255,255,255,0.05) }
 .conv-item.active{ background: linear-gradient(90deg, rgba(220,38,38,0.15), rgba(251,191,36,0.08)); border:1px solid rgba(220,38,38,0.25) }
-.conv-title{ font-weight:600; color:var(--batak-gold); font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-title { 
+  font-weight: 600; 
+  color: var(--batak-gold); 
+  font-size: 0.9rem; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  max-width: 140px; /* Limit title width */
+  flex: 1;
+}
 .conv-meta{ font-size:0.75rem; color:rgba(255,255,255,0.5); display:flex; gap:0.5rem; align-items:center }
 .conv-actions button{ background:transparent; border:none; color:rgba(255,255,255,0.5); cursor:pointer; padding:4px; transition: all 0.2s ease; }
 .conv-actions button:hover { color: var(--batak-gold); }
@@ -792,6 +846,8 @@ button, input, textarea, select {
     width: 280px;
     z-index: 999;
     transform: translateX(-100%);
+    max-height: calc(100vh - 70px); /* Full height minus header */
+    height: auto;
   }
   .sidebar:not(.collapsed) {
     transform: translateX(0);
@@ -799,6 +855,12 @@ button, input, textarea, select {
   .sidebar.collapsed {
     transform: translateX(-100%);
   }
+  
+  /* Fix conversations list height on mobile */
+  .conversations-list {
+    max-height: calc(100vh - 220px); /* Adjust for header and buttons */
+  }
+  
   .chat-container{ order:1 }
   .input-wrapper{ padding:0 1rem }
   
