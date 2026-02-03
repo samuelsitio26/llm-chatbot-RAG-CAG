@@ -459,6 +459,57 @@ async def delete_user(user_id: int, admin: dict = Depends(require_admin)):
     return result
 
 
+# ============================================
+# Feedback Endpoints
+# ============================================
+
+class FeedbackRequest(BaseModel):
+    session_id: str
+    message_id: str
+    rating: int  # 1 for like, -1 for dislike
+    comment: Optional[str] = None
+
+
+@app.post("/api/feedback")
+async def submit_feedback(
+    request: FeedbackRequest, 
+    authorization: str = Header(None)
+):
+    """Submit feedback for a chat response"""
+    # Get user if authenticated
+    user = await get_current_user(authorization)
+    user_id = user['id'] if user else None
+    
+    try:
+        # Save feedback to database
+        result = db.save_feedback(
+            user_id=user_id,
+            chat_id=hash(request.message_id) % 2147483647,  # Convert message_id to int
+            rating=request.rating,
+            comment=request.comment
+        )
+        
+        if result:
+            return {
+                "success": True, 
+                "message": "Feedback submitted successfully",
+                "rating": request.rating
+            }
+        else:
+            raise HTTPException(status_code=500, detail="Failed to save feedback")
+            
+    except Exception as e:
+        print(f"❌ Error saving feedback: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/feedback/stats")
+async def get_feedback_statistics():
+    """Get feedback statistics"""
+    stats = db.get_feedback_stats()
+    return stats
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
