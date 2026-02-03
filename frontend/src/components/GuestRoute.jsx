@@ -1,27 +1,25 @@
 /**
  * ============================================
- * 🔒 PROTECTED ROUTE COMPONENT
- * Mirip seperti middleware auth di Laravel
+ * 🚪 GUEST ROUTE COMPONENT
+ * Redirect ke halaman lain jika sudah login
  * ============================================
  * 
- * Fungsi:
- * - Cek apakah user sudah login
- * - Cek apakah user punya role yang diizinkan
- * - Redirect ke login jika belum login
- * - Redirect ke home jika role tidak sesuai
- * - Simpan halaman terakhir untuk redirect setelah login
+ * Kebalikan dari ProtectedRoute:
+ * - Jika SUDAH login → redirect ke redirectTo
+ * - Jika BELUM login → render children
+ * 
+ * Contoh: Halaman login tidak perlu diakses jika sudah login
  */
 
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const ProtectedRoute = ({ children, allowedRoles = [] }) => {
+const GuestRoute = ({ children, redirectTo = '/chat' }) => {
   const { user, isLoading, isAuthenticated, authChecked } = useAuth();
   const location = useLocation();
 
   // Show loading state while checking authentication
-  // PENTING: Tunggu sampai authChecked = true untuk menghindari flicker
   if (isLoading || !authChecked) {
     return (
       <div className="loading-screen" style={{
@@ -52,21 +50,18 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
     );
   }
 
-  // Redirect to login if not authenticated
-  // Simpan lokasi saat ini agar bisa redirect kembali setelah login
-  if (!isAuthenticated) {
-    console.log(`🔒 Not authenticated, redirecting to login. Requested: ${location.pathname}`);
-    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+  // Jika sudah login, redirect ke halaman yang ditentukan
+  if (isAuthenticated) {
+    // Cek apakah ada halaman yang diminta sebelumnya
+    const from = location.state?.from;
+    const destination = from || redirectTo;
+    
+    console.log(`✅ User authenticated, redirecting to: ${destination}`);
+    return <Navigate to={destination} replace />;
   }
 
-  // Check role-based access if roles are specified
-  if (allowedRoles.length > 0 && !allowedRoles.includes(user?.role)) {
-    // User tidak punya akses ke halaman ini
-    console.warn(`⛔ Access denied: User role "${user?.role}" not in allowed roles:`, allowedRoles);
-    return <Navigate to="/chat" replace />;
-  }
-
+  // Belum login, tampilkan halaman (misal: login page)
   return children;
 };
 
-export default ProtectedRoute;
+export default GuestRoute;

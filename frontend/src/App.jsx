@@ -91,10 +91,16 @@ function App() {
     return locationKeywords.some(kw => lowerText.includes(kw));
   };
 
-  // Load conversations from localStorage
+  // Load conversations from localStorage - PER USER
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('toba_conversations_v1');
+      // Generate unique storage key based on user ID
+      // Guest users use 'guest', logged-in users use their ID
+      const storageKey = user?.id 
+        ? `toba_conversations_user_${user.id}` 
+        : 'toba_conversations_guest';
+      
+      const saved = localStorage.getItem(storageKey);
       if (saved) {
         const parsed = JSON.parse(saved);
         setConversations(parsed);
@@ -112,7 +118,7 @@ function App() {
     } catch (e) {
       console.error('Error loading conversations', e);
     }
-  }, []);
+  }, [user?.id]); // Re-run when user changes (login/logout)
 
   useEffect(() => {
     if (!activeConvId) return;
@@ -121,9 +127,17 @@ function App() {
     if (conv) setMessages(conv.messages || []);
   }, [activeConvId, conversations]);
 
+  // Generate storage key based on user
+  const getStorageKey = () => {
+    return user?.id 
+      ? `toba_conversations_user_${user.id}` 
+      : 'toba_conversations_guest';
+  };
+
   const persistConversations = (next) => {
     try {
-      localStorage.setItem('toba_conversations_v1', JSON.stringify(next));
+      const storageKey = getStorageKey();
+      localStorage.setItem(storageKey, JSON.stringify(next));
     } catch (e) {
       console.error('Error saving conversations', e);
     }
