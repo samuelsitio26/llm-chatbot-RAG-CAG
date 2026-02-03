@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   User, Mail, MapPin, Heart, MessageSquare, Lock, 
   ArrowLeft, LogOut, Save, Edit3, RefreshCw, Trash2,
-  Camera, Check, X, Home, Shield
+  Camera, Check, X, Home, Shield, Upload, Image
 } from 'lucide-react';
 import './UserProfile.css';
 
-const AVATAR_OPTIONS = [
+// Extended emoji options for avatar
+const AVATAR_EMOJI_OPTIONS = [
+  // People
   '👤', '👨', '👩', '👦', '👧', '🧑', '👨‍💼', '👩‍💼', 
   '👨‍🎓', '👩‍🎓', '🧔', '👱', '👴', '👵', '🤴', '👸',
-  '🦸', '🦹', '🧙', '🧝', '🎅', '🤵', '👰', '🥷'
+  '🦸', '🦹', '🧙', '🧝', '🎅', '🤵', '👰', '🥷',
+  // More people
+  '👨‍🍳', '👩‍🍳', '👨‍🌾', '👩‍🌾', '👨‍🎤', '👩‍🎤', '👨‍💻', '👩‍💻',
+  '👨‍🚀', '👩‍🚀', '🧕', '👲', '🤠', '🥸', '🤓', '😎',
+  // Animals
+  '🐶', '🐱', '🐭', '🐰', '🦊', '🐻', '🐼', '🐨',
+  '🦁', '🐯', '🐮', '🐷', '🐸', '🐵', '🦄', '🐲',
+  // Nature & Objects
+  '🌸', '🌺', '🌻', '🌹', '🌴', '🌈', '⭐', '🌙',
+  '🔥', '💎', '🎭', '🎪', '🎨', '🎬', '🎮', '🎯'
 ];
 
 const CATEGORY_OPTIONS = [
@@ -26,12 +37,16 @@ const CATEGORY_OPTIONS = [
 ];
 
 const UserProfile = () => {
-  const { user, updateUser, changePassword, getUserChatHistory, clearChatHistory: clearHistory, logout } = useAuth();
+  const { user, updateUser, changePassword, getUserChatHistory, clearChatHistory: clearHistory, logout, token } = useAuth();
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
   
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [avatarTab, setAvatarTab] = useState('emoji'); // 'emoji' or 'upload'
+  const [uploadPreview, setUploadPreview] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -124,6 +139,79 @@ const UserProfile = () => {
       }
       return { ...prev, favorite_categories: [...categories, categoryId] };
     });
+  };
+
+  // Handle file selection for avatar upload
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      setMessage({ type: 'error', text: 'Format file tidak didukung. Gunakan JPEG, PNG, GIF, atau WebP' });
+      return;
+    }
+
+    // Validate file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      setMessage({ type: 'error', text: 'Ukuran file terlalu besar. Maksimal 2MB' });
+      return;
+    }
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setUploadPreview(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Upload avatar image
+  const handleAvatarUpload = async () => {
+    if (!uploadPreview) return;
+
+    setUploading(true);
+    try {
+      const response = await fetch('/api/user/avatar/base64', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ avatar: uploadPreview })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormData(prev => ({ ...prev, avatar: data.avatar }));
+        setMessage({ type: 'success', text: 'Avatar berhasil diupload!' });
+        setShowAvatarPicker(false);
+        setUploadPreview(null);
+        
+        // Update user context
+        await updateUser({ avatar: data.avatar });
+      } else {
+        setMessage({ type: 'error', text: data.detail || 'Gagal upload avatar' });
+      }
+    } catch (error) {
+      console.error('Avatar upload error:', error);
+      setMessage({ type: 'error', text: 'Gagal upload avatar' });
+    }
+    setUploading(false);
+    setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+  };
+
+  // Select emoji as avatar
+  const handleEmojiSelect = (emoji) => {
+    setFormData(prev => ({ ...prev, avatar: emoji }));
+    setShowAvatarPicker(false);
+  };
+
+  // Check if avatar is an image URL
+  const isImageAvatar = (avatar) => {
+    return avatar && (avatar.startsWith('/api/avatars/') || avatar.startsWith('data:image') || avatar.startsWith('http'));
   };
 
   const handleSaveProfile = async () => {
@@ -257,44 +345,121 @@ const UserProfile = () => {
           {/* Avatar Section */}
           <div className="up-avatar-section">
             <div 
-              className={`up-avatar-container ${isEditing ? 'editable' : ''}`}
-              onClick={() => isEditing && setShowAvatarPicker(true)}
+              className="up-avatar-container editable"
+              onClick={() => setShowAvatarPicker(true)}
+              title="Klik untuk ganti avatar"
             >
-              <span className="up-avatar">{formData.avatar}</span>
-              {isEditing && (
-                <div className="up-avatar-overlay">
-                  <Camera size={24} />
-                </div>
+              {isImageAvatar(formData.avatar) ? (
+                <img src={formData.avatar} alt="Avatar" className="up-avatar-img" />
+              ) : (
+                <span className="up-avatar">{formData.avatar}</span>
               )}
+              <div className="up-avatar-overlay">
+                <Camera size={24} />
+                <span className="up-avatar-hint">Ganti</span>
+              </div>
             </div>
             
-            {/* Avatar Picker Modal */}
+            {/* Avatar Picker Modal - Enhanced */}
             {showAvatarPicker && (
-              <div className="up-modal-overlay" onClick={() => setShowAvatarPicker(false)}>
-                <div className="up-avatar-picker" onClick={e => e.stopPropagation()}>
+              <div className="up-modal-overlay" onClick={() => { setShowAvatarPicker(false); setUploadPreview(null); }}>
+                <div className="up-avatar-picker up-avatar-picker--enhanced" onClick={e => e.stopPropagation()}>
                   <div className="up-picker-header">
                     <h3>Pilih Avatar</h3>
-                    <button onClick={() => setShowAvatarPicker(false)}>
+                    <button onClick={() => { setShowAvatarPicker(false); setUploadPreview(null); }}>
                       <X size={20} />
                     </button>
                   </div>
-                  <div className="up-avatar-grid">
-                    {AVATAR_OPTIONS.map(avatar => (
-                      <button
-                        key={avatar}
-                        className={`up-avatar-option ${formData.avatar === avatar ? 'selected' : ''}`}
-                        onClick={() => {
-                          setFormData(prev => ({ ...prev, avatar }));
-                          setShowAvatarPicker(false);
-                        }}
-                      >
-                        {avatar}
-                        {formData.avatar === avatar && (
-                          <span className="up-avatar-check"><Check size={12} /></span>
-                        )}
-                      </button>
-                    ))}
+                  
+                  {/* Tabs: Emoji / Upload */}
+                  <div className="up-avatar-tabs">
+                    <button 
+                      className={`up-avatar-tab ${avatarTab === 'emoji' ? 'active' : ''}`}
+                      onClick={() => setAvatarTab('emoji')}
+                    >
+                      😊 Emoji
+                    </button>
+                    <button 
+                      className={`up-avatar-tab ${avatarTab === 'upload' ? 'active' : ''}`}
+                      onClick={() => setAvatarTab('upload')}
+                    >
+                      <Upload size={16} /> Upload Foto
+                    </button>
                   </div>
+                  
+                  {/* Emoji Grid */}
+                  {avatarTab === 'emoji' && (
+                    <div className="up-avatar-grid">
+                      {AVATAR_EMOJI_OPTIONS.map(emoji => (
+                        <button
+                          key={emoji}
+                          className={`up-avatar-option ${formData.avatar === emoji ? 'selected' : ''}`}
+                          onClick={() => handleEmojiSelect(emoji)}
+                        >
+                          {emoji}
+                          {formData.avatar === emoji && (
+                            <span className="up-avatar-check"><Check size={12} /></span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Upload Section */}
+                  {avatarTab === 'upload' && (
+                    <div className="up-avatar-upload">
+                      {/* Hidden file input */}
+                      <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleFileSelect}
+                        accept="image/jpeg,image/png,image/gif,image/webp"
+                        style={{ display: 'none' }}
+                      />
+                      
+                      {/* Preview or Upload Button */}
+                      {uploadPreview ? (
+                        <div className="up-upload-preview">
+                          <img src={uploadPreview} alt="Preview" />
+                          <div className="up-upload-actions">
+                            <button 
+                              className="up-upload-btn up-upload-btn--confirm"
+                              onClick={handleAvatarUpload}
+                              disabled={uploading}
+                            >
+                              {uploading ? (
+                                <>
+                                  <RefreshCw size={16} className="spinning" />
+                                  Mengupload...
+                                </>
+                              ) : (
+                                <>
+                                  <Check size={16} />
+                                  Gunakan Foto Ini
+                                </>
+                              )}
+                            </button>
+                            <button 
+                              className="up-upload-btn up-upload-btn--cancel"
+                              onClick={() => setUploadPreview(null)}
+                            >
+                              <X size={16} />
+                              Batal
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div 
+                          className="up-upload-dropzone"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          <Image size={48} />
+                          <p>Klik untuk upload foto</p>
+                          <span>JPEG, PNG, GIF, WebP (Max 2MB)</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

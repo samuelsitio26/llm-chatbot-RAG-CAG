@@ -7,12 +7,15 @@ import os
 import sys
 import time
 import glob
+import uuid
+import base64
 from contextlib import asynccontextmanager
 from typing import Optional, List
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Depends, Header, Request
+from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, EmailStr
 
 # Add src to path
@@ -508,6 +511,137 @@ async def get_feedback_statistics():
     """Get feedback statistics"""
     stats = db.get_feedback_stats()
     return stats
+
+
+# ============================================
+# Avatar Upload Endpoints
+# ============================================
+
+# Create avatars directory if not exists
+AVATARS_DIR = os.path.join(os.path.dirname(__file__), "..", "database", "avatars")
+os.makedirs(AVATARS_DIR, exist_ok=True)
+
+@app.post("/api/user/avatar/upload")
+async def upload_avatar(
+    file: UploadFile = File(...),
+    user: dict = Depends(require_auth)
+):
+    """Upload avatar image"""
+    # Validate file type
+    allowed_types = ["image/jpeg", "image/png", "image/gif", "image/webp"]
+    if file.content_type not in allowed_types:
+        raise HTTPException(
+            status_code=400, 
+            detail="File type not allowed. Use JPEG, PNG, GIF, or WebP"
+        )
+    
+    # Validate file size (max 2MB)
+    contents = await file.read()
+    if len(contents) > 2 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="File too large. Maximum 2MB")
+    
+    try:
+        # Generate unique filename
+        ext = file.filename.split('.')[-1] if '.' in file.filename else 'jpg'
+        filename = f"avatar_{user['id']}_{uuid.uuid4().hex[:8]}.{ext}"
+        filepath = os.path.join(AVATARS_DIR, filename)
+        
+        # Save file
+        with open(filepath, "wb") as f:
+            f.write(contents)
+        
+        # Create avatar URL (relative path)
+        avatar_url = f"/api/avatars/{filename}"
+        
+        # Update user avatar in database
+        result = db.update_user(user['id'], avatar=avatar_url)
+        
+        if result["success"]:
+            return {
+                "success": True,
+                "avatar_url": avatar_url,
+                "message": "Avatar uploaded successfully"
+            }
+        else:
+            # Remove uploaded file if db update fails
+            os.remove(filepath)
+            raise HTTPException(status_code=500, detail="Failed to update avatar")
+            
+    except Exception as e:
+        print(f"❌ Error uploading avatar: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/user/avatar/base64")
+async def upload_avatar_base64(
+    request: Request,
+    user: dict = Depends(require_auth)
+):
+    """Upload avatar as base64 string (for emoji/small images)"""
+    try:
+        body = await request.json()
+        avatar_data = body.get("avatar")
+        
+        if not avatar_data:
+            raise HTTPException(status_code=400, detail="Avatar data required")
+        
+        # If it's an emoji (short string), save directly
+        if len(avatar_data) < 20:
+            result = db.update_user(user['id'], avatar=avatar_data)
+            if result["success"]:
+                return {"success": True, "avatar": avatar_data}
+            raise HTTPException(status_code=500, detail="Failed to update avatar")
+        
+        # If it's base64 image, decode and save
+        if avatar_data.startswith("data:image"):
+            # Extract base64 data
+            header, data = avatar_data.split(",", 1)
+            ext = header.split("/")[1].split(";")[0]
+            
+            # Decode
+            image_bytes = base64.b64decode(data)
+            
+            # Validate size
+            if len(image_bytes) > 2 * 1024 * 1024:
+                raise HTTPException(status_code=400, detail="Image too large. Maximum 2MB")
+            
+            # Save file
+            filename = f"avatar_{user['id']}_{uuid.uuid4().hex[:8]}.{ext}"
+            filepath = os.path.join(AVATARS_DIR, filename)
+            
+            with open(filepath, "wb") as f:
+                f.write(image_bytes)
+            
+            avatar_url = f"/api/avatars/{filename}"
+            result = db.update_user(user['id'], avatar=avatar_url)
+            
+            if result["success"]:
+                return {"success": True, "avatar": avatar_url}
+            
+            os.remove(filepath)
+            raise HTTPException(status_code=500, detail="Failed to update avatar")
+        
+        # Direct string (emoji)
+        result = db.update_user(user['id'], avatar=avatar_data)
+        if result["success"]:
+            return {"success": True, "avatar": avatar_data}
+        
+        raise HTTPException(status_code=500, detail="Failed to update avatar")
+        
+    except Exception as e:
+        print(f"❌ Error uploading avatar: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+from fastapi.responses import FileResponse
+
+@app.get("/api/avatars/{filename}")
+async def get_avatar(filename: str):
+    """Serve avatar image"""
+    filepath = os.path.join(AVATARS_DIR, filename)
+    if os.path.exists(filepath):
+        return FileResponse(filepath)
+    raise HTTPException(status_code=404, detail="Avatar not found")
 
 
 if __name__ == "__main__":
