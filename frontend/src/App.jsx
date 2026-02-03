@@ -650,6 +650,41 @@ function App() {
                       </div>
                     )}
                     
+                    {/* Feedback controls - Always show for assistant messages */}
+                    {msg.role === 'assistant' && (
+                      <div className="message-feedback">
+                        <div className="feedback-buttons">
+                          <button 
+                            title="Jawaban ini membantu" 
+                            onClick={() => handleFeedback(msg.id, 1)} 
+                            className={`feedback-btn feedback-btn--like ${msg.metadata?.rating === 1 ? 'feedback-btn--active' : ''}`}
+                          >
+                            <ThumbsUp size={16} />
+                          </button>
+                          <button 
+                            title="Jawaban ini kurang tepat" 
+                            onClick={() => handleFeedback(msg.id, -1)} 
+                            className={`feedback-btn feedback-btn--dislike ${msg.metadata?.rating === -1 ? 'feedback-btn--active' : ''}`}
+                          >
+                            <ThumbsDown size={16} />
+                          </button>
+                          <button 
+                            title="Regenerasi jawaban" 
+                            onClick={() => handleRegenerate(idx)} 
+                            className="feedback-btn feedback-btn--regenerate"
+                          >
+                            <RefreshCw size={16} />
+                          </button>
+                        </div>
+                        {msg.metadata?.rating && (
+                          <span className="feedback-status">
+                            {msg.metadata.rating === 1 ? '✓ Terima kasih atas feedback positif!' : '✓ Feedback tercatat, kami akan perbaiki'}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    
+                    {/* Metadata info */}
                     {msg.metadata && msg.metadata.response_time && (
                       <div className="message-metadata">
                         {msg.timestamp && <span>⏰ {msg.timestamp}</span>}
@@ -659,14 +694,6 @@ function App() {
                         <span>⏱️ {msg.metadata.response_time.toFixed(2)}s</span>
                         {msg.metadata.num_chunks > 0 && (
                           <span>📄 {msg.metadata.num_chunks} chunks</span>
-                        )}
-                        {/* Evaluation controls only for assistant messages */}
-                        {msg.role === 'assistant' && (
-                          <div className="eval-controls">
-                            <button title="Thumbs up" onClick={() => handleFeedback(msg.id, 1)} className="eval-btn"><ThumbsUp size={14} /></button>
-                            <button title="Thumbs down" onClick={() => handleFeedback(msg.id, -1)} className="eval-btn"><ThumbsDown size={14} /></button>
-                            <button title="Regenerate (force)" onClick={() => handleRegenerate(idx)} className="eval-btn"><RefreshCw size={14} /></button>
-                          </div>
                         )}
                       </div>
                     )}
