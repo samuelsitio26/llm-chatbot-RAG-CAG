@@ -11,7 +11,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # Paths
 TOURISM_DIR = os.path.normpath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "tourism")
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "database", "vectordatabase")
 )
 
 FILES_DIR = os.path.normpath(
@@ -58,7 +58,7 @@ def load_cag_system(_model, _encoder):
         ]
         
         if pdf_files:
-            with st.spinner(f"🔄 Loading {len(pdf_files)} PDFs from data/tourism/..."):
+            with st.spinner(f"🔄 Loading {len(pdf_files)} PDFs from database/vectordatabase/..."):
                 try:
                     result = cag_system.load_documents(pdf_files, use_summaries=False)
                     
@@ -72,7 +72,7 @@ def load_cag_system(_model, _encoder):
                     import traceback
                     st.code(traceback.format_exc())
         else:
-            st.warning("⚠️ No PDFs found in data/tourism/")
+            st.warning("⚠️ No PDFs found in database/vectordatabase/")
     else:
         st.error(f"❌ Folder not found: {TOURISM_DIR}")
     

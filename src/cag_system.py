@@ -181,7 +181,7 @@ class CAGSystem:
         # Check if documents loaded
         if not self.database:
             return {
-                "response": "⚠️ Silakan upload dokumen PDF terlebih dahulu ke folder data/tourism/",
+                "response": "⚠️ Silakan upload dokumen PDF terlebih dahulu ke folder database/vectordatabase/",
                 "source": "error",
                 "cache_used": False,
                 "response_time": time.time() - start_time,

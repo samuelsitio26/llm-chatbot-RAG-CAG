@@ -39,7 +39,7 @@ class GeminiChatModel:
         
         # Rate limiting: track last request time
         self.last_request_time = 0
-        self.min_request_interval = 4  # Minimum 4 seconds between requests (15 RPM = 1 per 4 sec)
+        self.min_request_interval = 5  # Minimum 5 seconds between requests (safer margin for 15 RPM)
         
         # Track failed keys temporarily
         self.failed_keys = {}  # key -> failure_time
@@ -315,6 +315,27 @@ Silakan ajukan pertanyaan seputar wisata Danau Toba! 😊"""
             topic = "pantai"
         elif any(kw in query_lower for kw in ['gunung', 'bukit', 'hiking']):
             topic = "wisata alam"
+        elif any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan']):
+            topic = "transportasi"
+            return f"""🚗 **Informasi Transportasi di Danau Toba:**
+
+Untuk informasi transportasi ke dan di sekitar Danau Toba, berikut beberapa opsi umum:
+
+**🚌 Transportasi Umum:**
+• Angkot dan bus lokal tersedia di kota-kota besar seperti Parapat dan Balige
+• Kapal ferry menyeberang dari Parapat ke Samosir
+
+**🚗 Rental Kendaraan:**
+• Tersedia rental mobil dan motor di Parapat, Balige, dan Samosir
+• Disarankan menyewa kendaraan untuk fleksibilitas perjalanan
+
+**📞 Tips:**
+• Tanyakan langsung ke penginapan untuk rekomendasi rental terpercaya
+• Pesan kendaraan lebih awal terutama saat musim liburan
+
+⚠️ *Maaf, informasi detail transportasi sedang tidak tersedia karena keterbatasan sistem. Silakan coba lagi nanti.*
+
+Ada pertanyaan lain tentang wisata Danau Toba? 😊"""
         else:
             topic = "wisata"
         
@@ -410,6 +431,8 @@ Silakan ajukan pertanyaan lain! 😊"""
             response_parts.append("🏨 **Rekomendasi Penginapan:**\n")
         elif is_asking_tourism:
             response_parts.append("🏖️ **Rekomendasi Wisata:**\n")
+        elif any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan']):
+            response_parts.append("🚗 **Informasi Transportasi:**\n")
         else:
             response_parts.append("📍 **Informasi yang ditemukan:**\n")
         
@@ -536,17 +559,25 @@ Silakan ajukan pertanyaan lain! 😊"""
         tourism_keywords = ['pantai', 'wisata', 'air terjun', 'danau', 'gunung', 'museum', 'taman']
         health_keywords = ['rumah sakit', 'puskesmas', 'apotek', 'klinik', 'dokter']
         
+        transport_keywords = ['angkot', 'bus', 'rental', 'travel', 'transportasi', 'kendaraan', 'sewa', 'ojek', 'taksi', 'mobil']
+        
         is_food_query = any(kw in query_lower for kw in ['makan', 'kuliner', 'resto', 'enak', 'makanan'])
         is_stay_query = any(kw in query_lower for kw in ['hotel', 'penginapan', 'menginap', 'homestay'])
-        is_tourism_query = any(kw in query_lower for kw in ['wisata', 'pantai', 'tempat', 'air', 'jalan'])
+        is_tourism_query = any(kw in query_lower for kw in ['wisata', 'pantai', 'tempat', 'air terjun', 'jalan-jalan', 'liburan'])
+        is_transport_query = any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan', 'sewa'])
         
         is_food_entry = any(kw in entry_text for kw in food_keywords)
         is_stay_entry = any(kw in entry_text for kw in stay_keywords)
         is_tourism_entry = any(kw in entry_text for kw in tourism_keywords)
         is_health_entry = any(kw in entry_text for kw in health_keywords)
+        is_transport_entry = any(kw in entry_text for kw in transport_keywords)
         
-        # Don't show health facilities for tourism/food queries
-        if is_health_entry and (is_food_query or is_tourism_query or is_stay_query):
+        # Don't show health facilities for tourism/food/transport queries
+        if is_health_entry and (is_food_query or is_tourism_query or is_stay_query or is_transport_query):
+            return False
+        
+        # Transport query should match transport entries only
+        if is_transport_query and not is_transport_entry:
             return False
         
         # Match query type with entry type

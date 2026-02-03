@@ -11,7 +11,7 @@ encoder = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L12
 cag = CAGSystem(model=model, encoder=encoder)
 
 # Load PDFs
-pdf_files = glob.glob('data/tourism/*.pdf')
+pdf_files = glob.glob('database/vectordatabase/*.pdf')
 if pdf_files:
     print(f"Loading {len(pdf_files)} PDFs...")
     cag.load_documents(pdf_files)

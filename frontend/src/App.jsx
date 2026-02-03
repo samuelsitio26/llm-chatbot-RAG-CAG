@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin } from 'lucide-react';
+import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin, LogIn, Settings, User, LogOut, ChevronLeft, ChevronRight, ChevronDown, UserCircle, Menu, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import MapView from './MapView';
 import 'leaflet/dist/leaflet.css';
+import { useAuth } from './context/AuthContext';
 
 // ✅ Use relative URL - Vite will proxy to backend
 const API_BASE_URL = '/api';
@@ -12,6 +14,7 @@ const API_BASE_URL = '/api';
 console.log('🔗 API URL:', API_BASE_URL);
 
 function App() {
+  const { user, isAuthenticated, logout, updateUserStats, isAdmin } = useAuth();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +25,13 @@ function App() {
   const [conversations, setConversations] = useState({});
   const [activeConvId, setActiveConvId] = useState(null);
   
+  // Sidebar state
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  
+  // User menu dropdown
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef(null);
+  
   // Map state
   const [locations, setLocations] = useState([]);
   const [showMap, setShowMap] = useState(false);
@@ -30,6 +40,17 @@ function App() {
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -211,6 +232,11 @@ function App() {
         setConversations(next);
         persistConversations(next);
       }
+
+      // Update user stats for activity tracking
+      if (isAuthenticated && updateUserStats) {
+        updateUserStats('chat', { query: userMessage.content });
+      }
     } catch (error) {
       console.error('❌ Error:', error);
       
@@ -385,50 +411,169 @@ function App() {
 
   return (
     <div className="app">
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <img src="/images/logo.png" alt="Batak Logo" className="hero-logo" />
-          <div className="hero-text-content">
-            <h1 className="hero-title">Sistem Rekomendasi Wisata Toba</h1>
-            <p className="hero-subtitle">Temukan Destinasi Impian Anda di Danau Toba</p>
+      {/* Header dengan user menu */}
+      <header className="app-header">
+        <div className="header-left">
+          <button 
+            className="sidebar-toggle" 
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            title={sidebarCollapsed ? 'Buka Sidebar' : 'Tutup Sidebar'}
+            aria-label="Toggle sidebar"
+          >
+            {sidebarCollapsed ? <Menu size={24} /> : <ChevronLeft size={24} />}
+          </button>
+          <img src="/images/logo.png" alt="Toba Logo" className="header-logo" />
+          <div className="header-title-group">
+            <h1 className="header-title">
+              <span className="title-full">Sistem Rekomendasi Wisata Toba</span>
+              <span className="title-short">Toba Tourism</span>
+            </h1>
+            <p className="header-subtitle">Temukan Destinasi Impian Anda di Danau Toba</p>
           </div>
         </div>
-      </section>
-
-
-      <div className="main-container layout">
-        <aside className="sidebar">
-          <div className="sidebar-header">
-            <h3>Percakapan</h3>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+        
+        <div className="header-right">
+          {isAuthenticated ? (
+            <div className="user-menu-container" ref={userMenuRef}>
               <button 
-                className="btn-new" 
-                onClick={() => setShowMap(true)} 
-                title="Peta Wisata"
-                style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)' }}
+                className="user-menu-trigger"
+                onClick={() => setShowUserMenu(!showUserMenu)}
               >
-                <MapPin size={14} />
+                <span className="user-avatar-small">{user?.avatar || '👤'}</span>
+                <span className="user-name-header">{user?.name || user?.username}</span>
+                <ChevronDown size={16} className={`chevron ${showUserMenu ? 'open' : ''}`} />
               </button>
-              <button className="btn-new" onClick={() => createConversation('New') } title="New"><Plus size={14} /></button>
+              
+              {showUserMenu && (
+                <div className="user-dropdown">
+                  <div className="dropdown-header">
+                    <span className="user-avatar-large">{user?.avatar || '👤'}</span>
+                    <div className="dropdown-user-info">
+                      <span className="dropdown-name">{user?.name}</span>
+                      <span className="dropdown-email">{user?.email || user?.username}</span>
+                    </div>
+                  </div>
+                  <div className="dropdown-divider"></div>
+                  <Link to="/profile" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
+                    <UserCircle size={18} />
+                    <span>Profile Saya</span>
+                  </Link>
+                  {(isAdmin()) && (
+                    <Link to="/admin" className="dropdown-item" onClick={() => setShowUserMenu(false)}>
+                      <Settings size={18} />
+                      <span>Dashboard Admin</span>
+                    </Link>
+                  )}
+                  <div className="dropdown-divider"></div>
+                  <button className="dropdown-item logout-item" onClick={() => { logout(); setShowUserMenu(false); }}>
+                    <LogOut size={18} />
+                    <span>Keluar</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/login" className="login-btn-header">
+              <User size={18} />
+              <span>Masuk</span>
+            </Link>
+          )}
+        </div>
+      </header>
+
+      <div className={`main-container layout ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+        {/* Overlay untuk mobile - tutup sidebar ketika klik di luar */}
+        {!sidebarCollapsed && (
+          <div 
+            className="sidebar-overlay" 
+            onClick={() => setSidebarCollapsed(true)}
+            aria-hidden="true"
+          />
+        )}
+        <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+          {/* Header with New Chat button */}
+          <div className="sidebar-header">
+            <h3>{!sidebarCollapsed && 'Percakapan'}</h3>
+            <div className="sidebar-buttons" style={{ display: 'flex', gap: '0.5rem' }}>
+              <button className="btn-new" onClick={() => createConversation('New')} title="Percakapan Baru">
+                <Plus size={sidebarCollapsed ? 18 : 14} />
+              </button>
             </div>
           </div>
+          
+          {/* Conversations list */}
           <div className="conversations-list">
-            {Object.keys(conversations).length === 0 && (
-              <div className="empty">Belum ada percakapan. Klik + untuk buat.</div>
-            )}
-            {Object.entries(conversations).map(([id, conv]) => (
-              <div key={id} className={`conv-item ${id === activeConvId ? 'active' : ''}`} onClick={() => selectConversation(id)}>
-                <div className="conv-title">{conv.title || 'Untitled'}</div>
-                <div className="conv-meta">
-                  <span>{(conv.messages || []).length} msg</span>
-                  <div className="conv-actions">
-                    <button onClick={(e)=>{ e.stopPropagation(); renameConversation(id); }}>✎</button>
-                    <button onClick={(e)=>{ e.stopPropagation(); deleteConversation(id); }}>🗑</button>
+            {!sidebarCollapsed ? (
+              <>
+                {Object.keys(conversations).length === 0 && (
+                  <div className="empty">Belum ada percakapan. Klik + untuk buat.</div>
+                )}
+                {Object.entries(conversations).map(([id, conv]) => (
+                  <div key={id} className={`conv-item ${id === activeConvId ? 'active' : ''}`} onClick={() => selectConversation(id)}>
+                    <div className="conv-title">{conv.title || 'Untitled'}</div>
+                    <div className="conv-meta">
+                      <span>{(conv.messages || []).length} msg</span>
+                      <div className="conv-actions">
+                        <button onClick={(e)=>{ e.stopPropagation(); renameConversation(id); }}>✎</button>
+                        <button onClick={(e)=>{ e.stopPropagation(); deleteConversation(id); }}>🗑</button>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
+              </>
+            ) : (
+              /* Collapsed - show conversation icons */
+              <div className="collapsed-icons">
+                {Object.entries(conversations).slice(0, 5).map(([id, conv]) => (
+                  <div 
+                    key={id} 
+                    className={`collapsed-conv-icon ${id === activeConvId ? 'active' : ''}`} 
+                    onClick={() => selectConversation(id)}
+                    title={conv.title || 'Untitled'}
+                  >
+                    💬
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
+          </div>
+          
+          {/* Bottom section - Location & Profile/Login */}
+          <div className="sidebar-bottom">
+            {/* Location button */}
+            <button 
+              className={sidebarCollapsed ? "collapsed-conv-icon" : "sidebar-profile-btn"}
+              onClick={() => setShowMap(true)} 
+              title="Peta Lokasi Wisata"
+              style={{ background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.15))', border: '1px solid rgba(251, 191, 36, 0.3)' }}
+            >
+              <MapPin size={sidebarCollapsed ? 20 : 18} style={{ color: '#fbbf24' }} />
+              {!sidebarCollapsed && <span className="profile-info" style={{ color: '#fbbf24' }}>Peta Lokasi</span>}
+            </button>
+            
+            {/* Profile/Login button */}
+            {isAuthenticated ? (
+              <Link 
+                to="/profile" 
+                className="sidebar-profile-btn"
+                title={user?.name || 'Profile'}
+              >
+                <div className="profile-avatar">
+                  {user?.avatar || '👤'}
+                </div>
+                {!sidebarCollapsed && (
+                  <div className="profile-info">
+                    <div className="profile-name">{user?.name || 'User'}</div>
+                    <div className="profile-status">Lihat Profil</div>
+                  </div>
+                )}
+              </Link>
+            ) : (
+              <Link to="/login" className="sidebar-login-btn" title="Login">
+                <LogIn size={sidebarCollapsed ? 20 : 18} />
+                {!sidebarCollapsed && <span>Masuk</span>}
+              </Link>
+            )}
           </div>
         </aside>
 
@@ -456,11 +601,14 @@ function App() {
             )}
 
             {messages.map((msg, idx) => (
-              <div key={msg.id || idx} className={`message ${msg.role}`}>
+              <div key={msg.id || idx} className={`message ${msg.role} ${isAuthenticated ? 'with-avatar' : 'no-avatar'}`}>
                 <div className="message-content">
-                  <div className="message-avatar">
-                    {msg.role === 'user' ? '👤' : '🤖'}
-                  </div>
+                  {/* Avatar hanya tampil jika sudah login */}
+                  {isAuthenticated && (
+                    <div className={`message-avatar ${msg.role === 'user' ? 'user-avatar' : 'bot-avatar'}`}>
+                      {msg.role === 'user' ? (user?.avatar || '👤') : '🤖'}
+                    </div>
+                  )}
                   <div className="message-body">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                     
@@ -528,9 +676,11 @@ function App() {
             ))}
             
             {isLoading && (
-              <div className="message assistant">
+              <div className={`message assistant ${isAuthenticated ? 'with-avatar' : 'no-avatar'}`}>
                 <div className="message-content">
-                  <div className="message-avatar">🤖</div>
+                  {isAuthenticated && (
+                    <div className="message-avatar bot-avatar">🤖</div>
+                  )}
                   <div className="message-body">
                     <div className="typing-indicator">
                       <span></span>
@@ -552,7 +702,7 @@ function App() {
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                placeholder="🗣️ Tanyakan tentang destinasi wisata, kuliner, penginapan di Danau Toba..."
+                placeholder="⌨️ Tanyakan tentang wisata Danau Toba..."
                 disabled={isLoading}
                 className="input-field"
                 rows={1}
@@ -575,6 +725,9 @@ function App() {
                   </>
                 )}
               </button>
+            </div>
+            <div className="input-disclaimer">
+              Toba AI dapat membuat kesalahan. Periksa info penting sebelum mengambil keputusan.
             </div>
           </form>
         </div>
