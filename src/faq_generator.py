@@ -20,7 +20,8 @@ class FAQGenerator:
             faq_file = os.path.join(
                 os.path.dirname(__file__), 
                 "..", 
-                "data", 
+                "database", 
+                "FQA",
                 "faq_tourism.json"
             )
         
