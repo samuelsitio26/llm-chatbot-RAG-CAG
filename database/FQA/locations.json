@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Lat",
+    "lat": 2.766913,
+    "lng": 98.306444,
+    "source": "data fasilitas umum.pdf",
+    "pattern_type": "decimal"
+  },
+  {
+    "name": "Lat",
+    "lat": 2.659407,
+    "lng": 98.930585,
+    "source": "transportasi.pdf",
+    "pattern_type": "decimal"
+  },
+  {
+    "name": "Lat",
+    "lat": 2.333933,
+    "lng": 98.802809,
+    "source": "transportasi.pdf",
+    "pattern_type": "decimal"
+  },
+  {
+    "name": "Lat",
+    "lat": 3.192445,
+    "lng": 98.508154,
+    "source": "transportasi.pdf",
+    "pattern_type": "decimal"
+  },
+  {
+    "name": "Lat",
+    "lat": 2.017278,
+    "lng": 98.975631,
+    "source": "transportasi.pdf",
+    "pattern_type": "decimal"
+  }
+]
