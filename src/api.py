@@ -16,7 +16,16 @@ from datetime import datetime
 from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Google OAuth imports
+from authlib.integrations.starlette_client import OAuth
+from starlette.middleware.sessions import SessionMiddleware
 
 # Add src to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -181,6 +190,17 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Session middleware for OAuth (required by authlib)
+# Configure with same_site="lax" to allow OAuth redirects
+SECRET_KEY = os.getenv("SECRET_KEY", "toba-tourism-secret-key-change-in-production")
+app.add_middleware(
+    SessionMiddleware, 
+    secret_key=SECRET_KEY,
+    same_site="lax",
+    https_only=False,  # Set True in production with HTTPS
+    max_age=3600  # 1 hour session
+)
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -188,6 +208,23 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+# ============================================
+# Google OAuth Setup
+# ============================================
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "https://onierec.ai/api/auth/google/callback")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://onierec.ai")
+
+oauth = OAuth()
+oauth.register(
+    name="google",
+    client_id=GOOGLE_CLIENT_ID,
+    client_secret=GOOGLE_CLIENT_SECRET,
+    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
+    client_kwargs={"scope": "openid email profile"},
 )
 
 
@@ -347,6 +384,81 @@ async def logout(authorization: str = Header(...)):
     
     db.logout_user(token)
     return {"success": True, "message": "Logged out successfully"}
+
+
+# ============================================
+# Google OAuth Endpoints
+# ============================================
+
+@app.get("/api/auth/google/login")
+async def google_login(request: Request):
+    """Redirect user to Google login page"""
+    if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+        raise HTTPException(status_code=500, detail="Google OAuth not configured")
+    
+    redirect_uri = GOOGLE_REDIRECT_URI
+    print(f"🔑 Starting Google OAuth, redirect_uri: {redirect_uri}")
+    return await oauth.google.authorize_redirect(request, redirect_uri)
+
+
+@app.get("/api/auth/google/callback")
+async def google_callback(request: Request):
+    """Handle Google OAuth callback"""
+    try:
+        print(f"📥 Google callback received")
+        
+        # Get token from Google
+        token = await oauth.google.authorize_access_token(request)
+        print(f"✅ Token received from Google")
+        
+        # Get user info from token
+        userinfo = token.get('userinfo')
+        if not userinfo:
+            # Try to get from id_token
+            try:
+                userinfo = await oauth.google.parse_id_token(token, nonce=None)
+            except Exception as e:
+                print(f"⚠️ Could not parse id_token: {e}")
+                # Fallback: get userinfo from userinfo endpoint
+                userinfo = token.get('userinfo')
+        
+        if not userinfo:
+            print("❌ No userinfo in token")
+            return RedirectResponse(f"{FRONTEND_URL}/login?error=no_userinfo")
+        
+        email = userinfo.get('email')
+        name = userinfo.get('name')
+        picture = userinfo.get('picture')
+        
+        print(f"👤 User info: email={email}, name={name}")
+        
+        if not email:
+            return RedirectResponse(f"{FRONTEND_URL}/login?error=no_email")
+        
+        # Get or create user in database
+        result = db.get_or_create_google_user(
+            email=email,
+            name=name,
+            avatar=picture,
+            ip_address=request.client.host if request.client else None,
+            user_agent=request.headers.get("user-agent")
+        )
+        
+        if not result.get("success"):
+            error_msg = result.get('error', 'OAuth failed')
+            print(f"❌ DB error: {error_msg}")
+            return RedirectResponse(f"{FRONTEND_URL}/login?error={error_msg}")
+        
+        # Redirect to frontend with token
+        auth_token = result.get("token")
+        print(f"✅ Login successful, redirecting to frontend")
+        return RedirectResponse(f"{FRONTEND_URL}/auth/callback?token={auth_token}")
+        
+    except Exception as e:
+        print(f"❌ Google OAuth error: {e}")
+        import traceback
+        traceback.print_exc()
+        return RedirectResponse(f"{FRONTEND_URL}/login?error=oauth_failed")
 
 
 @app.get("/api/auth/me")

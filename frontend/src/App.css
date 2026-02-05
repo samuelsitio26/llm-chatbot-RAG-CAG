@@ -243,6 +243,74 @@ button, input, textarea, select {
   font-size: 1.3rem;
 }
 
+/* Avatar Image Styles */
+.avatar-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-img.avatar-small,
+img.user-avatar-small {
+  width: 28px;
+  height: 28px;
+}
+
+.avatar-img.avatar-medium {
+  width: 36px;
+  height: 36px;
+}
+
+.avatar-img.avatar-large,
+img.user-avatar-large {
+  width: 48px;
+  height: 48px;
+}
+
+.avatar-img.avatar-message {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-emoji.avatar-small {
+  font-size: 1.3rem;
+}
+
+.avatar-emoji.avatar-medium {
+  font-size: 1.8rem;
+}
+
+.avatar-emoji.avatar-large {
+  font-size: 2.5rem;
+}
+
+.avatar-emoji.avatar-message {
+  font-size: 1.5rem;
+}
+
+/* Profile avatar in sidebar */
+.profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar .avatar-img {
+  width: 36px;
+  height: 36px;
+}
+
+/* Message avatar styles */
+.message-avatar.user-avatar .avatar-img {
+  width: 32px;
+  height: 32px;
+}
+
 .user-name-header {
   font-weight: 500;
   font-size: 0.9rem;
@@ -296,6 +364,11 @@ button, input, textarea, select {
 
 .user-avatar-large {
   font-size: 2.5rem;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown-user-info {
