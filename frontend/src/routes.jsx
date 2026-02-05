@@ -22,6 +22,7 @@ import App from './App';
 import Login from './components/Login';
 import AdminDashboard from './components/AdminDashboard';
 import UserProfile from './components/UserProfile';
+import AuthCallback from './components/AuthCallback';
 
 // ============================================
 // 📍 ROUTE DEFINITIONS
@@ -43,6 +44,12 @@ export const publicRoutes = [
     element: App,
     name: 'Chat',
     description: 'Halaman chat utama'
+  },
+  {
+    path: '/auth/callback',
+    element: AuthCallback,
+    name: 'OAuth Callback',
+    description: 'Handle Google OAuth callback'
   }
 ];
 

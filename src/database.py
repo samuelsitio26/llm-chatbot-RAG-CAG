@@ -360,6 +360,135 @@ def logout_user(token: str) -> bool:
     finally:
         conn.close()
 
+
+def get_or_create_google_user(email: str, name: str = None, avatar: str = None,
+                               ip_address: str = None, user_agent: str = None) -> Dict[str, Any]:
+    """
+    Get or create a user from Google OAuth login.
+    If user exists by email, log them in.
+    If not, create new user and log them in.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Check if user exists by email
+        cursor.execute('''
+            SELECT id, username, email, name, avatar, role, bio, location, 
+                   favorite_categories, is_active, created_at
+            FROM users WHERE email = ?
+        ''', (email,))
+        
+        user = cursor.fetchone()
+        
+        if user:
+            # User exists
+            if not user['is_active']:
+                return {"success": False, "error": "Akun telah dinonaktifkan"}
+            
+            user_id = user['id']
+            
+            # Update name/avatar if provided and different
+            updates = []
+            values = []
+            if name and name != user['name']:
+                updates.append("name = ?")
+                values.append(name)
+            if avatar and avatar != user['avatar']:
+                updates.append("avatar = ?")
+                values.append(avatar)
+            
+            if updates:
+                values.append(user_id)
+                cursor.execute(f'''
+                    UPDATE users SET {", ".join(updates)}, updated_at = CURRENT_TIMESTAMP
+                    WHERE id = ?
+                ''', values)
+                conn.commit()
+        else:
+            # Create new user
+            # Generate username from email (before @)
+            base_username = email.split('@')[0]
+            username = base_username
+            suffix = 1
+            
+            # Ensure unique username
+            while True:
+                cursor.execute("SELECT id FROM users WHERE username = ?", (username,))
+                if not cursor.fetchone():
+                    break
+                username = f"{base_username}{suffix}"
+                suffix += 1
+            
+            # Create random password (user won't use it, they login via Google)
+            random_password = secrets.token_urlsafe(32)
+            password_hash = hash_password(random_password)
+            
+            cursor.execute('''
+                INSERT INTO users (username, email, password_hash, name, avatar, role)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (username, email, password_hash, name or username, avatar or '😊', 'user'))
+            
+            user_id = cursor.lastrowid
+            
+            # Create default preferences
+            cursor.execute('INSERT INTO user_preferences (user_id) VALUES (?)', (user_id,))
+            conn.commit()
+            
+            log_activity(user_id, "register_google", "User registered via Google OAuth", ip_address)
+        
+        # Create session token
+        token = generate_session_token()
+        expires_at = datetime.now() + timedelta(days=7)
+        
+        cursor.execute('''
+            INSERT INTO sessions (user_id, token, expires_at, ip_address, user_agent)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (user_id, token, expires_at, ip_address, user_agent))
+        
+        # Update last login
+        cursor.execute('UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?', (user_id,))
+        conn.commit()
+        
+        # Fetch updated user data
+        cursor.execute('''
+            SELECT id, username, email, name, avatar, role, bio, location, 
+                   favorite_categories, created_at
+            FROM users WHERE id = ?
+        ''', (user_id,))
+        
+        u = cursor.fetchone()
+        
+        favorite_categories = []
+        try:
+            favorite_categories = json.loads(u['favorite_categories'] or '[]')
+        except:
+            pass
+        
+        log_activity(user_id, "login_google", "User logged in via Google OAuth", ip_address)
+        
+        return {
+            "success": True,
+            "token": token,
+            "user": {
+                "id": u['id'],
+                "username": u['username'],
+                "email": u['email'],
+                "name": u['name'],
+                "avatar": u['avatar'],
+                "role": u['role'],
+                "bio": u['bio'],
+                "location": u['location'],
+                "favoriteCategories": favorite_categories,
+                "createdAt": u['created_at']
+            }
+        }
+    except Exception as e:
+        print(f"Google OAuth error: {e}")
+        return {"success": False, "error": str(e)}
+    finally:
+        conn.close()
+
 def update_user(user_id: int, **kwargs) -> Dict[str, Any]:
     """Update user profile"""
     conn = get_db_connection()

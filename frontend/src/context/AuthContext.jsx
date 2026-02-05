@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext(null);
 
 // API Base URL - Use relative URL for production, absolute for development
-const API_BASE = import.meta.env.DEV ? 'http://localhost:8000/api' : '/api';
+const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:8000/api' : '/api';
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -198,6 +198,35 @@ export const AuthProvider = ({ children }) => {
     }
 
     return { success: false, message: 'Username atau password salah' };
+  };
+
+  // Handle OAuth callback - validate token from Google OAuth redirect
+  const handleOAuthCallback = async (authToken) => {
+    try {
+      // Validate the token with backend
+      const result = await apiCall('/auth/validate', 'GET', null, authToken);
+      
+      if (result.valid && result.user) {
+        setUser(result.user);
+        setToken(authToken);
+        setBackendAvailable(true);
+        localStorage.setItem('toba_auth_token', authToken);
+        localStorage.setItem('toba_current_user', JSON.stringify(result.user));
+        logUserActivity(result.user.id, result.user.username, 'login_google');
+        return { success: true, role: result.user.role };
+      }
+      
+      return { success: false, message: 'Token tidak valid' };
+    } catch (error) {
+      console.error('OAuth callback error:', error);
+      return { success: false, message: error.message || 'Gagal validasi token' };
+    }
+  };
+
+  // Get Google OAuth login URL
+  const getGoogleLoginUrl = () => {
+    const baseUrl = import.meta.env.DEV ? 'http://127.0.0.1:8000' : '';
+    return `${baseUrl}/api/auth/google/login`;
   };
 
   const register = async (username, password, name, email = null) => {
@@ -469,6 +498,8 @@ export const AuthProvider = ({ children }) => {
       user, 
       token,
       login,
+      handleOAuthCallback,
+      getGoogleLoginUrl,
       register,
       logout,
       updateUser,

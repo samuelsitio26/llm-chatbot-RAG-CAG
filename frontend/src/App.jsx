@@ -13,6 +13,31 @@ const API_BASE_URL = '/api';
 
 console.log('🔗 API URL:', API_BASE_URL);
 
+// Helper function to check if avatar is an image URL
+const isImageAvatar = (avatar) => {
+  return avatar && (
+    avatar.startsWith('/api/avatars/') || 
+    avatar.startsWith('data:image') || 
+    avatar.startsWith('http://') ||
+    avatar.startsWith('https://')
+  );
+};
+
+// Avatar component that handles both emoji and image URLs
+const Avatar = ({ src, size = 'small', className = '' }) => {
+  if (isImageAvatar(src)) {
+    return (
+      <img 
+        src={src} 
+        alt="Avatar" 
+        className={`avatar-img avatar-${size} ${className}`}
+        onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+      />
+    );
+  }
+  return <span className={`avatar-emoji avatar-${size} ${className}`}>{src || '👤'}</span>;
+};
+
 function App() {
   const { user, isAuthenticated, logout, updateUserStats, isAdmin } = useAuth();
   const [messages, setMessages] = useState([]);
@@ -453,7 +478,7 @@ function App() {
                 className="user-menu-trigger"
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
-                <span className="user-avatar-small">{user?.avatar || '👤'}</span>
+                <Avatar src={user?.avatar} size="small" className="user-avatar-small" />
                 <span className="user-name-header">{user?.name || user?.username}</span>
                 <ChevronDown size={16} className={`chevron ${showUserMenu ? 'open' : ''}`} />
               </button>
@@ -461,7 +486,7 @@ function App() {
               {showUserMenu && (
                 <div className="user-dropdown">
                   <div className="dropdown-header">
-                    <span className="user-avatar-large">{user?.avatar || '👤'}</span>
+                    <Avatar src={user?.avatar} size="large" className="user-avatar-large" />
                     <div className="dropdown-user-info">
                       <span className="dropdown-name">{user?.name}</span>
                       <span className="dropdown-email">{user?.email || user?.username}</span>
@@ -573,7 +598,7 @@ function App() {
                 title={user?.name || 'Profile'}
               >
                 <div className="profile-avatar">
-                  {user?.avatar || '👤'}
+                  <Avatar src={user?.avatar} size="medium" />
                 </div>
                 {!sidebarCollapsed && (
                   <div className="profile-info">
@@ -620,7 +645,7 @@ function App() {
                   {/* Avatar hanya tampil jika sudah login */}
                   {isAuthenticated && (
                     <div className={`message-avatar ${msg.role === 'user' ? 'user-avatar' : 'bot-avatar'}`}>
-                      {msg.role === 'user' ? (user?.avatar || '👤') : '🤖'}
+                      {msg.role === 'user' ? <Avatar src={user?.avatar} size="message" /> : '🤖'}
                     </div>
                   )}
                   <div className="message-body">
