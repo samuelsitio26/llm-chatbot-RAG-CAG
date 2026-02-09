@@ -233,6 +233,11 @@ button, input, textarea, select {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+.user-menu-trigger .avatar-img,
+.user-menu-trigger .avatar-emoji {
+  flex-shrink: 0;
+}
+
 .user-menu-trigger:hover {
   background: rgba(15, 23, 42, 0.95);
   border-color: rgba(255, 255, 255, 0.5);
@@ -247,34 +252,47 @@ button, input, textarea, select {
 .avatar-img {
   border-radius: 50%;
   object-fit: cover;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
 }
 
 .avatar-img.avatar-small,
 img.user-avatar-small {
   width: 28px;
   height: 28px;
+  min-width: 28px;
+  min-height: 28px;
 }
 
 .avatar-img.avatar-medium {
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
 }
 
 .avatar-img.avatar-large,
 img.user-avatar-large {
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .avatar-img.avatar-message {
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .avatar-emoji {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .avatar-emoji.avatar-small {
@@ -293,19 +311,7 @@ img.user-avatar-large {
   font-size: 1.5rem;
 }
 
-/* Profile avatar in sidebar */
-.profile-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-avatar .avatar-img {
-  width: 36px;
-  height: 36px;
-}
-
-/* Message avatar styles */
+/* Message avatar styles - these are overrides for specific contexts */
 .message-avatar.user-avatar .avatar-img {
   width: 32px;
   height: 32px;
@@ -360,6 +366,11 @@ img.user-avatar-large {
   gap: 12px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.03);
+}
+
+.dropdown-header .avatar-img,
+.dropdown-header .avatar-emoji {
+  flex-shrink: 0;
 }
 
 .user-avatar-large {
@@ -741,16 +752,30 @@ img.user-avatar-large {
   font-size: 1.5rem;
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--batak-red), #991b1b);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-avatar .avatar-img,
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .sidebar.collapsed .profile-avatar {
   width: 28px;
   height: 28px;
+  min-width: 28px;
+  min-height: 28px;
   font-size: 1.2rem;
 }
 
@@ -1006,13 +1031,15 @@ img.user-avatar-large {
 }
 
 /* ============================================
-   MESSAGES
+   MESSAGES - WhatsApp Style Layout
    ============================================ */
 .message {
   display: flex;
-  gap: 1rem;
-  max-width: 80%;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 75%;
   animation: slideIn 0.3s ease-out;
+  margin-bottom: 4px;
 }
 
 @keyframes slideIn {
@@ -1026,62 +1053,62 @@ img.user-avatar-large {
   }
 }
 
+/* Bot message - avatar di kiri, bubble di kanan */
+.message.assistant {
+  align-self: flex-start;
+  flex-direction: row;
+}
+
+/* User message - avatar di kanan, bubble di kiri */
 .message.user {
   align-self: flex-end;
   flex-direction: row-reverse;
 }
 
-.message.assistant {
-  align-self: flex-start;
-}
-
-/* Avatar styles - only show when logged in */
+/* Avatar styles - WhatsApp Style */
 .message-avatar {
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* User avatar - positioned on right side */
+.message-avatar .avatar-img,
+.message-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+}
+
+.message-avatar .avatar-emoji {
+  width: 100%;
+  height: 100%;
+}
+
+/* Bot avatar - di kiri */
+.message.assistant .message-avatar,
+.bot-avatar {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+/* User avatar - di kanan */
 .message.user .message-avatar,
 .user-avatar {
   background: linear-gradient(135deg, var(--toba-blue), var(--toba-cyan));
   color: white;
-  order: 2;
-  margin-left: 8px;
-  margin-right: 0;
-}
-
-/* Bot avatar - positioned on left side */
-.message.assistant .message-avatar,
-.bot-avatar {
-  background: linear-gradient(135deg, var(--batak-red), var(--batak-gold));
-  color: white;
-  order: 0;
-  margin-right: 8px;
-  margin-left: 0;
-}
-
-/* Message layout adjustments */
-.message.with-avatar .message-content {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-}
-
-.message.user.with-avatar .message-content {
-  flex-direction: row-reverse;
-}
-
-.message.no-avatar .message-content {
-  display: block;
 }
 
 /* Hide avatar when not logged in */
@@ -1089,26 +1116,74 @@ img.user-avatar-large {
   display: none;
 }
 
-.message-content {
-  background: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 0.75rem 1rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow-md);
-  font-size: 0.9rem;
+.message.no-avatar {
+  max-width: 85%;
 }
 
+/* Message bubble - WhatsApp Style */
+.message-content {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Bot message bubble - tail di kiri */
+.message.assistant .message-content {
+  background: rgba(30, 41, 59, 0.95);
+  border-top-left-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* User message bubble - tail di kanan */
 .message.user .message-content {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(6, 182, 212, 0.3));
-  border: 1px solid rgba(37, 99, 235, 0.5);
+  background: linear-gradient(135deg, rgba(5, 96, 98, 0.95), rgba(3, 59, 61, 0.95));
+  border-top-right-radius: 2px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.message-body {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message-content p {
-  margin: 0 0 0.4rem 0;
-  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.95);
   font-size: 0.9rem;
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* WhatsApp-style markdown */
+.message-content strong {
+  font-weight: 600;
+}
+
+.message-content code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.message-content ul,
+.message-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.message-content li {
+  margin: 0.25rem 0;
+  line-height: 1.4;
 }
 
 .message-content p:last-child {
@@ -1906,36 +1981,41 @@ img.user-avatar-large {
     border: 1px solid rgba(220, 38, 38, 0.2);
   }
 
-  /* Messages Mobile */
+  /* Messages Mobile - WhatsApp Style */
   .message {
-    max-width: 90%;
-    gap: 0.5rem;
+    max-width: 85%;
+    gap: 6px;
   }
 
   .message.user {
+    max-width: 82%;
+  }
+
+  .message.assistant {
     max-width: 85%;
   }
 
   .message-avatar {
     width: 28px;
     height: 28px;
-    font-size: 0.75rem;
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 1rem;
     flex-shrink: 0;
   }
 
   .message-content {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 16px;
-    line-height: 1.5;
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    line-height: 1.4;
   }
 
   .message.user .message-content {
-    border-radius: 16px 16px 4px 16px;
+    border-top-right-radius: 2px;
   }
 
   .message.assistant .message-content {
-    border-radius: 16px 16px 16px 4px;
+    border-top-left-radius: 2px;
   }
 
   /* Input Form Mobile - Fixed at bottom like ChatGPT */
