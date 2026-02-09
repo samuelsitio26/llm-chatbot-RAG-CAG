@@ -1,6 +1,10 @@
 # 🏔️ Sistem Rekomendasi Wisata Danau Toba
 
-Chatbot cerdas menggunakan **RAG + CAG** untuk rekomendasi wisata Danau Toba berbasis 9 dokumen PDF dengan response **10x lebih cepat** menggunakan caching.
+Chatbot cerdas berbasis **RAG + CAG** untuk rekomendasi wisata Danau Toba. Sistem mengambil konteks dari 9 dokumen PDF, lalu mempercepat respon hingga **10x** dengan mekanisme caching.
+
+## 🖼️ Preview UI
+
+![Preview UI](frontend/public/images/page1.png)
 
 ## ✨ Fitur
 
@@ -23,7 +27,7 @@ Chatbot cerdas menggunakan **RAG + CAG** untuk rekomendasi wisata Danau Toba ber
 
 ## 📊 Evaluation Metrics
 
-Sistem evaluasi lengkap untuk mengukur performa RAG/CAG:
+Sistem evaluasi lengkap untuk mengukur performa RAG/CAG dan kualitas jawaban:
 
 ### Quantitative Metrics
 1. **Efficiency**: Response Time, Cache Hit Rate (CHR)
@@ -41,23 +45,31 @@ Sistem evaluasi lengkap untuk mengukur performa RAG/CAG:
 ## 📂 Struktur
 
 ```
-├── data/
-│   ├── tourism/              # 9 PDF dokumen wisata
-│   └── evaluation_dataset.json  # Test dataset untuk evaluasi
 ├── database/
-│   ├── kv_cache/             # Cache responses
-│   └── user_judgments.json   # User evaluation data
-├── src/
-│   ├── api.py                # Backend API
-│   ├── model.py              # Gemini wrapper
-│   ├── cag_system.py         # RAG + CAG pipeline
-│   ├── evaluation.py         # ✨ Evaluation metrics system
-│   └── run_evaluation.py     # ✨ Evaluation runner
+│   ├── avatars/               # Avatar assets
+│   ├── FQA/                   # Dataset FAQ
+│   ├── kv_cache/              # Cache responses
+│   ├── summary_cache/         # Cache ringkasan
+│   ├── vectordatabase/        # Vector DB scripts
+│   └── toba_chatbot.db        # SQLite database
+├── frontend/
+│   ├── public/                # Static assets (images, song)
+│   ├── src/                   # React UI
+│   └── vite.config.js         # Vite config
+├── logs/                      # Logs dan hasil evaluasi
+├── models/                    # Model artifacts
 ├── notebooks/
-│   ├── Evaluate.ipynb        # Evaluation notebook
-│   └── evaluation_cells.py   # ✨ Ready-to-use cells
-├── docs/                     # ✨ Documentation
-└── frontend/src/             # React UI
+│   └── Evaluate.ipynb         # Evaluation notebook
+├── src/
+│   ├── api.py                 # Backend API
+│   ├── model.py               # Gemini wrapper
+│   ├── cag_system.py          # RAG + CAG pipeline
+│   ├── evaluation.py          # Evaluation metrics system
+│   └── app.py                 # FastAPI app entry
+├── requirements.txt
+├── setup_app.sh
+├── setup_vps.sh
+└── test_response.py
 ```
 
 ## 🚀 Cara Menjalankan
@@ -111,7 +123,7 @@ npm run dev
 - "Tempat makan enak di Samosir"
 - "Wisata populer di Danau Toba"
 
-## � Running Evaluation
+## 🧪 Running Evaluation
 
 ### Quick Test
 ```bash
@@ -132,7 +144,7 @@ Atau copy cells dari `notebooks/evaluation_cells.py` untuk evaluasi lengkap deng
 - Detailed JSON results di `logs/evaluation/`
 - CSV export untuk analisis lebih lanjut
 
-## �👨‍💻 Author
+## 👨‍💻 Author
 
 **TASI-104** - IT Del
 
