@@ -36,6 +36,57 @@ import './AdminDashboard.css';
 
 const API_BASE_URL = '/api';
 
+// Helper function to check if avatar is an image URL
+const isImageAvatar = (avatar) => {
+  return avatar && (
+    avatar.startsWith('/api/avatars/') || 
+    avatar.startsWith('data:image') || 
+    avatar.startsWith('http://') ||
+    avatar.startsWith('https://')
+  );
+};
+
+// Avatar component that handles both emoji and image URLs
+const Avatar = ({ src, size = 'small', className = '' }) => {
+  const [imageError, setImageError] = React.useState(false);
+  
+  // Reset error state when src changes
+  React.useEffect(() => {
+    setImageError(false);
+  }, [src]);
+  
+  if (isImageAvatar(src) && !imageError) {
+    return (
+      <img 
+        src={src} 
+        alt="Avatar" 
+        className={`avatar-img ${className}`}
+        style={{
+          width: size === 'small' ? '32px' : size === 'medium' ? '40px' : '48px',
+          height: size === 'small' ? '32px' : size === 'medium' ? '40px' : '48px',
+          borderRadius: '50%',
+          objectFit: 'cover'
+        }}
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
+        onError={() => setImageError(true)}
+      />
+    );
+  }
+  return (
+    <span className={`avatar-emoji ${className}`} style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: size === 'small' ? '32px' : size === 'medium' ? '40px' : '48px',
+      height: size === 'small' ? '32px' : size === 'medium' ? '40px' : '48px',
+      fontSize: size === 'small' ? '1rem' : size === 'medium' ? '1.25rem' : '1.5rem'
+    }}>
+      {src || '👤'}
+    </span>
+  );
+};
+
 const AdminDashboard = () => {
   const { user, logout, getAllUsers, getUserActivity } = useAuth();
   const navigate = useNavigate();
@@ -294,7 +345,7 @@ const AdminDashboard = () => {
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
                 <div className="user-avatar">
-                  {user?.avatar || user?.name?.charAt(0) || 'A'}
+                  <Avatar src={user?.avatar} size="small" />
                 </div>
                 <div className="user-info">
                   <span className="user-name">{user?.name || 'Admin'}</span>
@@ -835,6 +886,8 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
                 <p>User akan muncul di sini setelah mereka mendaftar</p>
               </div>
             ) : (
+            <>
+            {/* Desktop Table View */}
             <table className="users-table">
               <thead>
                 <tr>
@@ -854,7 +907,11 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
                     className={selectedUser?.id === u.id ? 'selected' : ''}
                     onClick={() => setSelectedUser(u)}
                   >
-                    <td><span className="user-avatar-cell">{u.avatar || '👤'}</span></td>
+                    <td>
+                      <div className="user-avatar-cell">
+                        <Avatar src={u.avatar} size="small" />
+                      </div>
+                    </td>
                     <td><strong>{u.username}</strong></td>
                     <td>{u.name || '-'}</td>
                     <td>
@@ -869,6 +926,45 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
                 ))}
               </tbody>
             </table>
+
+            {/* Mobile Card View */}
+            <div className="mobile-users-cards">
+              {users.map((u) => (
+                <div 
+                  key={u.id} 
+                  className={`mobile-user-card ${selectedUser?.id === u.id ? 'selected' : ''}`}
+                  onClick={() => setSelectedUser(u)}
+                >
+                  <div className="mobile-user-header">
+                    <div className="mobile-user-avatar">
+                      <Avatar src={u.avatar} size="medium" />
+                    </div>
+                    <div className="mobile-user-info">
+                      <h4>{u.name || u.username}</h4>
+                      <p className="mobile-username">@{u.username}</p>
+                      <span className={`role-badge ${getRoleBadgeClass(u.role)}`}>
+                        {u.role}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mobile-user-stats">
+                    <div className="mobile-stat">
+                      <span className="mobile-stat-label">Chat</span>
+                      <span className="mobile-stat-value">{u.chatCount || 0}</span>
+                    </div>
+                    <div className="mobile-stat">
+                      <span className="mobile-stat-label">Terakhir Aktif</span>
+                      <span className="mobile-stat-value">{formatDate(u.lastActive)}</span>
+                    </div>
+                    <div className="mobile-stat">
+                      <span className="mobile-stat-label">Terdaftar</span>
+                      <span className="mobile-stat-value">{formatDate(u.createdAt)}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            </>
             )}
           </div>
 
@@ -876,7 +972,9 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
           {selectedUser && (
             <div className="user-detail-panel">
               <div className="user-detail-header">
-                <span className="user-detail-avatar">{selectedUser.avatar || '👤'}</span>
+                <div className="user-detail-avatar">
+                  <Avatar src={selectedUser.avatar} size="large" />
+                </div>
                 <div>
                   <h3>{selectedUser.name || selectedUser.username}</h3>
                   <span className={`role-badge ${getRoleBadgeClass(selectedUser.role)}`}>
