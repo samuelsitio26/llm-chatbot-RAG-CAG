@@ -2,7 +2,6 @@
 files/*
 models/*
 database/*
-data/tourism/*.pdf
 __pycache__/
 *.pyc
 *.pyo
