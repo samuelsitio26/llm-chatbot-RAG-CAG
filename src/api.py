@@ -139,7 +139,7 @@ async def lifespan(app: FastAPI):
         
         # Initialize encoder for embeddings
         print("🔍 Loading embeddings encoder...")
-        from langchain_community.embeddings import HuggingFaceEmbeddings
+        from langchain_huggingface import HuggingFaceEmbeddings
         encoder = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L12-v2",
             model_kwargs={'device': 'cpu'}
@@ -165,8 +165,10 @@ async def lifespan(app: FastAPI):
         
         print("=" * 60)
         print("✅ All systems initialized successfully!")
-        print("🌐 API ready at http://0.0.0.0:8000")
-        print("📚 Docs available at http://0.0.0.0:8000/docs")
+        print("🌐 Server binding to: 0.0.0.0:8000")
+        print("📍 Open in browser:")
+        print("   • http://127.0.0.1:8000/")
+        print("📚 API Docs: http://127.0.0.1:8000/docs")
         print("=" * 60)
         
     except Exception as e:
