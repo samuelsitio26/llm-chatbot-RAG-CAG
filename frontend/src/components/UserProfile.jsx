@@ -211,7 +211,12 @@ const UserProfile = () => {
 
   // Check if avatar is an image URL
   const isImageAvatar = (avatar) => {
-    return avatar && (avatar.startsWith('/api/avatars/') || avatar.startsWith('data:image') || avatar.startsWith('http'));
+    return avatar && (
+      avatar.startsWith('/api/avatars/') || 
+      avatar.startsWith('data:image') || 
+      avatar.startsWith('http://') ||
+      avatar.startsWith('https://')
+    );
   };
 
   const handleSaveProfile = async () => {
@@ -350,7 +355,14 @@ const UserProfile = () => {
               title="Klik untuk ganti avatar"
             >
               {isImageAvatar(formData.avatar) ? (
-                <img src={formData.avatar} alt="Avatar" className="up-avatar-img" />
+                <img 
+                  src={formData.avatar} 
+                  alt="Avatar" 
+                  className="up-avatar-img"
+                  crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => e.target.style.display = 'none'}
+                />
               ) : (
                 <span className="up-avatar">{formData.avatar}</span>
               )}

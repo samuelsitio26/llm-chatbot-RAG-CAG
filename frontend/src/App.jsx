@@ -25,13 +25,22 @@ const isImageAvatar = (avatar) => {
 
 // Avatar component that handles both emoji and image URLs
 const Avatar = ({ src, size = 'small', className = '' }) => {
-  if (isImageAvatar(src)) {
+  const [imageError, setImageError] = React.useState(false);
+  
+  // Reset error state when src changes
+  React.useEffect(() => {
+    setImageError(false);
+  }, [src]);
+  
+  if (isImageAvatar(src) && !imageError) {
     return (
       <img 
         src={src} 
         alt="Avatar" 
         className={`avatar-img avatar-${size} ${className}`}
-        onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
+        onError={() => setImageError(true)}
       />
     );
   }
@@ -641,13 +650,13 @@ function App() {
 
             {messages.map((msg, idx) => (
               <div key={msg.id || idx} className={`message ${msg.role} ${isAuthenticated ? 'with-avatar' : 'no-avatar'}`}>
+                {/* Avatar hanya tampil jika sudah login */}
+                {isAuthenticated && (
+                  <div className={`message-avatar ${msg.role === 'user' ? 'user-avatar' : 'bot-avatar'}`}>
+                    {msg.role === 'user' ? <Avatar src={user?.avatar} size="message" /> : '🤖'}
+                  </div>
+                )}
                 <div className="message-content">
-                  {/* Avatar hanya tampil jika sudah login */}
-                  {isAuthenticated && (
-                    <div className={`message-avatar ${msg.role === 'user' ? 'user-avatar' : 'bot-avatar'}`}>
-                      {msg.role === 'user' ? <Avatar src={user?.avatar} size="message" /> : '🤖'}
-                    </div>
-                  )}
                   <div className="message-body">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                     
