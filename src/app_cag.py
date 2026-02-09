@@ -7,7 +7,7 @@ import os
 import streamlit as st
 from model import ChatModel
 from cag_system import CAGSystem
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # Paths
 TOURISM_DIR = os.path.normpath(

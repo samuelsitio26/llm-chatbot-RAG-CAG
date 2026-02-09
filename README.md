@@ -107,7 +107,13 @@ npm run dev
 ### 4. Akses
 
 - 🌐 Frontend: http://localhost:3000
-- 📚 API Docs: http://localhost:8000/docs
+- � API Root: http://127.0.0.1:8000/
+- 📚 API Docs: http://127.0.0.1:8000/docs
+
+> **💡 Catatan:** 
+> - Server backend **bind ke `0.0.0.0:8000`** agar bisa diakses dari jaringan local
+> - Di browser, gunakan **`127.0.0.1`** atau **`localhost`** (jangan `0.0.0.0`)
+> - Dari device lain di jaringan yang sama, gunakan IP komputer (mis. `192.168.1.x:8000`)
 
 ## 📡 API Endpoints
 

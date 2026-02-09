@@ -1,7 +1,7 @@
 """Quick test script for response generation"""
 from src.cag_system import CAGSystem
 from src.model import GeminiChatModel
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 import glob
 
 # Init
