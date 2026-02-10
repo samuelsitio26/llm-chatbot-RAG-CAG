@@ -3,7 +3,7 @@
 Chatbot cerdas berbasis **RAG + CAG** untuk rekomendasi wisata Danau Toba. Sistem mengambil konteks dari 9 dokumen PDF, lalu mempercepat respon hingga **10x** dengan mekanisme caching.
 
 ## 🖼️ Preview UI
- 
+
 ![Preview UI](frontend/public/images/page1.png)
 
 ## ✨ Fitur
@@ -157,4 +157,5 @@ Atau copy cells dari `notebooks/evaluation_cells.py` untuk evaluasi lengkap deng
 ---
 
 MIT License © 2024
+
 
