@@ -141,13 +141,13 @@ def create_default_admin(cursor, conn):
     """Create default admin user if not exists"""
     cursor.execute("SELECT id FROM users WHERE username = 'admin'")
     if not cursor.fetchone():
-        password_hash = hash_password("admin123")
+        password_hash = hash_password("Admin#123")
         cursor.execute('''
             INSERT INTO users (username, email, password_hash, name, avatar, role, bio)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', ('admin', 'admin@tobachatbot.local', password_hash, 'Administrator', '👨‍💼', 'admin', 'System Administrator'))
+        ''', ('admin', 'admin@tobachatbot', password_hash, 'Administrator', '👨‍💼', 'admin', 'System Administrator'))
         conn.commit()
-        print("✅ Default admin user created (username: admin, password: admin123)")
+        print("✅ Default admin user created (email: admin@tobachatbot, password: Admin#123)")
 
 def hash_password(password: str, salt: str = None) -> str:
     """Hash password with salt using SHA-256"""

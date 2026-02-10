@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import {
@@ -90,9 +90,35 @@ const Avatar = ({ src, size = 'small', className = '' }) => {
 const AdminDashboard = () => {
   const { user, logout, getAllUsers, getUserActivity } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Map URL paths to menu IDs
+  const pathToMenu = {
+    '/admin/dashboard': 'dashboard',
+    '/admin/usermanagement': 'users',
+    '/admin/lokasiwisata': 'locations',
+    '/admin/faqmanagement': 'faqs',
+    '/admin/analytics': 'analytics',
+    '/admin/systemstatus': 'system',
+    '/admin/settings': 'settings',
+  };
+
+  // Map menu IDs to URL paths
+  const menuToPath = {
+    'dashboard': '/admin/dashboard',
+    'users': '/admin/usermanagement',
+    'locations': '/admin/lokasiwisata',
+    'faqs': '/admin/faqmanagement',
+    'analytics': '/admin/analytics',
+    'system': '/admin/systemstatus',
+    'settings': '/admin/settings',
+  };
+
+  const getActiveMenuFromPath = () => pathToMenu[location.pathname] || 'dashboard';
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState('dashboard');
+  const [activeMenu, setActiveMenu] = useState(getActiveMenuFromPath());
   const [systemStatus, setSystemStatus] = useState(null);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -103,6 +129,14 @@ const AdminDashboard = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const audioRef = useRef(null);
   const userMenuRef = useRef(null);
+
+  // Sync activeMenu when URL changes
+  useEffect(() => {
+    const menuFromPath = getActiveMenuFromPath();
+    if (menuFromPath !== activeMenu) {
+      setActiveMenu(menuFromPath);
+    }
+  }, [location.pathname]);
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -221,13 +255,13 @@ const AdminDashboard = () => {
   };
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'users', label: 'User Management', icon: Users },
-    { id: 'locations', label: 'Lokasi Wisata', icon: MapPin },
-    { id: 'faqs', label: 'FAQ Management', icon: MessageSquare },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-    { id: 'system', label: 'System Status', icon: Server },
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },
+    { id: 'users', label: 'User Management', icon: Users, path: '/admin/usermanagement' },
+    { id: 'locations', label: 'Lokasi Wisata', icon: MapPin, path: '/admin/lokasiwisata' },
+    { id: 'faqs', label: 'FAQ Management', icon: MessageSquare, path: '/admin/faqmanagement' },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
+    { id: 'system', label: 'System Status', icon: Server, path: '/admin/systemstatus' },
+    { id: 'settings', label: 'Settings', icon: Settings, path: '/admin/settings' },
   ];
 
   const renderContent = () => {
@@ -282,7 +316,7 @@ const AdminDashboard = () => {
               key={item.id}
               className={`nav-item ${activeMenu === item.id ? 'active' : ''}`}
               onClick={() => {
-                setActiveMenu(item.id);
+                navigate(item.path);
                 setMobileMenuOpen(false);
               }}
             >
@@ -293,9 +327,9 @@ const AdminDashboard = () => {
         </nav>
 
         <div className="sidebar-footer">
-          <Link to="/" className="nav-item home-link">
+          <Link to="/admin/chat" className="nav-item home-link">
             <Home size={20} />
-            {sidebarOpen && <span>Ke Beranda</span>}
+            {sidebarOpen && <span>Chat</span>}
           </Link>
           <button className="nav-item logout-btn" onClick={handleLogout}>
             <LogOut size={20} />
@@ -360,7 +394,7 @@ const AdminDashboard = () => {
               {showUserMenu && (
                 <div className="user-dropdown">
                   <Link 
-                    to="/profile" 
+                    to="/admin/profile" 
                     className="dropdown-item"
                     onClick={() => setShowUserMenu(false)}
                   >

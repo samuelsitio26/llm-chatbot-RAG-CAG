@@ -15,11 +15,10 @@ const GoogleIcon = () => (
 );
 
 const Login = () => {
-  const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -28,8 +27,16 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Auto-detect register mode from /register route
+  const [isRegisterMode, setIsRegisterMode] = useState(location.pathname === '/register');
+
   // Check if coming from admin route
   const isAdminLogin = location.state?.adminLogin || location.pathname.includes('admin');
+
+  // Sync register mode when route changes
+  React.useEffect(() => {
+    setIsRegisterMode(location.pathname === '/register');
+  }, [location.pathname]);
   
   // Check for OAuth error in URL params
   React.useEffect(() => {
@@ -52,14 +59,13 @@ const Login = () => {
     setSuccess('');
     setIsLoading(true);
 
-    if (!username.trim() || !password.trim()) {
-      setError('Username dan password harus diisi');
-      setIsLoading(false);
-      return;
-    }
-
     if (isRegisterMode) {
-      // Registration
+      // Registration validation
+      if (!username.trim() || !email.trim() || !password.trim()) {
+        setError('Semua field harus diisi');
+        setIsLoading(false);
+        return;
+      }
       if (password.length < 4) {
         setError('Password minimal 4 karakter');
         setIsLoading(false);
@@ -72,7 +78,7 @@ const Login = () => {
       }
 
       try {
-        const result = await register(username, password, displayName);
+        const result = await register(username, password, username, email);
         if (result.success) {
           setSuccess('Registrasi berhasil!');
           // Redirect ke halaman sebelumnya atau home
@@ -85,9 +91,15 @@ const Login = () => {
         setError('Terjadi kesalahan saat registrasi');
       }
     } else {
+      // Login validation
+      if (!email.trim() || !password.trim()) {
+        setError('Email dan password harus diisi');
+        setIsLoading(false);
+        return;
+      }
       // Login
       try {
-        const result = await login(username, password);
+        const result = await login(email, password);
         if (result.success) {
           // Redirect ke halaman sebelumnya (jika ada) atau berdasarkan role
           const redirectTo = location.state?.from;
@@ -97,7 +109,7 @@ const Login = () => {
             navigate(redirectTo);
           } else if (result.role === 'admin' || result.role === 'operator') {
             // Admin/operator ke dashboard
-            navigate('/admin');
+            navigate('/admin/dashboard');
           } else {
             // User biasa ke chat
             navigate('/chat');
@@ -114,11 +126,14 @@ const Login = () => {
   };
 
   const toggleMode = () => {
-    setIsRegisterMode(!isRegisterMode);
+    const newMode = !isRegisterMode;
+    setIsRegisterMode(newMode);
     setError('');
     setSuccess('');
     setPassword('');
     setConfirmPassword('');
+    // Update URL to match mode
+    navigate(newMode ? '/register' : '/login', { replace: true });
   };
 
   return (
@@ -162,15 +177,15 @@ const Login = () => {
 
           {isRegisterMode && (
             <div className="form-group">
-              <label htmlFor="displayName">Nama Tampilan</label>
+              <label htmlFor="username">Username</label>
               <div className="input-wrapper">
                 <User size={20} className="input-icon" />
                 <input
                   type="text"
-                  id="displayName"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Nama yang akan ditampilkan"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Masukkan username"
                   disabled={isLoading}
                 />
               </div>
@@ -178,17 +193,17 @@ const Login = () => {
           )}
 
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <div className="input-wrapper">
               <User size={20} className="input-icon" />
               <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Masukkan username"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Masukkan email"
                 disabled={isLoading}
-                autoComplete="username"
+                autoComplete="email"
               />
             </div>
           </div>
@@ -279,13 +294,7 @@ const Login = () => {
           </button>
 
 
-          {/* Demo credentials hint - only show on login mode */}
-          {!isRegisterMode && (
-            <div className="demo-hint">
-              <p><strong>Demo Credentials:</strong></p>
-              <p>Admin: admin / admin123</p>
-            </div>
-          )}
+
         </form>
       </div>
     </div>

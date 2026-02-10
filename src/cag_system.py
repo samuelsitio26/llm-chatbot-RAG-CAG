@@ -164,7 +164,8 @@ class CAGSystem:
                 "source": "greeting",
                 "cache_used": False,
                 "response_time": time.time() - start_time,
-                "num_chunks": 0
+                "num_chunks": 0,
+                "context": ""
             }
         
         # Handle general questions (math, etc.)
@@ -175,7 +176,8 @@ class CAGSystem:
                 "source": "general_answer",
                 "cache_used": False,
                 "response_time": time.time() - start_time,
-                "num_chunks": 0
+                "num_chunks": 0,
+                "context": ""
             }
         
         # Check if documents loaded
@@ -185,7 +187,8 @@ class CAGSystem:
                 "source": "error",
                 "cache_used": False,
                 "response_time": time.time() - start_time,
-                "num_chunks": 0
+                "num_chunks": 0,
+                "context": ""
             }
         
         # Check cache
@@ -199,7 +202,8 @@ class CAGSystem:
                     "cache_used": True,
                     "response_time": time.time() - start_time,
                     "access_count": cached.get("access_count", 0),
-                    "num_chunks": 0
+                    "num_chunks": 0,
+                    "context": cached.get("context", "")  # Include cached context if available
                 }
         
         # RAG: Retrieve relevant chunks
@@ -251,7 +255,8 @@ class CAGSystem:
             "response_time": total_time,
             "retrieval_time": retrieval_time,
             "generation_time": generation_time,
-            "num_chunks": len(relevant_docs)
+            "num_chunks": len(relevant_docs),
+            "context": context  # Include full context for coordinate extraction
         }
     
     def get_stats(self) -> Dict:

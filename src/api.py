@@ -252,9 +252,219 @@ async def get_status():
     }
 
 
+def is_location_query(query: str) -> bool:
+    """Check if user is specifically asking about a place/location.
+    Only these queries should trigger the map display.
+    Examples: 'dimana pantai X', 'lokasi air terjun Y', 'tempat wisata di Z'
+    """
+    query_lower = query.lower()
+    
+    # Keywords that indicate user is asking about a specific place/location
+    location_keywords = [
+        'dimana', 'di mana', 'lokasi', 'keberadaan', 'alamat',
+        'tempat wisata', 'letak', 'posisi', 'koordinat',
+        'cara menuju', 'cara ke', 'rute ke', 'jalan menuju', 'arah ke',
+        'peta', 'map', 'titik lokasi',
+        'terletak', 'berada di', 'ada di mana',
+    ]
+    
+    # Patterns: "rekomendasi N tempat", "5 wisata terbaik", etc.
+    import re
+    recommendation_patterns = [
+        r'\d+\s*(tempat|wisata|destinasi|lokasi|pantai|air terjun|danau|bukit|pulau)',
+        r'rekomendasi\s*(tempat|wisata|destinasi|pantai|air terjun)',
+        r'tempat.*(terbaik|terindah|populer|favorit|bagus)',
+        r'wisata.*(terbaik|terindah|populer|favorit|bagus)',
+        r'daftar.*(tempat|wisata|destinasi|pantai)',
+        r'list.*(tempat|wisata|destinasi|pantai)',
+    ]
+    
+    # Check direct location keywords
+    if any(kw in query_lower for kw in location_keywords):
+        return True
+    
+    # Check recommendation patterns (asking for list of places)
+    for pattern in recommendation_patterns:
+        if re.search(pattern, query_lower):
+            return True
+    
+    return False
+
+
+def classify_query_type(query: str) -> dict:
+    """Classify query into tourism or non-tourism (hotel/restaurant/transport)"""
+    import re
+    
+    query_lower = query.lower()
+    
+    # Non-tourism keywords (hotel, restaurant, transport)
+    non_tourism_keywords = {
+        'hotel': ['hotel', 'penginapan', 'homestay', 'resort', 'cottage', 'villa', 'motel'],
+        'restaurant': ['restoran', 'rumah makan', 'warung', 'cafe', 'kuliner', 'makan', 'makanan'],
+        'transport': ['transportasi', 'bus', 'travel', 'angkutan', 'rental', 'sewa mobil', 'ferry', 'kapal']
+    }
+    
+    # Tourism keywords
+    tourism_keywords = ['wisata', 'tempat', 'destinasi', 'rekomendasi', 'pantai', 'air terjun', 
+                       'bukit', 'danau', 'pulau', 'objek wisata', 'lokasi']
+    
+    # Check for non-tourism
+    for category, keywords in non_tourism_keywords.items():
+        if any(kw in query_lower for kw in keywords):
+            return {'type': 'non_tourism', 'category': category}
+    
+    # Default to tourism if mentions tourism keywords or asking for recommendations
+    if any(kw in query_lower for kw in tourism_keywords):
+        return {'type': 'tourism', 'category': 'tourist_attraction'}
+    
+    # Default fallback
+    return {'type': 'general', 'category': 'general'}
+
+
+def extract_requested_count(query: str) -> int:
+    """Extract how many items user wants (1, 2, 3, 5, 10, etc)"""
+    import re
+    
+    query_lower = query.lower()
+    
+    # Pattern 1: "5 tempat", "3 lokasi", "10 rekomendasi"
+    pattern1 = re.search(r'(\d+)\s*(tempat|lokasi|rekomendasi|hotel|restoran|wisata)', query_lower)
+    if pattern1:
+        return int(pattern1.group(1))
+    
+    # Pattern 2: "satu", "dua", "tiga", etc (Indonesian numbers)
+    number_words = {
+        'satu': 1, 'dua': 2, 'tiga': 3, 'empat': 4, 'lima': 5,
+        'enam': 6, 'tujuh': 7, 'delapan': 8, 'sembilan': 9, 'sepuluh': 10
+    }
+    for word, num in number_words.items():
+        if word in query_lower:
+            return num
+    
+    # Pattern 3: "top 5", "top 10"
+    pattern3 = re.search(r'top\s*(\d+)', query_lower)
+    if pattern3:
+        return int(pattern3.group(1))
+    
+    # Default based on query intent
+    if 'terbaik' in query_lower or 'top' in query_lower:
+        return 5  # Default top 5 untuk "terbaik"
+    elif 'beberapa' in query_lower:
+        return 3
+    else:
+        return 5  # Default 5 rekomendasi
+
+
+def get_top_tourism_locations(count: int = 5, category: str = None) -> list:
+    """Get top N tourism locations from locations.json sorted by rating"""
+    import json
+    import os
+    
+    locations_file = os.path.join(
+        os.path.dirname(__file__), "..", "database", "Locations", "locations.json"
+    )
+    
+    try:
+        if not os.path.exists(locations_file):
+            return []
+        
+        with open(locations_file, 'r', encoding='utf-8') as f:
+            all_locations = json.load(f)
+        
+        # Filter by category if specified
+        if category:
+            filtered = [loc for loc in all_locations if loc.get('category') == category]
+        else:
+            filtered = all_locations
+        
+        # Sort by rating (descending)
+        sorted_locs = sorted(filtered, key=lambda x: x.get('rating', 0), reverse=True)
+        
+        # Return top N
+        top_n = sorted_locs[:count]
+        
+        return [{
+            'name': loc.get('name'),
+            'lat': loc.get('lat'),
+            'lng': loc.get('lng'),
+            'category': loc.get('category'),
+            'rating': loc.get('rating'),
+            'price': loc.get('price'),
+            'description': loc.get('description', '')
+        } for loc in top_n]
+        
+    except Exception as e:
+        print(f"⚠️ Warning: Could not load locations: {e}")
+        return []
+
+
+def extract_coordinates_from_context(context: str) -> list:
+    """Extract lat/lng coordinates from RAG context (PDF content)"""
+    import re
+    
+    coordinates = []
+    
+    # Pattern 1: Latitude/Longitude format
+    # Example: Latitude: 2.6631, Longitude: 98.9332 or Lat: 2.6631, Lng: 98.9332
+    pattern1 = re.finditer(
+        r'(?:Lat(?:itude)?|lat)[\s:]*(-?\d+\.?\d*)[,\s]*(?:Long?(?:itude)?|lng?)[\s:]*(-?\d+\.?\d*)',
+        context,
+        re.IGNORECASE
+    )
+    
+    for match in pattern1:
+        try:
+            lat = float(match.group(1))
+            lng = float(match.group(2))
+            
+            # Validate for Toba region (Sumatra)
+            if 1.5 <= lat <= 4.0 and 97.0 <= lng <= 100.0:
+                # Try to extract name from nearby text
+                start = max(0, match.start() - 100)
+                end = min(len(context), match.end() + 100)
+                nearby_text = context[start:end]
+                
+                # Extract potential name (text before coordinate)
+                name_match = re.search(r'([A-Z][A-Za-z\s]{2,50})[\s\n]*(?:Lat|lat)', nearby_text)
+                name = name_match.group(1).strip() if name_match else f"Lokasi ({lat:.3f}, {lng:.3f})"
+                
+                coordinates.append({
+                    'name': name,
+                    'lat': lat,
+                    'lng': lng,
+                    'source': 'pdf_extraction',
+                    'category': 'from_document'
+                })
+        except (ValueError, AttributeError):
+            continue
+    
+    # Pattern 2: Simple coordinate pairs (2.6631, 98.9332)
+    pattern2 = re.finditer(r'(\d+\.\d{4,})\s*[,;]\s*(\d+\.\d{4,})', context)
+    
+    for match in pattern2:
+        try:
+            lat = float(match.group(1))
+            lng = float(match.group(2))
+            
+            if 1.5 <= lat <= 4.0 and 97.0 <= lng <= 100.0:
+                # Avoid duplicates
+                if not any(abs(c['lat'] - lat) < 0.001 and abs(c['lng'] - lng) < 0.001 for c in coordinates):
+                    coordinates.append({
+                        'name': f"Lokasi ({lat:.4f}, {lng:.4f})",
+                        'lat': lat,
+                        'lng': lng,
+                        'source': 'pdf_extraction',
+                        'category': 'from_document'
+                    })
+        except ValueError:
+            continue
+    
+    return coordinates
+
+
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Process chat request"""
+    """Process chat request with smart location detection"""
     global cag_system, decision_agent
     
     if not cag_system:
@@ -263,7 +473,13 @@ async def chat(request: ChatRequest):
     start_time = time.time()
     
     try:
-        # Process query through CAG system (use get_response method)
+        # Classify query type
+        query_classification = classify_query_type(request.query)
+        query_type = query_classification['type']
+        
+        print(f"📊 Query Type: {query_type} | Category: {query_classification['category']}")
+        
+        # Process query through CAG system
         result = cag_system.get_response(
             query=request.query,
             use_cache=request.use_cache,
@@ -273,8 +489,54 @@ async def chat(request: ChatRequest):
         )
         
         response_time = time.time() - start_time
+        response_text = result.get("response", "")
+        context = result.get("context", "")
         
-        # Get decision scores if available
+        # Smart location extraction - only for location-specific queries
+        relevant_locations = []
+        show_map = is_location_query(request.query)
+        
+        if not show_map:
+            print(f"💬 Non-location query - skipping map display")
+        elif query_type == 'tourism':
+            # TOURISM: Get from locations.json based on rating
+            requested_count = extract_requested_count(request.query)
+            print(f"🏖️ Tourism location query - Requesting {requested_count} locations")
+            
+            # Get top N locations
+            top_locations = get_top_tourism_locations(count=requested_count)
+            
+            # Also check if specific locations mentioned in response
+            response_lower = response_text.lower()
+            for loc in top_locations:
+                if loc['name'].lower() in response_lower:
+                    relevant_locations.append(loc)
+            
+            # If no specific mentions, use top N by rating
+            if not relevant_locations:
+                relevant_locations = top_locations
+                
+        elif query_type == 'non_tourism':
+            # NON-TOURISM: Extract from RAG context (PDF)
+            print(f"🏨 Non-tourism location query - Extracting from PDF context")
+            
+            # Extract coordinates from RAG context
+            pdf_locations = extract_coordinates_from_context(context)
+            
+            if pdf_locations:
+                # Limit based on user request
+                requested_count = extract_requested_count(request.query)
+                relevant_locations = pdf_locations[:requested_count]
+                print(f"📍 Found {len(relevant_locations)} locations in PDF")
+            else:
+                print("⚠️ No coordinates found in PDF context")
+        
+        else:
+            # GENERAL location query: Try to find any mentioned locations
+            print(f"💬 General location query - Checking for location mentions")
+            relevant_locations = extract_mentioned_locations(response_text)
+        
+        # Get decision scores
         scores = {}
         if decision_agent:
             try:
@@ -282,19 +544,58 @@ async def chat(request: ChatRequest):
                 scores = {"preferences": preferences}
             except Exception as e:
                 print(f"⚠️ Warning: Could not get scores: {e}")
-                scores = {}
+        
+        print(f"✅ Returning {len(relevant_locations)} locations to frontend")
         
         return ChatResponse(
-            response=result.get("response", ""),
+            response=response_text,
             cached=result.get("cache_used", False),
             response_time=response_time,
-            sources=[],
+            sources=relevant_locations,
             scores=scores
         )
         
     except Exception as e:
         print(f"❌ Error processing chat: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+def extract_mentioned_locations(response_text: str) -> list:
+    """Extract location names explicitly mentioned in response (fallback method)"""
+    import json
+    import os
+    
+    locations_file = os.path.join(
+        os.path.dirname(__file__), "..", "database", "Locations", "locations.json"
+    )
+    
+    try:
+        if not os.path.exists(locations_file):
+            return []
+        
+        with open(locations_file, 'r', encoding='utf-8') as f:
+            all_locations = json.load(f)
+        
+        relevant = []
+        response_lower = response_text.lower()
+        
+        for loc in all_locations:
+            location_name = loc.get('name', '').lower()
+            if location_name in response_lower:
+                relevant.append({
+                    'name': loc.get('name'),
+                    'lat': loc.get('lat'),
+                    'lng': loc.get('lng'),
+                    'category': loc.get('category'),
+                    'rating': loc.get('rating'),
+                    'description': loc.get('description', '')[:100] + '...'
+                })
+        
+        return relevant[:5]  # Max 5 untuk general queries
+        
+    except Exception as e:
+        print(f"⚠️ Warning: Could not extract locations: {e}")
+        return []
 
 
 @app.get("/api/stats")
@@ -306,6 +607,165 @@ async def get_stats():
         return {"error": "CAG system not initialized"}
     
     return cag_system.get_stats()
+
+
+@app.get("/api/locations")
+async def get_locations():
+    """Get tourism locations with coordinates from extracted data"""
+    import json
+    
+    locations_file = os.path.join(
+        os.path.dirname(__file__), "..", "database", "Locations", "locations.json"
+    )
+    
+    try:
+        if os.path.exists(locations_file):
+            with open(locations_file, 'r', encoding='utf-8') as f:
+                locations_data = json.load(f)
+            
+            # Enhance location data with better names from source
+            enhanced_locations = []
+            for idx, loc in enumerate(locations_data):
+                # Try to get better name from source
+                source = loc.get("source", "")
+                name = loc.get("name", "")
+                
+                # Create better location names based on source
+                if "transportasi" in source.lower():
+                    name = f"Transportasi - Lokasi {idx + 1}"
+                elif "fasilitas" in source.lower():
+                    name = f"Fasilitas Umum - Lokasi {idx + 1}"
+                elif "hotel" in source.lower() or "penginapan" in source.lower():
+                    name = f"Hotel/Penginapan - Lokasi {idx + 1}"
+                elif "wisata" in source.lower() or "pantai" in source.lower():
+                    name = f"Tempat Wisata - Lokasi {idx + 1}"
+                else:
+                    name = f"Lokasi {idx + 1}"
+                
+                enhanced_locations.append({
+                    "name": name,
+                    "lat": loc.get("lat"),
+                    "lng": loc.get("lng"),
+                    "description": f"Sumber: {source}",
+                    "source": source,
+                    "category": loc.get("category", "general")
+                })
+            
+            return {
+                "success": True,
+                "locations": enhanced_locations,
+                "count": len(enhanced_locations)
+            }
+        else:
+            # Return default Toba locations if file doesn't exist
+            default_locations = [
+                {
+                    "name": "Parapat",
+                    "lat": 2.6631,
+                    "lng": 98.9332,
+                    "description": "Pintu gerbang utama Danau Toba",
+                    "source": "default",
+                    "category": "city"
+                },
+                {
+                    "name": "Pulau Samosir",
+                    "lat": 2.6500,
+                    "lng": 98.8500,
+                    "description": "Pulau di tengah Danau Toba",
+                    "source": "default",
+                    "category": "island"
+                },
+                {
+                    "name": "Tuktuk",
+                    "lat": 2.6642,
+                    "lng": 98.8575,
+                    "description": "Desa wisata di Samosir",
+                    "source": "default",
+                    "category": "village"
+                },
+                {
+                    "name": "Tomok",
+                    "lat": 2.6297,
+                    "lng": 98.8864,
+                    "description": "Makam Raja Sidabutar",
+                    "source": "default",
+                    "category": "culture"
+                },
+                {
+                    "name": "Ambarita",
+                    "lat": 2.6858,
+                    "lng": 98.8283,
+                    "description": "Batu Parsidangan bersejarah",
+                    "source": "default",
+                    "category": "culture"
+                },
+                {
+                    "name": "Simanindo",
+                    "lat": 2.7236,
+                    "lng": 98.7947,
+                    "description": "Museum Batak & Sigale-gale",
+                    "source": "default",
+                    "category": "museum"
+                },
+                {
+                    "name": "Air Terjun Sipiso-piso",
+                    "lat": 2.9089,
+                    "lng": 98.5244,
+                    "description": "Air terjun tertinggi di Indonesia",
+                    "source": "default",
+                    "category": "waterfall"
+                },
+                {
+                    "name": "Balige",
+                    "lat": 2.3339,
+                    "lng": 99.0614,
+                    "description": "Kota di tepi Danau Toba",
+                    "source": "default",
+                    "category": "city"
+                },
+                {
+                    "name": "Tongging",
+                    "lat": 2.9167,
+                    "lng": 98.5333,
+                    "description": "Desa wisata dengan pemandangan Danau Toba",
+                    "source": "default",
+                    "category": "village"
+                },
+                {
+                    "name": "Pangururan",
+                    "lat": 2.6333,
+                    "lng": 98.7500,
+                    "description": "Ibukota Samosir",
+                    "source": "default",
+                    "category": "city"
+                }
+            ]
+            
+            return {
+                "success": True,
+                "locations": default_locations,
+                "count": len(default_locations),
+                "info": "Using default locations. Run extraction script for document-based locations."
+            }
+    
+    except Exception as e:
+        print(f"❌ Error loading locations: {e}")
+        # Fallback to minimal default
+        return {
+            "success": True,
+            "locations": [
+                {
+                    "name": "Danau Toba",
+                    "lat": 2.6500,
+                    "lng": 98.8500,
+                    "description": "Danau vulkanik terbesar di Asia Tenggara",
+                    "source": "default",
+                    "category": "lake"
+                }
+            ],
+            "count": 1,
+            "error": str(e)
+        }
 
 
 @app.post("/api/clear")

@@ -14,8 +14,17 @@
  * - / : Landing page (guest) atau redirect ke /chat (logged in)
  * - /chat : Halaman chat (harus login)
  * - /login : Halaman login
+ * - /register : Halaman registrasi
  * - /profile : Profil user
- * - /admin : Dashboard admin
+ * - /admin/dashboard : Dashboard admin
+ * - /admin/usermanagement : Kelola pengguna
+ * - /admin/lokasiwisata : Lokasi wisata
+ * - /admin/faqmanagement : FAQ Management
+ * - /admin/analytics : Analytics
+ * - /admin/systemstatus : System Status
+ * - /admin/settings : Settings
+ * - /admin/chat : Chat (admin)
+ * - /admin/profile : Profile (admin)
  */
 
 import App from './App';
@@ -103,31 +112,66 @@ export const protectedRoutes = [
  */
 export const adminRoutes = [
   {
-    path: '/admin',
+    path: '/admin/dashboard',
     element: AdminDashboard,
     name: 'Admin Dashboard',
     description: 'Dashboard admin',
     roles: ['admin', 'operator']
   },
   {
-    path: '/admin/users',
+    path: '/admin/usermanagement',
     element: AdminDashboard,
     name: 'User Management',
     description: 'Kelola pengguna',
     roles: ['admin']
   },
   {
-    path: '/admin/stats',
+    path: '/admin/lokasiwisata',
     element: AdminDashboard,
-    name: 'Statistics',
-    description: 'Statistik sistem',
+    name: 'Lokasi Wisata',
+    description: 'Kelola lokasi wisata',
     roles: ['admin', 'operator']
   },
   {
-    path: '/admin/feedback',
+    path: '/admin/faqmanagement',
     element: AdminDashboard,
-    name: 'Feedback',
-    description: 'Lihat feedback pengguna',
+    name: 'FAQ Management',
+    description: 'Kelola FAQ',
+    roles: ['admin', 'operator']
+  },
+  {
+    path: '/admin/analytics',
+    element: AdminDashboard,
+    name: 'Analytics',
+    description: 'Statistik dan analitik',
+    roles: ['admin', 'operator']
+  },
+  {
+    path: '/admin/systemstatus',
+    element: AdminDashboard,
+    name: 'System Status',
+    description: 'Status sistem',
+    roles: ['admin', 'operator']
+  },
+  {
+    path: '/admin/settings',
+    element: AdminDashboard,
+    name: 'Settings',
+    description: 'Pengaturan sistem',
+    roles: ['admin', 'operator']
+  },
+  {
+    path: '/admin/chat',
+    element: App,
+    name: 'Chat',
+    description: 'Halaman chat (admin)',
+    roles: ['admin', 'operator']
+  },
+  {
+    path: '/admin/profile',
+    element: UserProfile,
+    name: 'Profile',
+    description: 'Profil admin',
     roles: ['admin', 'operator']
   }
 ];
@@ -199,11 +243,15 @@ export const userMenu = [
  * Menu untuk sidebar admin
  */
 export const adminMenu = [
-  { path: '/', icon: '💬', label: 'Chat' },
-  { path: '/admin', icon: '📊', label: 'Dashboard' },
-  { path: '/admin/users', icon: '👥', label: 'Users' },
-  { path: '/admin/feedback', icon: '📝', label: 'Feedback' },
-  { path: '/profile', icon: '👤', label: 'Profile' },
+  { path: '/admin/dashboard', icon: '📊', label: 'Dashboard' },
+  { path: '/admin/usermanagement', icon: '👥', label: 'User Management' },
+  { path: '/admin/lokasiwisata', icon: '📍', label: 'Lokasi Wisata' },
+  { path: '/admin/faqmanagement', icon: '💬', label: 'FAQ Management' },
+  { path: '/admin/analytics', icon: '📈', label: 'Analytics' },
+  { path: '/admin/systemstatus', icon: '🖥️', label: 'System Status' },
+  { path: '/admin/settings', icon: '⚙️', label: 'Settings' },
+  { path: '/admin/chat', icon: '💬', label: 'Chat' },
+  { path: '/admin/profile', icon: '👤', label: 'Profile' },
 ];
 
 export default allRoutes;
