@@ -69,7 +69,6 @@ function App() {
   // Map state
   const [locations, setLocations] = useState([]);
   const [showMap, setShowMap] = useState(false);
-  const [showMapInChat, setShowMapInChat] = useState(false);
   const [mapFilter, setMapFilter] = useState(null);
   
   const messagesEndRef = useRef(null);
@@ -112,17 +111,6 @@ function App() {
     } catch (error) {
       console.error('Error fetching locations:', error);
     }
-  };
-
-  // Detect location mentions in messages to show map
-  const detectLocationMention = (text) => {
-    const locationKeywords = [
-      'pantai', 'pulau', 'danau', 'parapat', 'samosir', 'tuktuk', 'tomok',
-      'ambarita', 'simanindo', 'balige', 'pangururan', 'sipiso', 'tongging',
-      'air terjun', 'bukit', 'gunung', 'hotel', 'resort', 'penginapan'
-    ];
-    const lowerText = text.toLowerCase();
-    return locationKeywords.some(kw => lowerText.includes(kw));
   };
 
   // Load conversations from localStorage - PER USER
@@ -269,6 +257,7 @@ function App() {
         source: response.data.source,
         cache_used: response.data.cache_used,
         response_time: response.data.response_time,
+        relevant_locations: response.data.sources || [], // Locations mentioned in response
         timestamp: new Date().toISOString()
       };
 
@@ -279,6 +268,11 @@ function App() {
         next[activeConvId] = { ...next[activeConvId], messages: updatedMessages };
         setConversations(next);
         persistConversations(next);
+      }
+
+      // Log relevant locations
+      if (response.data.sources && response.data.sources.length > 0) {
+        console.log(`🗺️ Response contains ${response.data.sources.length} relevant locations`);
       }
 
       // Update user stats for activity tracking
@@ -391,6 +385,7 @@ function App() {
         metadata: { ...response.data.metadata, regenerated: true },
         cache_used: response.data.cache_used,
         response_time: response.data.response_time,
+        relevant_locations: response.data.sources || [],
         timestamp: new Date().toISOString()
       };
 
@@ -401,6 +396,11 @@ function App() {
         next[activeConvId] = { ...next[activeConvId], messages: updatedMessages };
         setConversations(next);
         persistConversations(next);
+      }
+
+      // Log relevant locations
+      if (response.data.sources && response.data.sources.length > 0) {
+        console.log(`🗺️ Regenerated response contains ${response.data.sources.length} relevant locations`);
       }
     } catch (e) {
       console.error('Error regenerating', e);
@@ -660,8 +660,8 @@ function App() {
                   <div className="message-body">
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                     
-                    {/* Show Map if assistant message mentions locations */}
-                    {msg.role === 'assistant' && detectLocationMention(msg.content) && locations.length > 0 && (
+                    {/* Show Map only if response has relevant locations (1-3 locations) */}
+                    {msg.role === 'assistant' && msg.relevant_locations && msg.relevant_locations.length > 0 && (
                       <div style={{ marginTop: '1rem' }}>
                         <div 
                           style={{ 
@@ -673,7 +673,9 @@ function App() {
                           }}
                         >
                           <MapPin size={18} />
-                          <span style={{ fontWeight: '600' }}>Lokasi di Peta</span>
+                          <span style={{ fontWeight: '600' }}>
+                            {msg.relevant_locations.length} Lokasi Rekomendasi
+                          </span>
                           <button
                             onClick={() => setShowMap(true)}
                             style={{
@@ -687,14 +689,23 @@ function App() {
                               fontSize: '0.8rem'
                             }}
                           >
-                            🗺️ Lihat Peta Lengkap
+                            🗺️ Lihat Semua Lokasi ({locations.length})
                           </button>
                         </div>
+                        {/* Show only relevant locations (1-3) mentioned in response */}
                         <MapView 
-                          locations={locations} 
+                          locations={msg.relevant_locations} 
                           height="280px"
                           showAll={true}
                         />
+                        <div style={{ 
+                          marginTop: '0.5rem', 
+                          fontSize: '0.8rem', 
+                          color: 'rgba(255,255,255,0.6)',
+                          fontStyle: 'italic'
+                        }}>
+                          💡 Menampilkan {msg.relevant_locations.length} dari {locations.length} lokasi berdasarkan rekomendasi
+                        </div>
                       </div>
                     )}
                     

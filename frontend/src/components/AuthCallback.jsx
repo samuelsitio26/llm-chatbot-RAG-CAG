@@ -44,7 +44,7 @@ const AuthCallback = () => {
           setTimeout(() => {
             // Redirect based on role
             if (result.role === 'admin' || result.role === 'operator') {
-              navigate('/admin');
+              navigate('/admin/dashboard');
             } else {
               navigate('/chat');
             }

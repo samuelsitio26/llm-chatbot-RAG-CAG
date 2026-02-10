@@ -106,14 +106,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* ADMIN ROUTES - Hanya admin/operator */}
           {renderAdminRoutes()}
 
-          {/* Admin wildcard untuk sub-routes */}
+          {/* /admin redirect ke /admin/dashboard */}
           <Route 
-            path="/admin/*" 
-            element={
-              <ProtectedRoute allowedRoles={['admin', 'operator']}>
-                {React.createElement(adminRoutes[0].element)}
-              </ProtectedRoute>
-            } 
+            path="/admin" 
+            element={<Navigate to="/admin/dashboard" replace />} 
           />
 
           {/* CATCH-ALL - Redirect ke home */}
