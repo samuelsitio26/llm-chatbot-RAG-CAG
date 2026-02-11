@@ -1,6 +1,6 @@
 # 🏔️ Sistem Rekomendasi Wisata Danau Toba
 
-Chatbot cerdas berbasis **RAG + CAG** untuk rekomendasi wisata Danau Toba. Sistem mengambil konteks dari 9 dokumen PDF, lalu mempercepat respon hingga **10x** dengan mekanisme caching.
+Chatbot cerdas berbasis **RAG + CAG** untuk rekomendasi wisata Danau Toba. Sistem mengambil konteks dari 9 dokumen PDF, lalu mempercepat respon hingga **10x** dengan mekanisme caching. 
 
 ## 🖼️ Preview UI
 
