@@ -161,6 +161,13 @@ export const adminRoutes = [
     roles: ['admin', 'operator']
   },
   {
+    path: '/admin/cachecontrol',
+    element: AdminDashboard,
+    name: 'Cache Control',
+    description: 'Kontrol KV cache chatbot',
+    roles: ['admin']
+  },
+  {
     path: '/admin/chat',
     element: App,
     name: 'Chat',
@@ -249,6 +256,7 @@ export const adminMenu = [
   { path: '/admin/faqmanagement', icon: '💬', label: 'FAQ Management' },
   { path: '/admin/analytics', icon: '📈', label: 'Analytics' },
   { path: '/admin/systemstatus', icon: '🖥️', label: 'System Status' },
+  { path: '/admin/cachecontrol', icon: '🗄️', label: 'Cache Control' },
   { path: '/admin/settings', icon: '⚙️', label: 'Settings' },
   { path: '/admin/chat', icon: '💬', label: 'Chat' },
   { path: '/admin/profile', icon: '👤', label: 'Profile' },

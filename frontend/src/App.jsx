@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin, LogIn, Settings, User, LogOut, ChevronLeft, ChevronRight, ChevronDown, UserCircle, Menu, X } from 'lucide-react';
+import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin, LogIn, Settings, User, LogOut, ChevronLeft, ChevronRight, ChevronDown, UserCircle, Menu, X, Copy, Check, Star } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import MapView from './MapView';
 import 'leaflet/dist/leaflet.css';
@@ -48,7 +48,10 @@ const Avatar = ({ src, size = 'small', className = '' }) => {
 };
 
 function App() {
-  const { user, isAuthenticated, logout, updateUserStats, isAdmin } = useAuth();
+  const { user, token, isAuthenticated, logout, updateUserStats, isAdmin } = useAuth();
+
+  // Helper: build Authorization header when user is logged in
+  const getAuthHeaders = () => token ? { Authorization: `Bearer ${token}` } : {};
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -239,11 +242,13 @@ function App() {
       const response = await axios.post(`${API_BASE_URL}/chat`, {
         query: userMessage.content,
         session_id: sessionId,
+        conversation_id: activeConvId,  // link Q&A to this conversation thread in DB
         use_cache: true,
         k: 5,
         max_new_tokens: 2048,
         temperature: 0.7
       }, {
+        headers: getAuthHeaders(),
         timeout: 120000 // 2 minute timeout for generation
       });
 
@@ -253,12 +258,15 @@ function App() {
         id: `m_${Date.now()+1}`,
         role: 'assistant',
         content: response.data.response,
-        metadata: response.data.metadata || {},
+        metadata: {
+          ...(response.data.metadata || {}),
+          cache_key: response.data.cache_key || null,  // for feedback routing
+        },
         source: response.data.source,
         cache_used: response.data.cache_used,
         response_time: response.data.response_time,
         relevant_locations: response.data.sources || [], // Locations mentioned in response
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
 
       const updatedMessages = [...newMessages, assistantMessage];
@@ -336,33 +344,83 @@ function App() {
     setActiveConvId(ids.length > 0 ? ids[0] : null);
   };
 
-  // Feedback (thumbs up/down)
-  const handleFeedback = async (messageId, rating) => {
+  // Feedback (thumbs up/down) — toggle behaviour like ChatGPT
+  const handleFeedback = async (messageId, clickedRating) => {
+    const targetMsg = messages.find(m => m.id === messageId);
+    const cacheKey = targetMsg?.metadata?.cache_key || null;
+    const currentRating = targetMsg?.metadata?.rating || 0;
+
+    // Optimistic toggle: same rating → 0, different → new
+    const newRating = currentRating === clickedRating ? 0 : clickedRating;
+
+    // Optimistic UI update
+    const updated = messages.map(m =>
+      m.id === messageId
+        ? { ...m, metadata: { ...m.metadata, rating: newRating } }
+        : m
+    );
+    setMessages(updated);
+    if (activeConvId) {
+      const next = { ...conversations };
+      next[activeConvId] = { ...next[activeConvId], messages: updated };
+      setConversations(next);
+      persistConversations(next);
+    }
+
     try {
-      await axios.post(`${API_BASE_URL}/feedback`, {
+      const res = await axios.post(`${API_BASE_URL}/feedback`, {
         session_id: activeConvId || sessionId,
         message_id: messageId,
-        rating
-      });
+        rating: clickedRating,
+        cache_key: cacheKey,
+      }, { headers: getAuthHeaders() });
 
-      // update local message metadata
-      const updated = messages.map(m => m.id === messageId ? { ...m, metadata: { ...m.metadata, rating } } : m);
-      setMessages(updated);
-      if (activeConvId) {
-        const next = { ...conversations };
-        next[activeConvId] = { ...next[activeConvId], messages: updated };
-        setConversations(next);
-        persistConversations(next);
+      // Server may return a different final rating (toggle logic)
+      const serverRating = res.data.rating;
+      if (serverRating !== newRating) {
+        const corrected = messages.map(m =>
+          m.id === messageId
+            ? { ...m, metadata: { ...m.metadata, rating: serverRating } }
+            : m
+        );
+        setMessages(corrected);
+        if (activeConvId) {
+          const next2 = { ...conversations };
+          next2[activeConvId] = { ...next2[activeConvId], messages: corrected };
+          setConversations(next2);
+          persistConversations(next2);
+        }
       }
     } catch (e) {
       console.error('Error sending feedback', e);
-      alert('Gagal mengirim feedback');
+      // Revert optimistic update
+      setMessages(messages);
     }
   };
 
-  // Regenerate (force no-cache) for a specific assistant message: find preceding user message content
+  // Copy answer text to clipboard
+  const handleCopy = async (text, messageId) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Set copied state temporarily
+      const updated = messages.map(m =>
+        m.id === messageId ? { ...m, metadata: { ...m.metadata, copied: true } } : m
+      );
+      setMessages(updated);
+      setTimeout(() => {
+        setMessages(prev => prev.map(m =>
+          m.id === messageId ? { ...m, metadata: { ...m.metadata, copied: false } } : m
+        ));
+      }, 2000);
+    } catch (e) {
+      console.error('Copy failed', e);
+    }
+  };
+
+  // Regenerate: get new answer and show comparison for user to choose
   const handleRegenerate = async (assistantIndex) => {
-    // find user message before assistantIndex
+    const assistantMsg = messages[assistantIndex];
+    // Find user message that preceded this assistant message
     let userContent = null;
     for (let i = assistantIndex - 1; i >= 0; i--) {
       if (messages[i].role === 'user') { userContent = messages[i].content; break; }
@@ -371,25 +429,38 @@ function App() {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(`${API_BASE_URL}/chat`, {
-        query: userContent,
-        session_id: activeConvId || sessionId,
-        use_cache: false,
-        k: 5
-      }, { timeout: 120000 });
+      const response = await axios.post(`${API_BASE_URL}/chat/regenerate`, {
+        question: userContent,
+        old_answer: assistantMsg.content,
+        cache_key: assistantMsg.metadata?.cache_key || null,
+        conversation_id: activeConvId,
+      }, {
+        headers: getAuthHeaders(),
+        timeout: 120000
+      });
 
-      const assistantMessage = {
-        id: `m_${Date.now()+3}`,
-        role: 'assistant',
-        content: response.data.response,
-        metadata: { ...response.data.metadata, regenerated: true },
-        cache_used: response.data.cache_used,
-        response_time: response.data.response_time,
-        relevant_locations: response.data.sources || [],
-        timestamp: new Date().toISOString()
+      const { old_answer, new_answer, variants, cache_key } = response.data;
+
+      // Update the assistant message to show comparison mode
+      const updatedMsg = {
+        ...assistantMsg,
+        metadata: {
+          ...assistantMsg.metadata,
+          cache_key: cache_key || assistantMsg.metadata?.cache_key,
+          rating: undefined,  // reset feedback
+        },
+        variants: variants || [
+          { id: -1, answer: old_answer, source: 'original', votes: 0 },
+          { id: -2, answer: new_answer, source: 'regenerated', votes: 0 },
+        ],
+        chosenVariant: undefined,  // user hasn't chosen yet
+        timestamp: new Date().toISOString(),
       };
 
-      const updatedMessages = [...messages, assistantMessage];
+      const updatedMessages = messages.map((m, i) =>
+        i === assistantIndex ? updatedMsg : m
+      );
+
       setMessages(updatedMessages);
       if (activeConvId) {
         const next = { ...conversations };
@@ -397,18 +468,56 @@ function App() {
         setConversations(next);
         persistConversations(next);
       }
-
-      // Log relevant locations
-      if (response.data.sources && response.data.sources.length > 0) {
-        console.log(`🗺️ Regenerated response contains ${response.data.sources.length} relevant locations`);
-      }
     } catch (e) {
       console.error('Error regenerating', e);
-      alert('Gagal meregenerasi jawaban');
+      alert(`Gagal meregenerasi jawaban: ${e.response?.data?.detail || e.message}`);
     } finally {
       setIsLoading(false);
     }
   };
+
+  // Choose a variant from comparison
+  const handleChooseVariant = async (messageId, variantIndex) => {
+    const targetMsg = messages.find(m => m.id === messageId);
+    if (!targetMsg?.variants?.[variantIndex]) return;
+
+    const chosenVariant = targetMsg.variants[variantIndex];
+
+    // Optimistic UI update — show chosen answer immediately
+    const updated = messages.map(m =>
+      m.id === messageId
+        ? {
+            ...m,
+            content: chosenVariant.answer,
+            chosenVariant: variantIndex,
+            metadata: { ...m.metadata, rating: undefined },
+          }
+        : m
+    );
+    setMessages(updated);
+    if (activeConvId) {
+      const next = { ...conversations };
+      next[activeConvId] = { ...next[activeConvId], messages: updated };
+      setConversations(next);
+      persistConversations(next);
+    }
+
+    // Send vote to backend — also updates KV cache with the chosen answer
+    try {
+      await axios.post(`${API_BASE_URL}/chat/choose-variant`, {
+        variant_id: chosenVariant.id,
+        question_hash: targetMsg.metadata?.cache_key || null,
+        chosen_answer: chosenVariant.answer,
+      }, { headers: getAuthHeaders() });
+    } catch (e) {
+      console.error('Error voting variant', e);
+    }
+  };
+
+  // Check if there's a pending comparison that hasn't been resolved
+  const hasPendingComparison = messages.some(
+    m => m.role === 'assistant' && m.variants && m.chosenVariant === undefined
+  );
 
   const handleOptimizeCache = async () => {
     try {
@@ -658,7 +767,49 @@ function App() {
                 )}
                 <div className="message-content">
                   <div className="message-body">
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+
+                    {/* ═══════ COMPARISON MODE: variants exist, user hasn't chosen ═══════ */}
+                    {msg.role === 'assistant' && msg.variants && msg.chosenVariant === undefined ? (
+                      <div className="answer-comparison">
+                        <div className="comparison-header">
+                          <RefreshCw size={18} />
+                          <span>Pilih jawaban yang paling baik untuk pertanyaan ini:</span>
+                        </div>
+                        <div className="comparison-cards">
+                          {msg.variants.slice(0, 2).map((v, vi) => (
+                            <div key={v.id || vi} className="variant-card">
+                              <div className="variant-label">
+                                {vi === 0 ? '🅰️ Jawaban A' : '🅱️ Jawaban B'}
+                                <span className="variant-source">
+                                  {v.source === 'original' ? '(Original)' : v.source === 'regenerated' ? '(Baru)' : `(${v.source})`}
+                                </span>
+                              </div>
+                              <div className="variant-body">
+                                <ReactMarkdown>{v.answer}</ReactMarkdown>
+                              </div>
+                              <div className="variant-footer">
+                                <span className="variant-votes">
+                                  <Star size={14} /> {v.votes || 0} pilihan
+                                </span>
+                                <button
+                                  className="variant-choose-btn"
+                                  onClick={() => handleChooseVariant(msg.id, vi)}
+                                >
+                                  <ThumbsUp size={14} />
+                                  Pilih Jawaban Ini
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="comparison-hint">
+                          ⚠️ Pilih salah satu jawaban untuk melanjutkan percakapan
+                        </div>
+                      </div>
+                    ) : (
+                      /* ═══════ NORMAL MODE: single answer ═══════ */
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    )}
                     
                     {/* Show Map only if response has relevant locations (1-3 locations) */}
                     {msg.role === 'assistant' && msg.relevant_locations && msg.relevant_locations.length > 0 && (
@@ -709,36 +860,55 @@ function App() {
                       </div>
                     )}
                     
-                    {/* Feedback controls - Always show for assistant messages */}
-                    {msg.role === 'assistant' && (
-                      <div className="message-feedback">
-                        <div className="feedback-buttons">
-                          <button 
-                            title="Jawaban ini membantu" 
-                            onClick={() => handleFeedback(msg.id, 1)} 
-                            className={`feedback-btn feedback-btn--like ${msg.metadata?.rating === 1 ? 'feedback-btn--active' : ''}`}
-                          >
-                            <ThumbsUp size={16} />
-                          </button>
-                          <button 
-                            title="Jawaban ini kurang tepat" 
-                            onClick={() => handleFeedback(msg.id, -1)} 
-                            className={`feedback-btn feedback-btn--dislike ${msg.metadata?.rating === -1 ? 'feedback-btn--active' : ''}`}
-                          >
-                            <ThumbsDown size={16} />
-                          </button>
-                          <button 
-                            title="Regenerasi jawaban" 
-                            onClick={() => handleRegenerate(idx)} 
-                            className="feedback-btn feedback-btn--regenerate"
-                          >
-                            <RefreshCw size={16} />
-                          </button>
-                        </div>
-                        {msg.metadata?.rating && (
-                          <span className="feedback-status">
-                            {msg.metadata.rating === 1 ? '✓ Terima kasih atas feedback positif!' : '✓ Feedback tercatat, kami akan perbaiki'}
-                          </span>
+                    {/* ═══════ ChatGPT-style Action Toolbar ═══════ */}
+                    {msg.role === 'assistant' && (!msg.variants || msg.chosenVariant !== undefined) && (
+                      <div className="message-actions-toolbar">
+                        {/* Like */}
+                        <button 
+                          title={msg.metadata?.rating === 1 ? "Batal suka" : "Jawaban ini membantu"}
+                          onClick={() => handleFeedback(msg.id, 1)} 
+                          className={`action-icon-btn ${msg.metadata?.rating === 1 ? 'action-icon-btn--active-like' : ''}`}
+                        >
+                          <ThumbsUp size={15} />
+                        </button>
+
+                        {/* Dislike */}
+                        <button 
+                          title={msg.metadata?.rating === -1 ? "Batal tidak suka" : "Jawaban ini kurang tepat"}
+                          onClick={() => handleFeedback(msg.id, -1)} 
+                          className={`action-icon-btn ${msg.metadata?.rating === -1 ? 'action-icon-btn--active-dislike' : ''}`}
+                        >
+                          <ThumbsDown size={15} />
+                        </button>
+
+                        {/* Copy */}
+                        <button 
+                          title="Salin jawaban"
+                          onClick={() => handleCopy(msg.content, msg.id)} 
+                          className={`action-icon-btn ${msg.metadata?.copied ? 'action-icon-btn--copied' : ''}`}
+                        >
+                          {msg.metadata?.copied ? <Check size={15} /> : <Copy size={15} />}
+                        </button>
+
+                        {/* Regenerate */}
+                        <button 
+                          title="Regenerasi jawaban"
+                          onClick={() => handleRegenerate(idx)} 
+                          className="action-icon-btn"
+                          disabled={isLoading}
+                        >
+                          <RefreshCw size={15} className={isLoading ? 'spin-icon' : ''} />
+                        </button>
+
+                        {/* Feedback status text */}
+                        {msg.metadata?.rating === 1 && (
+                          <span className="action-status action-status--like">Terima kasih!</span>
+                        )}
+                        {msg.metadata?.rating === -1 && (
+                          <span className="action-status action-status--dislike">Feedback tercatat</span>
+                        )}
+                        {msg.metadata?.copied && (
+                          <span className="action-status action-status--copy">Tersalin!</span>
                         )}
                       </div>
                     )}
@@ -781,21 +951,26 @@ function App() {
             <div ref={messagesEndRef} />
           </div>
 
-          <form onSubmit={handleSubmit} className="input-form">
+          <form onSubmit={handleSubmit} className={`input-form ${hasPendingComparison ? 'input-form--blocked' : ''}`}>
+            {hasPendingComparison && (
+              <div className="input-blocked-notice">
+                ⚠️ Pilih salah satu jawaban di atas sebelum melanjutkan
+              </div>
+            )}
             <div className="input-wrapper">
               <textarea
                 ref={inputRef}
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                placeholder="⌨️ Tanyakan tentang wisata Danau Toba..."
-                disabled={isLoading}
+                placeholder={hasPendingComparison ? "Pilih jawaban terlebih dahulu..." : "⌨️ Tanyakan tentang wisata Danau Toba..."}
+                disabled={isLoading || hasPendingComparison}
                 className="input-field"
                 rows={1}
               />
               <button 
                 type="submit" 
-                disabled={isLoading || !input.trim()}
+                disabled={isLoading || !input.trim() || hasPendingComparison}
                 className="send-button"
               >
                 {isLoading ? (

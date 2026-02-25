@@ -62,19 +62,21 @@ def init_database():
         )
     ''')
     
-    # Chat history table
+    # Chat history table (each Q&A turn, linked to a conversation thread)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS chat_history (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
             session_id TEXT,
+            conversation_id TEXT,
             question TEXT NOT NULL,
             answer TEXT NOT NULL,
             category TEXT,
             response_time_ms INTEGER,
             model_used TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+            FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE SET NULL
         )
     ''')
     
@@ -106,20 +108,54 @@ def init_database():
         )
     ''')
     
-    # Feedback table
+    # Conversations table — one row per chat thread in the sidebar
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS conversations (
+            id TEXT PRIMARY KEY,
+            user_id INTEGER,
+            title TEXT DEFAULT 'General',
+            message_count INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ''')
+
+    # Feedback table — NOTE: rating allows -1 (dislike) and +1 (like)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS feedback (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
             chat_id INTEGER,
-            rating INTEGER CHECK(rating >= 1 AND rating <= 5),
+            rating INTEGER CHECK(rating >= -1 AND rating <= 5),
             comment TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
             FOREIGN KEY (chat_id) REFERENCES chat_history(id) ON DELETE CASCADE
         )
     ''')
-    
+
+    # Answer variants — stores alternative answers for comparison
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS answer_variants (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            question_hash TEXT NOT NULL,
+            question TEXT NOT NULL,
+            answer TEXT NOT NULL,
+            source TEXT DEFAULT 'rag',
+            votes INTEGER DEFAULT 0,
+            resolved INTEGER DEFAULT 0,
+            chosen INTEGER DEFAULT 0,
+            created_by INTEGER,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+        )
+    ''')
+
+    # Run schema migrations FIRST — ensures all columns exist before indexes are built
+    conn.commit()
+    _migrate_schema(cursor, conn)
+
     # Create indexes for better performance
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_users_username ON users(username)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)')
@@ -127,15 +163,90 @@ def init_database():
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_user ON chat_history(user_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_session ON chat_history(session_id)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_conv ON chat_history(conversation_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_activity_user ON activity_log(user_id)')
-    
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_conv_user ON conversations(user_id)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_variants_qhash ON answer_variants(question_hash)')
+
     conn.commit()
-    
+
     # Create default admin user if not exists
     create_default_admin(cursor, conn)
-    
+
     conn.close()
     print(f"✅ Database initialized at: {DB_PATH}")
+
+def _migrate_schema(cursor, conn):
+    """Apply incremental schema migrations to an existing database."""
+    # 1. Add conversation_id column to chat_history if not present
+    cursor.execute("PRAGMA table_info(chat_history)")
+    existing_cols = {row['name'] for row in cursor.fetchall()}
+    if 'conversation_id' not in existing_cols:
+        cursor.execute('ALTER TABLE chat_history ADD COLUMN conversation_id TEXT')
+        print("⬆️  Migration: added chat_history.conversation_id")
+
+    # 2. Fix feedback rating constraint (old DB has CHECK >= 1, dislike=-1 fails)
+    #    SQLite does not allow ALTER COLUMN, so we rebuild the table only if needed.
+    cursor.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='feedback'")
+    row = cursor.fetchone()
+    if row and 'rating >= 1' in (row['sql'] or ''):
+        cursor.execute('ALTER TABLE feedback RENAME TO feedback_old')
+        cursor.execute('''
+            CREATE TABLE feedback (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                chat_id INTEGER,
+                rating INTEGER CHECK(rating >= -1 AND rating <= 5),
+                comment TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+                FOREIGN KEY (chat_id) REFERENCES chat_history(id) ON DELETE CASCADE
+            )
+        ''')
+        cursor.execute('INSERT INTO feedback SELECT * FROM feedback_old')
+        cursor.execute('DROP TABLE feedback_old')
+        print("⬆️  Migration: rebuilt feedback table (allow rating=-1)")
+
+    # 3. Add message_hash column to feedback for toggle support
+    cursor.execute("PRAGMA table_info(feedback)")
+    fb_cols = {row['name'] for row in cursor.fetchall()}
+    if 'message_hash' not in fb_cols:
+        cursor.execute('ALTER TABLE feedback ADD COLUMN message_hash TEXT')
+        print("⬆️  Migration: added feedback.message_hash")
+
+    # 4. Ensure answer_variants table exists (for older DBs)
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='answer_variants'")
+    if not cursor.fetchone():
+        cursor.execute('''
+            CREATE TABLE answer_variants (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                question_hash TEXT NOT NULL,
+                question TEXT NOT NULL,
+                answer TEXT NOT NULL,
+                source TEXT DEFAULT 'rag',
+                votes INTEGER DEFAULT 0,
+                resolved INTEGER DEFAULT 0,
+                chosen INTEGER DEFAULT 0,
+                created_by INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+            )
+        ''')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_variants_qhash ON answer_variants(question_hash)')
+        print("⬆️  Migration: created answer_variants table")
+
+    # 5. Add resolved + chosen columns to answer_variants (for older DBs)
+    cursor.execute("PRAGMA table_info(answer_variants)")
+    av_cols = {row['name'] for row in cursor.fetchall()}
+    if 'resolved' not in av_cols:
+        cursor.execute('ALTER TABLE answer_variants ADD COLUMN resolved INTEGER DEFAULT 0')
+        print("⬆️  Migration: added answer_variants.resolved")
+    if 'chosen' not in av_cols:
+        cursor.execute('ALTER TABLE answer_variants ADD COLUMN chosen INTEGER DEFAULT 0')
+        print("⬆️  Migration: added answer_variants.chosen")
+
+    conn.commit()
+
 
 def create_default_admin(cursor, conn):
     """Create default admin user if not exists"""
@@ -677,7 +788,7 @@ def delete_user(user_id: int, admin_id: int) -> Dict[str, Any]:
 
 def save_chat(user_id: Optional[int], session_id: str, question: str, answer: str,
               category: str = None, response_time_ms: int = None, 
-              model_used: str = None) -> int:
+              model_used: str = None, conversation_id: str = None) -> int:
     """Save chat to history"""
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -685,9 +796,9 @@ def save_chat(user_id: Optional[int], session_id: str, question: str, answer: st
     try:
         cursor.execute('''
             INSERT INTO chat_history 
-            (user_id, session_id, question, answer, category, response_time_ms, model_used)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (user_id, session_id, question, answer, category, response_time_ms, model_used))
+            (user_id, session_id, conversation_id, question, answer, category, response_time_ms, model_used)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (user_id, session_id, conversation_id, question, answer, category, response_time_ms, model_used))
         
         conn.commit()
         return cursor.lastrowid
@@ -747,6 +858,94 @@ def get_session_chat_history(session_id: str) -> List[Dict[str, Any]]:
         return []
     finally:
         conn.close()
+
+
+# ============================================
+# Conversation Management Functions
+# ============================================
+
+def upsert_conversation(conversation_id: str, user_id: Optional[int], title: str = 'General') -> bool:
+    """Create or update a conversation thread record."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            INSERT INTO conversations (id, user_id, title, updated_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(id) DO UPDATE SET
+                title = excluded.title,
+                updated_at = CURRENT_TIMESTAMP
+        ''', (conversation_id, user_id, title))
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"upsert_conversation error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def get_conversation_context(conversation_id: str, limit: int = 8) -> List[Dict[str, str]]:
+    """Return the last `limit` Q&A turns for a conversation as [{role, content}] pairs.
+
+    This list is passed directly to the LLM as conversation history so it can
+    understand the full thread context when answering follow-up questions.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            SELECT question, answer
+            FROM chat_history
+            WHERE conversation_id = ?
+            ORDER BY created_at ASC
+            LIMIT ?
+        ''', (conversation_id, limit))
+        rows = cursor.fetchall()
+        history = []
+        for row in rows:
+            history.append({"role": "user", "content": row["question"]})
+            history.append({"role": "assistant", "content": row["answer"]})
+        return history
+    except Exception as e:
+        print(f"get_conversation_context error: {e}")
+        return []
+    finally:
+        conn.close()
+
+
+def get_user_conversations(user_id: int, limit: int = 50) -> List[Dict[str, Any]]:
+    """Return conversation list for a user (for sidebar sync)."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            SELECT c.id, c.title, c.message_count, c.created_at, c.updated_at,
+                   COUNT(ch.id) AS actual_count
+            FROM conversations c
+            LEFT JOIN chat_history ch ON ch.conversation_id = c.id
+            WHERE c.user_id = ?
+            GROUP BY c.id
+            ORDER BY c.updated_at DESC
+            LIMIT ?
+        ''', (user_id, limit))
+        rows = cursor.fetchall()
+        return [
+            {
+                "id": r["id"],
+                "title": r["title"],
+                "message_count": r["actual_count"],
+                "createdAt": r["created_at"],
+                "updatedAt": r["updated_at"],
+            }
+            for r in rows
+        ]
+    except Exception as e:
+        print(f"get_user_conversations error: {e}")
+        return []
+    finally:
+        conn.close()
+
 
 def clear_user_chat_history(user_id: int) -> bool:
     """Clear all chat history for a user"""
@@ -864,20 +1063,220 @@ def get_system_stats() -> Dict[str, Any]:
 # ============================================
 
 def save_feedback(user_id: Optional[int], chat_id: int, rating: int, 
-                 comment: str = None) -> bool:
-    """Save feedback for a chat response"""
+                 comment: str = None, message_hash: str = None) -> dict:
+    """Save or toggle feedback for a chat response.
+    
+    Toggle logic (like ChatGPT):
+    - If user already gave same rating → remove it (set 0)
+    - If user gave different rating → switch to new rating
+    - If no existing feedback → insert new
+    
+    Returns dict with {rating, toggled, action}
+    """
     conn = get_db_connection()
     cursor = conn.cursor()
     
     try:
+        final_rating = rating
+        action = "created"
+        
+        # Check for existing feedback from this user for this message
+        if user_id and message_hash:
+            cursor.execute('''
+                SELECT id, rating FROM feedback 
+                WHERE user_id = ? AND message_hash = ?
+            ''', (user_id, message_hash))
+            existing = cursor.fetchone()
+            
+            if existing:
+                old_rating = existing['rating']
+                if old_rating == rating:
+                    # Toggle off — same button clicked again
+                    final_rating = 0
+                    action = "toggled_off"
+                else:
+                    # Switch rating
+                    action = "switched"
+                
+                cursor.execute('''
+                    UPDATE feedback SET rating = ?, created_at = CURRENT_TIMESTAMP
+                    WHERE id = ?
+                ''', (final_rating, existing['id']))
+                conn.commit()
+                return {"rating": final_rating, "toggled": True, "action": action}
+        
+        # No existing → insert new
         cursor.execute('''
-            INSERT INTO feedback (user_id, chat_id, rating, comment)
-            VALUES (?, ?, ?, ?)
-        ''', (user_id, chat_id, rating, comment))
+            INSERT INTO feedback (user_id, chat_id, rating, comment, message_hash)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (user_id, chat_id, final_rating, comment, message_hash))
         conn.commit()
-        return True
+        return {"rating": final_rating, "toggled": False, "action": action}
+    except Exception as e:
+        print(f"❌ save_feedback error: {e}")
+        return {"rating": rating, "toggled": False, "action": "error"}
+    finally:
+        conn.close()
+
+
+# ============================================
+# Answer Variants Functions
+# ============================================
+
+def save_answer_variant(question_hash: str, question: str, answer: str,
+                       source: str = "rag", created_by: int = None) -> int:
+    """Save an answer variant. Returns variant id (-1 on failure).
+    Skips if exact same answer text already exists for this question_hash."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Skip duplicate answer text
+        cursor.execute('''
+            SELECT id FROM answer_variants
+            WHERE question_hash = ? AND answer = ?
+        ''', (question_hash, answer))
+        existing = cursor.fetchone()
+        if existing:
+            return existing['id']
+        
+        cursor.execute('''
+            INSERT INTO answer_variants (question_hash, question, answer, source, created_by)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (question_hash, question, answer, source, created_by))
+        conn.commit()
+        return cursor.lastrowid
+    except Exception as e:
+        print(f"❌ save_answer_variant error: {e}")
+        return -1
+    finally:
+        conn.close()
+
+
+def get_answer_variants(question_hash: str, include_resolved: bool = False) -> List[Dict[str, Any]]:
+    """Get answer variants for a given question hash.
+    By default only returns unresolved variants (active comparison).
+    Set include_resolved=True to get all variants including resolved ones."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        if include_resolved:
+            cursor.execute('''
+                SELECT id, question_hash, question, answer, source, votes, resolved, chosen, created_at
+                FROM answer_variants
+                WHERE question_hash = ?
+                ORDER BY votes DESC, created_at ASC
+            ''', (question_hash,))
+        else:
+            cursor.execute('''
+                SELECT id, question_hash, question, answer, source, votes, resolved, chosen, created_at
+                FROM answer_variants
+                WHERE question_hash = ? AND resolved = 0
+                ORDER BY votes DESC, created_at ASC
+            ''', (question_hash,))
+        rows = cursor.fetchall()
+        return [
+            {
+                "id": r['id'],
+                "question_hash": r['question_hash'],
+                "question": r['question'],
+                "answer": r['answer'],
+                "source": r['source'],
+                "votes": r['votes'],
+                "resolved": r['resolved'],
+                "chosen": r['chosen'],
+                "created_at": r['created_at'],
+            }
+            for r in rows
+        ]
+    except:
+        return []
+    finally:
+        conn.close()
+
+
+def vote_answer_variant(variant_id: int, user_id: int = None) -> bool:
+    """Increment vote count for a variant."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            UPDATE answer_variants SET votes = votes + 1
+            WHERE id = ?
+        ''', (variant_id,))
+        conn.commit()
+        return cursor.rowcount > 0
     except:
         return False
+    finally:
+        conn.close()
+
+
+def resolve_variants(question_hash: str, chosen_variant_id: int) -> Dict[str, Any]:
+    """Mark all variants for a question_hash as resolved.
+    The chosen variant gets chosen=1, all others just resolved=1.
+    Returns the chosen variant's data."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Mark all variants as resolved
+        cursor.execute('''
+            UPDATE answer_variants SET resolved = 1, chosen = 0
+            WHERE question_hash = ?
+        ''', (question_hash,))
+        # Mark the chosen one
+        cursor.execute('''
+            UPDATE answer_variants SET chosen = 1
+            WHERE id = ?
+        ''', (chosen_variant_id,))
+        conn.commit()
+
+        # Return chosen variant data
+        cursor.execute('''
+            SELECT id, question_hash, question, answer, source, votes
+            FROM answer_variants WHERE id = ?
+        ''', (chosen_variant_id,))
+        row = cursor.fetchone()
+        if row:
+            return {
+                "id": row['id'],
+                "question_hash": row['question_hash'],
+                "question": row['question'],
+                "answer": row['answer'],
+                "source": row['source'],
+                "votes": row['votes'],
+            }
+        return {}
+    except Exception as e:
+        print(f"❌ resolve_variants error: {e}")
+        return {}
+    finally:
+        conn.close()
+
+
+def get_winning_variant(question_hash: str) -> Optional[Dict[str, Any]]:
+    """Get the winning (chosen) variant for a resolved question.
+    Returns None if no resolved variant exists."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            SELECT id, question, answer, source, votes
+            FROM answer_variants
+            WHERE question_hash = ? AND resolved = 1 AND chosen = 1
+            LIMIT 1
+        ''', (question_hash,))
+        row = cursor.fetchone()
+        if row:
+            return {
+                "id": row['id'],
+                "question": row['question'],
+                "answer": row['answer'],
+                "source": row['source'],
+                "votes": row['votes'],
+            }
+        return None
+    except:
+        return None
     finally:
         conn.close()
 
@@ -902,6 +1301,144 @@ def get_feedback_stats() -> Dict[str, Any]:
         }
     except:
         return {"averageRating": 0, "totalFeedback": 0, "distribution": {}}
+    finally:
+        conn.close()
+
+def get_analytics_data(limit_recent: int = 50) -> Dict[str, Any]:
+    """Get comprehensive CAG vs RAG research analytics"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        # --- CAG vs RAG latency comparison ---
+        cursor.execute('''
+            SELECT category,
+                   AVG(response_time_ms) as avg_ms,
+                   MIN(response_time_ms) as min_ms,
+                   MAX(response_time_ms) as max_ms,
+                   COUNT(*) as count
+            FROM chat_history
+            WHERE category IN ('cag_cache', 'rag') AND response_time_ms IS NOT NULL
+            GROUP BY category
+        ''')
+        latency = {}
+        for row in cursor.fetchall():
+            latency[row['category']] = {
+                "avg_ms": round(row['avg_ms'] or 0, 1),
+                "min_ms": row['min_ms'] or 0,
+                "max_ms": row['max_ms'] or 0,
+                "count": row['count']
+            }
+
+        # --- Overall traffic counts ---
+        cursor.execute("SELECT COUNT(*) as total FROM chat_history")
+        total = cursor.fetchone()['total']
+
+        cursor.execute("SELECT COUNT(*) as count FROM chat_history WHERE category = 'cag_cache'")
+        cag_hits = cursor.fetchone()['count']
+
+        cursor.execute("SELECT COUNT(*) as count FROM chat_history WHERE category = 'rag'")
+        rag_hits = cursor.fetchone()['count']
+
+        hit_rate_pct = round((cag_hits / total * 100) if total > 0 else 0, 1)
+
+        # --- Daily hit-rate trend (last 30 days) ---
+        cursor.execute('''
+            SELECT DATE(created_at) as day,
+                   SUM(CASE WHEN category='cag_cache' THEN 1 ELSE 0 END) as cache_hits,
+                   COUNT(*) as total
+            FROM chat_history
+            WHERE created_at > datetime('now', '-30 days')
+            GROUP BY DATE(created_at)
+            ORDER BY day ASC
+        ''')
+        daily = [
+            {
+                "date": row['day'],
+                "hits": row['cache_hits'],
+                "total": row['total'],
+                "rate": round((row['cache_hits'] / row['total'] * 100) if row['total'] > 0 else 0, 1)
+            }
+            for row in cursor.fetchall()
+        ]
+
+        # --- Accuracy from feedback (overall) ---
+        cursor.execute('''
+            SELECT
+                SUM(CASE WHEN rating > 0 THEN 1 ELSE 0 END) as likes,
+                SUM(CASE WHEN rating < 0 THEN 1 ELSE 0 END) as dislikes,
+                COUNT(*) as total
+            FROM feedback
+        ''')
+        fb = cursor.fetchone()
+        likes = fb['likes'] or 0
+        dislikes = fb['dislikes'] or 0
+        total_feedback = fb['total'] or 0
+        like_rate_pct = round((likes / total_feedback * 100) if total_feedback > 0 else 0, 1)
+
+        # --- Accuracy broken down by source ---
+        cursor.execute('''
+            SELECT ch.category,
+                   SUM(CASE WHEN f.rating > 0 THEN 1 ELSE 0 END) as likes,
+                   SUM(CASE WHEN f.rating < 0 THEN 1 ELSE 0 END) as dislikes,
+                   COUNT(f.id) as total
+            FROM feedback f
+            JOIN chat_history ch ON f.chat_id = ch.id
+            WHERE ch.category IN ('cag_cache', 'rag')
+            GROUP BY ch.category
+        ''')
+        fb_by_source = {}
+        for row in cursor.fetchall():
+            t = row['total'] or 0
+            l = row['likes'] or 0
+            fb_by_source[row['category']] = {
+                "likes": l,
+                "dislikes": row['dislikes'] or 0,
+                "total": t,
+                "like_rate_pct": round((l / t * 100) if t > 0 else 0, 1)
+            }
+
+        # --- Recent per-query table ---
+        cursor.execute('''
+            SELECT ch.id, ch.question, ch.category, ch.response_time_ms, ch.created_at,
+                   f.rating
+            FROM chat_history ch
+            LEFT JOIN feedback f ON f.chat_id = ch.id
+            ORDER BY ch.created_at DESC
+            LIMIT ?
+        ''', (limit_recent,))
+        recent_queries = [
+            {
+                "id": row['id'],
+                "question": (row['question'] or "")[:120],
+                "source": row['category'],
+                "response_time_ms": row['response_time_ms'],
+                "rating": row['rating'],
+                "created_at": row['created_at']
+            }
+            for row in cursor.fetchall()
+        ]
+
+        return {
+            "latency": latency,
+            "hit_rate": {
+                "total": total,
+                "cag_hits": cag_hits,
+                "rag_hits": rag_hits,
+                "hit_rate_pct": hit_rate_pct,
+                "daily": daily
+            },
+            "accuracy": {
+                "total_feedback": total_feedback,
+                "likes": likes,
+                "dislikes": dislikes,
+                "like_rate_pct": like_rate_pct,
+                "by_source": fb_by_source
+            },
+            "recent_queries": recent_queries
+        }
+    except Exception as e:
+        return {"error": str(e)}
     finally:
         conn.close()
 

@@ -2,6 +2,15 @@
 FAQ Generator for CAG System
 Implements "FAQ for CAG" component from flowchart
 Generates Frequently Asked Questions to pre-populate cache
+
+FAQ Schema (per entry):
+  question          : str        – pertanyaan
+  answer            : str        – jawaban ground-truth (opsional, diisi saat ada)
+  category          : str        – kategori wisata
+  keywords          : List[str]  – kata kunci
+  priority          : str        – "high" | "medium" | "low"
+  auto_promoted     : bool       – True jika dipromosi dari cache
+  promoted_at       : str        – ISO timestamp promosi
 """
 
 import os
@@ -17,13 +26,13 @@ class FAQGenerator:
     
     def __init__(self, faq_file: str = None):
         if faq_file is None:
-            faq_file = os.path.join(
-                os.path.dirname(__file__), 
-                "..", 
-                "database", 
-                "FQA",
+            faq_file = os.path.normpath(os.path.join(
+                os.path.dirname(__file__),
+                "..",
+                "database",
+                "FAQ",          # ← folder name yang benar
                 "faq_tourism.json"
-            )
+            ))
         
         self.faq_file = faq_file
         self.faqs = self.load_faqs()
@@ -31,7 +40,7 @@ class FAQGenerator:
     def load_faqs(self) -> List[Dict]:
         """Load existing FAQs from file"""
         if os.path.exists(self.faq_file):
-            with open(self.faq_file, 'r', encoding='utf-8') as f:
+            with open(self.faq_file, 'r', encoding='utf-8-sig') as f:
                 return json.load(f)
         else:
             # Return default FAQs if file doesn't exist
@@ -193,8 +202,86 @@ class FAQGenerator:
     def get_all_questions(self) -> List[str]:
         """Get all FAQ questions as list"""
         return [faq["question"] for faq in self.faqs]
-    
-    def pre_populate_cache(self, cag_system, verbose: bool = True):
+
+    # ============================================================
+    # METHODS BARU: promosi dari cache & pre-populate dengan jawaban
+    # ============================================================
+
+    def add_promoted_entry(
+        self,
+        query: str,
+        answer: str,
+        category: str = "general",
+        keywords: List[str] = None,
+        access_count: int = 0,
+    ) -> bool:
+        """
+        Tambahkan entry baru ke FAQ yang dipromosi secara otomatis dari cache
+        (access_count >= 5 → sudah teruji sering ditanya).
+
+        Returns:
+            True  jika berhasil ditambahkan
+            False jika pertanyaan sudah ada di FAQ
+        """
+        from datetime import datetime
+
+        # Cek duplikat
+        existing = {f["question"].lower().strip() for f in self.faqs}
+        if query.lower().strip() in existing:
+            return False
+
+        self.faqs.append({
+            "category":                  category,
+            "question":                  query,
+            "answer":                    answer[:1000],  # batas 1000 char
+            "keywords":                  keywords or [],
+            "priority":                  "high",         # populer → high priority
+            "auto_promoted":             True,
+            "promoted_at":               datetime.now().isoformat(),
+            "promoted_from_cache_count": access_count,
+        })
+        self.save_faqs()
+        return True
+
+    def pre_populate_cache_from_answers(self, cache_manager) -> Dict:
+        """
+        Isi KV cache langsung dari pasangan Q+A di FAQ tanpa memanggil LLM.
+        Hanya memproses FAQ yang sudah punya field 'answer'.
+
+        Args:
+            cache_manager: instance KVCacheManager
+
+        Returns:
+            {'added': int, 'skipped': int}
+        """
+        return cache_manager.pre_populate_from_faq(self.faqs)
+
+    def get_faqs_with_answers(self) -> List[Dict]:
+        """Kembalikan hanya FAQ yang sudah memiliki field 'answer'."""
+        return [f for f in self.faqs if f.get("answer", "").strip()]
+
+    def get_faqs_without_answers(self) -> List[Dict]:
+        """Kembalikan FAQ yang belum memiliki jawaban (perlu diisi / di-generate)."""
+        return [f for f in self.faqs if not f.get("answer", "").strip()]
+
+    def export_as_eval_dataset(self, max_items: int = None) -> List[Dict]:
+        """
+        Export FAQ sebagai dataset evaluasi RAG/CAG.
+        Hanya FAQ yang memiliki 'answer' yang bisa menjadi ground truth.
+
+        Returns:
+            List of { 'q': str, 'gt': str, 'kw': List[str] }
+        """
+        faqs_with_answers = self.get_faqs_with_answers()
+        subset = faqs_with_answers[:max_items] if max_items else faqs_with_answers
+        return [
+            {
+                "q":  f["question"],
+                "gt": f["answer"],
+                "kw": f.get("keywords", []),
+            }
+            for f in subset
+        ]
         """
         Pre-populate CAG cache with FAQ answers
         This implements the "FAQ for CAG" → "CAG Cache Generation" flow
