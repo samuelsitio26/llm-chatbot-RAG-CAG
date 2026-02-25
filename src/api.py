@@ -13,7 +13,7 @@ from contextlib import asynccontextmanager
 from typing import Optional, List
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File
+from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
@@ -34,6 +34,7 @@ from model import GeminiChatModel
 from cag_system import CAGSystem
 from decision_agent import DecisionMakingAgent
 import database as db
+import manage_cache as cache_lifecycle
 
 # Global variables
 model = None
@@ -46,6 +47,7 @@ class ChatRequest(BaseModel):
     use_cache: bool = True
     k: int = 5
     session_id: Optional[str] = None
+    conversation_id: Optional[str] = None  # frontend conv_* key
     max_new_tokens: int = 2048
     temperature: float = 0.7
 
@@ -56,6 +58,8 @@ class ChatResponse(BaseModel):
     response_time: float
     sources: list = []
     scores: dict = {}
+    cache_key: Optional[str] = None  # MD5 hash of query, used by frontend for feedback
+    variants: Optional[list] = None  # answer variants for comparison (if any)
 
 
 # ============================================
@@ -463,7 +467,7 @@ def extract_coordinates_from_context(context: str) -> list:
 
 
 @app.post("/api/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
+async def chat(request: ChatRequest, authorization: str = Header(None)):
     """Process chat request with smart location detection"""
     global cag_system, decision_agent
     
@@ -472,6 +476,22 @@ async def chat(request: ChatRequest):
     
     start_time = time.time()
     
+    # Resolve user (optional auth)
+    user = await get_current_user(authorization)
+    user_id = user['id'] if user else None
+    conv_id = request.conversation_id
+
+    # Persist / update the conversation record so it exists in DB
+    if conv_id:
+        title = request.query[:50] if len(request.query) <= 50 else request.query[:47] + '...'
+        db.upsert_conversation(conv_id, user_id, title)
+
+    # Load conversation context so the LLM can answer follow-up questions
+    chat_history = []
+    if conv_id:
+        chat_history = db.get_conversation_context(conv_id, limit=8)
+
+    result = None  # initialize so finally block can safely reference it
     try:
         # Classify query type
         query_classification = classify_query_type(request.query)
@@ -482,6 +502,7 @@ async def chat(request: ChatRequest):
         # Process query through CAG system
         result = cag_system.get_response(
             query=request.query,
+            chat_history=chat_history,
             use_cache=request.use_cache,
             k=request.k,
             max_new_tokens=request.max_new_tokens,
@@ -546,18 +567,40 @@ async def chat(request: ChatRequest):
                 print(f"⚠️ Warning: Could not get scores: {e}")
         
         print(f"✅ Returning {len(relevant_locations)} locations to frontend")
-        
+
         return ChatResponse(
             response=response_text,
             cached=result.get("cache_used", False),
             response_time=response_time,
             sources=relevant_locations,
-            scores=scores
+            scores=scores,
+            cache_key=result.get("cache_key"),
+            variants=None,  # variants only appear during regeneration flow
         )
-        
+
     except Exception as e:
         print(f"❌ Error processing chat: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+    finally:
+        # Persist Q&A to database — skip failure/fallback responses so they
+        # don't pollute analytics or get served as stale answers in future.
+        if result is not None:
+            source = result.get("source", "")
+            saved_response = result.get("response", "")
+            skip_sources = {"error", "no_relevant_context"}
+            if saved_response and source not in skip_sources:
+                elapsed_ms = int((time.time() - start_time) * 1000)
+                db.save_chat(
+                    user_id=user_id,
+                    session_id=request.session_id or "",
+                    conversation_id=conv_id,
+                    question=request.query,
+                    answer=saved_response,
+                    category=source,
+                    response_time_ms=elapsed_ms,
+                    model_used="gemini-2.5-flash",
+                )
 
 
 def extract_mentioned_locations(response_text: str) -> list:
@@ -607,6 +650,119 @@ async def get_stats():
         return {"error": "CAG system not initialized"}
     
     return cag_system.get_stats()
+
+
+# ============================================
+# FAQ CRUD Endpoints
+# ============================================
+
+import json as _json
+
+FAQ_PATH = os.path.join(os.path.dirname(__file__), "..", "database", "FAQ", "faq_tourism.json")
+
+
+def _read_faqs() -> list:
+    """Read FAQ file and return only {question, answer} entries."""
+    try:
+        with open(FAQ_PATH, 'r', encoding='utf-8-sig') as f:
+            data = _json.load(f)
+        return [{"question": r.get("question", ""), "answer": r.get("answer", "")} for r in data]
+    except FileNotFoundError:
+        return []
+
+
+def _write_faqs(faqs: list) -> None:
+    """Persist FAQ list (only question + answer) to file."""
+    os.makedirs(os.path.dirname(FAQ_PATH), exist_ok=True)
+    with open(FAQ_PATH, 'w', encoding='utf-8') as f:
+        _json.dump(faqs, f, ensure_ascii=False, indent=2)
+
+
+class FAQRequest(BaseModel):
+    question: str
+    answer: str
+
+
+@app.get("/api/faqs")
+async def list_faqs():
+    """List all FAQ entries (question + answer only)."""
+    faqs = _read_faqs()
+    return {"faqs": faqs, "count": len(faqs)}
+
+
+@app.post("/api/faqs")
+async def add_faq(body: FAQRequest, admin: dict = Depends(require_admin)):
+    """[ADMIN] Add a new FAQ entry."""
+    if not body.question.strip() or not body.answer.strip():
+        raise HTTPException(status_code=400, detail="Pertanyaan dan jawaban tidak boleh kosong")
+    faqs = _read_faqs()
+    faqs.append({"question": body.question.strip(), "answer": body.answer.strip()})
+    _write_faqs(faqs)
+    return {"success": True, "message": "FAQ berhasil ditambahkan", "index": len(faqs) - 1}
+
+
+@app.put("/api/faqs/{faq_index}")
+async def update_faq(faq_index: int, body: FAQRequest, admin: dict = Depends(require_admin)):
+    """[ADMIN] Update an existing FAQ entry by index."""
+    faqs = _read_faqs()
+    if faq_index < 0 or faq_index >= len(faqs):
+        raise HTTPException(status_code=404, detail="FAQ tidak ditemukan")
+    if not body.question.strip() or not body.answer.strip():
+        raise HTTPException(status_code=400, detail="Pertanyaan dan jawaban tidak boleh kosong")
+    faqs[faq_index] = {"question": body.question.strip(), "answer": body.answer.strip()}
+    _write_faqs(faqs)
+    return {"success": True, "message": "FAQ berhasil diperbarui"}
+
+
+@app.delete("/api/faqs/{faq_index}")
+async def delete_faq(faq_index: int, admin: dict = Depends(require_admin)):
+    """[ADMIN] Delete a FAQ entry by index."""
+    faqs = _read_faqs()
+    if faq_index < 0 or faq_index >= len(faqs):
+        raise HTTPException(status_code=404, detail="FAQ tidak ditemukan")
+    removed = faqs.pop(faq_index)
+    _write_faqs(faqs)
+    return {"success": True, "message": "FAQ berhasil dihapus", "removed_question": removed["question"]}
+
+
+# ============================================
+# KV Cache Hard-Wipe Endpoint
+# ============================================
+
+class CacheWipeRequest(BaseModel):
+    confirm_text: str  # must equal "HAPUS CACHE" exactly
+
+
+@app.delete("/api/admin/cache/kv/wipe")
+async def wipe_kv_cache(body: CacheWipeRequest, admin: dict = Depends(require_admin)):
+    """[ADMIN] Permanently wipe the entire KV cache (confirmed + staging).
+    Requires body.confirm_text == 'HAPUS CACHE' as a safety guard.
+    """
+    if body.confirm_text != "HAPUS CACHE":
+        raise HTTPException(
+            status_code=400,
+            detail="Konfirmasi salah. Ketikkan tepat: HAPUS CACHE"
+        )
+
+    global cag_system
+    if not cag_system:
+        raise HTTPException(status_code=503, detail="CAG system not initialized")
+
+    stats_before = cag_system.kv_cache.get_stats()
+    confirmed_before = stats_before.get("size", 0)
+    staging_before   = stats_before.get("staging_items", 0)
+
+    cag_system.kv_cache.clear()
+
+    print(f"🗑️ [ADMIN:{admin['username']}] KV cache wiped — confirmed={confirmed_before}, staging={staging_before}")
+
+    return {
+        "success": True,
+        "message": f"KV Cache berhasil dihapus. {confirmed_before} confirmed + {staging_before} staging entries dihapus.",
+        "removed_confirmed": confirmed_before,
+        "removed_staging":   staging_before,
+    }
+
 
 
 @app.get("/api/locations")
@@ -790,6 +946,99 @@ async def optimize_cache():
     
     cag_system.optimize_cache()
     return {"message": "Cache optimized."}
+
+
+# ============================================
+# Cache Lifecycle Management Endpoints
+# ============================================
+
+@app.get("/api/admin/cache/lifecycle")
+async def cache_lifecycle_report(
+    max_age_days: int = None,
+    max_entries: int = None,
+    min_access: int = None,
+    current_user: dict = Depends(require_admin)
+):
+    """
+    [ADMIN] Laporan lifecycle cache (dry-run).
+    Query params (semua opsional, gunakan default jika tidak diisi):
+      - max_age_days : hari tanpa akses → kandidat hapus      (default: 21)
+      - max_entries  : batas maksimum entri cache; 0=unlimited (default: 500)
+      - min_access   : threshold akses minimum                 (default: 5)
+    """
+    try:
+        report = cache_lifecycle.get_lifecycle_report(
+            max_age_days=max_age_days,
+            max_entries=max_entries,
+            min_access=min_access,
+        )
+        return {
+            "success": True,
+            "report":  report,
+            "note":    "Ini dry-run. Gunakan POST /api/admin/cache/lifecycle/execute untuk menerapkan."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class LifecycleExecuteRequest(BaseModel):
+    max_age_days: Optional[int] = None
+    max_entries:  Optional[int] = None
+    min_access:   Optional[int] = None
+
+
+@app.post("/api/admin/cache/lifecycle/execute")
+async def cache_lifecycle_execute(
+    body: LifecycleExecuteRequest = LifecycleExecuteRequest(),
+    current_user: dict = Depends(require_admin)
+):
+    """
+    [ADMIN] Jalankan lifecycle cache dengan parameter yang bisa dikonfigurasi.
+    Body JSON (semua opsional):
+      - max_age_days : hari tanpa akses → hapus               (default: 21)
+      - max_entries  : batas maksimum entri; 0=unlimited       (default: 500)
+      - min_access   : threshold akses minimum                 (default: 5)
+    """
+    try:
+        report = cache_lifecycle.execute_lifecycle(
+            max_age_days=body.max_age_days,
+            max_entries=body.max_entries,
+            min_access=body.min_access,
+        )
+        summary = report.get("summary", {})
+        return {
+            "success": True,
+            "summary": summary,
+            "message": (
+                f"Dihapus: {summary.get('to_delete', 0)} entries | "
+                f"Dipromosi ke FAQ: {summary.get('to_promote', 0)} entries"
+            )
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/admin/cache/prepopulate")
+async def cache_prepopulate_from_faq(current_user: dict = Depends(require_admin)):
+    """
+    [ADMIN] Pre-populate KV cache langsung dari FAQ yang sudah punya field 'answer'.
+    Tidak memanggil LLM – jawaban FAQ langsung disimpan ke cache.
+    """
+    global cag_system
+    if not cag_system:
+        raise HTTPException(status_code=503, detail="CAG system not initialized")
+    try:
+        result = cag_system.faq_gen.pre_populate_cache_from_answers(
+            cag_system.kv_cache
+        )
+        return {
+            "success": True,
+            "added":   result["added"],
+            "skipped": result["skipped"],
+            "message": f"{result['added']} entries dari FAQ ditambahkan ke cache"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # ============================================
@@ -996,6 +1245,20 @@ async def clear_chat_history(user: dict = Depends(require_auth)):
     return {"success": success}
 
 
+@app.get("/api/conversations")
+async def get_conversations(user: dict = Depends(require_auth)):
+    """Return list of conversation threads for the logged-in user."""
+    convs = db.get_user_conversations(user['id'])
+    return {"conversations": convs}
+
+
+@app.get("/api/conversations/{conversation_id}/history")
+async def get_conversation_history(conversation_id: str, user: dict = Depends(require_auth)):
+    """Return full Q&A turns for a specific conversation (for reload from DB)."""
+    history = db.get_conversation_context(conversation_id, limit=100)
+    return {"conversation_id": conversation_id, "history": history}
+
+
 @app.get("/api/user/activity")
 async def get_activity(user: dict = Depends(require_auth), limit: int = 50):
     """Get user activity log"""
@@ -1022,6 +1285,18 @@ async def get_system_stats(admin: dict = Depends(require_admin)):
     return {"stats": stats, "feedback": feedback}
 
 
+@app.get("/api/admin/analytics")
+async def get_analytics(
+    limit: int = 50,
+    admin: dict = Depends(require_admin)
+):
+    """Get comprehensive CAG vs RAG research analytics (admin only)"""
+    data = db.get_analytics_data(limit_recent=limit)
+    if "error" in data:
+        raise HTTPException(status_code=500, detail=data["error"])
+    return data
+
+
 @app.delete("/api/admin/user/{user_id}")
 async def delete_user(user_id: int, admin: dict = Depends(require_admin)):
     """Delete (deactivate) user (admin only)"""
@@ -1045,39 +1320,207 @@ class FeedbackRequest(BaseModel):
     message_id: str
     rating: int  # 1 for like, -1 for dislike
     comment: Optional[str] = None
+    cache_key: Optional[str] = None  # MD5 hash of query from ChatResponse.cache_key
 
 
 @app.post("/api/feedback")
 async def submit_feedback(
-    request: FeedbackRequest, 
+    request: FeedbackRequest,
     authorization: str = Header(None)
 ):
-    """Submit feedback for a chat response"""
-    # Get user if authenticated
-    user = await get_current_user(authorization)
-    user_id = user['id'] if user else None
+    """Submit feedback for a chat response — with toggle support.
     
+    Toggle behaviour (like ChatGPT):
+      - If user clicks same rating again → toggles OFF (rating = 0)
+      - If user clicks different rating → switches to that rating
+      - Like and dislike are mutually exclusive
+    
+    Dislike policy:
+      - Dislikes are accumulated in KV cache (total_dislikes++)
+      - NOT immediately deleted — cleaned up during Lifecycle Cache policy
+      - Lifecycle evicts staging entries with net_likes ≤ -3
+      - Lifecycle deletes popular confirmed entries with net_likes < 0
+      - Explicit regeneration is done via the Regenerate button, not auto-triggered
+    """
+    user    = await get_current_user(authorization)
+    user_id = user['id'] if user else None
+
+    # Build a stable message hash for toggle lookup
+    message_hash = request.cache_key or str(hash(request.message_id) % 2147483647)
+
     try:
-        # Save feedback to database
-        result = db.save_feedback(
+        # 1. Persist to DB with toggle logic
+        fb_result = db.save_feedback(
             user_id=user_id,
-            chat_id=hash(request.message_id) % 2147483647,  # Convert message_id to int
+            chat_id=hash(request.message_id) % 2147483647,
             rating=request.rating,
-            comment=request.comment
+            comment=request.comment,
+            message_hash=message_hash,
         )
-        
-        if result:
-            return {
-                "success": True, 
-                "message": "Feedback submitted successfully",
-                "rating": request.rating
-            }
-        else:
-            raise HTTPException(status_code=500, detail="Failed to save feedback")
+        final_rating = fb_result.get("rating", request.rating)
+
+        # 2. Propagate to KV cache quality tracker (accumulate likes/dislikes)
+        cache_action = "none"
+        if request.cache_key and cag_system and final_rating != 0:
+            feedback_result = cag_system.kv_cache.record_feedback(request.cache_key, final_rating)
+            cache_action = feedback_result.get("action", "none")
+            print(f"👍 Cache feedback: key={request.cache_key[:8]}... action={cache_action}")
             
+            # Dislike is accumulated — lifecycle policy will handle eviction
+            # No automatic background regen; user can explicitly click Regenerate button
+            if final_rating < 0:
+                print(f"👎 Dislike recorded for {request.cache_key[:8]}... (will be evaluated during lifecycle cleanup)")
+
+        return {
+            "success": True,
+            "message": "Feedback submitted successfully",
+            "rating": final_rating,
+            "toggled": fb_result.get("toggled", False),
+            "action": fb_result.get("action", "created"),
+            "cache_action": cache_action,
+        }
+
     except Exception as e:
         print(f"❌ Error saving feedback: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================
+# Regenerate with Comparison
+# ============================================
+
+class RegenerateRequest(BaseModel):
+    question: str
+    old_answer: str
+    cache_key: Optional[str] = None
+    conversation_id: Optional[str] = None
+
+
+class ChooseVariantRequest(BaseModel):
+    variant_id: int
+    question_hash: Optional[str] = None
+    chosen_answer: Optional[str] = None  # the answer text of the chosen variant
+
+
+@app.post("/api/chat/regenerate")
+async def regenerate_answer(
+    request: RegenerateRequest,
+    authorization: str = Header(None)
+):
+    """Regenerate an answer and return both old + new for comparison.
+    
+    - Old answer is preserved
+    - New answer is generated with use_cache=False
+    - Both are stored as answer_variants keyed by question_hash
+    - Frontend shows side-by-side comparison; user must choose
+    """
+    user = await get_current_user(authorization)
+    user_id = user['id'] if user else None
+
+    if not cag_system:
+        raise HTTPException(status_code=503, detail="CAG system belum siap")
+
+    try:
+        # Generate new answer
+        start = time.time()
+        result = cag_system.get_response(
+            query=request.question,
+            use_cache=False,
+            k=5,
+        )
+        new_answer = result.get("response", "")
+        elapsed = time.time() - start
+
+        if not new_answer or cag_system._is_invalid_response(new_answer):
+            raise HTTPException(
+                status_code=422,
+                detail="Regenerasi gagal — jawaban baru tidak valid"
+            )
+
+        # Determine question_hash
+        q_hash = request.cache_key or cag_system.kv_cache._hash_query(request.question)
+
+        # Save both as variants (skip duplicates automatically)
+        db.save_answer_variant(q_hash, request.question, request.old_answer, "original", user_id)
+        db.save_answer_variant(q_hash, request.question, new_answer, "regenerated", user_id)
+
+        # Fetch all variants for this question
+        variants = db.get_answer_variants(q_hash)
+
+        return {
+            "success": True,
+            "old_answer": request.old_answer,
+            "new_answer": new_answer,
+            "response_time": elapsed,
+            "cache_key": q_hash,
+            "variants": variants,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Regenerate error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/chat/choose-variant")
+async def choose_variant(
+    request: ChooseVariantRequest,
+    authorization: str = Header(None)
+):
+    """User chooses preferred answer variant.
+    
+    Flow:
+    1. Increment vote on chosen variant
+    2. Mark all variants for this question as resolved (chosen=1 for winner)
+    3. Update KV cache with the chosen answer so future queries get it directly
+    4. Future queries will NOT see comparison — they get the cached winner
+    """
+    user = await get_current_user(authorization)
+    user_id = user['id'] if user else None
+
+    # 1. Vote
+    success = db.vote_answer_variant(request.variant_id, user_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Variant tidak ditemukan")
+
+    # 2. Resolve: mark all variants as resolved, winner gets chosen=1
+    q_hash = request.question_hash
+    chosen_data = {}
+    if q_hash:
+        chosen_data = db.resolve_variants(q_hash, request.variant_id)
+        print(f"✅ Variants resolved for {q_hash[:8]}... → winner id={request.variant_id}")
+
+    # 3. Update KV cache with the chosen answer
+    chosen_answer = request.chosen_answer or chosen_data.get("answer", "")
+    if q_hash and chosen_answer and cag_system:
+        try:
+            # Update the response in KV cache (staging or confirmed)
+            kv = cag_system.kv_cache
+            if q_hash in kv.staging:
+                kv.staging[q_hash]['response'] = chosen_answer
+                kv.staging[q_hash]['status'] = 'trusted'
+                kv.staging[q_hash]['total_likes'] = kv.staging[q_hash].get('total_likes', 0) + 1
+                kv.staging[q_hash]['last_accessed'] = __import__('datetime').datetime.now().isoformat()
+                kv.save_cache()
+                print(f"📦 KV staging updated with chosen answer for {q_hash[:8]}...")
+            elif q_hash in kv.cache:
+                kv.cache[q_hash]['response'] = chosen_answer
+                kv.cache[q_hash]['total_likes'] = kv.cache[q_hash].get('total_likes', 0) + 1
+                kv.cache[q_hash]['last_accessed'] = __import__('datetime').datetime.now().isoformat()
+                kv.save_cache()
+                print(f"📦 KV confirmed cache updated with chosen answer for {q_hash[:8]}...")
+            else:
+                print(f"⚠️ KV cache entry not found for {q_hash[:8]}... (may have been evicted)")
+        except Exception as e:
+            print(f"⚠️ Could not update KV cache: {e}")
+
+    return {
+        "success": True,
+        "message": "Jawaban terpilih berhasil disimpan ke cache",
+        "variant_id": request.variant_id,
+        "resolved": True,
+    }
 
 
 @app.get("/api/feedback/stats")
