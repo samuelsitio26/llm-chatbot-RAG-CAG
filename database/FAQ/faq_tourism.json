@@ -1,214 +1,299 @@
 [
   {
-    "category": "beach",
-    "question": "Rekomendasi pantai untuk honeymoon budget 10 juta",
+    "category": "danau_toba",
+    "question": "Apa itu Danau Toba?",
+    "answer": "Danau Toba adalah danau vulkanik terbesar di dunia yang terletak di Provinsi Sumatera Utara, Indonesia. Danau ini terbentuk akibat letusan supervulkan sekitar 74.000 tahun lalu dan memiliki luas sekitar 1.145 km² dengan kedalaman hingga 505 meter. Di tengah danau terdapat Pulau Samosir yang menjadi pusat kebudayaan Batak Toba. Danau Toba ditetapkan sebagai salah satu dari 5 Destinasi Super Prioritas pariwisata Indonesia.",
     "keywords": [
-      "pantai",
-      "honeymoon",
-      "romantis",
-      "10 juta"
+      "danau toba",
+      "apa itu",
+      "tentang",
+      "sejarah",
+      "letak"
     ],
     "priority": "high"
   },
   {
-    "category": "beach",
-    "question": "Pantai terbaik untuk snorkeling di Indonesia",
+    "category": "danau_toba",
+    "question": "Danau Toba terletak di mana?",
+    "answer": "Danau Toba terletak di Provinsi Sumatera Utara, Indonesia. Danau ini meliputi 7 kabupaten, yaitu: Kabupaten Toba, Samosir, Simalungun, Karo, Dairi, Humbang Hasundutan, dan Tapanuli Utara. Kota terdekat sebagai pintu masuk utama adalah Medan, berjarak sekitar 176 km atau ±5 jam perjalanan darat.",
     "keywords": [
-      "pantai",
-      "snorkeling",
-      "diving"
+      "danau toba",
+      "lokasi",
+      "terletak",
+      "dimana",
+      "kabupaten"
     ],
     "priority": "high"
   },
   {
-    "category": "mountain",
-    "question": "Tempat wisata gunung untuk hiking pemula",
+    "category": "transportation",
+    "question": "Cara menuju Danau Toba dari Medan",
+    "answer": "Ada beberapa cara menuju Danau Toba dari Medan: (1) Bus dari Terminal Amplas Medan menuju Parapat (pintu masuk utama Danau Toba), waktu tempuh ±5 jam, harga tiket Rp 50.000-80.000. (2) Travel/Shuttle dari Medan langsung ke Parapat atau Tomok Samosir, lebih nyaman, harga Rp 100.000-150.000. (3) Menggunakan Bandara Silangit (Siborong-borong) yang lebih dekat ke Danau Toba, berjarak ±2 jam. (4) Dari Parapat, naik kapal ferry ke Samosir (Tomok/Tiga Ras) dengan harga Rp 10.000-15.000 per orang, waktu ±45 menit.",
     "keywords": [
-      "gunung",
-      "hiking",
-      "pemula",
-      "trekking"
+      "cara menuju",
+      "transportasi",
+      "dari medan",
+      "bus",
+      "travel",
+      "ferry",
+      "parapat"
     ],
     "priority": "high"
   },
   {
-    "category": "mountain",
-    "question": "Destinasi gunung dengan pemandangan sunrise terbaik",
+    "category": "transportation",
+    "question": "Bandara terdekat Danau Toba",
+    "answer": "Ada dua bandara yang dapat digunakan untuk menuju Danau Toba: (1) Bandara Silangit (SIB) di Siborong-borong, Tapanuli Utara — bandara terdekat langsung ke kawasan Danau Toba, berjarak ±2 jam dari Samosir. Melayani penerbangan dari Jakarta (Soekarno-Hatta) dan Batam. (2) Bandara Kualanamu (KNO) di Medan — bandara utama Sumatera Utara, berjarak ±5 jam dari Danau Toba. Melayani lebih banyak rute dari berbagai kota besar Indonesia.",
     "keywords": [
-      "gunung",
-      "sunrise",
-      "pemandangan"
-    ],
-    "priority": "medium"
-  },
-  {
-    "category": "family",
-    "question": "Destinasi wisata keluarga di Jawa Barat budget 5 juta",
-    "keywords": [
-      "keluarga",
-      "jawa barat",
-      "5 juta",
-      "anak"
+      "bandara",
+      "pesawat",
+      "penerbangan",
+      "silangit",
+      "kualanamu",
+      "terdekat"
     ],
     "priority": "high"
   },
   {
-    "category": "family",
-    "question": "Tempat wisata yang cocok untuk anak-anak",
+    "category": "samosir",
+    "question": "Apa yang menarik di Pulau Samosir?",
+    "answer": "Pulau Samosir adalah pulau di tengah Danau Toba yang kaya akan budaya Batak Toba. Daya tarik utamanya: (1) Tomok — desa bersejarah dengan Makam Raja Sidabutar, Museum Batak, dan pertunjukan Sigale-gale (boneka kayu sakral). (2) Tuktuk Siadong — pusat wisata dengan banyak penginapan, kafe, dan penyewaan sepeda motor. (3) Simanindo — desa budaya dengan pertunjukan tarian Batak setiap hari. (4) Huta Bolon Simanindo — museum bekas istana raja Batak. (5) Pantai Pasir Putih — pantai cantik di sisi barat Samosir. (6) Sibea-bea — bukit dengan pemandangan panoramik Danau Toba yang memukau.",
     "keywords": [
-      "anak",
-      "keluarga",
-      "playground",
-      "kids"
+      "samosir",
+      "pulau samosir",
+      "tomok",
+      "tuktuk",
+      "simanindo",
+      "wisata samosir"
     ],
     "priority": "high"
   },
   {
     "category": "culture",
-    "question": "Wisata budaya dan sejarah di Yogyakarta",
+    "question": "Wisata budaya Batak di Danau Toba",
+    "answer": "Danau Toba adalah pusat kebudayaan Batak Toba. Wisata budaya yang wajib dikunjungi: (1) Desa Tomok di Samosir — terdapat makam Raja Sidabutar yang berusia ratusan tahun dan pertunjukan boneka Sigale-gale. (2) Museum Batak TB Silalahi di Balige — koleksi terlengkap benda budaya Batak. (3) Simanindo — pertunjukan Tor-Tor (tarian adat Batak) dan gondang sabangunan setiap hari. (4) Huta adat (desa tradisional) — rumah adat Batak Toba berbentuk panggung dengan ornamen khas. (5) Rumah Bolon — bangunan adat Batak yang bisa ditemukan di Pematang Purba, Simalungun.",
     "keywords": [
       "budaya",
-      "sejarah",
-      "yogyakarta",
-      "candi"
-    ],
-    "priority": "medium"
-  },
-  {
-    "category": "culture",
-    "question": "Museum dan heritage site yang wajib dikunjungi",
-    "keywords": [
+      "batak",
+      "tarian",
+      "tor-tor",
+      "sigale-gale",
+      "adat",
       "museum",
-      "heritage",
-      "sejarah"
-    ],
-    "priority": "low"
-  },
-  {
-    "category": "culinary",
-    "question": "Kuliner khas yang wajib dicoba di Bali",
-    "keywords": [
-      "kuliner",
-      "makanan",
-      "bali",
-      "restaurant"
+      "tradisi"
     ],
     "priority": "high"
-  },
-  {
-    "category": "culinary",
-    "question": "Rekomendasi rumah makan tradisional terbaik",
-    "keywords": [
-      "rumah makan",
-      "tradisional",
-      "authentic"
-    ],
-    "priority": "medium"
-  },
-  {
-    "category": "accommodation",
-    "question": "Hotel budget friendly dekat pantai",
-    "keywords": [
-      "hotel",
-      "budget",
-      "pantai",
-      "akomodasi"
-    ],
-    "priority": "high"
-  },
-  {
-    "category": "accommodation",
-    "question": "Villa untuk liburan keluarga dengan kolam renang",
-    "keywords": [
-      "villa",
-      "keluarga",
-      "kolam renang",
-      "private"
-    ],
-    "priority": "medium"
-  },
-  {
-    "category": "adventure",
-    "question": "Destinasi wisata petualangan dan extreme sports",
-    "keywords": [
-      "adventure",
-      "extreme",
-      "rafting",
-      "paragliding"
-    ],
-    "priority": "medium"
   },
   {
     "category": "nature",
-    "question": "Air terjun tersembunyi yang belum banyak dikunjungi",
+    "question": "Wisata alam di sekitar Danau Toba",
+    "answer": "Wisata alam di kawasan Danau Toba: (1) Sipiso-piso — air terjun setinggi 120 meter, salah satu tertinggi di Indonesia, terletak di Kabupaten Karo. (2) Simarjarunjung — viewpoint di atas bukit dengan pemandangan panoramik Danau Toba dari ketinggian. (3) Geosite Sipinsur — area terbuka dengan pemandangan danau dan Pulau Samosir dari Kabupaten Humbang Hasundutan. (4) Pantai Pasir Putih Samosir — pantai dengan pasir putih di tepian Danau Toba. (5) Bukit Holbung — padang rumput bukit bergelombang dengan latar Danau Toba. (6) Aek Natonang — danau kecil di atas Samosir yang disebut 'danau di atas danau'.",
+    "keywords": [
+      "wisata alam",
+      "air terjun",
+      "sipiso-piso",
+      "simarjarunjung",
+      "viewpoint",
+      "pantai",
+      "pemandangan"
+    ],
+    "priority": "high"
+  },
+  {
+    "category": "nature",
+    "question": "Air terjun di Danau Toba",
+    "answer": "Kawasan Danau Toba memiliki beberapa air terjun yang menakjubkan: (1) Air Terjun Sipiso-piso — setinggi 120 meter di Kabupaten Karo, salah satu tertinggi di Indonesia. Dapat ditempuh 2 jam dari Parapat. (2) Air Terjun Situmurun — terletak di tepi Danau Toba di Kabupaten Toba, unik karena airnya langsung jatuh ke danau. Dapat dicapai dengan kapal. (3) Air Terjun Efrata — di Kabupaten Samosir, dikelilingi hutan tropis yang asri. (4) Sipisopiso Falls — dekat Tongging, pemandangan danau dari atas air terjun sangat spektakuler.",
     "keywords": [
       "air terjun",
-      "hidden gem",
-      "nature"
-    ],
-    "priority": "low"
-  },
-  {
-    "category": "urban",
-    "question": "Tempat wisata menarik di Jakarta untuk weekend",
-    "keywords": [
-      "jakarta",
-      "urban",
-      "weekend",
-      "kota"
-    ],
-    "priority": "high"
-  },
-  {
-    "category": "general",
-    "question": "Kapan waktu terbaik untuk berkunjung?",
-    "keywords": [
-      "waktu terbaik",
-      "musim",
-      "cuaca"
-    ],
-    "priority": "high"
-  },
-  {
-    "category": "general",
-    "question": "Bagaimana cara menuju lokasi wisata?",
-    "keywords": [
-      "transportasi",
-      "cara menuju",
-      "akses"
-    ],
-    "priority": "high"
-  },
-  {
-    "category": "general",
-    "question": "Apa saja yang perlu dibawa saat berkunjung?",
-    "keywords": [
-      "perlengkapan",
-      "barang bawaan",
-      "checklist"
+      "sipiso-piso",
+      "situmurun",
+      "efrata",
+      "waterfall",
+      "tongging"
     ],
     "priority": "medium"
   },
   {
+    "category": "culinary",
+    "question": "Makanan khas Danau Toba yang wajib dicoba",
+    "answer": "Kuliner khas Danau Toba dan Batak Toba yang wajib dicoba: (1) Arsik — ikan mas bumbu kuning khas Batak, dimasak dengan andaliman (lada khas Batak). (2) Naniura — ikan mas mentah yang dimarinasi dengan rempah khas, disebut 'sashimi Batak'. (3) Saksang — daging yang dimasak dengan bumbu khas dan andaliman. (4) Mi Gomak — mi lidi khas Batak dengan kuah santan dan andaliman, sering disebut 'spaghetti Batak'. (5) Itak Poul-poul — jajanan tradisional dari tepung beras dan parutan kelapa. (6) Kopi Sidikalang — kopi arabika premium asal Dairi, salah satu kopi terbaik Indonesia.",
+    "keywords": [
+      "kuliner",
+      "makanan khas",
+      "arsik",
+      "naniura",
+      "saksang",
+      "mi gomak",
+      "batak",
+      "itak",
+      "kopi"
+    ],
+    "priority": "high"
+  },
+  {
+    "category": "culinary",
+    "question": "Restoran dan tempat makan di Parapat dan Samosir",
+    "answer": "Rekomendasi tempat makan di kawasan Danau Toba: Di Parapat: (1) Rumah Makan Rizky — masakan Batak dan seafood, populer di kalangan wisatawan. (2) RM Pelangi — pemandangan langsung ke Danau Toba. Di Tuktuk Samosir: (1) Rumah Makan Sopo Toba — masakan Batak otentik, harga terjangkau. (2) Jenny's Restaurant — favorit backpacker, menyajikan masakan Batak dan internasional. (3) Bamboo Bar & Restaurant — pemandangan danau, menu beragam. Harga makan di kawasan ini rata-rata Rp 25.000-75.000 per orang untuk masakan lokal.",
+    "keywords": [
+      "restoran",
+      "rumah makan",
+      "tempat makan",
+      "parapat",
+      "tuktuk",
+      "samosir",
+      "kuliner"
+    ],
+    "priority": "medium"
+  },
+  {
+    "category": "accommodation",
+    "question": "Penginapan dan hotel di Danau Toba",
+    "answer": "Pilihan akomodasi di kawasan Danau Toba: Budget (Rp 150.000-300.000/malam): Carolina Cottages Tuktuk, Tabo Cottages, berbagai guesthouse di Tuktuk Siadong. Mid-range (Rp 300.000-800.000/malam): Samosir Villa Resort Tuktuk, Silintong Boutique Resort Parapat, Hotel Niagara Parapat (ikonik, bergaya kolonial). Mewah (Rp 800.000+/malam): The Deli Samosir Eco Resort, Marbun Beach Resort. Tips: Penginapan di Tuktuk Siadong (Samosir) memberikan pengalaman terbaik karena langsung di tepi danau dan dekat ke berbagai atraksi budaya.",
+    "keywords": [
+      "penginapan",
+      "hotel",
+      "resort",
+      "villa",
+      "akomodasi",
+      "tuktuk",
+      "parapat",
+      "menginap"
+    ],
+    "priority": "high"
+  },
+  {
+    "category": "accommodation",
+    "question": "Hotel budget murah di Danau Toba",
+    "answer": "Pilihan hotel dan penginapan budget di Danau Toba dengan harga Rp 100.000-350.000 per malam: (1) Berbagai guesthouse di Tuktuk Siadong, Samosir — harga mulai Rp 150.000/malam, banyak yang di pinggir danau. (2) Tabo Cottages — penginapan sederhana tapi nyaman di Tuktuk. (3) Guesthouse backpacker di Ambarita dan Tomok. (4) Penginapan di Parapat sekitar Terminal Ferry — harga lebih murah tapi perlu naik ferry ke Samosir. Tips: Pesan jauh hari saat musim liburan (Juni-Agustus dan Desember-Januari) karena penginapan cepat penuh.",
+    "keywords": [
+      "hotel murah",
+      "penginapan murah",
+      "budget",
+      "backpacker",
+      "guesthouse",
+      "hemat"
+    ],
+    "priority": "high"
+  },
+  {
     "category": "budget",
-    "question": "Estimasi biaya liburan ke Bali untuk 4 orang",
+    "question": "Estimasi biaya liburan ke Danau Toba",
+    "answer": "Estimasi biaya liburan ke Danau Toba untuk 3 hari 2 malam per orang: Budget Ekonomis (Rp 500.000-800.000): Transportasi bus Medan-Parapat PP Rp 100.000-160.000, Ferry Rp 20.000-30.000, Penginapan Rp 150.000-200.000/malam, Makan 3x sehari Rp 75.000-100.000/hari, Tiket wisata Rp 50.000-100.000, Transport lokal (ojek/sewa motor) Rp 100.000-150.000. Budget Menengah (Rp 1.200.000-2.000.000): Travel/shuttle, penginapan mid-range, makan di restoran, dan tur dengan pemandu. Budget Mewah (Rp 3.000.000+): Penerbangan, resort bintang 3-5, tur privat.",
     "keywords": [
       "biaya",
       "budget",
-      "bali",
-      "estimasi"
+      "estimasi",
+      "harga",
+      "ongkos",
+      "berapa",
+      "murah",
+      "hemat"
     ],
     "priority": "high"
   },
   {
     "category": "budget",
-    "question": "Tips hemat untuk liburan dengan budget terbatas",
+    "question": "Tips hemat liburan ke Danau Toba",
+    "answer": "Tips hemat liburan ke Danau Toba: (1) Gunakan bus umum dari Medan ke Parapat (Rp 50.000-80.000) daripada travel/shuttle. (2) Sewa sepeda motor di Samosir lebih hemat untuk keliling pulau (Rp 70.000-100.000/hari). (3) Menginap di Tuktuk Siadong lebih efisien karena banyak pilihan budget dan semua lokasi dekat. (4) Makan di warung lokal sekitar Rp 20.000-35.000/porsi, terutama nasi dengan lauk ikan arsik atau mi gomak. (5) Beli oleh-oleh (ulos, kerajinan Batak) di pasar lokal Ambarita atau Tomok, bukan di toko wisata. (6) Kunjungi di luar musim puncak (September-November, Februari-April) untuk harga lebih terjangkau.",
     "keywords": [
-      "hemat",
+      "tips hemat",
+      "murah",
+      "backpacker",
       "budget",
-      "tips",
-      "murah"
+      "irit",
+      "ekonomis"
     ],
     "priority": "medium"
+  },
+  {
+    "category": "timing",
+    "question": "Kapan waktu terbaik berkunjung ke Danau Toba?",
+    "answer": "Waktu terbaik mengunjungi Danau Toba: (1) Musim Kemarau (April-September) — cuaca paling cerah, ideal untuk aktivitas outdoor dan menikmati pemandangan danau. Puncak kunjungan: Juni-Agustus. (2) Festival Budaya — Festival Danau Toba biasanya digelar September-Oktober, menampilkan pertunjukan budaya Batak, regatta (lomba perahu), dan atraksi lainnya. (3) Hindari: Musim hujan (Oktober-Maret) bisa menyebabkan jalan licin dan pemandangan tertutup kabut, meskipun tetap indah. (4) Hari biasa lebih baik dari akhir pekan jika ingin menghindari keramaian. Danau Toba dapat dikunjungi sepanjang tahun karena suhu relatif sejuk (17-29°C).",
+    "keywords": [
+      "waktu terbaik",
+      "kapan",
+      "musim",
+      "cuaca",
+      "festival",
+      "bulan",
+      "kunjungi"
+    ],
+    "priority": "high"
+  },
+  {
+    "category": "activities",
+    "question": "Aktivitas wisata apa saja yang bisa dilakukan di Danau Toba?",
+    "answer": "Aktivitas seru di Danau Toba: (1) Mengelilingi Pulau Samosir dengan sepeda motor atau sepeda. (2) Berenang di tepian danau di Pantai Pasir Putih atau Tuktuk. (3) Kayak dan kano di perairan danau yang tenang. (4) Mengunjungi desa-desa adat Batak (Tomok, Ambarita, Simanindo). (5) Menyaksikan pertunjukan tari Tor-Tor dan boneka Sigale-gale. (6) Trekking ke bukit-bukit sekitar Samosir untuk pemandangan panoramik. (7) Wisata kuliner mencicipi arsik, naniura, dan mi gomak. (8) Berbelanja ulos (kain tenun Batak) dan kerajinan tangan. (9) Sunset dan sunrise di berbagai viewpoint. (10) Memancing di danau bersama nelayan lokal.",
+    "keywords": [
+      "aktivitas",
+      "kegiatan",
+      "apa saja",
+      "wisata",
+      "trekking",
+      "kayak",
+      "berenang"
+    ],
+    "priority": "high"
+  },
+  {
+    "category": "activities",
+    "question": "Wisata adventure dan petualangan di Danau Toba",
+    "answer": "Wisata petualangan di kawasan Danau Toba: (1) Trekking Bukit Simarjarunjung — jalur trekking menuju viewpoint dengan pemandangan Danau Toba dari ketinggian. (2) Mengelilingi Samosir bersepeda — rute ±130 km mengelilingi seluruh pulau, bisa dilakukan 1-2 hari. (3) Kayak & Kano — di perairan tenang Danau Toba, tersedia penyewaan di Tuktuk. (4) Trekking Sipiso-piso — turun menuju dasar air terjun melewati jalur curam, butuh stamina. (5) Mendaki Pusuk Buhit — gunung tertinggi di Samosir (1.982 mdpl), tempat sakral bagi suku Batak. (6) Arung jeram (rafting) di Sungai Asahan — salah satu sungai rafting terbaik di Asia, dekat kawasan Danau Toba.",
+    "keywords": [
+      "petualangan",
+      "adventure",
+      "trekking",
+      "mendaki",
+      "kayak",
+      "rafting",
+      "bike",
+      "ekstrem"
+    ],
+    "priority": "medium"
+  },
+  {
+    "category": "souvenir",
+    "question": "Oleh-oleh khas Danau Toba dan Batak",
+    "answer": "Oleh-oleh khas yang bisa dibeli di Danau Toba: (1) Kain Ulos — kain tenun tradisional Batak, berbagai motif dengan harga Rp 100.000-jutaan tergantung kualitas dan motif. Beli di Pasar Tomok atau langsung dari penenun di Ambarita. (2) Gorga — ukiran kayu khas Batak dengan motif tradisional, dibuat menjadi patung, frame foto, dll. (3) Anduk — handuk bermotif ulos, lebih terjangkau dibanding kain ulos asli. (4) Makanan khas: itak poul-poul, sirup markisa, kopi Sidikalang. (5) Kaos dan aksesoris bertema Danau Toba. (6) Miniatur rumah adat Batak dari kayu. Tips: Pasar Tomok, Pasar Ambarita, dan kios di Tuktuk adalah tempat terbaik untuk berbelanja dengan harga lebih terjangkau.",
+    "keywords": [
+      "oleh-oleh",
+      "souvenir",
+      "khas",
+      "ulos",
+      "batak",
+      "beli",
+      "belanja",
+      "gorga"
+    ],
+    "priority": "medium"
+  },
+  {
+    "category": "danau_toba",
+    "question": "Berapa lama waktu ideal untuk liburan di Danau Toba?",
+    "answer": "Durasi ideal liburan di Danau Toba: Minimal 2 hari 1 malam — cukup untuk mengunjungi Tomok, Tuktuk, dan satu-dua spot utama Samosir. Ideal 3-4 hari 2-3 malam — bisa mengelilingi Samosir lebih menyeluruh, mengunjungi Sipiso-piso, Simarjarunjung, dan beberapa desa budaya. Lengkap 5-7 hari — termasuk eksplorasi kabupaten lain seperti Simalungun (Marihat), Karo (Sipiso-piso), Humbang Hasundutan (Geosite Sipinsur), dan Tapanuli Utara (Balige). Untuk wisatawan yang datang dari luar Sumatera Utara, disarankan minimal 3 hari 2 malam agar perjalanan tidak terasa terburu-buru.",
+    "keywords": [
+      "berapa lama",
+      "durasi",
+      "itinerary",
+      "berapa hari",
+      "waktu",
+      "lama"
+    ],
+    "priority": "medium"
+  },
+  {
+    "category": "danau_toba",
+    "question": "Rekomendasi itinerary 3 hari Danau Toba",
+    "answer": "Itinerary 3 hari 2 malam Danau Toba: Hari 1 (Medan/Parapat → Samosir): Berangkat pagi dari Medan ke Parapat (5 jam), naik ferry ke Tomok, kunjungi Makam Raja Sidabutar dan Museum Batak, check in penginapan di Tuktuk, makan malam di Tuktuk. Hari 2 (Keliling Samosir): Pagi ke Simanindo untuk pertunjukan Tor-Tor dan Huta Bolon, siang ke Ambarita dan Batu Persidangan, sore trekking ke Bukit Holbung atau Sibea-bea untuk sunset, malam menikmati suasana danau. Hari 3 (Samosir → Sipiso-piso → Medan): Pagi kunjungi Pantai Pasir Putih, naik ferry kembali ke Parapat, mampir ke Air Terjun Sipiso-piso (2 jam), lanjut ke Medan atau Bandara Silangit.",
+    "keywords": [
+      "itinerary",
+      "rencana",
+      "jadwal",
+      "3 hari",
+      "2 hari",
+      "rute",
+      "trip"
+    ],
+    "priority": "high"
   }
 ]
