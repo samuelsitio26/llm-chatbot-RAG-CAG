@@ -27,6 +27,71 @@
       "total_dislikes": 0,
       "regen_count": 0,
       "status": "unverified"
+    },
+    "0620691f9faa189949cce33aceb09298": {
+      "query": "Danau Toba terletak di mana?",
+      "response": "Danau Toba terletak di Provinsi Sumatera Utara, Indonesia. Danau ini meliputi 7 kabupaten, yaitu: Kabupaten Toba, Samosir, Simalungun, Karo, Dairi, Humbang Hasundutan, dan Tapanuli Utara. Kota terdekat sebagai pintu masuk utama adalah Medan, berjarak sekitar 176 km atau ±5 jam perjalanan darat.",
+      "context": "from_faq",
+      "created_at": "2026-02-27T11:28:59.389935",
+      "last_accessed": "2026-02-27T11:28:59.389935",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "88f8bacbbdf9409ab523901983116fba": {
+      "query": "Cara menuju Danau Toba dari Medan",
+      "response": "Ada beberapa cara menuju Danau Toba dari Medan: (1) Bus dari Terminal Amplas Medan menuju Parapat (pintu masuk utama Danau Toba), waktu tempuh ±5 jam, harga tiket Rp 50.000-80.000. (2) Travel/Shuttle dari Medan langsung ke Parapat atau Tomok Samosir, lebih nyaman, harga Rp 100.000-150.000. (3) Menggunakan Bandara Silangit (Siborong-borong) yang lebih dekat ke Danau Toba, berjarak ±2 jam. (4) Dari Parapat, naik kapal ferry ke Samosir (Tomok/Tiga Ras) dengan harga Rp 10.000-15.000 per orang, waktu ±45 menit.",
+      "context": "from_faq",
+      "created_at": "2026-02-27T11:30:22.550769",
+      "last_accessed": "2026-02-27T11:30:22.550769",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "4d792e6ed8f712e294e7fa460e451e79": {
+      "query": "danau toba",
+      "response": "Danau Toba adalah danau vulkanik terbesar di dunia yang terletak di Provinsi Sumatera Utara, Indonesia. Danau ini terbentuk akibat letusan supervulkan sekitar 74.000 tahun lalu dan memiliki luas sekitar 1.145 km² dengan kedalaman hingga 505 meter. Di tengah danau terdapat Pulau Samosir yang menjadi pusat kebudayaan Batak Toba. Danau Toba ditetapkan sebagai salah satu dari 5 Destinasi Super Prioritas pariwisata Indonesia.",
+      "context": "from_faq",
+      "created_at": "2026-02-27T11:52:45.841614",
+      "last_accessed": "2026-02-27T11:52:45.841614",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "51af2cd1b94acf1702242be377c88303": {
+      "query": "samosir ada di danau toba",
+      "response": "Kawasan Danau Toba memiliki beberapa air terjun yang menakjubkan: (1) Air Terjun Sipiso-piso — setinggi 120 meter di Kabupaten Karo, salah satu tertinggi di Indonesia. Dapat ditempuh 2 jam dari Parapat. (2) Air Terjun Situmurun — terletak di tepi Danau Toba di Kabupaten Toba, unik karena airnya langsung jatuh ke danau. Dapat dicapai dengan kapal. (3) Air Terjun Efrata — di Kabupaten Samosir, dikelilingi hutan tropis yang asri. (4) Sipisopiso Falls — dekat Tongging, pemandangan danau dari atas air terjun sangat spektakuler.",
+      "context": "from_faq",
+      "created_at": "2026-02-27T11:53:24.513774",
+      "last_accessed": "2026-02-27T11:53:24.513774",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "9d123ad4afcd52246f212100a8b81961": {
+      "query": "perairan di danau toba ",
+      "response": "Halo! Selamat datang di panduan wisata Danau Toba yang indah! Saya siap membantu Anda menjelajahi keajaiban Danau Toba. 🤩\n\nBerdasarkan informasi yang tersedia, berikut adalah beberapa rekomendasi tempat wisata dan informasi terkait di sekitar Danau Toba:\n\n### 🏞️ **Destinasi Wisata Alam**\n\n*   **Danau Toba, Kabupaten Toba**\n    *   **Deskripsi Singkat:** Danau Toba menyuguhkan panorama alam eksotis dengan perbukitan hijau, persawahan, dan pantai bersih yang masih asri.\n    *   **Lokasi:** Kabupaten Toba\n    *   **Keunggulan:** Menawarkan pengalaman wisata autentik, mulai dari mendaki bukit untuk menikmati pemandangan Danau Toba, bermain di Pantai Sigapiton, hingga menyaksikan aktivitas petani bawang.\n\n*   **Desa di Kabupaten Toba (mirip Bali)**\n    *   **Deskripsi Singkat:** Desa ini menawarkan pesona alam dan budaya yang autentik, terkenal dengan hamparan persawahan bertingkat yang mirip Bali dan langsung menghadap Danau Toba.\n    *   **Lokasi:** Kabupaten Toba\n    *   **Keunggulan:** Menyajikan pemandangan indah di kedua sisinya (persawahan dan Danau Toba).\n\n### 🏨 **Akomodasi dan Hiburan**\n\n*   **Labersa Toba & Convention Center**\n    *   **Deskripsi Singkat:** Hotel ini memiliki fasilitas kolam renang, taman air, dan taman hiburan fantasi Toba. Terletak di kawasan Danau Toba, danau vulkanik terbesar di dunia.\n    *   **Lokasi:** Jl. Saribu Raja Janji Maria, Kec. Balige, Sumatera Utara. (Long & Lat: 2.3387227656692455, 99.08216877648591)\n    *   **Keunggulan:** Fasilitas lengkap untuk keluarga (kolam renang, taman air, taman hiburan fantasi Toba) dan rating yang tinggi (9.4/10) untuk kebersihan, variasi makanan, dan lokasi.\n    *   **Biaya Masuk:** Rp 1.140.000 – Rp 2.349.500\n\n*   **Hotel di Laguboti, Toba**\n    *   **Deskripsi Singkat:** Hotel ini berlokasi strategis dekat Danau Toba dan menawarkan pemandangan sawah serta pegunungan. Menyediakan fasilitas seperti restoran, kolam renang, area bermain anak, dan ruang pertemuan.\n    *   **Lokasi:** Jl. Sisingamangaraja No.1, Ps. Laguboti, Kec. Laguboti, Toba, Sumatera Utara 22381. (Long & Lat: 2.352903837, 99.12175214)\n    *   **Keunggulan:** Akses mudah ke tempat wisata di sekitar wilayah Toba dan fasilitas yang ramah keluarga.\n\n### 🍽️ **Kuliner Khas**\n\n*   **Rumah Makan Martabe**\n    *   **Deskripsi Singkat:** Menyajikan makanan khas Batak.\n    *   **Lokasi:** Jl. Sisingamangaraja No.36A, Ps. Laguboti, Kec. Laguboti, Toba, Sumatera Utara 22381, Indonesia (9428+QR Ps. Laguboti, Toba, Sumatera Utara, Indonesia). (Longitude, Latitude: 2.352088674, 99.11704035)\n    *   **Keunggulan:** Makanan lezat dengan rating 4.4/5, terkenal dengan hidangan daging babi (b2), dan lokasinya dekat dengan tempat wisata Danau Toba.\n    *   **Harga:** Rp 25.000,00 - Rp 50.000,00\n\nMaaf, informasi mengenai \"perairan di danau toba\" secara spesifik belum tersedia dalam dokumen yang diberikan.\n\nApakah Anda memiliki pertanyaan lain atau ingin tahu lebih banyak tentang Danau Toba? Jangan ragu untuk bertanya! 😊",
+      "context": "from_faq",
+      "created_at": "2026-02-27T11:53:52.300181",
+      "last_accessed": "2026-02-27T11:54:14.708836",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 1,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "trusted"
     }
   }
 }
