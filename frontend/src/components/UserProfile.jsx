@@ -204,9 +204,23 @@ const UserProfile = () => {
   };
 
   // Select emoji as avatar
-  const handleEmojiSelect = (emoji) => {
+  const handleEmojiSelect = async (emoji) => {
     setFormData(prev => ({ ...prev, avatar: emoji }));
     setShowAvatarPicker(false);
+
+    // Auto-save emoji avatar to backend (same as image upload)
+    try {
+      const result = await updateUser({ avatar: emoji });
+      if (result.success) {
+        setMessage({ type: 'success', text: 'Avatar berhasil diperbarui!' });
+      } else {
+        setMessage({ type: 'error', text: result.message || 'Gagal menyimpan avatar' });
+      }
+    } catch (error) {
+      console.error('Emoji avatar save error:', error);
+      setMessage({ type: 'error', text: 'Gagal menyimpan avatar' });
+    }
+    setTimeout(() => setMessage({ type: '', text: '' }), 3000);
   };
 
   // Check if avatar is an image URL
