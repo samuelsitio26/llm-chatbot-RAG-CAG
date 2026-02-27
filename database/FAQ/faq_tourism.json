@@ -1,214 +1,1698 @@
 [
   {
-    "category": "beach",
-    "question": "Rekomendasi pantai untuk honeymoon budget 10 juta",
-    "keywords": [
-      "pantai",
-      "honeymoon",
-      "romantis",
-      "10 juta"
-    ],
-    "priority": "high"
+    "question": "Di mana sebaiknya saya menginap di Balige?",
+    "answer": "Kami merekomendasikan untuk menginap di salah satu hotel terpopuler di Balige yang antara lain: \n1. Labersa Toba Hotel & Convention Centre\n2. Nabasa Hotel Balige\n3. Damar Toba\n4. Hotel Ompu Herti\n5. Mutiara Balige Hotel"
   },
   {
-    "category": "beach",
-    "question": "Pantai terbaik untuk snorkeling di Indonesia",
-    "keywords": [
-      "pantai",
-      "snorkeling",
-      "diving"
-    ],
-    "priority": "high"
+    "question": "Apa yang membuat Balige terkenal?",
+    "answer": "Balige terkenal dengan beberapa objek wisata populernya, antara lain: \n1. Lumban Bul-Bul Beach\n2. Air Terjun Situmurun Uluan Block Geosite\n3. Batikta\n4. Siregar Ulos Toba & Souvener\n5. Dinar Aksesoris/Dinar Ulos Batak Toba"
   },
   {
-    "category": "mountain",
-    "question": "Tempat wisata gunung untuk hiking pemula",
-    "keywords": [
-      "gunung",
-      "hiking",
-      "pemula",
-      "trekking"
-    ],
-    "priority": "high"
+    "question": "Hotel apa saja yang terbaik di dekat Pantai Lumban Bul-Bul?",
+    "answer": "Labersa Toba Hotel & Convention Centre, Hotel Sere Nauli, dan Purnama Balige Hotel merupakan beberapa hotel yang paling populer bagi wisatawan yang ingin menginap di dekat Pantai Lumban Bul-Bul."
   },
   {
-    "category": "mountain",
-    "question": "Destinasi gunung dengan pemandangan sunrise terbaik",
-    "keywords": [
-      "gunung",
-      "sunrise",
-      "pemandangan"
-    ],
-    "priority": "medium"
+    "question": "Apa saja hotel terbaik di dekat Batikta?",
+    "answer": "Hotel populer yang dekat dengan Batikta antara lain Labersa Toba Hotel & Convention Centre, Hotel Sere Nauli, dan Purnama Balige Hotel."
   },
   {
-    "category": "family",
-    "question": "Destinasi wisata keluarga di Jawa Barat budget 5 juta",
-    "keywords": [
-      "keluarga",
-      "jawa barat",
-      "5 juta",
-      "anak"
-    ],
-    "priority": "high"
+    "question": "Apa saja restoran paling populer di Balige?",
+    "answer": "Restoran terbaik di Balige antara lain: \n1. Damar Toba\n2. Cafe Hollywood\n3. Hutanta Cafe"
   },
   {
-    "category": "family",
-    "question": "Tempat wisata yang cocok untuk anak-anak",
-    "keywords": [
-      "anak",
-      "keluarga",
-      "playground",
-      "kids"
-    ],
-    "priority": "high"
+    "question": "Hotel mana yang terbaik untuk menginap di Balige?",
+    "answer": "Balige memiliki banyak hotel yang baik. Baik itu untuk perjalanan bisnis atau liburan, Labersa Hotel and Convention Center Toba, Balige (mulai dari Rp973.853), Hotel Nabasa (mulai dari Rp347.977) dan Gemma Hotel Balige (mulai dari Rp575.129) adalah hotel pilihan Anda."
   },
   {
-    "category": "culture",
-    "question": "Wisata budaya dan sejarah di Yogyakarta",
-    "keywords": [
-      "budaya",
-      "sejarah",
-      "yogyakarta",
-      "candi"
-    ],
-    "priority": "medium"
+    "question": "Hotel apa di Balige yang memiliki kolam renang?",
+    "answer": "Labersa Hotel and Convention Center Toba, Balige (mulai dari Rp973.853) dan Purnama Balige Hotel (mulai dari Rp483.301) adalah hotel yang memiliki kolam renang. Menginaplah di salah satu hotel ini untuk menikmati kolam renang!"
   },
   {
-    "category": "culture",
-    "question": "Museum dan heritage site yang wajib dikunjungi",
-    "keywords": [
-      "museum",
-      "heritage",
-      "sejarah"
-    ],
-    "priority": "low"
+    "question": "Hotel apa di Balige yang menyediakan sarapan terbaik?",
+    "answer": "Labersa Hotel and Convention Center Toba, Balige (mulai dari Rp973.853), Gemma Hotel Balige (mulai dari Rp575.129) dan RAP Hotel Balige (mulai dari Rp265.816) menyediakan sarapan terbaik. Awali hari Anda dengan sarapan lezat!"
   },
   {
-    "category": "culinary",
-    "question": "Kuliner khas yang wajib dicoba di Bali",
-    "keywords": [
-      "kuliner",
-      "makanan",
-      "bali",
-      "restaurant"
-    ],
-    "priority": "high"
+    "question": "Labersa Hotel & Convention Center Toba Balige bintang berapa?",
+    "answer": "Labersa Hotel & Convention Center Toba Balige adalah hotel bintang 4.5 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
   },
   {
-    "category": "culinary",
-    "question": "Rekomendasi rumah makan tradisional terbaik",
-    "keywords": [
-      "rumah makan",
-      "tradisional",
-      "authentic"
-    ],
-    "priority": "medium"
+    "question": "Berapa jumlah kamar yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Ada 152 kamar yang tersedia di Labersa Hotel & Convention Center Toba Balige."
   },
   {
-    "category": "accommodation",
-    "question": "Hotel budget friendly dekat pantai",
-    "keywords": [
-      "hotel",
-      "budget",
-      "pantai",
-      "akomodasi"
-    ],
-    "priority": "high"
+    "question": "Fasilitas apa saja yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Labersa Hotel & Convention Center Toba Balige memiliki fasilitas terbaik seperti: AC, Restoran, Kolam Renang, Resepsionis 24 Jam, Parkir, Lift, WiFi. (Beberapa fasilitas lain mungkin memerlukan biaya tambahan)"
   },
   {
-    "category": "accommodation",
-    "question": "Villa untuk liburan keluarga dengan kolam renang",
-    "keywords": [
-      "villa",
-      "keluarga",
-      "kolam renang",
-      "private"
-    ],
-    "priority": "medium"
+    "question": "Berapa harga menginap di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Harga kamar di Labersa Hotel & Convention Center Toba Balige bervariasi, mulai dari Rp 876.855 per malam . Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
   },
   {
-    "category": "adventure",
-    "question": "Destinasi wisata petualangan dan extreme sports",
-    "keywords": [
-      "adventure",
-      "extreme",
-      "rafting",
-      "paragliding"
-    ],
-    "priority": "medium"
+    "question": "Kapan waktu check-in & check-out di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Waktu untuk check-in di Labersa Hotel & Convention Center Toba Balige adalah mulai dari pukul dari 14:00 sedangkan waktu check-out paling lambat pukul sebelum 12:00"
   },
   {
-    "category": "nature",
-    "question": "Air terjun tersembunyi yang belum banyak dikunjungi",
-    "keywords": [
-      "air terjun",
-      "hidden gem",
-      "nature"
-    ],
-    "priority": "low"
+    "question": "Apakah Labersa Hotel & Convention Center Toba Balige menyediakan sarapan?",
+    "answer": "Iya, Labersa Hotel & Convention Center Toba Balige menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
   },
   {
-    "category": "urban",
-    "question": "Tempat wisata menarik di Jakarta untuk weekend",
-    "keywords": [
-      "jakarta",
-      "urban",
-      "weekend",
-      "kota"
-    ],
-    "priority": "high"
+    "question": "Ada berapa lantai yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Labersa Hotel & Convention Center Toba Balige memiliki 9 lantai (sering disebut juga 8 tingkat + 1 lantai rooftop atau 9 lantai utama)"
   },
   {
-    "category": "general",
-    "question": "Kapan waktu terbaik untuk berkunjung?",
-    "keywords": [
-      "waktu terbaik",
-      "musim",
-      "cuaca"
-    ],
-    "priority": "high"
+    "question": "Apakah Labersa Hotel & Convention Center Toba Balige menyediakan parkir?",
+    "answer": "Ya, Labersa Hotel & Convention Center Toba Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
   },
   {
-    "category": "general",
-    "question": "Bagaimana cara menuju lokasi wisata?",
-    "keywords": [
-      "transportasi",
-      "cara menuju",
-      "akses"
-    ],
-    "priority": "high"
+    "question": "Apakah Labersa Hotel & Convention Center Toba Balige menyediakan kolam renang?",
+    "answer": "Ya, Labersa Hotel & Convention Center Toba Balige menyediakan kolam renang"
   },
   {
-    "category": "general",
-    "question": "Apa saja yang perlu dibawa saat berkunjung?",
-    "keywords": [
-      "perlengkapan",
-      "barang bawaan",
-      "checklist"
-    ],
-    "priority": "medium"
+    "question": "Apa kata traveller yang sudah menginap di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Labersa Hotel & Convention Center Toba Balige terkenal akan Kebersihan, Kenyamanan Kamar, Lokasi. Dari traveler asli di Traveloka."
   },
   {
-    "category": "budget",
-    "question": "Estimasi biaya liburan ke Bali untuk 4 orang",
-    "keywords": [
-      "biaya",
-      "budget",
-      "bali",
-      "estimasi"
-    ],
-    "priority": "high"
+    "question": "Jenis kamar apa saja yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Labersa Hotel & Convention Center Toba Balige, seperti: Kamar Deluxe, Deluxe, Deluxe Premiere, Junior Suite, Toba Suite, Royal Suite"
   },
   {
-    "category": "budget",
-    "question": "Tips hemat untuk liburan dengan budget terbatas",
-    "keywords": [
-      "hemat",
-      "budget",
-      "tips",
-      "murah"
-    ],
-    "priority": "medium"
+    "question": "Fasilitas kamar apa saja yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Fasilitas kamar yang tersedia di Labersa Hotel & Convention Center Toba Balige adalah Shower, Balkon/ teras, AC, Free wifi, Shower air panas, Televisi, meja, Perlengkapan mandi, dan Layanan tambahan seperti layanan laundry & dry cleaning, Resepsionis 24 jam."
+  },
+  {
+    "question": "Apa saja fasilitas utama di Labersa Hotel and Convention Center Toba, Balige?",
+    "answer": "Fasilitas paling populer di Labersa Hotel and Convention Center Toba, Balige meliputi: \n1. Kolam renang\n2. Tempat parkir (gratis)\n3. Sarapan (gratis)\n4. Wi-Fi (gratis)"
+  },
+  {
+    "question": "Apakah Labersa Hotel and Convention Center Toba, Balige menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Labersa Hotel and Convention Center Toba, Balige menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Labersa Hotel and Convention Center Toba, Balige?",
+    "answer": "Ya, Labersa Hotel and Convention Center Toba, Balige menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Labersa Hotel and Convention Center Toba, Balige ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Labersa Hotel and Convention Center Toba, Balige ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 8 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Labersa Hotel and Convention Center Toba, Balige ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Labersa Hotel and Convention Center Toba, Balige ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 30 mnt"
+  },
+  {
+    "question": "Berapa rating bintang resmi untuk Labersa Hotel and Convention Center Toba, Balige?",
+    "answer": "Labersa Hotel and Convention Center Toba, Balige adalah Hotel bintang 4"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Labersa Hotel & Convention Center Toba Balige?",
+    "answer": "Labersa Hotel & Convention Center Toba Balige bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Damar Toba bintang berapa?",
+    "answer": "Damar Toba adalah hotel bintang 3 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Damar Toba",
+    "answer": "Ada 6 kamar yang tersedia di Damar Toba."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Damar Toba?",
+    "answer": "Damar Toba memiliki fasilitas terbaik seperti: AC, Restoran, Resepsionis 24 Jam, Parkir, WiFi. (Beberapa fasilitas lain mungkin memerlukan biaya tambahan)"
+  },
+  {
+    "question": "Berapa harga menginap di Damar Toba?",
+    "answer": "Harga kamar di Damar Toba bervariasi, mulai dari Rp 524.631 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Damar Toba?",
+    "answer": "Waktu untuk check-in di Damar Toba adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Apakah Damar Toba menyediakan sarapan?",
+    "answer": "Iya, Damar Toba menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Damar Toba?",
+    "answer": "Damar Toba memiliki 2 kamar"
+  },
+  {
+    "question": "Apakah Damar Toba menyediakan parkir?",
+    "answer": "Ya, Damar Toba menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Damar Toba memperbolehkan late check out?",
+    "answer": "Ya, Damar Toba diperbolehkan check-out telat. Silakan hubungi akomodasi jika Anda ingin check-out telat. Anda akan dikenakan biaya tambahan."
+  },
+  {
+    "question": "Apakah Damar Toba menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Damar Toba terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Damar Toba?",
+    "answer": "Damar Toba terkenal akan Kebersihan, Kenyamanan Kamar, Makanan."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Damar Toba?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Damar Toba, seperti: Deluxe Room Lake View"
+  },
+  {
+    "question": "Fasilitas kamar apa saja yang tersedia di Damar Toba?",
+    "answer": "Kamar di Damar Toba dilengkapi dengan berbagai fasilitas modern untuk menunjang kenyamanan tamu, seperti shower dengan air panas, AC, tirai blackout, serta akses Wi-Fi gratis. Selain itu, tersedia Smart TV dengan langganan Netflix dan Vidio, koneksi internet LAN hingga 15 Mbps, hotspot Wi-Fi di seluruh area properti, pengisi daya USB, brankas yang dapat memuat laptop hingga 15 inci, serta ketel air listrik. Sistem pemanas air sentral juga tersedia untuk kenyamanan tambahan. Meja kerja ditempatkan secara strategis di dekat jendela, memungkinkan tamu bekerja sambil menikmati pemandangan danau yang indah. Seluruh kamar merupakan area bebas rokok untuk memastikan suasana menginap yang nyaman dan menyenangkan bagi semua tamu.."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Damar Toba?",
+    "answer": "Damar Toba bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Damar Toba - Lakeside Eatery & Stay ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Damar Toba ~ Lakeside Eatery & Stay ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 11 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Damar Toba ~ Lakeside Eatery & Stay ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Damar Toba ~ Lakeside Eatery & Stay ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 30 mnt"
+  },
+  {
+    "question": "Apa alamat VILLA BORNEO?",
+    "answer": "VILLA BORNEO berlokasi di 9423+QHW, Desa Lumban Pea, Kecamatan Balige, Kabupaten Toba, Sumatera Utara, Indonesia."
+  },
+  {
+    "question": "Apa waktu check-in & check-out standar di VILLA BORNEO?",
+    "answer": "Waktu check-in standar di VILLA BORNEO dimulai pukul 11.30, dan waktu check-out paling lambat adalah pukul 12.00."
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di VILLA BORNEO?",
+    "answer": "Fasilitas yang tersedia di VILLA BORNEO (beberapa mungkin dikenakan biaya tambahan) meliputi area parkir, serta akomodasi yang nyaman dengan 1 kamar tidur, 2 kamar mandi, dapur lengkap, dan teras dengan pemandangan taman."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari villa borneo ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari villa borneo ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 14 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari villa borneo ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari villa borneo ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 37 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Sapadia Villa Balige?",
+    "answer": "Ada 4 kamar yang tersedia di Sapadia Villa Balige."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Sapadia Villa Balige?",
+    "answer": "Sapadia Villa Balige menyediakan berbagai fasilitas mulai dari area parkir gratis dan WiFi di area umum sebagai fasilitas publik. Setiap kamar dilengkapi dengan pancuran dan TV untuk kenyamanan selama menginap. Hotel ini juga menghadirkan layanan resepsionis 24 jam yang siap membantu kapan pun dibutuhkan. Fasilitas populer yang tersedia antara lain WiFi, AC, resepsionis 24 jam, pilihan menginap mingguan/bulanan, serta parkir gratis. Beberapa fasilitas tambahan mungkin tersedia dengan biaya tambahan."
+  },
+  {
+    "question": "Berapa harga menginap di Sapadia Villa Balige?",
+    "answer": "Harga kamar di Sapadia Villa Balige bervariasi, mulai dari Rp 322.969 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Sapadia Villa Balige?",
+    "answer": "Waktu untuk check-in di Sapadia Villa Balige adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Sapadia Villa Balige?",
+    "answer": "Sapadia Villa Balige memiliki 4 kamar"
+  },
+  {
+    "question": "Apakah Sapadia Villa Balige menyediakan parkir?",
+    "answer": "Ya, Sapadia Villa Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Sapadia Villa Balige?",
+    "answer": "Sapadia Villa Balige terkenal akan Kebersihan, Kenyamanan Kamar, Lokasi. Dari traveler asli di Traveloka."
+  },
+  {
+    "question": "Apa yang terdekat dari Sapadia Villa Balige?",
+    "answer": "Berikut adalah yang terdekat dari Sapadia Villa Balige: Museum Batak TB Silalahi, SMP N 4 Balige"
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Sapadia Villa Balige?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Sapadia Villa Balige, seperti: Kamar Standar, Deluxe Room - Atas"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Sapadia Villa Balige?",
+    "answer": "Sapadia Villa Balige bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari SAPADIA VILLA BALIGE III ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari SAPADIA VILLA BALIGE III ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 9 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari SAPADIA VILLA BALIGE III ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari SAPADIA VILLA BALIGE III ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 28 mnt"
+  },
+  {
+    "question": "Gemma Hotel Balige bintang berapa?",
+    "answer": "Gemma Hotel Balige adalah hotel bintang 2 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Gemma Hotel Balige?",
+    "answer": "Ada 39 kamar yang tersedia di Gemma Hotel Balige."
+  },
+  {
+    "question": "Seberapa dekat Gemma Hotel Balige ke pusat kota?",
+    "answer": "Gemma Hotel Balige hanya berjarak sekitar 881 m dari pusat kota Danau Toba."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Gemma Hotel Balige?",
+    "answer": "Gemma Hotel Balige menawarkan fasilitas lengkap dengan kualitas sangat baik, menghadirkan kenyamanan bagi berbagai kebutuhan tamu. Fasilitas terbaiknya meliputi AC, restoran, resepsionis 24 jam, parkir gratis, lift, dan WiFi gratis yang tersedia di seluruh area hotel. Hotel ini memiliki beragam fasilitas umum seperti aula, ruang banquet, area bebas rokok dan area merokok, teras, perapian di lobi, serta akses ramah difabel termasuk kamar dan parkir khusus penyandang disabilitas. Untuk kenyamanan kamar, tersedia kamar mandi pribadi dengan shower, perlengkapan mandi, handuk, bidet, pengering rambut, TV layar datar dan TV kabel, kulkas, meja, ketel listrik, balkon atau teras dengan pemandangan, serta fasilitas kedap suara. Layanan hotel mencakup concierge, penitipan bagasi, keamanan 24 jam, laundry dan dry cleaning (berbiaya tambahan), layanan kamar, serta antar-jemput bandara dan shuttle (berbiaya tambahan). Fasilitas bisnis seperti ruang rapat, proyektor, serta layanan faks/fotokopi juga tersedia. Tamu dapat menikmati sarapan, kafe, ruang makan, makanan vegetarian dan anak, hingga sarapan dalam kamar. Untuk rekreasi, tersedia aktivitas seperti bersepeda, memancing, olahraga air, tur budaya, hingga akses ke pantai umum."
+  },
+  {
+    "question": "Berapa harga menginap di Gemma Hotel Balige?",
+    "answer": "Harga kamar di Gemma Hotel Balige bervariasi, mulai dari Rp 575.129 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Gemma Hotel Balige?",
+    "answer": "Waktu untuk check-in di Gemma Hotel Balige adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Apakah Gemma Hotel Balige menyediakan sarapan?",
+    "answer": "lya, Gemma Hotel Balige menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di gemma Hotel Balige?",
+    "answer": "Gemma Hotel Balige memiliki 4 lantai"
+  },
+  {
+    "question": "Apakah Gemma Hotel Balige menyediakan parkir?",
+    "answer": "Ya, Gemma Hotel Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Gemma Hotel Balige menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Gemma Hotel Balige terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Gemma Hotel Balige?",
+    "answer": "Gemma Hotel Balige terkenal akan Lokasi, Kebersihan, Kenyamanan Kamar."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Gemma Hotel Balige?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Gemma Hotel Balige, seperti: Superior Double Countryside View, Superior Twin Countryside View, Deluxe Double Lake View, Executive Room Lake View"
+  },
+  {
+    "question": "Fasilitas kamar apa saja yang tersedia di Gemma Hotel Balige?",
+    "answer": "Fasilitas kamar di Gemma Hotel Balige meliputi shower dengan air panas, kamar mandi pribadi lengkap dengan toilet, bidet, handuk, sandal, tisu toilet, dan perlengkapan mandi. Setiap kamar juga dilengkapi AC, balkon atau teras dengan pemandangan, area tempat duduk dengan sofa, meja, lemari, seprai, kamar rias, serta stop kontak dekat tempat tidur. Untuk kenyamanan tambahan tersedia TV layar datar dengan saluran kabel, kulkas, ketel listrik, pengering rambut, lantai keramik/marmer, kamar kedap suara, pintu masuk pribadi, layanan bangun tidur, serta akses WiFi gratis di dalam kamar."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Gemma Hotel Balige?",
+    "answer": "Gemma Hotel Balige bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Gemma Hotel Balige ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Gemma Hotel Balige ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 8 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Gemma Hotel Balige ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Gemma Hotel Balige ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 28 mnt"
+  },
+  {
+    "question": "Apa bandara terdekat dengan Brain Homestay?",
+    "answer": "Bandara terdekat dengan Brain Homestay adalah Bandara Silangit, yang berjarak 33,0 km."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Brain Homestay ke Air Terjun Situmurun?",
+    "answer": "Mengemudi dari Brain Homestay ke Air Terjun Situmurun memerlukan waktu sekitar 29 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Brain Homestay ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Brain Homestay ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 1 j 18 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Ada 16 kamar yang tersedia di Hotel Tiara Bunga."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga menawarkan berbagai fasilitas lengkap dengan layanan unggulan resepsionis 24 jam. Hotel ini memiliki pantai pribadi dan kolam renang outdoor dengan pemandangan indah, serta area tepi pantai yang nyaman untuk bersantai. Fasilitas lainnya meliputi restoran, layanan kamar, fasilitas BBQ (biaya tambahan), taman, teras, area piknik, taman bermain anak, serta aktivitas seperti karaoke dan memancing. Untuk kenyamanan tamu, tersedia shuttle bandara dan layanan antar-jemput (berbiaya tambahan), penyewaan mobil, parkir gratis termasuk parkir difabel, serta penitipan bagasi. Setiap kamar dilengkapi AC, kamar mandi pribadi dengan shower atau bathtub, perlengkapan mandi, handuk, sandal, TV kabel/layar datar, pembuat teh/kopi, ketel listrik, lemari pakaian, meja kerja, area tempat duduk, dan pemandangan danau. Hotel ini juga menyediakan layanan kebersihan harian, laundry dan setrika (berbiaya tambahan), keamanan 24 jam, serta berbagai protokol kebersihan dan keselamatan."
+  },
+  {
+    "question": "Berapa harga menginap di Hotel Tiara Bunga?",
+    "answer": "Harga kamar di Hotel Tiara Bunga bervariasi, mulai dari Rp 696.150 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Hotel Tiara Bunga?",
+    "answer": "Waktu untuk check-in di Hotel Tiara Bunga adalah mulai dari pukul Dari 16:00 sedangkan waktu check-out paling lambat pukul Sebelum 11:00"
+  },
+  {
+    "question": "Hotel bintang berapa Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga merupakan hotel bintang 3"
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga memiliki 16 kamar"
+  },
+  {
+    "question": "Apakah Hotel Tiara Bunga menyediakan parkir?",
+    "answer": "Ya, Hotel Tiara Bunga menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga terkenal akan Lokasi, Pelayanan dan Fasilitas, Kebersihan.."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Tiara Bunga, seperti: Executive Lake View, Deluxe Lake View, Villa Ucok - 4 Bedroom Lake View, Villa Teluk Bunga - 7 Bedroom Lake View, Villa Tb - 8 Bedroom Lake View"
+  },
+  {
+    "question": "Fasilitas kamar apa saja yang tersedia di Hotel Tiara Bunga?",
+    "answer": "Fasilitas kamar di Hotel Tiara Bunga meliputi shower dengan air panas serta pilihan bathtub atau shower, kamar mandi pribadi lengkap dengan toilet, bidet, handuk, linen, sandal, tisu toilet, dan perlengkapan mandi. Setiap kamar dilengkapi AC, balkon atau teras, area tempat duduk, meja kerja, lemari pakaian, rak pakaian, papan jemur baju, serta tempat sampah. Untuk kenyamanan tambahan tersedia TV layar datar dengan saluran kabel/satelit, pembuat teh/kopi, ketel listrik, air mineral kemasan, serta pemandangan danau dari kamar tertentu."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Hotel Tiara Bunga?",
+    "answer": "Hotel Tiara Bunga bisa memiliki sampai 16 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Tiara Bunga Hotel?",
+    "answer": "Tiara Bunga Hotel memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 11.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Tiara Bunga Hotel?",
+    "answer": "Fasilitas paling populer di Tiara Bunga Hotel meliputi: \n1. Kolam renang\n2. Wi-Fi (gratis)\n3. Tempat parkir (gratis)\n4. Ber-AC"
+  },
+  {
+    "question": "Apakah Tiara Bunga Hotel menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Tiara Bunga Hotel menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Tiara Bunga Hotel?",
+    "answer": "Ya, Tiara Bunga Hotel menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Tiara Bunga Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Tiara Bunga Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 29 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Tiara Bunga Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Tiara Bunga Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 34 mnt"
+  },
+  {
+    "question": "Apakah Hotel Santo Djaya menawarkan Wi-Fi gratis?",
+    "answer": "Tidak, Hotel Santo Djaya tidak menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Hotel Santo Djaya dilengkapi kolam renang?",
+    "answer": "Tidak, Hotel Santo Djaya tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Hotel Santo Djaya?",
+    "answer": "Ya, Hotel Santo Djaya menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Santo Djaya ke Pantai Pasir Putih Parparean?",
+    "answer": "Mengemudi dari Hotel Santo Djaya ke Pantai Pasir Putih Parparean memerlukan waktu sekitar 6 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Santo Djaya ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel Santo Djaya ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 55 mnt"
+  },
+  {
+    "question": "Di mana alamat Nauli Inn Balige?",
+    "answer": "Nauli Inn Balige beralamat di Jl. Sibola Hotang km 1,2 RW.2, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di Nauli Inn Balige?",
+    "answer": "Waktu untuk check-in di Nauli Inn Balige adalah mulai dari pukul 14:00-23:00 dan waktu check-out paling lambat pukul 12:00"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di Nauli Inn Balige?",
+    "answer": "Nauli Inn Balige menyediakan berbagai fasilitas untuk kenyamanan tamu, termasuk WiFi gratis di semua kamar dan area umum, AC, resepsionis 24 jam, layanan antar jemput bandara (mungkin berbiaya tambahan), serta parkir gratis di properti. Hotel ini juga menawarkan ruang keluarga yang ramah anak, ruang bersama/area TV, teras atau balkon, serta layanan sarapan dan air minum dalam botol. Setiap kamar dilengkapi kamar mandi pribadi, akses WiFi gratis, TV layar datar, meja, linen, jendela, serta air mineral kemasan. Selain itu, tersedia layanan binatu, fasilitas keamanan seperti tabung pemadam api, serta penerapan protokol kebersihan dan keselamatan untuk memastikan kenyamanan selama menginap."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Nauli Inn ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Nauli Inn ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 33 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Nauli Inn Balige?",
+    "answer": "Ada 16 kamar yang tersedia di Nauli Inn Balige."
+  },
+  {
+    "question": "Hotel bintang berapa Nauli Inn Balige?",
+    "answer": "Nauli Inn Balige merupakan hotel bintang 1 di Balige"
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Nauli Inn Balige?",
+    "answer": "Nauli Inn Balige memiliki 4 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Nauli Inn Balige?",
+    "answer": "Nauli Inn Balige memiliki 16 kamar"
+  },
+  {
+    "question": "Apakah Nauli Inn Balige menyediakan parkir?",
+    "answer": "Ya, Nauli Inn Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Di mana alamat Grand Mareda Hotel?",
+    "answer": "Grand Mareda Hotel beralamat di JI Pasar Melintang Lbn Pea Timur, kec. Balige kab. Tobasamosir, Provinsi Sumut"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di Grand Mareda Hotel?",
+    "answer": "Waktu untuk check-in di Grand Mareda Hotel adalah mulai dari pukul 14:00-23:00 dan waktu check-out paling lambat pukul 12:15"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di Grand Mareda Hotel?",
+    "answer": "Grand Mareda Hotel menyediakan berbagai fasilitas yang dapat digunakan tamu, seperti WiFi gratis, resepsionis 24 jam, layanan antar jemput bandara (biaya tambahan), ruang tamu, serta pilihan menginap mingguan/bulanan. Hotel ini juga menawarkan parkir gratis termasuk valet, WiFi publik, ruang merokok, penitipan bagasi, layanan laundry/dry cleaning, serta sistem keamanan dengan kunci pintu smart dan penjaga pintu. Untuk kenyamanan kamar, tersedia patio atau teras, TV kabel, televisi, shower, serta pemandangan danau. Fasilitas tambahan meliputi ruang makan dengan makanan halal, layanan pijat, penyewaan mobil dan motor, serta restoran. Hotel ini juga menerapkan standar kebersihan Tiket CLEAN untuk memastikan kenyamanan dan keamanan tamu selama menginap."
+  },
+  {
+    "question": "Apakah Grand Mareda Hotel menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Grand Mereda Hotel menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Grand Mareda Hotel dilengkapi kolam renang?",
+    "answer": "Tidak, Grand Mereda Hotel tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Grand Mareda Hotel?",
+    "answer": "Ya, Grand Mereda Hotel menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Grand Mareda Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Grand Mareda Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 13 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Grand Mareda Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Grand Mareda Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 35 mnt"
+  },
+  {
+    "question": "Apa saja fasilitas utama di RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige menawarkan fasilitas populer seperti WiFi gratis di seluruh area, AC, serta tempat parkir gratis (meskipun ketersediaan parkir dapat berbeda). Hotel ini menyediakan resepsionis dan check-in 24 jam, layanan concierge, penitipan bagasi, layanan kamar, serta keamanan 24 jam dengan dukungan CCTV dan pemadam api. Fasilitas umum meliputi ruang tamu, kafe, area bebas asap rokok dan area merokok, teras, taman, koridor luar, serta toko serba ada di sekitar properti. Tamu dapat menikmati sarapan gratis termasuk sarapan kontinental, serta air minum dalam botol. Setiap kamar dilengkapi kamar mandi pribadi dengan shower atau bathtub, perlengkapan mandi, handuk, lemari pakaian, meja kerja, kulkas/lemari es, kopi dan teh instan, TV layar datar dengan saluran kabel/satelit, telepon, lantai keramik/marmer, jendela yang dapat dibuka, serta perlengkapan tambahan seperti papan jemur baju dan rak pakaian. Hotel ini juga menyediakan layanan kebersihan harian serta menerapkan standar kebersihan dan keselamatan untuk kenyamanan tamu selama menginap."
+  },
+  {
+    "question": "Apakah RAP Hotel Balige menawarkan Wi-Fi gratis?",
+    "answer": "Ya, RAP Hotel Balige menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah RAP Hotel Balige dilengkapi kolam renang?",
+    "answer": "Tidak, RAP Hotel Balige tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di RAP Hotel Balige?",
+    "answer": "Ya, RAP Hotel Balige menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari RAP Hotel Balige ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari RAP Hotel Balige ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 12 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari RAP Hotel Balige ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari RAP Hotel Balige ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 25 mnt"
+  },
+  {
+    "question": "Berapa rating bintang resmi untuk RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige adalah Hotel bintang 2"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di RAP Hotel Balige?",
+    "answer": "Ada 22 kamar yang tersedia di RAP Hotel Balige."
+  },
+  {
+    "question": "Berapa harga menginap di RAP Hotel Balige?",
+    "answer": "Harga kamar di RAP Hotel Balige bervariasi, mulai dari Rp 311.220 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di RAP Hotel Balige?",
+    "answer": "Waktu untuk check-in di RAP Hotel Balige adalah mulai dari pukul 14:00 - 23:59 sedangkan waktu check-out paling lambat pukul 11:00-12:00"
+  },
+  {
+    "question": "Apakah RAP Hotel Balige menyediakan sarapan?",
+    "answer": "lya, RAP Hotel Balige menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Hotel bintang berapa RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige merupakan hotel berbintang 2 di Balige"
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige memiliki 22 kamar"
+  },
+  {
+    "question": "Apakah RAP Hotel Balige menyediakan parkir?",
+    "answer": "Ya, RAP Hotel Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige terkenal akan Kebersihan, Lokasi, Pelayanan dan Fasilitas."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di RAP Hotel Balige?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di RAP Hotel Balige, seperti: Superior Queen, Superior Twin, Deluxe Terrace"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di RAP Hotel Balige?",
+    "answer": "RAP Hotel Balige bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Bagaimana cara menuju dari bandara terdekat ke RAP Hotel Balige?",
+    "answer": "Bandara terdekat adalah Silangit, dan jaraknya sekitar sekitar 27 menit berkendara dari hotel (16,9km) dari RAP Hotel Balige."
+  },
+  {
+    "question": "Berapa tarif menginap di RAP Hotel Balige?",
+    "answer": "Harga di RAP Hotel Balige dapat bervariasi tergantung pada tanggal, kebijakan hotel, dan faktor lainnya. Untuk mengetahui harga yang tepat, silakan masukkan tanggal yang Anda inginkan untuk menginap."
+  },
+  {
+    "question": "Bagaimana kebijakan pembatalan untuk RAP Hotel Balige?",
+    "answer": "Kebijakan pembatalan untuk RAP Hotel Balige bervariasi tergantung pada jenis kamar dan kondisi pemesanan."
+  },
+  {
+    "question": "Apa saja fasilitas utama di J&J Guest House 1 Rumah?",
+    "answer": "J&J Guest House 1 Rumah menawarkan fasilitas populer seperti parkir gratis (reservasi diperlukan), layanan antar-jemput bandara (biaya tambahan), serta sarapan (biaya tambahan). Akomodasi ini menyediakan kamar keluarga dan kamar bebas rokok, dengan fasilitas lengkap seperti kamar mandi pribadi dengan shower termasuk roll-in shower, perlengkapan mandi gratis, handuk, pengering rambut, serta linen. Setiap unit dilengkapi balkon atau teras, area tempat duduk terpisah, ruang makan, dapur lengkap atau dapur kecil dengan kulkas, ketel listrik, dan pembuat teh/kopi, TV layar datar dengan saluran kabel, kipas angin, lemari pakaian, meja, sofa bed, serta pintu masuk pribadi. WiFi gratis tersedia di semua kamar dan area umum. Tamu juga dapat menikmati layanan resepsionis 24 jam, check-in/check-out cepat atau pribadi, layanan kamar, laundry/dry cleaning, jasa tur dan tiket, penyewaan mobil, shuttle service, serta penitipan bagasi. Fasilitas tambahan mencakup taman, aktivitas seperti hiking dan kano, layanan pijat (berbiaya tambahan), minimarket di lokasi, salon kecantikan, serta akses ramah difabel termasuk kamar mandi aksesibel dan fasilitas kursi roda. Guest house ini juga ramah hewan peliharaan (berdasarkan permintaan tanpa biaya tambahan) dan menerapkan standar kebersihan serta keamanan 24 jam untuk kenyamanan tamu."
+  },
+  {
+    "question": "Apakah J&J Guest House 1 Rumah menawarkan Wi-Fi gratis?",
+    "answer": "Tidak, J&J Guest House 1 Rumah tidak menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah J&J Guest House 1 Rumah dilengkapi kolam renang?",
+    "answer": "Tidak, J&J Guest House 1 Rumah tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di J&J Guest House 1 Rumah?",
+    "answer": "Ya, J&J Guest House 1 Rumah menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari J&J Guest House 1 Rumah ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari J&J Guest House 1 Rumah ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 11 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari J&J Guest House 1 Rumah ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari J&J Guest House 1 Rumah ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 27 mnt"
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Balige J&J Guesthouse 1?",
+    "answer": "Waktu untuk check-in di Balige J&J Guesthouse 1 adalah mulai dari pukul 14:01-14:01 sedangkan waktu check-out paling lambat pukul 12:00 - 12:00"
+  },
+  {
+    "question": "Apakah Balige J&J Guesthouse 1 menyediakan parkir?",
+    "answer": "Ya, Balige J&J Guesthouse 1 menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Balige J&J Guesthouse 1 menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Balige J&J Guesthouse 1 terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Balige J&J Guesthouse 1?",
+    "answer": "Balige J&J Guesthouse 1 terkenal akan Makanan, Kebersihan, Kenyamanan Kamar. Dari traveler asli di Traveloka."
+  },
+  {
+    "question": "Di mana alamat Balige J&J Guesthouse 1?",
+    "answer": "Balige J&J Guesthouse 1 beralamat di Jl. Napitupulu No. 10, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia"
+  },
+  {
+    "question": "Apakah Brussels Homestay menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Brussels Homestay menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Brussels Homestay dilengkapi kolam renang?",
+    "answer": "Tidak, Brussels Homestay tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Brussels Homestay?",
+    "answer": "Ya, Brussels Homestay menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Brussels Homestay ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Brussels Homestay ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 11 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Brussels Homestay ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Brussels Homestay ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 26 mnt"
+  },
+  {
+    "question": "Di mana alamat BRUSSELS HOMESTAY BALIGE?",
+    "answer": "BRUSSELS HOMESTAY BALIGE beralamat di Jl. D. I. Panjaitan no. 14, balige, Sumatera Utara 22312"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di BRUSSELS HOMESTAY BALIGE?",
+    "answer": "Waktu untuk check-in di BRUSSELS HOMESTAY BALIGE adalah mulai dari pukul 15:00 dan waktu check-out paling lambat pukul 12:00"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di BRUSSELS HOMESTAY BALIGE?",
+    "answer": "Brussels Homestay Balige menyediakan berbagai fasilitas yang dapat digunakan tamu, termasuk parkir pribadi gratis, akomodasi ramah hewan peliharaan tanpa biaya tambahan, serta fasilitas ramah difabel seperti akses kursi roda, toilet dengan pegangan tangan, wastafel lebih rendah, dan aksesibilitas pendengaran. Tersedia WiFi gratis di seluruh area, resepsionis 24 jam, layanan kamar, penitipan bagasi, shuttle service (biaya tambahan), serta keamanan 24 jam dengan detektor asap dan pemadam api. Setiap unit dilengkapi kamar mandi pribadi dengan perlengkapan mandi gratis, handuk, sandal, bidet, serta seprai; area tempat duduk dan ruang makan terpisah, sofa bed, meja kerja, lemari pakaian, brankas laptop, TV, serta pintu masuk pribadi. Fasilitas dapur lengkap mencakup dapur kecil atau dapur penuh dengan kulkas, microwave, mesin kopi, meja makan, dan peralatan dapur. Tamu juga dapat menikmati balkon atau teras dengan pemandangan kota, gunung, atau taman, area piknik dan taman untuk bersantai, penyewaan sepeda, serta suasana ramah keluarga dengan kamar keluarga dan perlengkapan bermain anak."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Hotel Adela?",
+    "answer": "Hotel Adela memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Hotel Adela?",
+    "answer": "Hotel Adela menawarkan berbagai fasilitas populer seperti WiFi gratis di seluruh area dan kamar, AC, serta parkir gratis di lokasi maupun parkir jalanan (termasuk parkir berjaga dan parkir bagi penyandang disabilitas). Hotel ini menyediakan resepsionis 24 jam, check-in dan check-out ekspres, penitipan bagasi, staf multibahasa (Bahasa Indonesia dan Inggris). layanan kamar 24 jam, layanan taksi, serta invoice/bukti bayar. Tamu dapat menikmati kamar bebas rokok dengan fasilitas lengkap seperti kamar mandi pribadi dengan pancuran dan perlengkapan mandi, TV layar datar dan TV kabel, meja, linen, furnitur outdoor, akses WiFi gratis, serta fitur keselamatan seperti alarm kebakaran, alarm asap, CCTV di area umum dan luar properti, tabung pemadam api, kotak P3K, dan hand sanitizer. Fasilitas umum lainnya meliputi area merokok khusus, area bebas asap rokok, toko dan minimarket terdekat, perabotan luar ruangan, serta layanan kebersihan harian. Hotel ini juga ramah anak (anak-anak menginap gratis dengan fitur keamanan seperti penutup outlet), namun tidak memiliki lift sehingga lantai atas hanya dapat diakses melalui tangga."
+  },
+  {
+    "question": "Apakah Hotel Adela menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Hotel Adela menawarkan WiFi -gratis"
+  },
+  {
+    "question": "Apakah Hotel Adela dilengkapi kolam renang?",
+    "answer": "Tidak, Hotel Adela tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Hotel Adela?",
+    "answer": "Ya, Hotel Adela menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Adela ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Hotel Adela ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 21 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Adela ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel Adela ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 43 mnt"
+  },
+  {
+    "question": "Berapa rating bintang resmi untuk Hotel Adela?",
+    "answer": "Hotel Adela adalah Hotel bintang 2"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Hotel O Adela?",
+    "answer": "Ada 30 kamar yang tersedia di Hotel O Adela."
+  },
+  {
+    "question": "Apakah Hotel O Adela menyediakan parkir?",
+    "answer": "Ya, Hotel O Adela menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa alamat Hotel Adela?",
+    "answer": "Hotel Adela berlokasi di Jl. Laguboti Lambow, Sibarani Nasampulu, Sibarani Nasampulu, Sumatera Utara, Indonesia."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Vany Villa Balige ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Vany Villa Balige ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 15 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Vany Villa Balige ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Vany Villa Balige ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 23 mnt"
+  },
+  {
+    "question": "Vany Villa Balige bintang berapa?",
+    "answer": "Vany Villa Balige adalah hotel bintang 4 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Vany Villa Balige?",
+    "answer": "Ada 26 kamar yang tersedia di Vany Villa Balige."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Vany Villa Balige?",
+    "answer": "Vany Villa Balige menawarkan berbagai fasilitas unggulan seperti AC, restoran, kolam renang outdoor, parkir gratis, dan WiFi gratis, serta layanan antar-jemput bandara (biaya tambahan) dan opsi menginap mingguan/bulanan. Resor ini menyediakan kamar dengan kamar mandi pribadi lengkap dengan shower, bathtub, bidet, perlengkapan mandi, handuk, dan seprai, serta dilengkapi Smart TV/TV layar datar, sound system, meja kerja, kulkas, dapur kecil dengan kompor dan ketel listrik, peralatan makan, tirai anti tembus pandang, dan patio atau teras dengan pemandangan danau. Fasilitas umum mencakup restoran untuk sarapan, makan siang, dan makan malam, kafe, kopi/teh di lobi, layanan kamar (terbatas), gazebo, halaman, area merokok dan area bebas asap rokok, serta layanan banquet untuk kebutuhan bisnis. Tamu juga dapat menikmati layanan resepsionis, penitipan bagasi, staf multibahasa (Bahasa Indonesia, Inggris, dan Melayu), keamanan 24 jam, layanan medis, tur dan pemesanan tiket, penyewaan mobil, parkir valet gratis, serta aksesibilitas ramah difabel seperti toilet dan parkir khusus penyandang disabilitas. Properti ini ramah hewan peliharaan dan berlokasi strategis dekat toko oleh-oleh, minimarket, supermarket, salon rambut dan kecantikan, serta laundry swadaya, menjadikannya pilihan nyaman untuk liburan maupun perjalanan bisnis."
+  },
+  {
+    "question": "Berapa harga menginap di Vany Villa Balige?",
+    "answer": "Harga kamar di Vany Villa Balige bervariasi, mulai dari Rp 778.051 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Vany Villa Balige?",
+    "answer": "Waktu untuk check-in di Vany Villa Balige adalah mulai dari pukul 14:00-23:30 sedangkan waktu check-out paling lambat pukul 12:00-12:00"
+  },
+  {
+    "question": "Apakah Vany Villa Balige menyediakan sarapan?",
+    "answer": "lya, Vany Villa Balige menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Hotel bintang berapa Vany Villa Balige?",
+    "answer": "Vany Villa Balige merupakan villa bintang 4"
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Vany Villa Balige?",
+    "answer": "Vany Villa Balige memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Vany Villa Balige?",
+    "answer": "Vany Villa Balige memiliki 26 kamar"
+  },
+  {
+    "question": "Apakah Vany Villa Balige menyediakan parkir?",
+    "answer": "Ya, Vany Villa Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Vany Villa Balige menyediakan kolam renang?",
+    "answer": "Ya, Vany Villa Balige menyediakan kolam renang"
+  },
+  {
+    "question": "Apakah Vany Villa Balige menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Vany Villa Balige terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Vany Villa Balige?",
+    "answer": "Vany Villa Balige terkenal akan Kebersihan, Pelayanan dan Fasilitas, Kenyamanan Kamar."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Vany Villa Balige?",
+    "answer": "Beberapa jenis kamar yang dapat Anda pesan di Vany Villa Balige antara lain Deluxe Room (Kamar Deluks Double atau Twin dengan Pemandangan), Suite Room (Suite Double dengan Pemandangan), serta Two Bedroom Villa, termasuk juga pilihan Kamar Double atau Twin dengan Pemandangan."
+  },
+  {
+    "question": "Fasilitas kamar apa saja yang tersedia di Vany Villa Balige?",
+    "answer": "Fasilitas kamar yang tersedia di Vany Villa Balige meliputi shower dengan air panas, AC, dan WiFi gratis, serta kamar mandi pribadi lengkap dengan toilet, bidet, bathtub, perlengkapan mandi, tisu toilet, handuk, dan seprai. Di dalam kamar juga tersedia TV layar datar/Smart TV, sound system, meja kerja, papan jemur jemur baju, tirai anti tembus pandang, serta akses kamar berdampingan. Untuk kenyamanan tambahan, kamar dilengkapi dapur kecil dengan microwave, kompor, kulkas, ketel listrik, dan peralatan makan, serta area patio atau teras, ruang makan outdoor, dan pemandangan danau di beberapa unit."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Vany Villa Balige?",
+    "answer": "Vany Villa Balige bisa memiliki sampai 4 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Di mana alamat Vany Villa Balige?",
+    "answer": "Vany Villa Balige beralamat di Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera Utara 22311, Indonesia"
+  },
+  {
+    "question": "Apakah di Vany Villa Balige tersedia fasilitas kolam renang?",
+    "answer": "Ya, di Vany Villa Balige tersedia kolam renang yang bisa kamu gunakan."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Lago Hotel & Resto?",
+    "answer": "Lago Hotel & Resto memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Lago Hotel & Resto?",
+    "answer": "Lago Hotel & Resto menawarkan berbagai fasilitas populer seperti WiFi gratis, parkir gratis dan parkir berjaga, AC, serta sarapan (tersedia opsi sarapan berbiaya, sarapan kontinental, hingga paket makan pagi/siang/malam termasuk minuman non-alkohol). Fasilitas makanan dan minuman mencakup restoran, kafe, bar, makan malam bermenu, serta air minum kemasan gratis. Hotel ini menyediakan layanan resepsionis 24 jam, check-in dan check-out ekspres, early check-in dan late check-out, minuman sambutan, serta layanan kamar terbatas. Fasilitas umum lainnya meliputi ruang tamu, area merokok, WiFi di area umum, serta kamar aksesibel bagi penyandang disabilitas dengan lokasi yang mudah dijangkau (hotel tidak memperbolehkan hewan peliharaan). Di dalam kamar tersedia AC, shower, perlengkapan mandi gratis, TV, meja dan kursi, lemari, serta akses internet/WiFi gratis. Untuk menunjang kenyamanan tamu, tersedia pula antar-jemput bandara, transportasi di area hotel (berbiaya), sewa mobil, penitipan sepeda, fasilitas rapat dan proyektor, serta beragam aktivitas seperti karaoke, layanan pijat, aktivitas outdoor, area piknik, akses dekat pantai privat, pemancingan, dan jet ski, dengan dukungan fasilitas terdekat seperti ATM/bank, toko, supermarket, dan laundry swadaya."
+  },
+  {
+    "question": "Apakah Lago Hotel & Resto menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Lago Hotel & Resto menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Lago Hotel & Resto dilengkapi kolam renang?",
+    "answer": "Tidak, Lago Hotel & Resto tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Lago Hotel & Resto?",
+    "answer": "Ya, Lago Hotel & Resto menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Lago Hotel & Resto ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Lago Hotel & Resto ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 34 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Lago Hotel and Resto?",
+    "answer": "Ada 11 kamar yang tersedia di Lago Hotel and Resto."
+  },
+  {
+    "question": "Berapa harga menginap di Lago Hotel and Resto?",
+    "answer": "Harga kamar di Lago Hotel and Resto bervariasi, mulai dari Rp 100.000 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Apakah Lago Hotel and Resto menyediakan sarapan?",
+    "answer": "lya, Lago Hotel and Resto menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Lago Hotel and Resto?",
+    "answer": "Lago Hotel and Resto memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Lago Hotel and Resto?",
+    "answer": "Lago Hotel and Resto memiliki 11 kamar"
+  },
+  {
+    "question": "Apakah Lago Hotel and Resto menyediakan parkir?",
+    "answer": "Ya, Lago Hotel and Resto menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Lago Hotel and Resto memperbolehkan early check in?",
+    "answer": "Ya, Lago Hotel and Resto menyediakan early check in. Silakan hubungi akomodasi jika Anda ingin check-in lebih awal.."
+  },
+  {
+    "question": "Apakah Lago Hotel and Resto memperbolehkan late check out?",
+    "answer": "Ya, Lago Hotel and Resto diperbolehkan check-out telat. Silakan hubungi akomodasi jika Anda ingin check-out telat. Anda akan dikenakan biaya tambahan."
+  },
+  {
+    "question": "Apakah Lago Hotel and Resto menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Lago Hotel and Resto terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Lago Hotel and Resto?",
+    "answer": "Lago Hotel and Resto terkenal akan Lokasi, Kebersihan, Pelayanan dan Fasilitas."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Lago Hotel and Resto?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Lago Hotel and Resto, seperti: Twin, Single View Cafe Pemandangan, Single Ac Sawah"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Lago Hotel and Resto?",
+    "answer": "Lago Hotel and Resto bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "What is the address of Lago Hotel and Resto?",
+    "answer": "Lago Hotel and Resto is located at JL Sibolahotang SAS Balige Kec. Balige Kab. Toba Samosir Pantai Lumban Bulbul Balige"
+  },
+  {
+    "question": "Apa saja fasilitas utama di OΥΟ 90645 Karisma Residence?",
+    "answer": "OYO 90645 Karisma Residence menawarkan fasilitas populer seperti parkir gratis (termasuk parkir berjaga dan parkir bagi penyandang disabilitas), WiFi gratis di seluruh area dan kamar, serta AC di kamar dan area umum. Hotel ini menyediakan resepsionis 24 jam, check-in 24 jam dan tanpa kontak, layanan kamar 24 jam, layanan kebersihan harian, layanan binatu, pengantaran makanan, sarapan bawa pulang, ruang keluarga, area lounge/TV bersama, teras, area merokok, serta area api unggun indoor (tanpa lift). Kamar dilengkapi kamar mandi pribadi dengan shower dan toilet, TV layar datar dengan saluran kabel/satelit, meja, tempat sampah, serta akses WiFi gratis dan bebas rokok. Dari sisi keamanan dan kebersihan, tersedia CCTV di area umum dan luar properti, alarm kebakaran, tabung pemadam api, kotak P3K, hand sanitizer, sterilisasi kamar sebelum check-in, disinfeksi harian, layanan pembayaran non-tunai, pengecekan suhu tubuh, serta staf terlatih protokol keselamatan. Hotel ini juga ramah keluarga/anak dan didukung staf berbahasa Indonesia dan Inggris."
+  },
+  {
+    "question": "Apakah OYO 90645 Karisma Residence menawarkan Wi-Fi gratis?",
+    "answer": "Ya, OYO 90645 Karisma Residence menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah OYO 90645 Karisma Residence dilengkapi kolam renang?",
+    "answer": "Tidak, OYO 90645 Karisma Residence tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di OYO 90645 Karisma Residence?",
+    "answer": "Ya, OYO 90645 Karisma Residence menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari OYO 90645 Karisma Residence ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari OYO 90645 Karisma Residence ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 8 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari OYO 90645 Karisma Residence ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari OYO 90645 Karisma Residence ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 28 mnt"
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Hotel O Karisma Residence?",
+    "answer": "Waktu untuk check-in di Hotel O Karisma Residence adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Hotel bintang berapa Hotel O Karisma Residence?",
+    "answer": "Hotel O Karisma Residence merupakan hotel bintang 2"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Hotel O Karisma Residence?",
+    "answer": "Hotel O Karisma Residence memiliki 9 kamar"
+  },
+  {
+    "question": "Apakah Hotel O Karisma Residence menyediakan parkir?",
+    "answer": "Ya, Hotel O Karisma Residence menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Hotel O Karisma Residence?",
+    "answer": "Hotel O Karisma Residence terkenal akan Lokasi, Kebersihan, Makanan."
+  },
+  {
+    "question": "Apa alamat OΥΟ 90645 Karisma Residence?",
+    "answer": "OYO 90645 Karisma Residence berlokasi di No.242B Jalan S. M. Raja, Balige, Sumatera Utara, Indonesia."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli menawarkan fasilitas populer seperti kolam renang outdoor (termasuk kolam renang anak), parkir gratis dan parkir berjaga, WiFi gratis di area umum, serta kamar ber-AC. Untuk kebutuhan bersantap, tersedia restoran ber-AC yang menyajikan sarapan prasmanan maupun à la carte, sarapan yang disuguhkan ke meja, menu makan siang, serta makan malam bermenu, lengkap dengan kopi/teh di lobi dan layanan kamar terbatas. Fasilitas umum lainnya meliputi aula, area bebas asap rokok dan area merokok, teras, taman, area bermain anak, serta karaoke. Hotel ini juga menyediakan resepsionis 24 jam, bellboy, penjaga pintu, keamanan 24 jam, surat kabar di lobi, serta fasilitas bisnis seperti ruang pertemuan/rapat dan layanan bisnis. Aksesibilitas didukung dengan toilet dan parkir khusus penyandang disabilitas, serta lokasi yang dekat dengan ATM/bank, minimarket, toko, dan salon rambut, menjadikannya pilihan yang nyaman untuk perjalanan keluarga maupun bisnis."
+  },
+  {
+    "question": "Apakah Hotel Sere Nauli menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Hotel Sere Nauli menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Hotel Sere Nauli?",
+    "answer": "Ya, Hotel Sere Nauli menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Sere Nauli ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Hotel Sere Nauli ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 15 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Sere Nauli ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel Sere Nauli ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 37 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Hotel Sere Nauli?",
+    "answer": "Ada 56 kamar yang tersedia di Hotel Sere Nauli."
+  },
+  {
+    "question": "Berapa harga menginap di Hotel Sere Nauli?",
+    "answer": "Harga kamar di Hotel Sere Nauli bervariasi, mulai dari Rp 409.500 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Apakah Hotel Sere Nauli meneyediakan sarapan?",
+    "answer": "lya, Hotel Sere Nauli menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli memiliki 56 kamar"
+  },
+  {
+    "question": "Apakah Hotel Sere Nauli menyediakan parkir?",
+    "answer": "Ya, Hotel Sere Nauli menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Hotel Sere Nauli menyediakan kolam renang?",
+    "answer": "Ya, Hotel Sere Nauli menyediakan kolam renang"
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli terkenal akan Lokasi, Kenyamanan Kamar, Kebersihan."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Hotel Sere Nauli?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Sere Nauli, seperti: Executive Twin Road, Executive King, Superior King Garden And Mountain, Superior Twin Garden And Mountain, Deluxe King Garden And Mountain, Suite Garden And Mountain, Vila Garden, Mountain, Pool"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Hotel Sere Nauli?",
+    "answer": "Hotel Sere Nauli bisa memiliki sampai 4 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "What is the address of Sere Nauli Hotel?",
+    "answer": "Sere Nauli Hotel is located at Jl. Sisingamangaraja No.1, Ps. Laguboti, Lagu, Aruan, Toba Regency, North Sumatra, 22381, Indonesia"
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Purnama Balige Hotel?",
+    "answer": "Purnama Balige Hotel memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Purnama Balige Hotel?",
+    "answer": "Purnama Balige Hotel menawarkan fasilitas populer seperti spa & pusat kesehatan (termasuk pijat, sauna, dan kamar uap), WiFi gratis di semua kamar dan area umum, parkir pribadi gratis, kolam renang outdoor dengan pemandangan, serta kamar ber-AC dan bebas rokok. Untuk bersantap, tersedia beberapa restoran dan kafe yang menyajikan sarapan prasmanan maupun masakan setempat gratis setiap pagi, menu makan siang dan makan malam à la carte, bar, ruang makan, hingga pilihan makan malam bertema dan piknik pribadi. Hotel ini juga menyediakan resepsionis 24 jam (pada jam tertentu), layanan concierge, penitipan bagasi, layanan kamar, laundry dan setrika (biaya tambahan), jasa tur, fasilitas pernikahan, serta layanan antar-jemput bandara dan shuttle (biaya tambahan). Fasilitas bisnis mencakup ruang rapat dan layanan sekretarial, sementara aktivitas rekreasi meliputi olahraga air, naik perahu, karaoke, ski (dengan akses ski-to-door, penyewaan dan penyimpanan peralatan, serta sekolah ski), taman, teras, dan dok. Keamanan didukung oleh CCTV, alarm keamanan, pemadam api, kotak P3K, dan satpam, serta lokasi hotel yang dekat dengan ATM/bank, supermarket, toko, salon kecantikan, dan laundry swadaya, menjadikannya pilihan ideal untuk liburan, perjalanan bisnis, maupun pasangan yang menginginkan paket romantis."
+  },
+  {
+    "question": "Apakah Purnama Balige Hotel menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Purnama Balige Hotel menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Purnama Balige Hotel?",
+    "answer": "Ya, Purnama Balige Hotel menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Purnama Balige Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Purnama Balige Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 7 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Purnama Balige Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Purnama Balige Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 26 mnt"
+  },
+  {
+    "question": "PURNAMA BALIGE HOTEL bintang berapa?",
+    "answer": "PURNAMA BALIGE HOTEL adalah hotel bintang 2 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di PURNAMA BALIGE HOTEL?",
+    "answer": "Ada 21 kamar yang tersedia di PURNAMA BALIGE HOTEL."
+  },
+  {
+    "question": "Berapa harga menginap di PURNAMA BALIGE HOTEL?",
+    "answer": "Harga kamar di PURNAMA BALIGE HOTEL bervariasi, mulai dari Rp 486.125 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Apakah PURNAMA BALIGE HOTEL menyediakan sarapan?",
+    "answer": "Iya, PURNAMA BALIGE HOTEL menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di PURNAMA BALIGE HOTEL?",
+    "answer": "PURNAMA BALIGE HOTEL memiliki 3 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di PURNAMA BALIGE HOTEL?",
+    "answer": "PURNAMA BALIGE HOTEL memiliki 21 kamar"
+  },
+  {
+    "question": "Apakah PURNAMA BALIGE HOTEL menyediakan parkir?",
+    "answer": "Ya, PURNAMA BALIGE HOTEL menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah PURNAMA BALIGE HOTEL menyediakan kolam renang?",
+    "answer": "Ya, PURNAMA BALIGE HOTEL menyediakan kolam renang"
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di PURNAMA BALIGE HOTEL?",
+    "answer": "PURNAMA BALIGE HOTEL terkenal akan Lokasi, Kebersihan, Pelayanan dan Fasilitas."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di PURNAMA BALIGE HOTEL?",
+    "answer": "PURNAMA BALIGE HOTEL menawarkan beragam pilihan tipe kamar yang dapat disesuaikan dengan kebutuhan tamu, mulai dari Kamar Standar Single, Kamar Standar Twin, dan Kamar Standard Single dengan Pemandangan Kota, hingga Kamar Twin Standar Pemandangan Kota. Tersedia juga pilihan kamar yang lebih nyaman seperti Kamar Deluks Queen, Kamar King, Balkon Deluxe Pemandangan Danau, Suite, Executive Suite Pemandangan Danau, serta Suite Pemilik dengan Pemandangan Danau yang menawarkan pemandangan indah dan fasilitas lebih eksklusif."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di PURNAMA BALIGE HOTEL?",
+    "answer": "PURNAMA BALIGE HOTEL bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Di mana alamat Purnama Balige Hotel?",
+    "answer": "Purnama Balige Hotel beralamat di 83M5+RR6, JI. Pardede Pasir No. 10, Kec. Balige, Sumatera Utara 22314"
+  },
+  {
+    "question": "Apakah di Purnama Balige Hotel tersedia fasilitas kolam renang?",
+    "answer": "Ya, di Purnama Balige Hotel tersedia kolam renang yang bisa kamu gunakan."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Tendy Guest House ke Pantai Pasir Putih Parparean?",
+    "answer": "Mengemudi dari Tendy Guest House ke Pantai Pasir Putih Parparean memerlukan waktu sekitar 8 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Tendy Guest House ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Tendy Guest House ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 57 mnt"
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Tendy Guest House?",
+    "answer": "Waktu untuk check-in di Tendy Guest House adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Di mana alamat Tendy Guest House?",
+    "answer": "Tendy Guest House beralamat di Jl. Siborongborong - Parapat, Patane V, Kec. Porsea, Toba, Sumatera Utara 22384"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di Tendy Guest House?",
+    "answer": "Waktu untuk check-in di Tendy Guest House adalah mulai dari pukul 15:00 dan waktu check-out paling lambat pukul 12:00"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di Tendy Guest House?",
+    "answer": "Tendy Guest House menyediakan fasilitas yang dapat digunakan tamu seperti parkir pribadi gratis di lokasi tanpa perlu reservasi, serta WiFi gratis yang tersedia di seluruh area dan semua kamar. Akomodasi ini menawarkan kamar keluarga dengan kamar mandi pribadi lengkap dengan bathtub, toilet, handuk, perlengkapan mandi, dan seprai, serta dilengkapi lemari pakaian dan ranjang sofa di beberapa unit. Fasilitas dalam kamar juga mencakup pembuat teh/kopi, ketel listrik, ruang makan, serta akses ke balkon, patio, atau teras untuk bersantai. Guest house ini ramah keluarga/anak dan didukung layanan internet yang baik dengan staf berbahasa Indonesia."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Hotel Nabasa?",
+    "answer": "Hotel Nabasa memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Hotel Nabasa?",
+    "answer": "Fasilitas paling populer di Hotel Nabasa meliputi: - Wi-Fi (gratis), - Tempat parkir (gratis), - Ber-AC, - Sarapan"
+  },
+  {
+    "question": "Apakah Hotel Nabasa menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Hotel Nabasa menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Hotel Nabasa dilengkapi kolam renang?",
+    "answer": "Tidak, Hotel Nabasa tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Hotel Nabasa?",
+    "answer": "Ya, Hotel Nabasa menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Nabasa ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Hotel Nabasa ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 6 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Nabasa ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel Nabasa ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 26 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Nabasa Hotel Balige?",
+    "answer": "Ada 23 kamar yang tersedia di Nabasa Hotel Balige."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Nabasa Hotel Balige?",
+    "answer": "Hotel Nabasa menawarkan fasilitas seperti WiFi gratis di area umum dan akses internet, parkir gratis, kamar ber-AC, serta sarapan yang tersedia di restoran untuk makan pagi, siang, dan malam. Hotel ini juga menyediakan resepsionis 24 jam, check-in dan check-out ekspres, layanan kamar (termasuk layanan kamar 24 jam), layanan laundry, minuman sambutan, serta keamanan 24 jam. Fasilitas umum mencakup area merokok dan area bebas asap rokok, teras, serta area parkir yang mudah diakses. Untuk kebutuhan bisnis, tersedia fasilitas rapat dan proyektor. Hotel ini juga ramah difabel dengan toilet khusus, parkir khusus penyandang disabilitas, jalan akses kursi roda, dan kamar aksesibel, serta lokasi yang mudah dijangkau, menjadikannya pilihan yang nyaman untuk perjalanan bisnis maupun liburan."
+  },
+  {
+    "question": "Berapa harga menginap di Nabasa Hotel Balige?",
+    "answer": "Harga kamar di Nabasa Hotel Balige bervariasi, mulai dari Rp 286.650 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Apakah Nabasa Hotel Balige menyediakan sarapan?",
+    "answer": "Iya, Nabasa Hotel Balige menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Nabasa Hotel Balige?",
+    "answer": "Nabasa Hotel Balige memiliki 3 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Nabasa Hotel Balige?",
+    "answer": "Nabasa Hotel Balige memiliki 23 kamar"
+  },
+  {
+    "question": "Apakah Nabasa Hotel Balige menyediakan parkir?",
+    "answer": "Ya, Nabasa Hotel Balige menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka.."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Nabasa Hotel Balige?",
+    "answer": "Nabasa Hotel Balige terkenal akan Lokasi, Kebersihan, Kenyamanan Kamar."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Nabasa Hotel Balige?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Nabasa Hotel Balige, seperti: Standard B, Superior"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Nabasa Hotel Balige?",
+    "answer": "Nabasa Hotel Balige bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Bagaimana cara menuju dari bandara terdekat ke Hotel Nabasa?",
+    "answer": "Bandara terdekat adalah Silangit, dan jaraknya sekitar sekitar 28 menit berkendara dari hotel (17,3km) dari Hotel Nabasa."
+  },
+  {
+    "question": "Apakah Hotel Nabasa memiliki restoran di dalamnya?",
+    "answer": "Tidak, Hotel Nabasa tidak memiliki restoran."
+  },
+  {
+    "question": "Apakah Hotel Nabasa memiliki kolam renang?",
+    "answer": "Ya, Hotel Nabasa memiliki kolam renang."
+  },
+  {
+    "question": "Berapa tarif menginap di Hotel Nabasa?",
+    "answer": "Harga di Hotel Nabasa dapat bervariasi tergantung pada tanggal, kebijakan hotel, dan faktor lainnya. Untuk mengetahui harga yang tepat, silakan masukkan tanggal yang Anda inginkan untuk menginap."
+  },
+  {
+    "question": "Bagaimana kebijakan pembatalan untuk Hotel Nabasa?",
+    "answer": "Kebijakan pembatalan untuk Hotel Nabasa bervariasi tergantung pada jenis kamar dan kondisi pemesanan."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel memiliki waktu check-in pukul 13.00 dan waktu check-out pukul 12.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Mutiara Balige Hotel?",
+    "answer": "Fasilitas paling populer di Mutiara Balige Hotel meliputi: - Wi-Fi (gratis), - Tempat parkir (gratis), Sarapan, - Restoran"
+  },
+  {
+    "question": "Apakah Mutiara Balige Hotel menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Mutiara Balige Hotel menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Mutiara Balige Hotel dilengkapi kolam renang?",
+    "answer": "Tidak, Mutiara Balige Hotel tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Mutiara Balige Hotel?",
+    "answer": "Ya, Mutiara Balige Hotel menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Mutiara Balige Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Mutiara Balige Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 12 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Mutiara Balige Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Mutiara Balige Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 27 mnt"
+  },
+  {
+    "question": "Mutiara Balige Hotel bintang berapa?",
+    "answer": "Mutiara Balige Hotel adalah hotel bintang 1 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Mutiara Balige Hotel?",
+    "answer": "Ada 28 kamar yang tersedia di Mutiara Balige Hotel."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel menawarkan fasilitas terbaik seperti resepsionis 24 jam, parkir gratis, dan WiFi gratis di area umum maupun kamar, serta dilengkapi AC, restoran, kafe, ruang tamu, dan fasilitas anak termasuk mainan dan buku cerita serta kursi tinggi. Hotel ini menyediakan layanan kamar, layanan makan pribadi dengan pilihan makanan halal, ruang makan dan ruang makan outdoor, serta fasilitas bisnis seperti proyektor. Untuk kenyamanan tamu, tersedia keamanan 24 jam, check-in lebih awal, area bebas rokok, perpustakaan, pemadam api, serta produk pembersih. Fasilitas kamar meliputi TV kabel, televisi, shower, tirai anti tembus pandang, ketel, pemanggang roti, lemari es, peralatan makan, patio atau teras, akses dan pemandangan danau. Hotel ini juga menyediakan layanan antar-jemput bandara (gratis maupun berbiaya), penyewaan sepeda, mobil, dan motor, serta mendukung berbagai aktivitas seperti berlayar, bersepeda/bersepeda gunung, dan memancing. Hewan peliharaan tidak diperbolehkan, menjadikan hotel ini pilihan nyaman untuk liburan maupun perjalanan bisnis di kawasan Danau Toba."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel memiliki 28 kamar"
+  },
+  {
+    "question": "Apakah Mutiara Balige Hotel menyediakan parkir?",
+    "answer": "Ya, Mutiara Balige Hotel menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apakah Mutiara Balige Hotel menyediakan airport transfer?",
+    "answer": "Ya, Airport transfer tersedia. Tetapi kamu butuh konfirmasi ke Mutiara Balige Hotel terlebih dahulu."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel terkenal akan Lokasi, Kebersihan, Kenyamanan Kamar."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Mutiara Balige Hotel?",
+    "answer": "Jenis kamar yang tersedia di hotel ini antara lain adalah: Kamar Superior dengan Tanpa AC, - Kamar Deluks dengan AC"
+  },
+  {
+    "question": "Berapa kisaran harga kamar untuk menginap di Mutiara Balige Hotel?",
+    "answer": "Harga termurah di Mutiara Balige Hotel kalau kamu mau menginap hari ini adalah IDR 430.022"
+  },
+  {
+    "question": "Di mana alamat Mutiara Balige Hotel?",
+    "answer": "Mutiara Balige Hotel beralamat di Jl. Tarutung No. 120, Balige, Kab. Toba, Sumatera Utara"
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di The Boat Homestay and Spa?",
+    "answer": "Waktu untuk check-in di The Boat Homestay and Spa adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Di mana alamat The Boat Homestay and Spa?",
+    "answer": "The Boat Homestay and Spa beralamat di Jalan Tarutung no 100 Sanhkarnihuta Balige Toba Samosir Sumatera Utara"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di The Boat Homestay and Spa?",
+    "answer": "Waktu untuk check-in di The Boat Homestay and Spa adalah mulai dari pukul 13:00 dan waktu check-out paling lambat pukul 13:00"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Dizomn ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Hotel Dizomn ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 11 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel Dizomn ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel Dizomn ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 27 mnt"
+  },
+  {
+    "question": "Bahagia Hotel bintang berapa?",
+    "answer": "Bahagia Hotel adalah hotel bintang 2 yang berlokasi di Langkawi, Malaysia yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Bahagia Hotel?",
+    "answer": "Ada 168 kamar yang tersedia di Bahagia Hotel."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Bahagia Hotel?",
+    "answer": "Bahagia Hotel menawarkan fasilitas terbaik seperti AC, restoran, resepsionis 24 jam, parkir (gratis maupun berbiaya), lift, dan WiFi (gratis maupun berbiaya) di area umum, serta didukung fasilitas komputer/internet. Untuk kebutuhan bersantap, tersedia restoran ber-AC yang menyajikan sarapan prasmanan, makan siang dan makan malam prasmanan maupun bermenu, kafe, ruang makan, serta winery. Fasilitas umum meliputi area parkir, layanan kamar (termasuk layanan terbatas), brankas, ruang keluarga, kamar dengan pintu penghubung, alat pemanas, dan area bebas asap rokok. Layanan hotel mencakup keamanan 24 jam, penitipan bagasi, staf multibahasa (Bahasa Indonesia dan Inggris), jasa tur, serta akses mudah ke berbagai fasilitas terdekat seperti ATM/bank, minimarket, supermarket, toko oleh-oleh, salon rambut, dan laundry swadaya. Fasilitas kamar meliputi TV kabel, TV, meja, pengering rambut, dan pancuran. Untuk mendukung mobilitas tamu, tersedia layanan antar-jemput bandara dan transportasi ke terminal feri (berbiaya), transportasi di area hotel, serta sewa mobil. Hotel ini juga menyediakan fasilitas bisnis seperti ruang rapat dan layanan fotokopi, ramah untuk keluarga dengan anak-anak menginap gratis, serta berlokasi strategis dan mudah diakses."
+  },
+  {
+    "question": "Berapa harga menginap di Bahagia Hotel?",
+    "answer": "Harga kamar di Bahagia Hotel bervariasi, mulai dari Rp 297.238 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Bahagia Hotel?",
+    "answer": "Waktu untuk check-in di Bahagia Hotel adalah mulai dari pukul Dari 15:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out untuk Ita Soposurung Hotel?",
+    "answer": "Ita Soposurung Hotel memiliki waktu check-in pukul 14.00 dan waktu check-out pukul 00.00"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Ita Soposurung Hotel?",
+    "answer": "Fasilitas paling populer di Ita Soposurung Hotel meliputi: \n1. Tempat parkir (gratis)\n2. Wi-Fi (gratis)\n3. Ber-AC\n4. Sarapan"
+  },
+  {
+    "question": "Apakah Ita Soposurung Hotel menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Ita Soposurung Hotel menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah Ita Soposurung Hotel dilengkapi kolam renang?",
+    "answer": "Tidak, Ita Soposurung Hotel tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Ita Soposurung Hotel?",
+    "answer": "Ya, Ita Soposurung Hotel menyediakan tempat parkir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Ita Soposurung Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Ita Soposurung Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 15 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Ita Soposurung Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Ita Soposurung Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 22 mnt"
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Ita Soposurung?",
+    "answer": "Ada 16 kamar yang tersedia di Ita Soposurung."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Ita Soposurung?",
+    "answer": "Ita Soposurung menawarkan fasilitas terbaik seperti restoran, serta didukung berbagai fasilitas lain untuk kenyamanan tamu, termasuk WiFi gratis, AC, resepsionis 24 jam, dan parkir gratis. Fasilitas umum mencakup layanan kamar, area bebas rokok, serta taman untuk bersantai. Kamar dilengkapi dengan shower dan televisi, sementara konektivitas internet tersedia melalui WiFi gratis. Untuk kebutuhan perjalanan dan bisnis, tersedia layanan sewa mobil serta fasilitas rapat, menjadikannya pilihan yang cocok untuk kunjungan wisata maupun keperluan kerja."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di Ita Soposurung?",
+    "answer": "Ita Soposurung memiliki 3 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Ita Soposurung?",
+    "answer": "Ita Soposurung memiliki 16 kamar"
+  },
+  {
+    "question": "Apakah Ita Soposurung menyediakan parkir?",
+    "answer": "Ya, Ita Soposurung menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Ita Soposurung?",
+    "answer": "Ita Soposurung terkenal akan Lokasi, Kebersihan, Pelayanan dan Fasilitas."
+  },
+  {
+    "question": "Di mana alamat HOTEL ITA SOPOSURUNG?",
+    "answer": "HOTEL ITA SOPOSURUNG beralamat di Jin Tarutung No 525-Balige. Kab Toba Samosir"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel O Balige City Near Tugu Juara Monang ke Pantai Lumban Bulbul- Balige?",
+    "answer": "Mengemudi dari Hotel O Balige City Near Tugu Juara Monang ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 55 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hotel O Balige City Near Tugu Juara Monang ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hotel O Balige City Near Tugu Juara Monang ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 24 mnt"
+  },
+  {
+    "question": "Hotel O Balige City Near Tugu Juara Monang bintang berapa?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang adalah hotel bintang 2 yang berlokasi di Balige, Danau Toba yang menawarkan berbagai tipe kamar sesuai kebutuhan kamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Ada 30 kamar yang tersedia di Hotel O Balige City Near Tugu Juara Monang."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang menawarkan fasilitas terbaik seperti AC, resepsionis 24 jam, dan WiFi gratis di seluruh area dan kamar, serta didukung area bebas rokok dan ruang keluarga. Hotel ini menyediakan layanan kamar (termasuk 24 jam dan terbatas), penitipan bagasi, check-in/check-out cepat, layanan kebersihan harian, layanan binatu, serta staf multibahasa (Bahasa Indonesia dan Inggris). Fasilitas umum mencakup lobi, WiFi publik, toilet, parkir gratis dan parkir difabel (ketersediaan dapat bervariasi), serta lift di beberapa area, dengan hewan peliharaan tidak diperbolehkan. Kamar dilengkapi TV dan TV kabel, shower, kamar mandi pribadi, linen, cermin, dan tempat sampah. Untuk mobilitas tamu tersedia layanan shuttle (biaya tambahan) dan penyewaan mobil. Keamanan dan kebersihan didukung CCTV di area umum, pemadam api, kotak P3K, keamanan 24 jam, serta protokol sanitasi seperti disinfeksi harian, sterilisasi kamar sebelum check-in, pembayaran non-tunai, dan staf terlatih standar keselamatan. Hotel ini juga ramah anak (anak-anak menginap gratis dengan fitur keamanan seperti penutup outlet) dan berlokasi dekat minimarket, toko, serta supermarket."
+  },
+  {
+    "question": "Berapa harga menginap di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Harga kamar di Hotel O Balige City Near Tugu Juara Monang bervariasi, mulai dari Rp 96.351 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Waktu untuk check-in di Hotel O Balige City Near Tugu Juara Monang adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Hotel bintang berapa Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang merupakan hotel bintang 2"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang memiliki 30 kamar"
+  },
+  {
+    "question": "Apakah Hotel O Balige City Near Tugu Juara Monang menyediakan parkir?",
+    "answer": "Ya, Hotel O Balige City Near Tugu Juara Monang menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang terkenal akan Makanan, Lokasi, Kebersihan. Dari traveler asli di Traveloka."
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel O Balige City Near Tugu Juara Monang, seperti: Twin Standar, Kamar Double Standar, Deluxe Twin"
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Di mana alamat Hotel O Balige City Near Tugu Juara Monang?",
+    "answer": "Hotel O Balige City Near Tugu Juara Monang beralamat di Balige, Toba Samosir, Sumatera Utara, Balige, North Sumatra, ID"
+  },
+  {
+    "question": "Apa saja hotel populer di Kabupaten Toba?",
+    "answer": "Beberapa hotel populer di Kabupaten Toba dan sekitarnya antara lain: Hotel Sere Nauli, HW Hubers Laguboti, Tendy Guest House, Labersa Toba Hotel & Convention Centre, Baritaland Hotel, RAP Hotel, Hotel Ompu Herti, Bobocabin Kaldera Toba, ΟΥΟ 90645 Karisma Residence, Sapadia Villa Balige 2, Purnama Balige Hotel, Aluna Bay Hotel, Vany Villa Balige, Mutiara Balige Hotel, Gemma Hotel Balige, Sapadia Villa Lumban Silintong, The Boat Homestay And Spa, Damar Toba, Sapadia Villa Balige 1, Tiara Bunga Hotel & Villa."
+  },
+  {
+    "question": "Di mana alamat HW. Hubers Hotel, Bar & Resto?",
+    "answer": "HW. Hubers Hotel, Bar & Resto beralamat di Jalan Laguboti"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di HW. Hubers Hotel, Bar & Resto?",
+    "answer": "Waktu untuk check-in di HW. Hubers Hotel, Bar & Resto adalah mulai dari pukul 13:00 dan waktu check-out paling lambat pukul 12:00"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di HW. Hubers Hotel, Bar & Resto?",
+    "answer": "HW Hubers Laguboti menyediakan berbagai fasilitas yang dapat digunakan tamu (beberapa mungkin dikenakan biaya tambahan), termasuk WiFi gratis yang tersedia di seluruh area hotel, parkir pribadi gratis tanpa perlu reservasi, serta AC di kamar dan area umum. Hotel ini juga menawarkan taman, teras, dan bar/lounge untuk bersantai, serta mengizinkan hewan peliharaan. Setiap kamar dilengkapi kamar mandi pribadi dengan shower, toilet, tisu toilet, dan handuk, serta fasilitas seperti TV, linen, lemari, dan area tempat duduk, dengan lantai berubin/marmer dan pilihan teras atau balkon pada kamar tertentu. Fasilitas umum mencakup WiFi publik, parkir gratis, dan suasana nyaman dengan staf yang dapat berbahasa Indonesia, menjadikannya pilihan tepat untuk penginapan yang praktis dan nyaman."
+  },
+  {
+    "question": "Tipe kamar seperti apa yang bisa saya pesan di HW Hubers Laguboti?",
+    "answer": "Opsi kamar di HW Hubers Laguboti termasuk: Double, - Twin/Double"
+  },
+  {
+    "question": "Berapa harga menginap di HW Hubers Laguboti?",
+    "answer": "Harga di HW Hubers Laguboti mungkin berbeda tergantung masa inap Anda (mis. tanggal pilihan, kebijakan hotel, dll). Lihat harga dengan memasukkan tanggal."
+  },
+  {
+    "question": "Seberapa jauh HW Hubers Laguboti dari pusat Laguboti?",
+    "answer": "HW Hubers Laguboti berjarak hanya 900 m dari pusat Laguboti."
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hubers Hotel ke Pantai Lumban Bul-bul Balige?",
+    "answer": "Mengemudi dari Hubers Hotel ke Pantai Lumban Bul-bul Balige memerlukan waktu sekitar 16 mnt"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Hubers Hotel ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Hubers Hotel ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 38 mnt"
+  },
+  {
+    "question": "Di mana alamat Hotel Baritaland Balige?",
+    "answer": "Hotel Baritaland Balige beralamat di jin sisingamaharaja no 184 balige Toba"
+  },
+  {
+    "question": "Pukul berapa waktu check-in & check-out di Hotel Baritaland Balige?",
+    "answer": "Waktu untuk check-in di Hotel Baritaland Balige adalah mulai dari pukul 14:00-23:59 dan waktu check-out paling lambat pukul 12:00"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di Hotel Baritaland Balige?",
+    "answer": "Hotel ini menyediakan berbagai fasilitas yang dapat digunakan tamu (beberapa mungkin dikenakan biaya tambahan), seperti kolam renang, WiFi gratis, AC, layanan antar jemput bandara, dan resepsionis 24 jam. Fasilitas populer lainnya meliputi restoran, parkir gratis, fasilitas anak, serta fasilitas rapat. Untuk rekreasi tersedia karaoke dan kolam renang anak, serta area bermain anak yang ramah keluarga, sementara hotel menerapkan kebijakan bebas rokok dan tidak memperbolehkan hewan peliharaan. Fasilitas umum mencakup gazebo, toilet, kursi tinggi, dan kolam renang, sedangkan layanan hotel meliputi penitipan bagasi, live entertainment, serta layanan laundry/dry cleaning. Tersedia pula ruang kerja khusus, printer, pembatas perapian, serta pilihan makanan dan minuman seperti ruang makan, prasmanan sarapan, kafe atau kedai kopi, dan lokasi yang dekat dengan kuliner halal. Untuk kebutuhan bisnis, hotel menyediakan ruang rapat, ballroom, mesin fotokopi, dan komputer. Kamar dilengkapi dengan shower, ketel, kamar berdampingan, televisi, WiFi gratis, serta aksesibilitas seperti kunci pintu smart, menjadikannya pilihan yang nyaman baik untuk liburan keluarga maupun perjalanan bisnis."
+  },
+  {
+    "question": "Apakah di Hotel Baritaland Balige tersedia fasilitas kolam renang?",
+    "answer": "Ya, di Hotel Baritaland Balige tersedia kolam renang yang bisa kamu gunakan."
+  },
+  {
+    "question": "Apakah Bobocabin Kaldera Toba memiliki pemandangan yang bagus?",
+    "answer": "Ya, berdasarkan user review Bobocabin Danau Toba memiliki view sunset dan view pemandangan yang bagus. Cocok untuk anda yang menyukai pemandangan."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di Bobocabin Kaldera Toba?",
+    "answer": "Ada 4 kamar yang tersedia di Bobocabin Kaldera, Toba."
+  },
+  {
+    "question": "Seberapa dekat Bobocabin Kaldera Toba ke pusat kota?",
+    "answer": "Bobocabin Kaldera, Toba hanya berjarak sekitar 1.35 km dari pusat kota Danau Toba."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba menawarkan berbagai fasilitas terbaik untuk kenyamanan tamu, termasuk AC, WiFi gratis, parkir, resepsionis 24 jam, balkon atau teras, serta layanan antar-jemput bandara dan layanan kamar 24 jam. Hotel ini menyediakan restoran dengan pilihan sarapan ala Asia dan a la carte, fasilitas BBQ pribadi, serta layanan binatu. Fasilitas umum mencakup area parkir, area merokok terpisah, lift, toilet, dan area bebas asap rokok. Kamar dilengkapi dengan meja, pengering rambut, pancuran, ketel, bidet, komputer tablet, cermin, rak pakaian, dan akses WiFi gratis, dengan opsi kamar bebas asap rokok dan pemandangan danau. Hotel juga memiliki layanan keamanan 24 jam, CCTV, detektor asap, kotak P3K, pemadam api, serta protokol kebersihan profesional termasuk sterilisasi kamar, disinfeksi harian, dan pencucian linen dengan air panas. Aktivitas dan rekreasi meliputi area bonfire, BBQ, dan ruang santai. Layanan hotel lainnya mencakup check-in/check-out ekspres, penitipan bagasi, staf multibahasa, dan layanan pembayaran non-tunai. Aksesibilitas difasilitasi dengan parkir bagi penyandang disabilitas dan lokasi yang mudah dijangkau. Hotel menerapkan kebijakan bebas asap rokok, hewan peliharaan tidak diperbolehkan, serta protokol keselamatan dan sanitasi yang ketat, menjadikannya pilihan yang aman dan nyaman untuk tamu yang mencari kenyamanan, keamanan, dan fasilitas modern di Toba."
+  },
+  {
+    "question": "Berapa harga menginap di Bobocabin Kaldera Toba?",
+    "answer": "Harga kamar di Bobocabin Kaldera, Toba bervariasi, mulai dari Rp 539.160 per malam. Namun, harga dapat berubah tergantung tipe kamar, waktu pemesanan, dan promosi yang berlaku."
+  },
+  {
+    "question": "Kapan waktu check-in & check-out di Bobocabin Kaldera Toba?",
+    "answer": "Waktu untuk check-in di Bobocabin Kaldera, Toba adalah mulai dari pukul Dari 14:00 sedangkan waktu check-out paling lambat pukul Sebelum 12:00"
+  },
+  {
+    "question": "Hotel bintang berapa Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba merupakan hotel bintang 4"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba memiliki 4 kamar"
+  },
+  {
+    "question": "Apakah Bobocabin Kaldera Toba meneyediakan parkir?",
+    "answer": "Ya, Bobocabin Kaldera, Toba menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba terkenal akan Kebersihan, Kenyamanan Kamar, Lokasi."
+  },
+  {
+    "question": "Apa yang terdekat dari Bobocabin Kaldera Toba?",
+    "answer": "Berikut adalah yang terdekat dari Bobocabin Kaldera, Toba: Bandar Udara Sibisa (SIW), Air Terjun Bukit Gibeon, Pelabuhan Parapat, Pelabuhan Ajibata, Terminal Sosor Saba Parapat"
+  },
+  {
+    "question": "Jenis kamar apa saja yang tersedia di Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba, menyediakan beberapa jenis kamar yang bisa dipesan, termasuk Deluxe Cabin, Deluxe Cabin dengan pemandangan Danau Toba, Kamar Deluks King, serta Kabin Deluks. Berbagai pilihan kamar ini dirancang untuk memberikan kenyamanan dan pemandangan yang indah bagi para tamu selama menginap."
+  },
+  {
+    "question": "Fasilitas kamar apa saja yang tersedia di Bobocabin Kaldera Toba?",
+    "answer": "Fasilitas kamar yang tersedia di Bobocabin Kaldera, Toba mencakup AC, WiFi gratis, shower, balkon atau teras, air panas, meja, pengering rambut, pancuran, kamar mandi pribadi, cermin, handuk, rak pakaian, mesin pembuat teh/kopi, komputer tablet di kamar, area tempat duduk, ruang makan terpisah, soket dekat kasur, telepon, dan tempat sampah. Semua fasilitas ini dirancang untuk kenyamanan dan kemudahan tamu selama menginap."
+  },
+  {
+    "question": "Ada berapa tamu yang dapat menginap di Bobocabin Kaldera Toba?",
+    "answer": "Bobocabin Kaldera, Toba bisa memiliki sampai 2 tamu, tergantung dari kamar yang bisa di pilih"
+  },
+  {
+    "question": "Di mana alamat Bobocabin Kaldera, Toba?",
+    "answer": "Bobocabin Kaldera, Toba beralamat di Pardamean Sibisa, Ajibata, Kabupaten Toba Samosir, Sumatera Utara, Indonesia"
+  },
+  {
+    "question": "Apa saja fasilitas utama di Bobocabin Kaldera, Toba?",
+    "answer": "Fasilitas paling populer di Bobocabin Kaldera, Toba meliputi: - Wi-Fi (gratis), Ber-AC, Sarapan (biaya tambahan), - Tempat parkir"
+  },
+  {
+    "question": "Apakah Bobocabin Kaldera, Toba menawarkan Wi-Fi gratis?",
+    "answer": "Ya, Bobocabin Kaldera, Toba menawarkan Wi-Fi gratis"
+  },
+  {
+    "question": "Apakah tempat parkir tersedia di Bobocabin Kaldera, Toba?",
+    "answer": "Ya, Bobocabin Kaldera, Toba menyediakan tempat parkir"
+  },
+  {
+    "question": "Apakah Bobocabin Kaldera, Toba dilengkapi kolam renang?",
+    "answer": "Tidak, Bobocabin Kaldera, Toba tidak dilengkapi kolam renang"
+  },
+  {
+    "question": "Berapa lama waktu perjalanan dari Bobocabin Kaldera, Toba ke Bandar Udara Raja Sisingamangaraja XII?",
+    "answer": "Mengemudi dari Bobocabin Kaldera, Toba ke Bandar Udara Raja Sisingamangaraja XII memerlukan waktu sekitar 1 j 40 mnt"
+  },
+  {
+    "question": "Apakah Aluna Bay Hotel ada tempat parkir?",
+    "answer": "Kebijakan parkir Aluna Bay Hotel: Parkir umum gratis tersedia di lokasi properti (reservasi tidak diperlukan)."
+  },
+  {
+    "question": "Apakah Aluna Bay Hotel ada restoran?",
+    "answer": "Sayangnya, Aluna Bay Hotel tidak punya restoran."
+  },
+  {
+    "question": "Apakah Aluna Bay Hotel ada spa?",
+    "answer": "Sayangnya, Aluna Bay Hotel tidak punya pusat spa dan wellness."
+  },
+  {
+    "question": "Apakah Aluna Bay Hotel ada kolam renang?",
+    "answer": "Aluna Bay Hotel tidak punya kolam renang."
+  },
+  {
+    "question": "Seperti apakah kebijakan WiFi-nya di Aluna Bay Hotel ?",
+    "answer": "Kebijakan akses internet di Aluna Bay Hotel: Wi-Fi tersedia di seluruh hotel dan tidak dikenai biaya."
+  },
+  {
+    "question": "Apakah ada kamar dengan kamar mandi pribadi di Aluna Bay Hotel?",
+    "answer": "Ada kamar dengan kamar mandi pribadi di Aluna Bay Hotel."
+  },
+  {
+    "question": "Kapan waktu check-in dan check-out Aluna Bay Hotel?",
+    "answer": "✓ Check-in dari 14:00 sampaаі 18:00, ✓ Check-out sampai 13:00. Jika ingin meminta layanan check-in atau check-out lebih awal maupun terlambat, Anda bisa membuat permintaan khusus saat memesan. Harap dicatat bahwa permintaan khusus tidak bisa dijamin. Jika check-in atau check-out lebih awal maupun lebih lambat penting untuk rencana perjalanan Anda, kami sarankan untuk memeriksa opsi pembatalan sebelum Anda memesan."
+  },
+  {
+    "question": "Tipe kamar seperti apa yang bisa saya pesan di Aluna Bay Hotel?",
+    "answer": "Opsi kamar di Aluna Bay Hotel termasuk: - Double"
+  },
+  {
+    "question": "Berapa harga menginap di Aluna Bay Hotel?",
+    "answer": "Harga di Aluna Bay Hotel mungkin berbeda tergantung masa inap Anda (mis. tanggal pilihan, kebijakan hotel, dll). Lihat harga dengan memasukkan tanggal."
+  },
+  {
+    "question": "Apa yang bisa dilakukan di Aluna Bay Hotel?",
+    "answer": "Aluna Bay Hotel menawarkan aktivitas/layanan berikut (mungkin dikenakan biaya): - Tepi pantai, - Pantai"
+  },
+  {
+    "question": "Seberapa jauh Aluna Bay Hotel dari pusat Balige?",
+    "answer": "Aluna Bay Hotel berjarak hanya 700 m dari pusat Balige."
+  },
+  {
+    "question": "Seberapa dekat Aluna Bay Hotel dengan pantai?",
+    "answer": "Pantai terdekat berjarak hanya 1,3 km dari Aluna Bay Hotel."
+  },
+  {
+    "question": "Pada jam berapa waktu check-in dan check-out di Sopo Almonsari?",
+    "answer": "Waktu check-in Sopo Almonsari: 14:00; waktu check-out Sopo Almonsari: 12:00."
+  },
+  {
+    "question": "Bagaimana cara menuju dari bandara terdekat ke Sopo Almonsari?",
+    "answer": "Bandara terdekat adalah Bandar Udara Raja Sisingamangaraja XII, dan jaraknya sekitar sekitar 9 menit berkendara dari hotel (5,4km) dari Sopo Almonsari."
+  },
+  {
+    "question": "Berapa tarif menginap di Sopo Almonsari ?",
+    "answer": "Harga di Sopo Almonsari dapat bervariasi tergantung pada tanggal, kebijakan hotel, dan faktor lainnya. Untuk mengetahui harga yang tepat, silakan masukkan tanggal yang Anda inginkan untuk menginap."
+  },
+  {
+    "question": "Bagaimana kebijakan pembatalan untuk Sopo Almonsari?",
+    "answer": "Kebijakan pembatalan untuk Sopo Almonsari bervariasi tergantung pada jenis kamar dan kondisi pemesanan."
+  },
+  {
+    "question": "Di mana alamat Hotel ALmonsari?",
+    "answer": "Hotel ALmonsari beralamat di Jl. Siborong Borong - Parapat, Tangga Batu Bar., Kec. Tampahan, Toba, Sumatera Utara 22312"
+  },
+  {
+    "question": "Apa saja fasilitas yang tersedia di Hotel ALmonsari?",
+    "answer": "Hotel ini menawarkan berbagai fasilitas yang bisa digunakan oleh tamu, meskipun beberapa mungkin memerlukan biaya tambahan, termasuk parkir, tiket CLEAN, resepsionis 24 jam, dan restoran. Fasilitas publik meliputi area parkir, kafe, serta restoran untuk sarapan, sementara fasilitas kamar mencakup meja, pancuran, dan TV. Untuk kenyamanan tamu, tersedia aula, area bebas rokok, serta layanan parkir berjaga. Akses WiFi gratis disediakan di seluruh hotel, dan lokasi hotel mudah diakses. Layanan hotel lainnya termasuk penitipan bagasi, serta fasilitas kebersihan dan keamanan seperti tiket CLEAN yang populer di kalangan tamu."
+  },
+  {
+    "question": "Berapa jumlah kamar yang tersedia di HOTEL ALMONSARI?",
+    "answer": "Ada 24 kamar yang tersedia di HOTEL ALMONSARI."
+  },
+  {
+    "question": "Fasilitas apa saja yang tersedia di HOTEL ALMONSARI?",
+    "answer": "HOTEL ALMONSARI memiliki fasilitas terbaik seperti: Restoran, Parkir, WiFi. (Beberapa fasilitas lain mungkin memerlukan biaya tambahan)"
+  },
+  {
+    "question": "Apakah HOTEL ALMONSARI menyediakan sarapan?",
+    "answer": "lya, HOTEL ALMONSARI menyediakan sarapan. Namun kamu perlu memilih kamar dengan sarapan atau harus membayar biaya tambahan jika kamu memesan kamar tanpa sarapan."
+  },
+  {
+    "question": "Ada berapa lantai yang tersedia di HOTEL ALMONSARI?",
+    "answer": "HOTEL ALMONSARI memiliki 2 lantai"
+  },
+  {
+    "question": "Ada berapa kamar yang tersedia di HOTEL ALMONSARI?",
+    "answer": "HOTEL ALMONSARI memiliki 24 kamar"
+  },
+  {
+    "question": "Apakah HOTEL ALMONSARI menyediakan parkir?",
+    "answer": "Ya, HOTEL ALMONSARI menyediakan tempat parkir. Tetapi anda harus konfirmasi ke hotel tentang seberapa besar tempat parkir mereka."
+  },
+  {
+    "question": "Apa kata traveller yang sudah menginap di HOTEL ALMONSARI?",
+    "answer": "HOTEL ALMONSARI terkenal akan Lokasi, Pelayanan dan Fasilitas, Kebersihan."
+  },
+  {
+    "question": "Destinasi wisata alam apa yang populer di Kabupaten Toba?",
+    "answer": "Beberapa destinasi wisata alam yang paling populer di Kabupaten Toba, yaitu : 1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) The Caldera Toba - The Caldera Toba Nomadic Escape adalah salah satu destinasi wisaata modern yang terletak di kawasan Danau Toba, Sumatera Utara. Destinasi ini dirancang sebagai tempat rekreasi yang menawarkan pengalaman wisata alam yang berpadu dengan konsep nomadik atau berkemah mewah. The Caldera Toba Nomadic Escape sangat cocok bagis wisatawan yang ingin menikmati keindahan Danau Toba dengan cara yang unik dan berkelas (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Air Terjun Situmurun - Air Terjun Situmurun adalah salah satu destinasi wisata alam yang memukau di Kabupaten Toba, Sumatera Utara. Air terjun ini memiliki keunikan karena langsung mengalirkan airnya ke Danau Toba, menjadikannya salah satu air terjun yang sangat istimewa di kawasan ini. Air Terjun Situmurun adalah destinasi yang wajib dikunjungi bagi para pecinta alam dan petualangan. Kombinasi keindahan air terjun dan panorama Danau Toba akan memberikan pengalaman tak terlupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Bukit Singgolom - Bukit Singgolom adalah salah satu destinasi wisata alam yang menakjubkan di kawasan Kabupaten Toba. Bukit ini terkenal dengan pemandangannya yang indah. Dari puncak Bukit Singgolom, pengunjung dapat menikmati pemandangan Danau Toba yang luas dan biru, lengkap dengan deretan bukit-bukit hijau di sekililingnya. Bukit Singgolom menawarkan perpaduan ketenangan alam dan keindahan panorama yang sulit dilupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 5) Pantai Parparean - Pantai Parparean menawarkan keindahan panorama Danau Toba yang memukau. Dengan hamparan pasir putih yang jarang ditemukan di sekitar Danau Toba, pantai ini menjadi tempat favorit untuk bersantai sambil menikmati keindahan alam. Keindahan Pantai Parparean membuatnya menjadi tempat uang sangat Instagrammable. Banyak wisatawan yang memanfaatkan pantai ini sebagai lokasi untuk foto prewedding atau sekadar mengabadikan momen liburan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 6) Bukit Senyum Motung - Dengan suasana yang tenang dan panorama yang memukau. Bukit Senyum Motung sangat cocok untuk piknik, camping, atau sekadar melepas penat dari eksibukan sehari-hari. Jangan lupa abadikan momen terbaikmu saat berada di sini! Waktu terbaik untuk mengunjungi Bukit Senyum Motung adalah pada pagi hari untuk menikmati matahari terbit atau sore hari menjelang matahari terbenam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 7) Desa Wisata Meat - Desa Wisata Meat yang terletak di Kecamatan Tampahan. Desa Meat berada di pinggiran Danau Toba dengan menawarkan keindahan alam yang sangat mempesona yang dapat di lihat dan dinikmati oleh wisatawan. Diapit oleh dua perbukitan yang di tumbuhi hutan pinus dan keanekaragaman tumbuhan lainnya, ditambah dengan hamparan sawah yang luas, membuat desa ini sangat indah. Desa ini juga terdapat hamparan pasir putih dan memiliki air yang jernih serta ombak yang tenang (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).  8) Tarabunga - Bukit Tarabunga adalah destiansi wisata alam di Kabupaten Toba, yang menawarkan panorama indah Danau Toba dari ketinggian. Dari puncaknya, kamu dapat menikmati pemandangan luas Danau Toba dengan latar belakang Pulau Samosir. Waktu terbaik untuk berkunjung adalah saat matahari terbit atau terbenam, di mana langit beradu dengan keindahan danau. Selain panorama alam, Bukit Tarabunga juga memiliki area pohon pinus yang rindang, cocok untuk bersantai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 9) River Side Juma Bulu - Desa Wisata River Side Juma Bulu di Pardomuan Ajibata, Kabupaten Toba, menawarkan pengalaman wisata alam yang memukau dengan pemandangan persawahan dan aliran sungai yang jernih. Berbagai aktvitas menarik dapat dinikmati oleh wisatawan seperti river tubing, berkemah serta trekking (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Destinasi apa yang cocok untuk wisata keluarga?",
+    "answer": "Beberapa destinasi wisata yang cocok untuk wisata keluarga, yaitu : 1) Waterpark Labersa, 2) Pantai Lumban Bulbul, 3) Bukit Senyum Motung, 4) Pantai Pakkodian, 5) Pemandian Bukti Gibeon."
+  },
+    {
+    "question": "Destinasi apa yang merupakan tempat sejarah?",
+    "answer": "Beberapa tempat sejarah yang kini menjadi wisata sejarah sebagai berikut : 1) TB Silalahi Centre (Museum Balige), 2) Makam Pahlawan Nasional Raja Sisingamangaraja XII - Makam Pahlawan Nasional Raja Sisingamangaraja XII terletak di Desa Pagar Batu, Balige. Makam ini menjadi saksis sejarah perjuangan sang Pahlawan Nasional Sisingamangaraja XXI beserta putri-putir beliau. Hingga kini, makam ini menjadi tempat ziarah dan penghormatan, bukan hanya bagia masyarakat Batak, tetapi juga bagi seluruh bangsa Indonesia (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Gua Liang Sipege - Gua ini merupakan salah satu objek wisata yang memiliki cerita sejarah. Gua Liang Sipege ini merupakan tempat tinggal seorang Raja bernama Raja Situngo dan putranya yaitu Raja Sijorat Paralim Panjaitan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Sumur Raja Sisingamangaraja XII - Sumur Raja Sisingamangaraja XII ini berada di Desa Sibarani Nasampulu/Namungkup, Kecamatan Laguboti, Kabupaten Tobs. Sumur ini juga dikenal dengan nama Taor Mual Sipangolu. Menurut penuturan masyarakat sekitar, sumur ini dibuat langsung oleh Raja Sisingamangaraja XII saat bergerilya melawan penjajah Belanda di Toba, khususnya di Laguboti. Sumur ini menjadi sumber mata air seperti untuk air minum, kebutuhan mandi dan ibadah saat perang di wilayah Laguboti (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 5) Mual Sirambe Nauli - Mual Sirambe Nauli menjadi bagian dan warisan bidaya dan kearifan lokal yang terus dijaga hingga kini. Mual Sirame Nauli dulunya merupakan mata air alami yang dihuni ihan Batak. Menurut masyarakat, tempat ini masih sakral sehingga ikan-ikan tersebut tidak boleh ditangkap ataupun dimakan. Kepala Desan Bonan Dolok II juga menyampaikan bahwa ikan-ikan tersebut menyukai kacang sebagai makananya (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Destinasi wisata apa yang cocok untuk camping?",
+    "answer": "Beberapa destinasi wisata yang bisa digunakan untuk kegiatan camping, yaitu: 1.) Sibisa Hideway Camp - The Kaldera Toba Nomadic Escaope menghadirkan fasilitas Camping Ground serta akomodasi yang modern, bersih, dan nyaman untuk berbagai segmen wisatawan. Staf lokasi bersikap ramah dan tanggap sehingga pengalaman menginap terasa menyenangkan. Ketersediaan fasilitas rekreasi dan ruang terbuka membuat kunjungan bukan hanya sekadar bermalam tetapi juga menikmati suasana alam. 2.) Desa Meat, Tampahan - Di Desa Meat menyediakan area camping yang bisa menampung 1000 tenda seperti yang diselenggarkana baru-baru ini dan menjadi salah satu spot-foto yang dimiliki Toba (Jadesta Kemenparekraf). 3.) Desa Wisata River Side Juma Bulu - Riverside Juma Bulu memiliki keindahan alam yang dikelilingi persawahan serta menyediakan tempat camping disertai dengan alat-alat camping berupa tenda camping, panggangan, hingga tempat tidur (Jadesta Kemenparekraf)."
+  },
+    {
+    "question": "Destinasi wisata mana di Kabupaten Toba yang cocok untuk menikmati panorama?",
+    "answer": "Beberapa destinasi wisata di Kabupaten Toba yang cocok untuk menikmati panorama alam : 1.) The Kaldera Toba Nomadi Escape, Kecamatan Ajibata - The Kaldera Toba Nomadic Escape menghadirkan pengalaman menikmati panorama luas ke Danau Toba dari ketinggian yang benar-benar menawan. Lokasi dan pengaturan spot-foto membuat pemandangan danau menjadi lebih dramatis. Suasana sekitar yang hijau dan terbuka turut menambah kenyamanan visual dan relaksasi (Badan Pelaksana Otorita Danau Toba). 2.) Desa Wisata Meat di Toba - Desa Wisata Meat menyuguhkan pemandangan hamparan persawahan hijau dan tepian Danau Toba yang terang dan memukau dari lokasi sekitarnya. Udara yang sejuk dan panorama alam bebas poluasi menjadikan kunjungan terasa sangat menyegarkan. Keindahan alam yang ditawarkan di desa ini dianggap sebagai pengalaman yang sangat berbeda dibanding dengab wisata kota (Badan Pelaksana Otorita Danau Toba). 3.) Pantai Pakkodian di Toba - Pantai Pakkodian menampilkan panorama Danau Toba yang indah dengan bentang alam yang luas dan suasana tenang di sekitarnya. Area ini memberikan pengalaman menikmati keindahan danau dari sudut pandang yang berbeda, dengan air yang jernih dan udara yang sejuk (Badan Pelaksana Otorita Danau Toba). 4) Puncak Sibodiala - Puncak Sibodiala sendiri dikenal sebagai salah satu tempat dengan panorama yang indah di Kabupaten Toba. Dengan ketinggian yang memungkinkan pengunjung melihat pemandangan Danau Toba dari kejauhan, tempat ini memiliki daya tarik tersendiri bagi wisatawan lokal maupun mancanegara (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Rekomendasi tempat belanja souvenir di Kabupaten Toba",
+    "answer": "Beberapa rekomendasi tempat belanja souvenir di Kabupaten Toba : 1) Batikta, 2) Dinar Aksesoris-Ulos Batak Toba, 3)Siregar Ulos Toba & Souvenir (Tripadvisor)"
+  },
+    {
+    "question": "Rekomendasi tempat rekreasi di Kabupaten Toba",
+    "answer": "Beberapa rekomendasi tempat rekreasi di Kabupaten Toba : 1) Motor Trail di Desa Wisata River Side Juma Bulu, 2) Kano di Pantai Lumban Bulbul, 3) Banana Boat di Pantai Lumban Bulbul, 4) Marsolu di Desa Wisata Meat, 5) 1000 Tenda di Desa Wisata Meat, 6) Asahan River Rafting"
+  },
+    {
+    "question": "Rekomendasi tempat wisata air terjun di Kabupaten Toba ",
+    "answer": "Beberapa rekomendasi tempat wisata air terjun di kawasan Kabupaten Toba : 1) Air Terjun Siboruon (Sisparnas Kemenpar) 2) Air Terjun Tamane Eden 100 - Taman Eden adalah kawasan ekowisata alam yang menawarkan keindahan air terjun yang menjadikannya tempat ideal untuk menikmati keindahan alam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Air Terjun Situmurun - Air Terjun Situmurun adalah destinasi alam yang menawarkan aliran air jernih di tengah suasana hutan hijau nan sejuk. Keindahan air terjun yang bertingkat menciptakan pemandangan menenangkan, cocok untuk bersantai, berfoto, atau menikmati kesejukan alami khas Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Air Terjun Sialogo - Air Terjun Sialogo adalah salah satu destinasi alam yang tersembunyi di Kecamatan Pintu Pohan, Kabupaten Toba. Dikelilingi oleh hutan yang masih alami, air terjun ini menawarkan suasana yang sejuk dan menenangkan, cocok untuk melepas penat dari rutinitas. Keunikan Air Terjun Sialogo terletak pada kejernihan airnya serta pemandangan sekitar yang masih asri. Tempat ini cocok bagi pecinta alam dan petualangan yang ingin mengeksplorasi keindahan tersembunyi di daerah Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Rekomendasi destinasi wisata alam di kawaban Kabupaten Toba",
+    "answer": "1) Gua Liang Sipege - Liang Sipege terbentuk dari batu kapur hasil pelapukan dari dinding kalder Porsea. Gua ini terletak di Desa Sianjur, Hutagaol, Kecamatan Balige, Kabupaten Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) Batu Basiha - Secara geologi, Batu Basiha berasal dari letusan super vulkanik Gunung Toba. Lebih spesifik lagi adalah ignimbrit, yaitu batuan yang terbentuk dari endapan awan panas. Batu Basiha terletak di Desa Aek Bolon, Kecamatan Balige, Kabupaten Toba, Sumatera Utara ini menjadi lokasi ekowisata dan agrowisata sebagai upaya menarik lebih banyak wisatawan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Rekomendasi destinasi wisata pantai untuk rekreasi berenang di kawasan Kabupaten Toba",
+    "answer": "1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) Pantai Pasir Putih Parparean - Pantai Pasir Putih Parparean berada di Desa Parparean, Kecamatan Porsea, Kabupaten Toba. Lokasi yang mudah diakses dari jalan utama Porsea-Balige dan menjadi salah satu spot favorit untuk menikmati panorama Danau Toba dengan pasir putih alami (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+  },
+    {
+    "question": "Rekomendasi destinasi wisata yang cocok untuk melakukan trekking di kawasan Kabupaten Toba",
+    "answer": "1) Taman Eden 100 - Taman Eden 100 yang berlokasi di Kecamatan Lumban Julu adalah salah satu destinasi alam yang paling lengkap di Toba. Mulai dari hutan pinus yang rimbun, udara segar, hingga jalu rtrekking yang menantang, ditambah lagi air terjun yang menenangkan, semuanya menyatu dalam satu kawasan yang terjaga keasriannya. Cocok untuk pengunjung yang ingin melepas penar sambil menikmati suasana alam yang masih murni (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) River Side Juma Bulu - Destinasi alam yang sejuk dikelilingi persawahan, cocok buat kamu yang suka petualangan. Serunya river tubing di aliran sungai jernih sambil menikmati pemandangan alam sekitar, plus camping yang seru dengan fasilitas lengkap. Buat yang suka jelajah, ada juga trekking ke Air Terjun Batu Papan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Puncak Sibodiala - Puncak Sibodiala sebagai salah satu destinasi wisata unggul di Kabupaten Toba. Dengan rute hiking yang menantang namun tetap aman, para peserta  dapat menikmati pemandangan alam yang asri serta udara khas pegunungan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). "
+  },
+    {
+    "question": "Kapan waktu biaya paling hemat untuk berkunjung ke Balige?",
+    "answer": "Jika Anda ingin lebih menghemat pengeluaran, sebaiknya datang ke Balige pada bulan Juni sampai Agustus. Pada bulan-bulan tersebut, harga hotel biasanya sedang lebih rendah. Sedangkan pada bulan Desember sampai Februari, harga hotel biasanya lebih tinggi karena banyak orang yang berlibur pada periode tersebut."
+  },
+    {
+    "question": "Kapan waktu biaya paling hemat untuk mengunjungi Laguboti?",
+    "answer": "Jika Anda adalah wisatawan yang ingin lebih hemat, Anda bisa mempertimbangkan untuk berkunjung ke Laguboti antara bulan Maret hingga Mei, karena pada periode tersebut harga hotel umumnya paling rendah. Harga hotel biasanya mulai meningkat pada musim ramai, yaitu antara bulan Desember hingga Februari."
+  },
+  {
+    "question": "Apa saja objek wisata dekat Labersa Toba Hotel & Convention Centre?",
+    "answer": "Berikut beberapa tempat menarik di sekitar Labersa Toba Hotel & Convention Centre:\n\nObjek wisata alam & rekreasi:\n1. Pantai Lumban Bul-Bul merupakan pantai pasir putih di tepi Danau Toba yang cocok untuk bersantai dan menikmati pemandangan.\n\nTempat belanja & oleh-oleh khas Batak:\n2. Batikta merupakan pusat oleh-oleh khas Danau Toba yang lengkap di kawasan Balige. Tempat ini menyediakan berbagai produk unggulan dari kawasan Kaldera Toba, mulai dari makanan khas hingga kerajinan dan souvenir tradisional. Dengan pelayanan yang ramah dan suasana belanja yang nyaman, Batikta menjadi pilihan tepat untuk mendapatkan buah tangan berkualitas bagi keluarga dan orang-orang terkasih.\n3. Dinar Ulos Batak Toba merupakan toko yang menyediakan berbagai kebutuhan ulos dan aksesoris etnik khas Batak, seperti ulos pengantin, ulos hela, setelan sarung, stola ulos (sirat), topi, serta berbagai aksesoris tradisional lainnya. Dengan koleksi yang lengkap dan berkualitas, Dinar menjadi salah satu pilihan favorit untuk kebutuhan adat maupun oleh-oleh khas Batak.\n4. Dealova Rumah Mode merupakan toko busana dan souvenir yang berlokasi di Balige, Sumatera Utara. Toko ini melayani pembuatan dan penjualan baju pengantin, ronce, payet, kamisol, sarung, serta berbagai jenis dress. Selain itu, tersedia juga barang khusus dan suvenir yang cocok untuk kebutuhan acara maupun buah tangan.\n5. Agatha Collection merupakan toko pakaian wanita dan payetan, menyediakan produk craft dan souvenir handmade yang unik dan berkualitas.\n6. Gorga Collection merupakan toko kerajinan khas Batak yang menjual pakaian wanita berbahan tenun ulos Toba."
+  },
+  {
+    "question": "Apakah ada bandara terdekat dari Kabupaten Toba?",
+    "answer": "Bandara Raja Sisingamangaraja XII (Silangit) adalah bandara terdekat yang melayani penerbangan domestik dan internasional ke kawasan Danau Toba, berjarak sekitar 60 km dari Balige (Ibukota Kabupaten Toba)."
+  },
+  {
+    "question": "Apa saja pilihan transportasi darat dari Medan menuju Kabupaten Toba?",
+    "answer": "Terdapat beberapa alternatif transportasi darat dari Medan menuju Kabupaten Toba (Parapat/Balige), yang dapat dipilih berdasarkan anggaran, waktu tempuh, dan tingkat kenyamanan yang diinginkan.\n\n1) Naik Mobil Pribadi atau Sewa Mobil.\nPerjalanan dengan mobil pribadi melalui jalur Medan–Parapat membutuhkan waktu sekitar 4–5 jam.\nKelebihan:\n- Bisa berhenti di berbagai tempat wisata sepanjang jalan, seperti Kebun Teh Sidamanik atau Air Terjun Bah Biak.\n- Lebih nyaman dan privat, cocok untuk perjalanan keluarga.\n- Dapat menikmati pemandangan alam secara bebas.\n- Harga sewa mobil dari Medan ke Danau Toba berkisar antara Rp600.000 – Rp1.000.000 per hari, tergantung jenis mobil dan durasi sewa.\n\n2) Naik Bus Umum.\nUntuk wisatawan dengan budget terbatas, bus umum menjadi pilihan ekonomis. Dari Terminal Amplas Medan tarif sekitar Rp50.000 – Rp80.000 per orang. Beberapa operator bus yang melayani rute Medan–Parapat antara lain Sejahtera Transport, Rapi Transport, Intra, dan Parna Express.\nPerjalanan dengan bus memakan waktu sekitar 5–6 jam, tergantung kondisi jalan. Bus akan berhenti langsung di area Parapat, yang merupakan pintu gerbang menuju Danau Toba.\n\n3) Naik Shuttle atau Travel.\nAlternatif yang lebih nyaman dari bus umum adalah menggunakan jasa travel atau shuttle car. Kendaraan ini biasanya berupa mobil Hiace atau Avanza yang diisi 5–8 penumpang. Layanan ini bisa menjemput langsung dari hotel atau bandara di Medan dan mengantarkan sampai ke hotel di Parapat.\nTarif berkisar antara Rp100.000 – Rp150.000 per orang, dengan waktu tempuh sekitar 4 jam. Beberapa operator travel populer seperti Nice Trans, TOBA Shuttle, Raja Trans, dan Sumatera Trans.\n\n4) Naik Kereta Api.\nPilihan lain yang menarik adalah menggunakan kereta api dari Medan menuju Pematang Siantar, kemudian dilanjutkan dengan mobil atau bus ke Parapat.\n- Naik Kereta Api Siantar Ekspres dari Stasiun Medan ke Stasiun Pematang Siantar.\n- Waktu tempuh sekitar 4 jam.\n- Tarif sekitar Rp25.000 – Rp35.000.\nDari Stasiun Pematang Siantar, lanjutkan perjalanan sekitar 1,5 jam ke Parapat dengan mobil atau angkutan kota.\nOpsi ini cocok bagi wisatawan yang ingin pengalaman berbeda sambil menikmati pemandangan pedesaan khas Sumatera Utara dari jendela kereta."
+  },
+    {
+    "question": "Apa pilihan transportasi udara dari Medan ke Kabupaten Toba?",
+    "answer": "Kamu bisa memilih penerbangan dari Medan (Kualanamu) ke Bandara Silangit (Tapanuli Utara). Waktu tempuh udara sekitar 45 menit, kemudian dilanjutkan perjalanan darat ke Danau Toba sekitar 1 jam 30 menit. Maskapai yang melayani rute ini antara lain Citilink, Batik Air, dan Wings Air. Rute ini cocok bagi wisatawan yang ingin langsung menuju bagian utara Danau Toba seperti Balige, Laguboti, atau Muara. (Ambisius Wiki)"
+  },
+    {
+    "question": "Apakah transportasi online seperti Grab tersedia di Kabupaten Toba?",
+    "answer": "Ya, layanan transportasi online seperti GrabCar dan GrabBike tersedia di kawasan Danau Toba Samosir, terutama di sekitar Balige, Parapat, dan Samosir. Wisatawan dapat menggunakan layanan ini untuk berkeliling dengan lebih nyaman dan mudah.(Sumber: Grab)"
+  },
+  {
+    "question": "Rekomendasi restoran unggulan di Kabupaten Toba",
+    "answer": "Beberapa rekomendasi restoran di Kabupaten Toba antara lain:\n1) Damar Toba\n2) Cafe Hollywood\n3) Hutanta Cafe"
+  },
+  {
+    "question": "Restoran mana saja yang memiliki view Danau Toba di Kabupaten Toba?",
+    "answer": "Beberapa restoran yang memiliki view Danau Toba antara lain:\n1) Damar Toba - Lakeside Eatery & Stay\n2) Tepi Danau Bistro\n3) Caldera Resto and Coffee"
+  },
+  {
+    "question": "Rekomendasi Rumah Makan Khas Batak di Kabupaten Toba",
+    "answer": "Berikut beberapa rekomendasi Rumah Makan Khas Batak di Kabupaten Toba:\n1) Rumah Makan Panca, Balige Toba - Menyediakan menu khas Batak Toba yang lengkap dan autentik. Suasana sederhana, bersih, dan hangat. Lokasinya strategis di jalur utama Balige sehingga mudah ditemukan dan menjadi tempat singgah favorit wisatawan.\n2) Rumah Makan BPK Fly Over Laguboti, Toba - Menu sangat variatif dan disajikan dengan cepat. BPK memiliki cita rasa khas dengan daging lembut, kulit garing, serta sambal andaliman yang pedas segar. Tempat bersih, luas, dan nyaman untuk rombongan maupun individu."
+  },
+  {
+    "question": "Rekomendasi Rumah Makan atau Restoran dengan Menu Sehat di kawasan Kabupaten Toba",
+    "answer": "Berikut beberapa tempat rekomendasi dengan menu sehat di kawasan Kabupaten Toba:\n1) Hutanta Cafe, Balige - Menawarkan berbagai menu diet sayur yang lezat dan sehat, cocok bagi yang mencari hidangan sehat tanpa mengorbankan rasa.\n2) Sada Restaurant, Labersa Toba Hotel, Kabupaten Toba - Menyediakan pilihan menu lokal dan internasional yang sehat dan bergizi.\n3) Green's Cafe, Balige - Menawarkan makanan sehat, halal, lezat dengan harga terjangkau."
+  },
+  {
+    "question": "Apa saja tempat makan terbaik di Balige?",
+    "answer": "Beberapa restoran paling populer di Balige antara lain:\n1) Damar Toba\n2) Kedai Mie Lily\n3) Timothy Cafe Terapung\n4) Cafe Hollywood\n5) Hutanta Cafe"
+  },
+   {
+    "question": "Rekomendasi kuliner khas di Kabupaten Toba",
+    "answer": "Berikut adalah beberapa kuliner khas di sekitar Danau Toba:\n1) Arsik - Masakan ikan mas bumbu kuning yang kaya rempah, dengan bumbu khas seperti andaliman dan asam cikala.\n2) Sambal Tuk-tuk - Sambal khas Batak dengan campuran andaliman yang memberikan rasa pedas dan gurih.\n3) Mie Gomak - Mie yang dimasak dengan bumbu andaliman, memberikan sensasi pedas yang khas.\n4) Na Niura - Hidangan ikan yang diolah tanpa dimasak, dibumbui dengan rempah-rempah seperti kunyit, andaliman, dan jahe.\n5) Na Tinombur - Olahan ikan yang dibakar dan disiram dengan saus yang mengandung andaliman, kemiri, dan jahe bakar.\n6) Dali ni Horbo - Makanan tradisional khas Batak yang terbuat dari susu kerbau yang dimasak hingga menggumpal seperti keju."
+  },
+  {
+    "question": "Cemilan rekomendasi khas di Kabupaten Toba",
+    "answer": "Berikut beberapa rekomendasi cemilan khas di Kabupaten Toba:\n1) Tipa-Tipa\n2) Pizza Andaliman\n3) Kue Lappet"
   }
 ]
