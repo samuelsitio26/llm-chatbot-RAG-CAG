@@ -244,9 +244,10 @@ function App() {
         session_id: sessionId,
         conversation_id: activeConvId,  // link Q&A to this conversation thread in DB
         use_cache: true,
-        k: 5,
+        k: 8,
         max_new_tokens: 2048,
-        temperature: 0.7
+        temperature: 0.7,
+        favorite_categories: user?.favoriteCategories || []
       }, {
         headers: getAuthHeaders(),
         timeout: 120000 // 2 minute timeout for generation
@@ -261,6 +262,7 @@ function App() {
         metadata: {
           ...(response.data.metadata || {}),
           cache_key: response.data.cache_key || null,  // for feedback routing
+          chat_db_id: response.data.chat_db_id || null, // real PK from chat_history → valid FK for feedback
         },
         source: response.data.source,
         cache_used: response.data.cache_used,
@@ -373,6 +375,7 @@ function App() {
         message_id: messageId,
         rating: clickedRating,
         cache_key: cacheKey,
+        chat_db_id: targetMsg?.metadata?.chat_db_id || null,
       }, { headers: getAuthHeaders() });
 
       // Server may return a different final rating (toggle logic)

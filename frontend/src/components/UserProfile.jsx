@@ -4,7 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { 
   User, Mail, MapPin, Heart, MessageSquare, Lock, 
   ArrowLeft, LogOut, Save, Edit3, RefreshCw, Trash2,
-  Camera, Check, X, Home, Shield, Upload, Image
+  Camera, Check, X, Home, Shield, Upload, Image,
+  Copy, ChevronDown, ChevronUp
 } from 'lucide-react';
 import './UserProfile.css';
 
@@ -50,6 +51,8 @@ const UserProfile = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [expandedItems, setExpandedItems] = useState(new Set());
+  const [copiedItems, setCopiedItems] = useState(new Set());
   
   const [formData, setFormData] = useState({
     name: '',
@@ -322,6 +325,39 @@ const UserProfile = () => {
       setMessage({ type: 'success', text: 'Riwayat chat berhasil dihapus' });
       setTimeout(() => setMessage({ type: '', text: '' }), 3000);
     }
+  };
+
+  const handleDeleteItem = async (chatId) => {
+    if (!window.confirm('Hapus percakapan ini?')) return;
+    try {
+      await fetch(`/api/user/history/${chatId}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setChatHistory(prev => prev.filter(item => item.id !== chatId));
+      setMessage({ type: 'success', text: 'Percakapan dihapus' });
+    } catch (e) {
+      setMessage({ type: 'error', text: 'Gagal menghapus percakapan' });
+    }
+    setTimeout(() => setMessage({ type: '', text: '' }), 2500);
+  };
+
+  const handleCopyItem = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedItems(prev => new Set(prev).add(id));
+      setTimeout(() => setCopiedItems(prev => { const s = new Set(prev); s.delete(id); return s; }), 2000);
+    } catch (e) {
+      setMessage({ type: 'error', text: 'Gagal menyalin teks' });
+    }
+  };
+
+  const toggleExpand = (id) => {
+    setExpandedItems(prev => {
+      const s = new Set(prev);
+      s.has(id) ? s.delete(id) : s.add(id);
+      return s;
+    });
   };
 
   if (!user) {
@@ -724,29 +760,73 @@ const UserProfile = () => {
                 </div>
               ) : (
                 <div className="up-history-list">
-                  {chatHistory.map((item, index) => (
-                    <div key={item.id || index} className="up-history-item">
-                      <div className="up-history-question">
-                        <span className="up-history-label">
-                          <User size={14} /> Pertanyaan Anda
-                        </span>
-                        <p>{item.question || item.message}</p>
-                      </div>
-                      {(item.answer || item.response) && (
-                        <div className="up-history-answer">
+                  <p className="up-history-count">{chatHistory.length} percakapan tersimpan</p>
+                  {chatHistory.map((item, index) => {
+                    const itemId = item.id || index;
+                    const isExpanded = expandedItems.has(itemId);
+                    const isCopied = copiedItems.has(itemId);
+                    const fullAnswer = item.answer || item.response || '';
+                    const shortAnswer = fullAnswer.length > 220 ? fullAnswer.substring(0, 220) + '…' : fullAnswer;
+
+                    return (
+                      <div key={itemId} className="up-history-item">
+                        {/* Question */}
+                        <div className="up-history-question">
                           <span className="up-history-label">
-                            🤖 Jawaban Bot
+                            <User size={14} /> Pertanyaan Anda
                           </span>
-                          <p>{(item.answer || item.response).length > 200 
-                            ? `${(item.answer || item.response).substring(0, 200)}...` 
-                            : (item.answer || item.response)}</p>
+                          <p>{item.question || item.message}</p>
                         </div>
-                      )}
-                      <div className="up-history-time">
-                        {formatDate(item.timestamp)}
+
+                        {/* Answer */}
+                        {fullAnswer && (
+                          <div className="up-history-answer">
+                            <span className="up-history-label">🤖 Jawaban Bot</span>
+                            <p style={{ whiteSpace: 'pre-wrap' }}>
+                              {isExpanded ? fullAnswer : shortAnswer}
+                            </p>
+                            {fullAnswer.length > 220 && (
+                              <button
+                                className="up-expand-btn"
+                                onClick={() => toggleExpand(itemId)}
+                              >
+                                {isExpanded ? <><ChevronUp size={14}/> Sembunyikan</> : <><ChevronDown size={14}/> Tampilkan Semua</>}
+                              </button>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Footer: time + actions */}
+                        <div className="up-history-footer">
+                          <span className="up-history-time">{formatDate(item.timestamp)}</span>
+                          <div className="up-history-item-actions">
+                            {/* Copy full Q&A */}
+                            <button
+                              className={`up-item-action-btn ${isCopied ? 'copied' : ''}`}
+                              title="Salin percakapan ini"
+                              onClick={() => handleCopyItem(
+                                `Pertanyaan: ${item.question || ''}\n\nJawaban:\n${fullAnswer}`,
+                                itemId
+                              )}
+                            >
+                              {isCopied ? <Check size={14} /> : <Copy size={14} />}
+                              {isCopied ? 'Tersalin!' : 'Salin'}
+                            </button>
+                            {/* Delete single item */}
+                            {item.id && (
+                              <button
+                                className="up-item-action-btn up-item-action-btn--danger"
+                                title="Hapus percakapan ini"
+                                onClick={() => handleDeleteItem(item.id)}
+                              >
+                                <Trash2 size={14} /> Hapus
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
