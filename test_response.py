@@ -7,7 +7,11 @@ import glob
 # Init
 print("Initializing...")
 model = GeminiChatModel()
-encoder = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L12-v2', model_kwargs={'device': 'cpu'})
+encoder = HuggingFaceEmbeddings(
+    model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+    model_kwargs={'device': 'cpu'},
+    encode_kwargs={'normalize_embeddings': True}
+)
 cag = CAGSystem(model=model, encoder=encoder)
 
 # Load PDFs
@@ -16,13 +20,15 @@ if pdf_files:
     print(f"Loading {len(pdf_files)} PDFs...")
     cag.load_documents(pdf_files)
 
-# Test
+# Test — 1 pertanyaan saja
+query = "apa saja tempat wisata menarik di Danau Toba?"
 print("\n" + "="*60)
-print("Testing: rekomendasi hotel di toba")
+print(f"Testing: {query}")
 print("="*60)
-result = cag.get_response('rekomendasi hotel di toba', max_new_tokens=2048)
+result = cag.get_response(query, k=8, max_new_tokens=1024)
 print(f"\nResponse length: {len(result['response'])} chars")
-print(f"Source: {result['source']}")
-print(f"Cache used: {result['cache_used']}")
+print(f"Source     : {result['source']}")
+print(f"Cache used : {result.get('cache_used', False)}")
+print(f"Chunks     : {result.get('num_chunks', 0)}")
 print("\n" + "-"*60)
 print(result['response'])

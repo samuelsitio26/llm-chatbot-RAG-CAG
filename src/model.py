@@ -247,6 +247,34 @@ Saya adalah asisten khusus **Wisata Danau Toba** 🏔️
 
 Mau tanya tentang Danau Toba? 😊"""
     
+    def _ask_gemini_general(self, query: str) -> str:
+        """Ask Gemini with general knowledge when no document context is available.
+        Used as fallback when RAG retrieval finds no relevant chunks.
+        """
+        api_key = self._get_available_api_key()
+        if not api_key:
+            return None
+
+        prompt = (
+            "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
+            f"Pengguna bertanya: \"{query}\"\n\n"
+            "Tidak ada dokumen spesifik yang ditemukan di database.\n"
+            "Jawab berdasarkan pengetahuan umummu jika pertanyaan masih berkaitan "
+            "dengan pariwisata, budaya Batak, Sumatera Utara, atau topik yang tidak "
+            "terlalu jauh dari konteks wisata.\n"
+            "Jika pertanyaan BENAR-BENAR tidak relevan (kata kasar, NSFW, atau "
+            "topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
+            "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
+        )
+
+        try:
+            result = self._call_gemini_api(prompt, max_tokens=1024, temperature=0.7)
+            if result and len(result.strip()) > 20:
+                return result
+        except Exception:
+            pass
+        return None
+
     def _ask_gemini_simple(self, query: str) -> str:
         """Ask Gemini for simple questions"""
         api_key = self._get_available_api_key()
@@ -737,7 +765,8 @@ Silakan ajukan pertanyaan lain! 😊"""
         max_new_tokens: int = 2048,
         temperature: float = 0.7,
         top_p: float = 0.9,
-        top_k: int = 50
+        top_k: int = 50,
+        user_preferences: list = None,
     ) -> str:
         """Generate response using Gemini API with intelligent fallback"""
         
@@ -759,21 +788,42 @@ Silakan ajukan pertanyaan lain! 😊"""
         
         # Check if context is actually relevant
         if has_context and not self._is_query_relevant_to_context(query, context):
-            print("⚠️ Retrieved context not relevant to query")
-            return self._get_fallback_response(query)
+            print("⚠️ Retrieved context not relevant to query — trying LLM general knowledge")
+            general_answer = self._ask_gemini_general(query)
+            if general_answer:
+                return general_answer
+            return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
         
         if has_context:
+            # Build personalization hint from user's favorite categories
+            pref_hint = ""
+            CATEGORY_LABELS = {
+                'alam': 'Wisata Alam (gunung, danau, air terjun)',
+                'budaya': 'Wisata Budaya (museum, desa adat, tradisi Batak)',
+                'kuliner': 'Kuliner khas Batak',
+                'sejarah': 'Wisata Sejarah (situs, monumen)',
+                'religi': 'Wisata Religi',
+                'air': 'Wisata Air (pantai, kolam, water sport)',
+                'petualangan': 'Petualangan (hiking, camping, rafting)',
+                'fotografi': 'Spot Foto Instagram',
+            }
+            if user_preferences:
+                labels = [CATEGORY_LABELS.get(p, p) for p in user_preferences]
+                pref_hint = f"\n\nCATATAN PREFERENSI PENGGUNA: Pengguna ini menyukai {', '.join(labels)}. Jika relevan, prioritaskan rekomendasi sesuai minat tersebut.\n"
+
             prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah, informatif, dan detail.
 
 INSTRUKSI PENTING:
 1. Jawab berdasarkan INFORMASI DOKUMEN di bawah dengan LENGKAP dan DETAIL
-2. Untuk setiap tempat wisata, sebutkan: nama, deskripsi singkat, lokasi, dan keunggulannya
+2. Untuk setiap tempat wisata/hotel/rumah makan, SELALU sebutkan NAMA LENGKAPNYA sebagaimana tertulis di dokumen
 3. Gunakan format yang rapi dengan emoji dan bullet points
 4. Berikan minimal 3-5 rekomendasi jika tersedia dalam dokumen
 5. Jika informasi tidak ada dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
 6. JANGAN mengarang informasi yang tidak ada dalam dokumen
-7. Akhiri dengan ajakan untuk bertanya lebih lanjut
-
+7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
+8. JANGAN pernah menulis "(Tidak disebutkan namanya...)" — nama selalu ada di dokumen, cari dengan teliti
+9. Akhiri dengan ajakan untuk bertanya lebih lanjut
+{pref_hint}
 INFORMASI DOKUMEN:
 {context[:6000]}
 
@@ -786,23 +836,33 @@ JAWABAN (hanya berdasarkan dokumen di atas):"""
             
             # If API failed (returned None), use context-based fallback
             if result is None:
-                print("🔄 Using context-based fallback...")
+                print("🔄 API failed, using context-based fallback...")
                 fallback_result = self._extract_info_from_context(query, context)
                 if fallback_result:
                     return fallback_result
-                # If no relevant info found
-                return self._get_fallback_response(query)
+                # Try LLM general knowledge as last resort
+                general_answer = self._ask_gemini_general(query)
+                if general_answer:
+                    return general_answer
+                return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
             
             # If result is too short, try fallback
             if len(result) < 10:
                 fallback_result = self._extract_info_from_context(query, context)
                 if fallback_result:
                     return fallback_result
-                return self._get_fallback_response(query)
+                general_answer = self._ask_gemini_general(query)
+                if general_answer:
+                    return general_answer
+                return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
             
             return result
         else:
-            return self._get_fallback_response(query)
+            # No context available — try LLM general knowledge
+            general_answer = self._ask_gemini_general(query)
+            if general_answer:
+                return general_answer
+            return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
     
     def __call__(self, prompt: str, max_new_tokens: int = 2048, **kwargs) -> str:
         return self.generate_response(query=prompt, max_new_tokens=max_new_tokens, **kwargs)

@@ -45,11 +45,12 @@ decision_agent = None
 class ChatRequest(BaseModel):
     query: str
     use_cache: bool = True
-    k: int = 5
+    k: int = 8          # raised from 5 → 8: retrieve more chunks across 4 PDFs
     session_id: Optional[str] = None
     conversation_id: Optional[str] = None  # frontend conv_* key
     max_new_tokens: int = 2048
     temperature: float = 0.7
+    favorite_categories: Optional[List[str]] = None  # User's preferred wisata categories (personalizes prompt)
 
 
 class ChatResponse(BaseModel):
@@ -59,6 +60,7 @@ class ChatResponse(BaseModel):
     sources: list = []
     scores: dict = {}
     cache_key: Optional[str] = None  # MD5 hash of query, used by frontend for feedback
+    chat_db_id: Optional[int] = None  # Real PK from chat_history table, used for feedback FK
     variants: Optional[list] = None  # answer variants for comparison (if any)
 
 
@@ -142,11 +144,16 @@ async def lifespan(app: FastAPI):
         model = GeminiChatModel(model_name="gemini-2.5-flash")
         
         # Initialize encoder for embeddings
-        print("🔍 Loading embeddings encoder...")
+        # Model: paraphrase-multilingual-MiniLM-L12-v2
+        #   - Mendukung 50+ bahasa termasuk Bahasa Indonesia & nama-nama lokal Batak
+        #   - Dimensi 384 (sama dengan model sebelumnya) → tidak perlu ubah struktur FAISS
+        #   - FAISS index di-rebuild otomatis setiap startup → penggantian ini langsung aktif
+        print("🔍 Loading embeddings encoder (multilingual)...")
         from langchain_huggingface import HuggingFaceEmbeddings
         encoder = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L12-v2",
-            model_kwargs={'device': 'cpu'}
+            model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+            model_kwargs={'device': 'cpu'},
+            encode_kwargs={'normalize_embeddings': True}
         )
         
         # Initialize CAG system (with model and encoder)
@@ -500,13 +507,16 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
         print(f"📊 Query Type: {query_type} | Category: {query_classification['category']}")
         
         # Process query through CAG system
+        # Pass user's favorite_categories so the LLM can bias recommendations
+        user_prefs = request.favorite_categories or (user.get('favoriteCategories') if user else None) or []
         result = cag_system.get_response(
             query=request.query,
             chat_history=chat_history,
             use_cache=request.use_cache,
             k=request.k,
             max_new_tokens=request.max_new_tokens,
-            temperature=request.temperature
+            temperature=request.temperature,
+            user_preferences=user_prefs,
         )
         
         response_time = time.time() - start_time
@@ -568,6 +578,30 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
         
         print(f"✅ Returning {len(relevant_locations)} locations to frontend")
 
+        # Persist Q&A to DB BEFORE return so we can include the real PK in the response.
+        # This allows the frontend to send the correct chat_db_id with feedback,
+        # creating a valid FK link: feedback.chat_id → chat_history.id.
+        chat_db_id = None
+        if result is not None:
+            source = result.get("source", "")
+            saved_response = result.get("response", "")
+            skip_sources = {"error", "no_relevant_context"}
+            if saved_response and source not in skip_sources:
+                elapsed_ms = int((time.time() - start_time) * 1000)
+                try:
+                    chat_db_id = db.save_chat(
+                        user_id=user_id,
+                        session_id=request.session_id or "",
+                        conversation_id=conv_id,
+                        question=request.query,
+                        answer=saved_response,
+                        category=source,
+                        response_time_ms=elapsed_ms,
+                        model_used="gemini-2.5-flash",
+                    )
+                except Exception as db_err:
+                    print(f"⚠️ DB save failed (non-fatal): {db_err}")
+
         return ChatResponse(
             response=response_text,
             cached=result.get("cache_used", False),
@@ -575,32 +609,13 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
             sources=relevant_locations,
             scores=scores,
             cache_key=result.get("cache_key"),
+            chat_db_id=chat_db_id,
             variants=None,  # variants only appear during regeneration flow
         )
 
     except Exception as e:
         print(f"❌ Error processing chat: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
-    finally:
-        # Persist Q&A to database — skip failure/fallback responses so they
-        # don't pollute analytics or get served as stale answers in future.
-        if result is not None:
-            source = result.get("source", "")
-            saved_response = result.get("response", "")
-            skip_sources = {"error", "no_relevant_context"}
-            if saved_response and source not in skip_sources:
-                elapsed_ms = int((time.time() - start_time) * 1000)
-                db.save_chat(
-                    user_id=user_id,
-                    session_id=request.session_id or "",
-                    conversation_id=conv_id,
-                    question=request.query,
-                    answer=saved_response,
-                    category=source,
-                    response_time_ms=elapsed_ms,
-                    model_used="gemini-2.5-flash",
-                )
 
 
 def extract_mentioned_locations(response_text: str) -> list:
@@ -1245,6 +1260,15 @@ async def clear_chat_history(user: dict = Depends(require_auth)):
     return {"success": success}
 
 
+@app.delete("/api/user/history/{chat_id}")
+async def delete_chat_item(chat_id: int, user: dict = Depends(require_auth)):
+    """Delete a single chat history item by its DB id."""
+    success = db.delete_chat_item(user['id'], chat_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Item not found or unauthorized")
+    return {"success": True, "deleted_id": chat_id}
+
+
 @app.get("/api/conversations")
 async def get_conversations(user: dict = Depends(require_auth)):
     """Return list of conversation threads for the logged-in user."""
@@ -1320,7 +1344,8 @@ class FeedbackRequest(BaseModel):
     message_id: str
     rating: int  # 1 for like, -1 for dislike
     comment: Optional[str] = None
-    cache_key: Optional[str] = None  # MD5 hash of query from ChatResponse.cache_key
+    cache_key: Optional[str] = None   # MD5 hash of query from ChatResponse.cache_key
+    chat_db_id: Optional[int] = None  # Real PK from ChatResponse.chat_db_id → chat_history.id
 
 
 @app.post("/api/feedback")
@@ -1350,9 +1375,11 @@ async def submit_feedback(
 
     try:
         # 1. Persist to DB with toggle logic
+        # Use real DB id if provided, otherwise fall back to hash (legacy)
+        chat_id = request.chat_db_id if request.chat_db_id else hash(request.message_id) % 2147483647
         fb_result = db.save_feedback(
             user_id=user_id,
-            chat_id=hash(request.message_id) % 2147483647,
+            chat_id=chat_id,
             rating=request.rating,
             comment=request.comment,
             message_hash=message_hash,

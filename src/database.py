@@ -799,9 +799,17 @@ def save_chat(user_id: Optional[int], session_id: str, question: str, answer: st
             (user_id, session_id, conversation_id, question, answer, category, response_time_ms, model_used)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ''', (user_id, session_id, conversation_id, question, answer, category, response_time_ms, model_used))
-        
+        chat_id = cursor.lastrowid
+
+        # Keep conversations.message_count in sync
+        if conversation_id:
+            cursor.execute(
+                'UPDATE conversations SET message_count = message_count + 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+                (conversation_id,)
+            )
+
         conn.commit()
-        return cursor.lastrowid
+        return chat_id
     except:
         return -1
     finally:
@@ -957,6 +965,26 @@ def clear_user_chat_history(user_id: int) -> bool:
         conn.commit()
         log_activity(user_id, "clear_history", "User cleared chat history")
         return True
+    except:
+        return False
+    finally:
+        conn.close()
+
+
+def delete_chat_item(user_id: int, chat_id: int) -> bool:
+    """Delete a single chat_history row, only if it belongs to user_id."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(
+            "DELETE FROM chat_history WHERE id = ? AND user_id = ?",
+            (chat_id, user_id)
+        )
+        deleted = cursor.rowcount > 0
+        conn.commit()
+        if deleted:
+            log_activity(user_id, "delete_chat_item", f"Deleted chat item id={chat_id}")
+        return deleted
     except:
         return False
     finally:
