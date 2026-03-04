@@ -28,6 +28,7 @@ except ImportError:
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document as LCDocument
 from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
 
@@ -161,7 +162,6 @@ class CAGSystem:
         # --- Load PDFs: merge all pages per file into ONE document so that
         #     chunk_overlap can bridge page boundaries (fixes entity-name/
         #     description splits that would otherwise be lost between pages).
-        from langchain.schema import Document as LCDocument
 
         merged_docs = []
         total_page_count = 0
