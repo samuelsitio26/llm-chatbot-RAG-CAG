@@ -18,9 +18,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import GuestRoute from './components/GuestRoute';
 import './index.css';
+
+/**
+ * Root redirect: belum login → /login, sudah login → /chat
+ */
+const HomeRedirect = () => {
+  const { isAuthenticated, isLoading, authChecked } = useAuth();
+  if (isLoading || !authChecked) return null;
+  return <Navigate to={isAuthenticated ? '/chat' : '/login'} replace />;
+};
 
 // Import Routes Configuration (seperti web.php di Laravel)
 import { publicRoutes, authRoutes, protectedRoutes, adminRoutes } from './routes';
@@ -94,7 +104,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* PUBLIC ROUTES - Bisa diakses semua */}
+          {/* ROOT REDIRECT - Login dulu baru bisa akses */}
+          <Route path="/" element={<HomeRedirect />} />
+
+          {/* PUBLIC ROUTES - Bisa diakses semua (hanya OAuth callback) */}
           {renderPublicRoutes()}
 
           {/* AUTH ROUTES - Untuk guest, redirect jika sudah login */}
