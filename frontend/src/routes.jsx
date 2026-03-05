@@ -43,18 +43,6 @@ import AuthCallback from './components/AuthCallback';
  */
 export const publicRoutes = [
   {
-    path: '/',
-    element: App,
-    name: 'Home',
-    description: 'Halaman utama (guest mode atau redirect)'
-  },
-  {
-    path: '/chat',
-    element: App,
-    name: 'Chat',
-    description: 'Halaman chat utama'
-  },
-  {
     path: '/auth/callback',
     element: AuthCallback,
     name: 'OAuth Callback',
@@ -90,6 +78,13 @@ export const authRoutes = [
  * Semua role bisa akses
  */
 export const protectedRoutes = [
+  {
+    path: '/chat',
+    element: App,
+    name: 'Chat',
+    description: 'Halaman chat utama',
+    roles: ['admin', 'operator', 'user']
+  },
   {
     path: '/profile',
     element: UserProfile,
