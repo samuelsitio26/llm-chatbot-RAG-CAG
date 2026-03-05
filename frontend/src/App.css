@@ -1982,8 +1982,18 @@ img.user-avatar-large {
 }
 
 .example-query-icon {
-  display: inline-block;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 2px;
   margin-right: 0.5rem;
+  color: #fbbf24;
+  opacity: 0.85;
+}
+
+.example-query:hover .example-query-icon {
+  opacity: 1;
+  color: #f59e0b;
 }
 
 /* ============================================
