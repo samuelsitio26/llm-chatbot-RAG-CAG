@@ -73,6 +73,16 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [showMap, setShowMap] = useState(false);
   const [mapFilter, setMapFilter] = useState(null);
+
+  // Example queries dari FAQ
+  const [exampleQueries, setExampleQueries] = useState([
+    "🏖️ Rekomendasi pantai untuk honeymoon budget 10 juta di Toba",
+    "⛰️ Tempat wisata gunung untuk hiking pemula di sekitar Danau Toba",
+    "👨‍👩‍👧‍👦 Destinasi wisata keluarga dengan anak-anak di Toba",
+    "🍜 Kuliner khas Batak yang wajib dicoba di Danau Toba",
+    "🏨 Hotel dan penginapan nyaman budget menengah di Toba",
+    "📸 Spot foto terbaik untuk Instagram di Danau Toba"
+  ]);
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -96,9 +106,47 @@ function App() {
     scrollToBottom();
   }, [messages]);
 
+  // Emoji mapping berdasarkan kata kunci di pertanyaan FAQ
+  const getEmojiForQuestion = (q) => {
+    const ql = q.toLowerCase();
+    if (ql.includes('pantai') || ql.includes('beach'))          return '🏖️';
+    if (ql.includes('hotel') || ql.includes('penginapan') || ql.includes('villa') || ql.includes('homestay')) return '🏨';
+    if (ql.includes('makan') || ql.includes('restoran') || ql.includes('kuliner') || ql.includes('cafe') || ql.includes('khas')) return '🍜';
+    if (ql.includes('air terjun') || ql.includes('bukit') || ql.includes('gunung') || ql.includes('hiking')) return '⛰️';
+    if (ql.includes('samosir') || ql.includes('pulau'))         return '🏝️';
+    if (ql.includes('harga') || ql.includes('biaya') || ql.includes('budget') || ql.includes('tarif')) return '💰';
+    if (ql.includes('foto') || ql.includes('instagram') || ql.includes('spot')) return '📸';
+    if (ql.includes('anak') || ql.includes('keluarga'))        return '👨‍👩‍👧‍👦';
+    if (ql.includes('transport') || ql.includes('ferry') || ql.includes('cara ke')) return '🚢';
+    if (ql.includes('museum') || ql.includes('budaya') || ql.includes('batak')) return '🏛️';
+    if (ql.includes('fasilitas') || ql.includes('kolam') || ql.includes('wifi')) return '✨';
+    if (ql.includes('jarak') || ql.includes('mengemudi') || ql.includes('menit')) return '📍';
+    return '💡';
+  };
+
+  // Fetch 6 pertanyaan acak dari FAQ sebagai example queries
+  const fetchExampleQueries = async () => {
+    try {
+      const res = await axios.get(`${API_BASE_URL}/faqs`);
+      const faqs = (res.data.faqs || []).filter(f => f.question?.trim());
+      if (faqs.length === 0) return;
+      // Acak dan ambil 6
+      const shuffled = [...faqs].sort(() => Math.random() - 0.5);
+      const picked = shuffled.slice(0, 6).map(f => {
+        const emoji = getEmojiForQuestion(f.question);
+        return `${emoji} ${f.question}`;
+      });
+      setExampleQueries(picked);
+    } catch (err) {
+      console.warn('⚠️ Gagal load FAQ untuk example queries:', err.message);
+      // Biarkan fallback default tetap tampil
+    }
+  };
+
   useEffect(() => {
     fetchStatus();
     fetchLocations(); // Load map locations on mount
+    fetchExampleQueries(); // Load example queries dari FAQ
     const interval = setInterval(fetchStatus, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -547,14 +595,7 @@ function App() {
     }
   };
 
-  const exampleQueries = [
-    "🏖️ Rekomendasi pantai untuk honeymoon budget 10 juta di Toba",
-    "⛰️ Tempat wisata gunung untuk hiking pemula di sekitar Danau Toba",
-    "👨‍👩‍👧‍👦 Destinasi wisata keluarga dengan anak-anak di Toba",
-    "🍜 Kuliner khas Batak yang wajib dicoba di Danau Toba",
-    "🏨 Hotel dan penginapan nyaman budget menengah di Toba",
-    "📸 Spot foto terbaik untuk Instagram di Danau Toba"
-  ];
+  // exampleQueries sekarang berasal dari state (diisi oleh fetchExampleQueries di useEffect)
 
   const handleShowStats = async () => {
     const data = await fetchStats();
