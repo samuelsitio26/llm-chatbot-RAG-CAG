@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin, LogIn, Settings, User, LogOut, ChevronLeft, ChevronRight, ChevronDown, UserCircle, Menu, X, Copy, Check, Star } from 'lucide-react';
+import { Send, TrendingUp, Server, Database, ThumbsUp, ThumbsDown, RefreshCw, Plus, MapPin, LogIn, Settings, User, LogOut, ChevronLeft, ChevronRight, ChevronDown, UserCircle, Menu, X, Copy, Check, Star, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import MapView from './MapView';
 import 'leaflet/dist/leaflet.css';
@@ -793,7 +793,7 @@ function App() {
                       className="example-query" 
                       onClick={() => handleExampleClick(query)}
                     >
-                      <span className="example-query-icon">💡</span>
+                      <Sparkles size={16} className="example-query-icon" />
                       {query}
                     </div>
                   ))}
