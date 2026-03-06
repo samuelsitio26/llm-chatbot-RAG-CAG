@@ -37,34 +37,7 @@
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px;
-  padding-top: 60px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-/* Back Button Box - Top Left */
-.back-btn-box {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-
-.back-btn-box:hover {
-  background: rgba(220, 38, 38, 0.2);
-  border-color: rgba(220, 38, 38, 0.4);
-  color: #ffffff;
-  transform: translateX(-2px);
 }
 
 /* Logo Section */
