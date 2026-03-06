@@ -12,19 +12,9 @@ except ImportError:
     from src.kv_cache_manager import KVCacheManager
 
 try:
-    from decision_agent import DecisionMakingAgent
-except ImportError:
-    from src.decision_agent import DecisionMakingAgent
-
-try:
     from faq_generator import FAQGenerator
 except ImportError:
     from src.faq_generator import FAQGenerator
-
-try:
-    from evaluation import PerformanceEvaluator
-except ImportError:
-    from src.evaluation import PerformanceEvaluator
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -77,9 +67,7 @@ class CAGSystem:
         self.model = model
         self.encoder = encoder
         self.kv_cache = KVCacheManager()
-        self.agent = DecisionMakingAgent()
         self.faq_gen = FAQGenerator()
-        self.evaluator = PerformanceEvaluator()
         self.database = None
         self.docs_loaded = False
     
@@ -272,7 +260,7 @@ class CAGSystem:
         # Check if documents loaded
         if not self.database:
             return {
-                "response": "⚠️ Silakan upload dokumen PDF terlebih dahulu ke folder database/vectordatabase/",
+                "response": "⚠️ Silakan upload dokumen PDF terlebih dahulu ke folder database/documents/",
                 "source": "error",
                 "cache_used": False,
                 "response_time": time.time() - start_time,
@@ -379,6 +367,11 @@ class CAGSystem:
         if not relevant_docs:
             print(f"⚠️ No chunks passed retrieval threshold — falling back to LLM general knowledge")
             try:
+                _greeting_rule_general = (
+                    "Ini adalah pesan PERTAMA dalam percakapan — boleh membuka jawaban dengan sapaan singkat yang hangat."
+                    if is_first_message else
+                    "Ini adalah lanjutan percakapan — JANGAN memulai jawaban dengan sapaan (Halo, Horas, Selamat datang, dsb). Langsung jawab pertanyaan."
+                )
                 general_prompt = (
                     "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
                     f"Pengguna bertanya: \"{query}\"\n\n"
@@ -387,6 +380,7 @@ class CAGSystem:
                     "dengan pariwisata, budaya Batak, Sumatera Utara, atau topik yang tidak terlalu jauh dari konteks wisata.\n"
                     "Jika pertanyaan BENAR-BENAR tidak relevan (mengandung kata kasar, NSFW, "
                     "atau topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
+                    f"{_greeting_rule_general}\n"
                     "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
                 )
                 llm_response = self.model._call_gemini_api(
@@ -435,6 +429,7 @@ class CAGSystem:
         print(f"📄 Retrieved {len(relevant_docs)} chunks, context: {len(context)} chars")
         
         # Generate response
+        is_first_message = not bool(chat_history)  # greet only on the very first turn
         generation_start = time.time()
         try:
             response = self.model.generate_response(
@@ -444,6 +439,7 @@ class CAGSystem:
                 max_new_tokens=max_new_tokens,
                 temperature=temperature,
                 user_preferences=user_preferences or [],
+                is_first_message=is_first_message,
             )
         except Exception as e:
             print(f"❌ Generation error: {e}")

@@ -1,5 +1,5 @@
 """Quick test script for response generation"""
-from src.cag_system import CAGSystem
+from src.hybrid_system import CAGSystem
 from src.model import GeminiChatModel
 from langchain_huggingface import HuggingFaceEmbeddings
 import glob
@@ -15,7 +15,7 @@ encoder = HuggingFaceEmbeddings(
 cag = CAGSystem(model=model, encoder=encoder)
 
 # Load PDFs
-pdf_files = glob.glob('database/vectordatabase/*.pdf')
+pdf_files = glob.glob('database/documents/*.pdf')
 if pdf_files:
     print(f"Loading {len(pdf_files)} PDFs...")
     cag.load_documents(pdf_files)

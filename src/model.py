@@ -152,100 +152,11 @@ class GeminiChatModel:
         return has_tourism_context
     
     def _get_general_answer(self, query: str) -> str:
-        """Answer general questions then redirect to tourism"""
-        import re
-        query_lower = query.lower().strip()
-        
-        # Math calculations
-        calc_match = re.search(r'(\d+)\s*([\+\-\*\/x])\s*(\d+)', query)
-        if calc_match:
-            try:
-                num1 = int(calc_match.group(1))
-                op = calc_match.group(2)
-                num2 = int(calc_match.group(3))
-                
-                if op == '+':
-                    result = num1 + num2
-                    answer = f"**{num1} + {num2} = {result}** ✓"
-                elif op == '-':
-                    result = num1 - num2
-                    answer = f"**{num1} - {num2} = {result}** ✓"
-                elif op in ['*', 'x']:
-                    result = num1 * num2
-                    answer = f"**{num1} × {num2} = {result}** ✓"
-                elif op == '/':
-                    if num2 != 0:
-                        result = num1 / num2
-                        if result == int(result):
-                            answer = f"**{num1} ÷ {num2} = {int(result)}** ✓"
-                        else:
-                            answer = f"**{num1} ÷ {num2} = {result:.2f}** ✓"
-                    else:
-                        answer = "Tidak bisa membagi dengan nol! 🚫"
-                
-                return f"""{answer}
-
----
-🏔️ *Saya juga adalah asisten **Wisata Danau Toba**!*
-
-Ada yang ingin ditanyakan tentang wisata Danau Toba? 😊"""
-            except:
-                pass
-        
-        # Questions about the bot
-        if any(kw in query_lower for kw in ['siapa kamu', 'siapa anda', 'kamu siapa']):
-            return """Halo! 👋 Saya adalah **Asisten Wisata Danau Toba**!
-
-Saya bisa membantu Anda dengan:
-• 🏖️ Tempat wisata di Danau Toba
-• 🏨 Hotel & penginapan
-• 🍽️ Kuliner khas Batak
-• 🎭 Budaya & tradisi Batak
-
-Ada yang ingin ditanyakan? 😊"""
-        
-        # Thank you
-        if any(kw in query_lower for kw in ['terima kasih', 'makasih', 'thanks', 'thank you']):
-            return "Sama-sama! 😊 Senang bisa membantu. Jika ada pertanyaan lain tentang Danau Toba, silakan tanyakan!"
-        
-        # How are you
-        if any(kw in query_lower for kw in ['apa kabar', 'kabar']):
-            return "Saya baik-baik saja! 😊 Terima kasih sudah bertanya. Ada yang bisa saya bantu tentang wisata Danau Toba?"
-        
-        # Date/time
-        if any(kw in query_lower for kw in ['tanggal', 'hari ini', 'jam']):
-            from datetime import datetime
-            now = datetime.now()
-            return f"""Sekarang tanggal **{now.strftime('%d %B %Y')}**, pukul **{now.strftime('%H:%M')}** WIB.
-
----
-🏔️ *Ngomong-ngomong, mau tanya tentang wisata Danau Toba?* 😊"""
-        
-        # Default: Try Gemini API
-        try:
-            gemini_answer = self._ask_gemini_simple(query)
-            if gemini_answer:
-                return f"""{gemini_answer}
-
----
-🏔️ *Saya juga adalah asisten **Wisata Danau Toba**!*
-
-Ada yang ingin ditanyakan tentang wisata Danau Toba? 😊"""
-        except:
-            pass
-        
-        # Fallback
-        return f"""Saya kurang yakin dengan jawaban untuk pertanyaan itu 😊
-
-Saya adalah asisten khusus **Wisata Danau Toba** 🏔️
-
-💡 **Saya bisa membantu Anda dengan:**
-• 🏖️ Tempat wisata di Toba
-• 🏨 Hotel & penginapan
-• 🍽️ Kuliner khas Batak
-• 🎭 Budaya Batak
-
-Mau tanya tentang Danau Toba? 😊"""
+        """Answer general questions via Gemini."""
+        gemini_answer = self._ask_gemini_general(query)
+        if gemini_answer:
+            return gemini_answer
+        return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
     
     def _ask_gemini_general(self, query: str) -> str:
         """Ask Gemini with general knowledge when no document context is available.
@@ -275,107 +186,25 @@ Mau tanya tentang Danau Toba? 😊"""
             pass
         return None
 
-    def _ask_gemini_simple(self, query: str) -> str:
-        """Ask Gemini for simple questions"""
-        api_key = self._get_available_api_key()
-        if not api_key:
-            return None
-        
-        # Rate limiting
-        current_time = time_module.time()
-        time_since_last = current_time - self.last_request_time
-        if time_since_last < self.min_request_interval:
-            wait_time = self.min_request_interval - time_since_last
-            time_module.sleep(wait_time)
-        self.last_request_time = time_module.time()
-        
-        prompt = f"Jawab singkat dalam 1-2 kalimat: {query}"
-        
-        try:
-            url = f"{self.base_url}/{self.model_name}:generateContent?key={api_key}"
-            payload = {
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {"temperature": 0.3, "maxOutputTokens": 100}
-            }
-            response = requests.post(url, json=payload, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                if "candidates" in data and len(data["candidates"]) > 0:
-                    return data["candidates"][0]["content"]["parts"][0]["text"].strip()
-        except:
-            pass
-        return None
-    
     def _get_out_of_scope_response(self, query: str) -> str:
-        """Response for questions outside our knowledge domain"""
-        return f"""Maaf, saya adalah asisten khusus **Wisata Danau Toba** 🏔️
-
-Pertanyaan Anda tentang **"{query[:50]}..."** berada di luar cakupan pengetahuan saya.
-
-🎯 **Saya dapat membantu Anda dengan:**
-• Rekomendasi tempat wisata di Danau Toba
-• Informasi penginapan (hotel, homestay, villa)
-• Kuliner khas Batak
-• Budaya dan adat istiadat Batak
-• Tips perjalanan ke Toba
-
-Silakan ajukan pertanyaan seputar wisata Danau Toba! 😊"""
+        """Response for questions outside our knowledge domain — via Gemini."""
+        gemini_answer = self._ask_gemini_general(query)
+        if gemini_answer:
+            return gemini_answer
+        return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
     
     def _get_greeting_response(self) -> str:
-        """Return a friendly greeting response"""
-        import random
-        greetings = [
-            "Horas! 👋 Selamat datang di Sistem Rekomendasi Wisata Danau Toba!\n\nSaya siap membantu Anda menemukan destinasi wisata terbaik. Silakan tanyakan tentang:\n\n🏖️ **Tempat Wisata** - Pantai, air terjun, pemandangan\n🏨 **Penginapan** - Hotel, homestay, villa\n🍽️ **Kuliner** - Makanan khas Batak\n🎭 **Budaya** - Adat istiadat, museum\n\nApa yang ingin Anda ketahui?",
-            "Halo! 😊 Selamat datang di Asisten Wisata Danau Toba!\n\nSaya di sini untuk membantu Anda merencanakan perjalanan wisata ke Danau Toba. Mau tanya tentang apa?\n\n• Rekomendasi tempat wisata\n• Penginapan sesuai budget\n• Kuliner khas Batak\n• Tips perjalanan",
-            "Hai! Horas! 🏔️\n\nSelamat datang di Sistem Rekomendasi Wisata Danau Toba. Saya siap membantu Anda menjelajahi keindahan Tanah Batak!"
-        ]
-        return random.choice(greetings)
-    
-    def _get_fallback_response(self, query: str) -> str:
-        """Return fallback response when no context available"""
-        query_lower = query.lower()
-        
-        if any(kw in query_lower for kw in ['homestay', 'penginapan', 'hotel', 'villa']):
-            topic = "penginapan"
-        elif any(kw in query_lower for kw in ['kuliner', 'makanan', 'makan', 'resto']):
-            topic = "kuliner"
-        elif any(kw in query_lower for kw in ['pantai', 'beach', 'perairan', 'air']):
-            topic = "pantai"
-        elif any(kw in query_lower for kw in ['gunung', 'bukit', 'hiking']):
-            topic = "wisata alam"
-        elif any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan']):
-            topic = "transportasi"
-            return f"""🚗 **Informasi Transportasi di Danau Toba:**
-
-Untuk informasi transportasi ke dan di sekitar Danau Toba, berikut beberapa opsi umum:
-
-**🚌 Transportasi Umum:**
-• Angkot dan bus lokal tersedia di kota-kota besar seperti Parapat dan Balige
-• Kapal ferry menyeberang dari Parapat ke Samosir
-
-**🚗 Rental Kendaraan:**
-• Tersedia rental mobil dan motor di Parapat, Balige, dan Samosir
-• Disarankan menyewa kendaraan untuk fleksibilitas perjalanan
-
-**📞 Tips:**
-• Tanyakan langsung ke penginapan untuk rekomendasi rental terpercaya
-• Pesan kendaraan lebih awal terutama saat musim liburan
-
-⚠️ *Maaf, informasi detail transportasi sedang tidak tersedia karena keterbatasan sistem. Silakan coba lagi nanti.*
-
-Ada pertanyaan lain tentang wisata Danau Toba? 😊"""
-        else:
-            topic = "wisata"
-        
-        return f"""Maaf, informasi spesifik tentang **{topic}** yang Anda tanyakan belum tersedia dalam database saya.
-
-🔍 **Coba tanyakan:**
-• Tempat wisata di Samosir
-• Kuliner khas Batak
-• Penginapan di Parapat
-• Air terjun Sipiso-piso
-
-Silakan ajukan pertanyaan lain! 😊"""
+        """Return a greeting response via Gemini."""
+        prompt = (
+            "Kamu adalah asisten wisata Danau Toba yang ramah.\n"
+            "Pengguna menyapa kamu. Balas dengan sapaan hangat yang singkat, "
+            "perkenalkan diri sebagai Asisten Wisata Danau Toba, dan tanya apa yang ingin diketahui. "
+            "Gunakan emoji secukupnya. Jawab dalam Bahasa Indonesia, maksimal 5 baris."
+        )
+        result = self._call_gemini_api(prompt, max_tokens=200, temperature=0.8)
+        if result:
+            return result
+        return "Horas! 👋 Saya Asisten Wisata Danau Toba. Ada yang ingin Anda tanyakan?"
     
     def _get_available_api_key(self):
         """Get an available API key, skipping recently failed ones"""
@@ -408,249 +237,6 @@ Silakan ajukan pertanyaan lain! 😊"""
         self.failed_keys[key] = time_module.time()
         # Move to next key
         self.current_key_index = (self.current_key_index + 1) % len(self.api_keys)
-    
-    def _extract_info_from_context(self, query: str, context: str) -> str:
-        """
-        Extract relevant information from context without using LLM.
-        This is the fallback when API fails.
-        Now includes relevance checking to avoid hallucination.
-        """
-        if not context or len(context.strip()) < 50:
-            return None
-        
-        # First check if context is actually relevant to query
-        if not self._is_query_relevant_to_context(query, context):
-            print("⚠️ Context not relevant to query, skipping fallback extraction")
-            return None
-        
-        query_lower = query.lower()
-        
-        # Determine what type of info user wants
-        is_asking_location = any(kw in query_lower for kw in ['dimana', 'alamat', 'lokasi'])
-        is_asking_price = any(kw in query_lower for kw in ['harga', 'biaya', 'budget', 'murah', 'mahal', 'tarif'])
-        is_asking_food = any(kw in query_lower for kw in ['kuliner', 'makanan', 'makan', 'resto', 'warung', 'cafe', 'enak'])
-        is_asking_stay = any(kw in query_lower for kw in ['hotel', 'penginapan', 'homestay', 'villa', 'resort', 'menginap'])
-        is_asking_tourism = any(kw in query_lower for kw in ['wisata', 'pantai', 'air', 'perairan', 'danau', 'gunung', 'terjun', 'tempat'])
-        
-        # Extract specific keywords from query to match
-        query_keywords = self._extract_query_keywords(query)
-        
-        # Parse context into structured entries
-        entries = self._parse_context_entries(context)
-        
-        # Filter entries by relevance to query
-        relevant_entries = []
-        for entry in entries:
-            if self._entry_matches_query(entry, query_keywords, query_lower):
-                relevant_entries.append(entry)
-        
-        # If no relevant entries found, return None
-        if not relevant_entries:
-            print("⚠️ No relevant entries found in context")
-            return None
-        
-        # Build response
-        response_parts = []
-        
-        # Header based on query type
-        if is_asking_food:
-            response_parts.append("🍽️ **Rekomendasi Kuliner:**\n")
-        elif is_asking_stay:
-            response_parts.append("🏨 **Rekomendasi Penginapan:**\n")
-        elif is_asking_tourism:
-            response_parts.append("🏖️ **Rekomendasi Wisata:**\n")
-        elif any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan']):
-            response_parts.append("🚗 **Informasi Transportasi:**\n")
-        else:
-            response_parts.append("📍 **Informasi yang ditemukan:**\n")
-        
-        # Add relevant entries
-        for i, entry in enumerate(relevant_entries[:5], 1):
-            entry_text = []
-            
-            if entry.get('name'):
-                entry_text.append(f"\n**{i}. {entry['name']}**")
-            elif entry.get('description'):
-                entry_text.append(f"\n**{i}.** {entry['description'][:150]}")
-            
-            if entry.get('description') and entry.get('name'):
-                entry_text.append(f"\n   {entry['description'][:200]}")
-            
-            if entry.get('location'):
-                entry_text.append(f"\n   📍 Lokasi: {entry['location']}")
-            if entry.get('address'):
-                entry_text.append(f"\n   📍 Alamat: {entry['address'][:100]}")
-            if entry.get('price') and is_asking_price:
-                entry_text.append(f"\n   💰 Harga: {entry['price']}")
-            if entry.get('rating'):
-                entry_text.append(f"\n   ⭐ {entry['rating']}")
-            if entry.get('category'):
-                entry_text.append(f"\n   🏷️ Kategori: {entry['category']}")
-            
-            if entry_text:
-                response_parts.extend(entry_text)
-        
-        if len(response_parts) <= 1:
-            return None
-        
-        response_parts.append("\n\n💡 *Informasi dari dokumen wisata Danau Toba*")
-        return ''.join(response_parts)
-    
-    def _extract_query_keywords(self, query: str) -> set:
-        """Extract meaningful keywords from query"""
-        query_lower = query.lower()
-        words = re.findall(r'\b\w+\b', query_lower)
-        
-        stopwords = {'di', 'ke', 'dari', 'yang', 'untuk', 'dan', 'atau', 'dengan', 
-                     'ini', 'itu', 'ada', 'tidak', 'bisa', 'apa', 'mana', 'ter', 'paling',
-                     'saya', 'kamu', 'tolong', 'cari', 'kan', 'dong', 'ya', 'nih'}
-        
-        keywords = set()
-        for word in words:
-            if len(word) > 2 and word not in stopwords:
-                keywords.add(word)
-        
-        return keywords
-    
-    def _parse_context_entries(self, context: str) -> list:
-        """Parse context into structured entries"""
-        entries = []
-        current_entry = {}
-        
-        lines = context.split('\n')
-        
-        for line in lines:
-            line = line.strip()
-            if not line:
-                if current_entry:
-                    entries.append(current_entry)
-                    current_entry = {}
-                continue
-            
-            # Start new entry on [Sumber X]
-            if line.startswith('[Sumber'):
-                if current_entry:
-                    entries.append(current_entry)
-                current_entry = {'raw': ''}
-                continue
-            
-            # Parse structured fields
-            if ':' in line:
-                key_part = line.split(':')[0].strip().lower()
-                value_part = line.split(':', 1)[1].strip()
-                
-                if 'deskripsi' in key_part:
-                    current_entry['description'] = value_part
-                elif 'alamat' in key_part:
-                    current_entry['address'] = value_part
-                elif 'lokasi' in key_part:
-                    current_entry['location'] = value_part
-                elif 'harga' in key_part or 'biaya' in key_part:
-                    current_entry['price'] = value_part
-                elif 'kategori' in key_part:
-                    current_entry['category'] = value_part
-                elif 'rating' in key_part or 'ulasan' in key_part:
-                    current_entry['rating'] = value_part
-            
-            # Try to extract name from first meaningful line
-            if not current_entry.get('name') and len(line) > 3 and len(line) < 100:
-                if not any(skip in line.lower() for skip in ['long', 'lat', 'longitude', 'kategori:', 'deskripsi:', 'alamat:']):
-                    # Check if it looks like a name (capitalized, not too long)
-                    if line[0].isupper() or any(kw in line.lower() for kw in ['pantai', 'air terjun', 'hotel', 'restoran', 'cafe']):
-                        current_entry['name'] = line
-            
-            if 'raw' in current_entry:
-                current_entry['raw'] += line + '\n'
-        
-        if current_entry:
-            entries.append(current_entry)
-        
-        return entries
-    
-    def _entry_matches_query(self, entry: dict, query_keywords: set, query_lower: str) -> bool:
-        """Check if an entry is relevant to the query"""
-        if not entry:
-            return False
-        
-        # Combine all entry text
-        entry_text = ' '.join([
-            str(entry.get('name', '')),
-            str(entry.get('description', '')),
-            str(entry.get('category', '')),
-            str(entry.get('raw', ''))
-        ]).lower()
-        
-        # Check if entry matches query intent
-        # Food query should match food-related entries
-        food_keywords = ['resto', 'restoran', 'warung', 'cafe', 'kuliner', 'makanan', 'makan', 'masakan']
-        stay_keywords = ['hotel', 'homestay', 'penginapan', 'villa', 'resort', 'kamar']
-        tourism_keywords = ['pantai', 'wisata', 'air terjun', 'danau', 'gunung', 'museum', 'taman']
-        health_keywords = ['rumah sakit', 'puskesmas', 'apotek', 'klinik', 'dokter']
-        
-        transport_keywords = ['angkot', 'bus', 'rental', 'travel', 'transportasi', 'kendaraan', 'sewa', 'ojek', 'taksi', 'mobil']
-        
-        is_food_query = any(kw in query_lower for kw in ['makan', 'kuliner', 'resto', 'enak', 'makanan'])
-        is_stay_query = any(kw in query_lower for kw in ['hotel', 'penginapan', 'menginap', 'homestay'])
-        is_tourism_query = any(kw in query_lower for kw in ['wisata', 'pantai', 'tempat', 'air terjun', 'jalan-jalan', 'liburan'])
-        is_transport_query = any(kw in query_lower for kw in ['transportasi', 'angkot', 'bus', 'rental', 'travel', 'kendaraan', 'sewa'])
-        
-        is_food_entry = any(kw in entry_text for kw in food_keywords)
-        is_stay_entry = any(kw in entry_text for kw in stay_keywords)
-        is_tourism_entry = any(kw in entry_text for kw in tourism_keywords)
-        is_health_entry = any(kw in entry_text for kw in health_keywords)
-        is_transport_entry = any(kw in entry_text for kw in transport_keywords)
-        
-        # Don't show health facilities for tourism/food/transport queries
-        if is_health_entry and (is_food_query or is_tourism_query or is_stay_query or is_transport_query):
-            return False
-        
-        # Transport query should match transport entries only
-        if is_transport_query and not is_transport_entry:
-            return False
-        
-        # Match query type with entry type
-        if is_food_query and not is_food_entry:
-            return False
-        if is_stay_query and not is_stay_entry:
-            return False
-        
-        # Check keyword overlap
-        keyword_matches = sum(1 for kw in query_keywords if kw in entry_text)
-        
-        return keyword_matches >= 1 or (is_tourism_query and is_tourism_entry)
-    
-    def _format_raw_context(self, query: str, context: str) -> str:
-        """Format raw context into a readable response"""
-        # Clean up the context
-        lines = [l.strip() for l in context.split('\n') if l.strip() and len(l.strip()) > 10]
-        
-        # Remove metadata lines
-        clean_lines = []
-        for line in lines:
-            if any(skip in line for skip in ['Long & Lat', 'Longitude', 'Lattitude', '[Sumber']):
-                continue
-            clean_lines.append(line)
-        
-        if not clean_lines:
-            return None
-        
-        # Build response
-        response = "📍 **Informasi dari Dokumen Wisata Toba:**\n\n"
-        
-        # Take first few meaningful lines
-        added = 0
-        for line in clean_lines[:10]:
-            if added >= 5:
-                break
-            if len(line) > 20:
-                response += f"• {line[:300]}\n\n"
-                added += 1
-        
-        if added > 0:
-            response += "\n💡 *Untuk informasi lebih detail, silakan tanyakan spesifik tentang tempat tertentu.*"
-            return response
-        
-        return None
 
     def _call_gemini_api(self, prompt: str, max_tokens: int = 512, temperature: float = 0.7) -> str:
         """Call Gemini API via REST with retry logic for rate limits"""
@@ -767,6 +353,7 @@ Silakan ajukan pertanyaan lain! 😊"""
         top_p: float = 0.9,
         top_k: int = 50,
         user_preferences: list = None,
+        is_first_message: bool = True,
     ) -> str:
         """Generate response using Gemini API with intelligent fallback"""
         
@@ -811,6 +398,12 @@ Silakan ajukan pertanyaan lain! 😊"""
                 labels = [CATEGORY_LABELS.get(p, p) for p in user_preferences]
                 pref_hint = f"\n\nCATATAN PREFERENSI PENGGUNA: Pengguna ini menyukai {', '.join(labels)}. Jika relevan, prioritaskan rekomendasi sesuai minat tersebut.\n"
 
+            greeting_rule = (
+                "10. Ini adalah pesan PERTAMA dalam percakapan — boleh membuka jawaban dengan sapaan singkat yang hangat."
+                if is_first_message else
+                "10. Ini adalah lanjutan percakapan — JANGAN memulai jawaban dengan sapaan (Halo, Horas, Selamat datang, dsb). Langsung jawab pertanyaan."
+            )
+
             prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah, informatif, dan detail.
 
 INSTRUKSI PENTING:
@@ -823,6 +416,7 @@ INSTRUKSI PENTING:
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
 8. JANGAN pernah menulis "(Tidak disebutkan namanya...)" — nama selalu ada di dokumen, cari dengan teliti
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
+{greeting_rule}
 {pref_hint}
 INFORMASI DOKUMEN:
 {context[:6000]}
@@ -834,23 +428,9 @@ JAWABAN (hanya berdasarkan dokumen di atas):"""
             # Try Gemini API first
             result = self._call_gemini_api(prompt, max_tokens=max_new_tokens, temperature=temperature)
             
-            # If API failed (returned None), use context-based fallback
-            if result is None:
-                print("🔄 API failed, using context-based fallback...")
-                fallback_result = self._extract_info_from_context(query, context)
-                if fallback_result:
-                    return fallback_result
-                # Try LLM general knowledge as last resort
-                general_answer = self._ask_gemini_general(query)
-                if general_answer:
-                    return general_answer
-                return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
-            
-            # If result is too short, try fallback
-            if len(result) < 10:
-                fallback_result = self._extract_info_from_context(query, context)
-                if fallback_result:
-                    return fallback_result
+            # If API failed or returned empty, try general Gemini as last resort
+            if result is None or len(result) < 10:
+                print("🔄 Gemini API failed or returned empty — retrying with general knowledge...")
                 general_answer = self._ask_gemini_general(query)
                 if general_answer:
                     return general_answer

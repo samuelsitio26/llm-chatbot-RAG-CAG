@@ -31,15 +31,13 @@ from starlette.middleware.sessions import SessionMiddleware
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from model import GeminiChatModel
-from cag_system import CAGSystem
-from decision_agent import DecisionMakingAgent
+from hybrid_system import CAGSystem
 import database as db
 import manage_cache as cache_lifecycle
 
 # Global variables
 model = None
 cag_system = None
-decision_agent = None
 
 
 class ChatRequest(BaseModel):
@@ -162,17 +160,13 @@ async def lifespan(app: FastAPI):
         
         # Load PDF documents
         print("📚 Loading PDF documents...")
-        pdf_folder = os.path.join(os.path.dirname(__file__), "..", "database", "vectordatabase")
+        pdf_folder = os.path.join(os.path.dirname(__file__), "..", "database", "documents")
         pdf_files = glob.glob(os.path.join(pdf_folder, "*.pdf"))
         if pdf_files:
             cag_system.load_documents(pdf_files)
             print(f"   ✅ Loaded {len(pdf_files)} PDF files")
         else:
-            print("   ⚠️ No PDF files found in database/vectordatabase/")
-        
-        # Initialize decision agent
-        print("🎯 Initializing decision agent...")
-        decision_agent = DecisionMakingAgent()
+            print("   ⚠️ No PDF files found in database/documents/")
         
         print("=" * 60)
         print("✅ All systems initialized successfully!")
