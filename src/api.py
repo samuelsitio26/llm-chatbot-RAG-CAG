@@ -38,6 +38,7 @@ import manage_cache as cache_lifecycle
 # Global variables
 model = None
 cag_system = None
+decision_agent = None
 
 
 class ChatRequest(BaseModel):
