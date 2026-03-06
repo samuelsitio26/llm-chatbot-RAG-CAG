@@ -97,11 +97,14 @@ export const AuthProvider = ({ children }) => {
       const savedToken = localStorage.getItem('toba_auth_token');
       const savedUser = localStorage.getItem('toba_current_user');
       
-      // PENTING: Restore user dari localStorage DULU untuk menghindari flicker
-      if (savedUser) {
+      // FIX Bug 1: Hanya restore user dari localStorage jika TOKEN juga ada.
+      // Jika user ada tapi token tidak ada, sesi sudah tidak valid.
+      if (savedToken && savedUser) {
         try {
           const userData = JSON.parse(savedUser);
+          // Pre-emptive set untuk menghindari loading flicker, HANYA jika token ada
           setUser(userData);
+          setToken(savedToken);
           console.log('✅ User restored from localStorage:', userData.username);
         } catch (e) {
           console.log('❌ Failed to parse saved user');
@@ -110,8 +113,6 @@ export const AuthProvider = ({ children }) => {
       }
       
       if (savedToken) {
-        setToken(savedToken);
-        
         try {
           // Try to validate token with backend
           const result = await apiCall('/auth/validate', 'GET', null, savedToken);
@@ -132,13 +133,23 @@ export const AuthProvider = ({ children }) => {
             setToken(null);
           }
         } catch (error) {
-          // Backend not available, keep the localStorage user
-          console.log('⚠️ Backend not available, using localStorage user');
-          // User sudah di-set dari localStorage di atas
+          // FIX Bug 2: Backend tidak bisa dijangkau → paksa logout untuk keamanan.
+          // Ini mencegah token lama/expired tetap aktif saat backend restart.
+          console.log('⚠️ Backend unreachable, clearing session for security');
+          localStorage.removeItem('toba_auth_token');
+          localStorage.removeItem('toba_current_user');
+          setUser(null);
+          setToken(null);
         }
       } else {
-        // Tidak ada token
+        // Tidak ada token → pastikan user state juga null (hapus data stale)
         console.log('ℹ️ No saved token, user is guest');
+        if (savedUser) {
+          // Ada user data tapi tidak ada token → hapus data stale
+          console.log('⚠️ Found user data without token, clearing stale data');
+          localStorage.removeItem('toba_current_user');
+        }
+        setUser(null);
         // Try to check if backend is available
         try {
           await apiCall('/status', 'GET');
