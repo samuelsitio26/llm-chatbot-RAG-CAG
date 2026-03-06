@@ -1184,48 +1184,6 @@ function App() {
               height="370px" 
               showAll={true}
             />
-            
-            <div style={{ 
-              marginTop: '1rem', 
-              padding: '1rem',
-              background: 'rgba(30, 41, 59, 0.6)',
-              borderRadius: '8px',
-              color: 'rgba(255, 255, 255, 0.8)'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <p style={{ margin: 0, fontWeight: '600', color: '#fbbf24' }}>
-                    📍 {locations.length} lokasi wisata
-                  </p>
-                  <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.85rem' }}>
-                    Klik marker merah untuk detail lokasi. Klik "Open in Google Maps" untuk navigasi.
-                  </p>
-                </div>
-                <button
-                  onClick={async () => {
-                    try {
-                      await axios.post(`${API_BASE_URL}/extract-locations`);
-                      await fetchLocations();
-                      alert('✅ Lokasi berhasil di-update dari PDF!');
-                    } catch (e) {
-                      alert('❌ Gagal extract lokasi: ' + e.message);
-                    }
-                  }}
-                  style={{
-                    background: 'linear-gradient(135deg, #dc2626, #991b1b)',
-                    border: 'none',
-                    color: 'white',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '0.85rem',
-                    fontWeight: '500'
-                  }}
-                >
-                  🔄 Refresh dari PDF
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       )}
