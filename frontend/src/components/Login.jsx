@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn, ArrowLeft } from 'lucide-react';
+import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn } from 'lucide-react';
 import './Login.css';
 
 // Google Icon SVG Component
@@ -142,11 +142,6 @@ const Login = () => {
       <div className="login-bg-pattern"></div>
       
       <div className="login-container">
-        {/* Back Button - Top Left */}
-        <Link to="/" className="back-btn-box">
-          <ArrowLeft size={20} />
-        </Link>
-
         {/* Logo Section */}
         <div className="login-logo-section">
           <div className="login-logo">
