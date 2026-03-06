@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   User, Mail, MapPin, Heart, MessageSquare, Lock, 
-  ArrowLeft, LogOut, Save, Edit3, RefreshCw, Trash2,
+  ArrowLeft, LogOut, Save, Edit3, RefreshCw,
   Camera, Check, X, Home, Shield, Upload, Image,
   Copy, ChevronDown, ChevronUp
 } from 'lucide-react';
@@ -38,7 +38,7 @@ const CATEGORY_OPTIONS = [
 ];
 
 const UserProfile = () => {
-  const { user, updateUser, changePassword, getUserChatHistory, clearChatHistory: clearHistory, logout, token } = useAuth();
+  const { user, updateUser, changePassword, getUserChatHistory, logout, token } = useAuth();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   
@@ -313,33 +313,6 @@ const UserProfile = () => {
       day: 'numeric', month: 'short', year: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
-  };
-
-  const handleClearHistory = async () => {
-    if (window.confirm('Hapus semua riwayat chat? Tindakan ini tidak dapat dibatalkan.')) {
-      setLoading(true);
-      await clearHistory();
-      localStorage.removeItem('toba_conversations');
-      setChatHistory([]);
-      setLoading(false);
-      setMessage({ type: 'success', text: 'Riwayat chat berhasil dihapus' });
-      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
-    }
-  };
-
-  const handleDeleteItem = async (chatId) => {
-    if (!window.confirm('Hapus percakapan ini?')) return;
-    try {
-      await fetch(`/api/user/history/${chatId}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setChatHistory(prev => prev.filter(item => item.id !== chatId));
-      setMessage({ type: 'success', text: 'Percakapan dihapus' });
-    } catch (e) {
-      setMessage({ type: 'error', text: 'Gagal menghapus percakapan' });
-    }
-    setTimeout(() => setMessage({ type: '', text: '' }), 2500);
   };
 
   const handleCopyItem = async (text, id) => {
@@ -739,12 +712,6 @@ const UserProfile = () => {
                     <RefreshCw size={16} className={loading ? 'spin' : ''} />
                     Refresh
                   </button>
-                  {chatHistory.length > 0 && (
-                    <button className="up-clear-btn" onClick={handleClearHistory} disabled={loading}>
-                      <Trash2 size={16} />
-                      Hapus Semua
-                    </button>
-                  )}
                 </div>
               </div>
 
@@ -812,16 +779,6 @@ const UserProfile = () => {
                               {isCopied ? <Check size={14} /> : <Copy size={14} />}
                               {isCopied ? 'Tersalin!' : 'Salin'}
                             </button>
-                            {/* Delete single item */}
-                            {item.id && (
-                              <button
-                                className="up-item-action-btn up-item-action-btn--danger"
-                                title="Hapus percakapan ini"
-                                onClick={() => handleDeleteItem(item.id)}
-                              >
-                                <Trash2 size={14} /> Hapus
-                              </button>
-                            )}
                           </div>
                         </div>
                       </div>

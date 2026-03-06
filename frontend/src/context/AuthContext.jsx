@@ -406,28 +406,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const clearChatHistory = async () => {
-    // Try backend first
-    if (token && backendAvailable) {
-      try {
-        await apiCall('/user/history', 'DELETE', null, token);
-        return true;
-      } catch (error) {
-        console.log('Backend clear history failed:', error);
-      }
-    }
-    
-    // Fallback to localStorage
-    try {
-      const history = JSON.parse(localStorage.getItem('toba_chat_history') || '[]');
-      const filtered = history.filter(h => h.userId !== user?.id);
-      localStorage.setItem('toba_chat_history', JSON.stringify(filtered));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
-
   const updateUserStats = (action, details = {}) => {
     if (!user) return;
     
@@ -480,15 +458,6 @@ export const AuthProvider = ({ children }) => {
     };
   };
 
-  const getUserActivity = (limit = 100) => {
-    try {
-      const logs = JSON.parse(localStorage.getItem('toba_user_activity') || '[]');
-      return logs.slice(0, limit);
-    } catch (e) {
-      return [];
-    }
-  };
-
   const isAdmin = () => user?.role === 'admin';
   const isOperator = () => user?.role === 'operator';
   const isUser = () => user?.role === 'user';
@@ -505,7 +474,6 @@ export const AuthProvider = ({ children }) => {
       updateUser,
       changePassword,
       getUserChatHistory,
-      clearChatHistory,
       isLoading,
       authChecked, // Flag untuk memastikan auth sudah dicek
       isAuthenticated: !!user,
@@ -515,7 +483,6 @@ export const AuthProvider = ({ children }) => {
       updateUserStats,
       getAllUsers,
       getSystemStats,
-      getUserActivity,
       backendAvailable
     }}>
       {children}
