@@ -1167,7 +1167,7 @@ function App() {
           <div 
             className="modal-content" 
             onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '95vw', width: '1100px' }}
+            style={{ maxWidth: '90vw', width: '740px' }}
           >
             <div className="modal-header">
               <h2 className="modal-title">
@@ -1181,7 +1181,7 @@ function App() {
             
             <MapView 
               locations={locations} 
-              height="550px" 
+              height="370px" 
               showAll={true}
             />
             
