@@ -1247,22 +1247,6 @@ async def get_chat_history(user: dict = Depends(require_auth), limit: int = 50):
     return {"history": history}
 
 
-@app.delete("/api/user/history")
-async def clear_chat_history(user: dict = Depends(require_auth)):
-    """Clear user chat history"""
-    success = db.clear_user_chat_history(user['id'])
-    return {"success": success}
-
-
-@app.delete("/api/user/history/{chat_id}")
-async def delete_chat_item(chat_id: int, user: dict = Depends(require_auth)):
-    """Delete a single chat history item by its DB id."""
-    success = db.delete_chat_item(user['id'], chat_id)
-    if not success:
-        raise HTTPException(status_code=404, detail="Item not found or unauthorized")
-    return {"success": True, "deleted_id": chat_id}
-
-
 @app.get("/api/conversations")
 async def get_conversations(user: dict = Depends(require_auth)):
     """Return list of conversation threads for the logged-in user."""
@@ -1275,13 +1259,6 @@ async def get_conversation_history(conversation_id: str, user: dict = Depends(re
     """Return full Q&A turns for a specific conversation (for reload from DB)."""
     history = db.get_conversation_context(conversation_id, limit=100)
     return {"conversation_id": conversation_id, "history": history}
-
-
-@app.get("/api/user/activity")
-async def get_activity(user: dict = Depends(require_auth), limit: int = 50):
-    """Get user activity log"""
-    activity = db.get_user_activity(user['id'], limit)
-    return {"activity": activity}
 
 
 # ============================================
@@ -1404,144 +1381,6 @@ async def submit_feedback(
     except Exception as e:
         print(f"❌ Error saving feedback: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
-
-# ============================================
-# Regenerate with Comparison
-# ============================================
-
-class RegenerateRequest(BaseModel):
-    question: str
-    old_answer: str
-    cache_key: Optional[str] = None
-    conversation_id: Optional[str] = None
-
-
-class ChooseVariantRequest(BaseModel):
-    variant_id: int
-    question_hash: Optional[str] = None
-    chosen_answer: Optional[str] = None  # the answer text of the chosen variant
-
-
-@app.post("/api/chat/regenerate")
-async def regenerate_answer(
-    request: RegenerateRequest,
-    authorization: str = Header(None)
-):
-    """Regenerate an answer and return both old + new for comparison.
-    
-    - Old answer is preserved
-    - New answer is generated with use_cache=False
-    - Both are stored as answer_variants keyed by question_hash
-    - Frontend shows side-by-side comparison; user must choose
-    """
-    user = await get_current_user(authorization)
-    user_id = user['id'] if user else None
-
-    if not cag_system:
-        raise HTTPException(status_code=503, detail="CAG system belum siap")
-
-    try:
-        # Generate new answer
-        start = time.time()
-        result = cag_system.get_response(
-            query=request.question,
-            use_cache=False,
-            k=5,
-        )
-        new_answer = result.get("response", "")
-        elapsed = time.time() - start
-
-        if not new_answer or cag_system._is_invalid_response(new_answer):
-            raise HTTPException(
-                status_code=422,
-                detail="Regenerasi gagal — jawaban baru tidak valid"
-            )
-
-        # Determine question_hash
-        q_hash = request.cache_key or cag_system.kv_cache._hash_query(request.question)
-
-        # Save both as variants (skip duplicates automatically)
-        db.save_answer_variant(q_hash, request.question, request.old_answer, "original", user_id)
-        db.save_answer_variant(q_hash, request.question, new_answer, "regenerated", user_id)
-
-        # Fetch all variants for this question
-        variants = db.get_answer_variants(q_hash)
-
-        return {
-            "success": True,
-            "old_answer": request.old_answer,
-            "new_answer": new_answer,
-            "response_time": elapsed,
-            "cache_key": q_hash,
-            "variants": variants,
-        }
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"❌ Regenerate error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/api/chat/choose-variant")
-async def choose_variant(
-    request: ChooseVariantRequest,
-    authorization: str = Header(None)
-):
-    """User chooses preferred answer variant.
-    
-    Flow:
-    1. Increment vote on chosen variant
-    2. Mark all variants for this question as resolved (chosen=1 for winner)
-    3. Update KV cache with the chosen answer so future queries get it directly
-    4. Future queries will NOT see comparison — they get the cached winner
-    """
-    user = await get_current_user(authorization)
-    user_id = user['id'] if user else None
-
-    # 1. Vote
-    success = db.vote_answer_variant(request.variant_id, user_id)
-    if not success:
-        raise HTTPException(status_code=404, detail="Variant tidak ditemukan")
-
-    # 2. Resolve: mark all variants as resolved, winner gets chosen=1
-    q_hash = request.question_hash
-    chosen_data = {}
-    if q_hash:
-        chosen_data = db.resolve_variants(q_hash, request.variant_id)
-        print(f"✅ Variants resolved for {q_hash[:8]}... → winner id={request.variant_id}")
-
-    # 3. Update KV cache with the chosen answer
-    chosen_answer = request.chosen_answer or chosen_data.get("answer", "")
-    if q_hash and chosen_answer and cag_system:
-        try:
-            # Update the response in KV cache (staging or confirmed)
-            kv = cag_system.kv_cache
-            if q_hash in kv.staging:
-                kv.staging[q_hash]['response'] = chosen_answer
-                kv.staging[q_hash]['status'] = 'trusted'
-                kv.staging[q_hash]['total_likes'] = kv.staging[q_hash].get('total_likes', 0) + 1
-                kv.staging[q_hash]['last_accessed'] = __import__('datetime').datetime.now().isoformat()
-                kv.save_cache()
-                print(f"📦 KV staging updated with chosen answer for {q_hash[:8]}...")
-            elif q_hash in kv.cache:
-                kv.cache[q_hash]['response'] = chosen_answer
-                kv.cache[q_hash]['total_likes'] = kv.cache[q_hash].get('total_likes', 0) + 1
-                kv.cache[q_hash]['last_accessed'] = __import__('datetime').datetime.now().isoformat()
-                kv.save_cache()
-                print(f"📦 KV confirmed cache updated with chosen answer for {q_hash[:8]}...")
-            else:
-                print(f"⚠️ KV cache entry not found for {q_hash[:8]}... (may have been evicted)")
-        except Exception as e:
-            print(f"⚠️ Could not update KV cache: {e}")
-
-    return {
-        "success": True,
-        "message": "Jawaban terpilih berhasil disimpan ke cache",
-        "variant_id": request.variant_id,
-        "resolved": True,
-    }
 
 
 @app.get("/api/feedback/stats")

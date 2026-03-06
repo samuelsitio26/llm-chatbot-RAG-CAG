@@ -27,8 +27,6 @@ import {
   AlertTriangle,
   Home,
   Volume2,
-  UserCheck,
-  History,
   UserCircle,
   User,
   Trash2,
@@ -96,7 +94,7 @@ const Avatar = ({ src, size = 'small', className = '' }) => {
 };
 
 const AdminDashboard = () => {
-  const { user, token, logout, getAllUsers, getUserActivity } = useAuth();
+  const { user, token, logout, getAllUsers } = useAuth();
   const getAuthHeaders = () => token ? { Authorization: `Bearer ${token}` } : {};
   const navigate = useNavigate();
   const location = useLocation();
@@ -303,7 +301,7 @@ const AdminDashboard = () => {
           onNavigate={(menuId) => navigate(menuToPath[menuId] || '/admin/dashboard')}
         />;
       case 'users':
-        return <UsersManagement getAllUsers={getAllUsers} getUserActivity={getUserActivity} />;
+        return <UsersManagement getAllUsers={getAllUsers} />;
       case 'locations':
         return <LocationsManagement locations={locations} />;
       case 'faqs':
@@ -1705,34 +1703,26 @@ const SettingsView = ({ user }) => {
 };
 
 // Users Management Component
-const UsersManagement = ({ getAllUsers, getUserActivity }) => {
+const UsersManagement = ({ getAllUsers }) => {
   const [users, setUsers] = useState([]);
-  const [activities, setActivities] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [activeTab, setActiveTab] = useState('users');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // getAllUsers might be async or sync, handle both
         const usersResult = await Promise.resolve(getAllUsers());
         setUsers(usersResult || []);
-        
-        // getUserActivity is sync
-        const activitiesResult = getUserActivity(50);
-        setActivities(activitiesResult || []);
       } catch (error) {
         console.error('Error fetching users:', error);
         setUsers([]);
-        setActivities([]);
       } finally {
         setLoading(false);
       }
     };
     fetchData();
-  }, [getAllUsers, getUserActivity]);
+  }, [getAllUsers]);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return '-';
@@ -1754,17 +1744,6 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
     }
   };
 
-  const getActionIcon = (action) => {
-    switch (action) {
-      case 'login': return '🔓';
-      case 'logout': return '🔒';
-      case 'register': return '✨';
-      case 'chat': return '💬';
-      case 'session_restored': return '🔄';
-      default: return '📌';
-    }
-  };
-
   if (loading) {
     return (
       <div className="users-management">
@@ -1778,26 +1757,7 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
 
   return (
     <div className="users-management">
-      {/* Tabs */}
-      <div className="users-tabs">
-        <button 
-          className={`tab-btn ${activeTab === 'users' ? 'active' : ''}`}
-          onClick={() => setActiveTab('users')}
-        >
-          <UserCheck size={18} />
-          <span>Daftar User ({users.length})</span>
-        </button>
-        <button 
-          className={`tab-btn ${activeTab === 'activity' ? 'active' : ''}`}
-          onClick={() => setActiveTab('activity')}
-        >
-          <History size={18} />
-          <span>Activity Log</span>
-        </button>
-      </div>
-
-      {activeTab === 'users' ? (
-        <div className="users-list-section">
+      <div className="users-list-section">
           <div className="users-table-container">
             {users.length === 0 ? (
               <div className="empty-state-box">
@@ -1915,26 +1875,6 @@ const UsersManagement = ({ getAllUsers, getUserActivity }) => {
             </div>
           )}
         </div>
-      ) : (
-        <div className="activity-log-section">
-          <div className="activity-list">
-            {activities.length === 0 ? (
-              <div className="no-activity">Belum ada aktivitas tercatat</div>
-            ) : (
-              activities.map((act) => (
-                <div key={act.id} className="activity-item">
-                  <span className="activity-icon">{getActionIcon(act.action)}</span>
-                  <div className="activity-info">
-                    <strong>{act.username}</strong>
-                    <span className="activity-action">{act.action}</span>
-                  </div>
-                  <span className="activity-time">{formatDate(act.timestamp)}</span>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

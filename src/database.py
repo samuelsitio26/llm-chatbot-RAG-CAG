@@ -80,34 +80,6 @@ def init_database():
         )
     ''')
     
-    # Activity log table
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS activity_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            action TEXT NOT NULL,
-            details TEXT,
-            ip_address TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-        )
-    ''')
-    
-    # User preferences/settings table
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user_preferences (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER UNIQUE NOT NULL,
-            theme TEXT DEFAULT 'dark',
-            language TEXT DEFAULT 'id',
-            notification_enabled INTEGER DEFAULT 1,
-            email_updates INTEGER DEFAULT 0,
-            preferences_json TEXT DEFAULT '{}',
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        )
-    ''')
-    
     # Conversations table — one row per chat thread in the sidebar
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS conversations (
@@ -135,23 +107,6 @@ def init_database():
         )
     ''')
 
-    # Answer variants — stores alternative answers for comparison
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS answer_variants (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            question_hash TEXT NOT NULL,
-            question TEXT NOT NULL,
-            answer TEXT NOT NULL,
-            source TEXT DEFAULT 'rag',
-            votes INTEGER DEFAULT 0,
-            resolved INTEGER DEFAULT 0,
-            chosen INTEGER DEFAULT 0,
-            created_by INTEGER,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
-        )
-    ''')
-
     # Run schema migrations FIRST — ensures all columns exist before indexes are built
     conn.commit()
     _migrate_schema(cursor, conn)
@@ -164,9 +119,7 @@ def init_database():
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_user ON chat_history(user_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_session ON chat_history(session_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_conv ON chat_history(conversation_id)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_activity_user ON activity_log(user_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_conv_user ON conversations(user_id)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_variants_qhash ON answer_variants(question_hash)')
 
     conn.commit()
 
@@ -213,37 +166,6 @@ def _migrate_schema(cursor, conn):
     if 'message_hash' not in fb_cols:
         cursor.execute('ALTER TABLE feedback ADD COLUMN message_hash TEXT')
         print("⬆️  Migration: added feedback.message_hash")
-
-    # 4. Ensure answer_variants table exists (for older DBs)
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='answer_variants'")
-    if not cursor.fetchone():
-        cursor.execute('''
-            CREATE TABLE answer_variants (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                question_hash TEXT NOT NULL,
-                question TEXT NOT NULL,
-                answer TEXT NOT NULL,
-                source TEXT DEFAULT 'rag',
-                votes INTEGER DEFAULT 0,
-                resolved INTEGER DEFAULT 0,
-                chosen INTEGER DEFAULT 0,
-                created_by INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
-            )
-        ''')
-        cursor.execute('CREATE INDEX IF NOT EXISTS idx_variants_qhash ON answer_variants(question_hash)')
-        print("⬆️  Migration: created answer_variants table")
-
-    # 5. Add resolved + chosen columns to answer_variants (for older DBs)
-    cursor.execute("PRAGMA table_info(answer_variants)")
-    av_cols = {row['name'] for row in cursor.fetchall()}
-    if 'resolved' not in av_cols:
-        cursor.execute('ALTER TABLE answer_variants ADD COLUMN resolved INTEGER DEFAULT 0')
-        print("⬆️  Migration: added answer_variants.resolved")
-    if 'chosen' not in av_cols:
-        cursor.execute('ALTER TABLE answer_variants ADD COLUMN chosen INTEGER DEFAULT 0')
-        print("⬆️  Migration: added answer_variants.chosen")
 
     conn.commit()
 
@@ -304,16 +226,7 @@ def create_user(username: str, email: str, password: str, name: str = None,
         ''', (username, email, password_hash, name or username, avatar, role))
         
         user_id = cursor.lastrowid
-        
-        # Create default preferences
-        cursor.execute('''
-            INSERT INTO user_preferences (user_id) VALUES (?)
-        ''', (user_id,))
-        
         conn.commit()
-        
-        # Log activity
-        log_activity(user_id, "register", "User registered successfully")
         
         return {
             "success": True,
@@ -347,7 +260,6 @@ def authenticate_user(username: str, password: str, ip_address: str = None,
             return {"success": False, "error": "Akun telah dinonaktifkan"}
         
         if not verify_password(password, user['password_hash']):
-            log_activity(user['id'], "login_failed", "Invalid password attempt", ip_address)
             return {"success": False, "error": "Password salah"}
         
         # Create session token
@@ -365,9 +277,6 @@ def authenticate_user(username: str, password: str, ip_address: str = None,
         ''', (user['id'],))
         
         conn.commit()
-        
-        # Log activity
-        log_activity(user['id'], "login", "User logged in successfully", ip_address)
         
         # Parse favorite_categories
         favorite_categories = []
@@ -463,7 +372,6 @@ def logout_user(token: str) -> bool:
         if session:
             cursor.execute("DELETE FROM sessions WHERE token = ?", (token,))
             conn.commit()
-            log_activity(session['user_id'], "logout", "User logged out")
         
         return True
     except:
@@ -541,12 +449,7 @@ def get_or_create_google_user(email: str, name: str = None, avatar: str = None,
             ''', (username, email, password_hash, name or username, avatar or '😊', 'user'))
             
             user_id = cursor.lastrowid
-            
-            # Create default preferences
-            cursor.execute('INSERT INTO user_preferences (user_id) VALUES (?)', (user_id,))
             conn.commit()
-            
-            log_activity(user_id, "register_google", "User registered via Google OAuth", ip_address)
         
         # Create session token
         token = generate_session_token()
@@ -575,8 +478,6 @@ def get_or_create_google_user(email: str, name: str = None, avatar: str = None,
             favorite_categories = json.loads(u['favorite_categories'] or '[]')
         except:
             pass
-        
-        log_activity(user_id, "login_google", "User logged in via Google OAuth", ip_address)
         
         return {
             "success": True,
@@ -629,8 +530,6 @@ def update_user(user_id: int, **kwargs) -> Dict[str, Any]:
         ''', values)
         conn.commit()
         
-        log_activity(user_id, "profile_update", f"Updated fields: {', '.join(update_fields)}")
-        
         return {"success": True, "message": "Profile updated successfully"}
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -661,8 +560,6 @@ def change_password(user_id: int, old_password: str, new_password: str) -> Dict[
         cursor.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
         
         conn.commit()
-        
-        log_activity(user_id, "password_change", "Password changed successfully")
         
         return {"success": True, "message": "Password berhasil diubah"}
     except Exception as e:
@@ -773,8 +670,6 @@ def delete_user(user_id: int, admin_id: int) -> Dict[str, Any]:
         cursor.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
         
         conn.commit()
-        
-        log_activity(admin_id, "user_deactivate", f"Deactivated user ID: {user_id}")
         
         return {"success": True, "message": "User account deactivated"}
     except Exception as e:
@@ -955,81 +850,9 @@ def get_user_conversations(user_id: int, limit: int = 50) -> List[Dict[str, Any]
         conn.close()
 
 
-def clear_user_chat_history(user_id: int) -> bool:
-    """Clear all chat history for a user"""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    
-    try:
-        cursor.execute("DELETE FROM chat_history WHERE user_id = ?", (user_id,))
-        conn.commit()
-        log_activity(user_id, "clear_history", "User cleared chat history")
-        return True
-    except:
-        return False
-    finally:
-        conn.close()
-
-
-def delete_chat_item(user_id: int, chat_id: int) -> bool:
-    """Delete a single chat_history row, only if it belongs to user_id."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute(
-            "DELETE FROM chat_history WHERE id = ? AND user_id = ?",
-            (chat_id, user_id)
-        )
-        deleted = cursor.rowcount > 0
-        conn.commit()
-        if deleted:
-            log_activity(user_id, "delete_chat_item", f"Deleted chat item id={chat_id}")
-        return deleted
-    except:
-        return False
-    finally:
-        conn.close()
-
 # ============================================
-# Activity Log Functions
+# System Stats Functions
 # ============================================
-
-def log_activity(user_id: int, action: str, details: str = None, 
-                ip_address: str = None) -> None:
-    """Log user activity"""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    
-    try:
-        cursor.execute('''
-            INSERT INTO activity_log (user_id, action, details, ip_address)
-            VALUES (?, ?, ?, ?)
-        ''', (user_id, action, details, ip_address))
-        conn.commit()
-    except:
-        pass
-    finally:
-        conn.close()
-
-def get_user_activity(user_id: int, limit: int = 50) -> List[Dict[str, Any]]:
-    """Get activity log for a user"""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    
-    try:
-        cursor.execute('''
-            SELECT action, details, ip_address, created_at
-            FROM activity_log
-            WHERE user_id = ?
-            ORDER BY created_at DESC
-            LIMIT ?
-        ''', (user_id, limit))
-        
-        return [dict(a) for a in cursor.fetchall()]
-    except:
-        return []
-    finally:
-        conn.close()
 
 def get_system_stats() -> Dict[str, Any]:
     """Get system statistics (admin function)"""
@@ -1146,167 +969,6 @@ def save_feedback(user_id: Optional[int], chat_id: int, rating: int,
     finally:
         conn.close()
 
-
-# ============================================
-# Answer Variants Functions
-# ============================================
-
-def save_answer_variant(question_hash: str, question: str, answer: str,
-                       source: str = "rag", created_by: int = None) -> int:
-    """Save an answer variant. Returns variant id (-1 on failure).
-    Skips if exact same answer text already exists for this question_hash."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        # Skip duplicate answer text
-        cursor.execute('''
-            SELECT id FROM answer_variants
-            WHERE question_hash = ? AND answer = ?
-        ''', (question_hash, answer))
-        existing = cursor.fetchone()
-        if existing:
-            return existing['id']
-        
-        cursor.execute('''
-            INSERT INTO answer_variants (question_hash, question, answer, source, created_by)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (question_hash, question, answer, source, created_by))
-        conn.commit()
-        return cursor.lastrowid
-    except Exception as e:
-        print(f"❌ save_answer_variant error: {e}")
-        return -1
-    finally:
-        conn.close()
-
-
-def get_answer_variants(question_hash: str, include_resolved: bool = False) -> List[Dict[str, Any]]:
-    """Get answer variants for a given question hash.
-    By default only returns unresolved variants (active comparison).
-    Set include_resolved=True to get all variants including resolved ones."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        if include_resolved:
-            cursor.execute('''
-                SELECT id, question_hash, question, answer, source, votes, resolved, chosen, created_at
-                FROM answer_variants
-                WHERE question_hash = ?
-                ORDER BY votes DESC, created_at ASC
-            ''', (question_hash,))
-        else:
-            cursor.execute('''
-                SELECT id, question_hash, question, answer, source, votes, resolved, chosen, created_at
-                FROM answer_variants
-                WHERE question_hash = ? AND resolved = 0
-                ORDER BY votes DESC, created_at ASC
-            ''', (question_hash,))
-        rows = cursor.fetchall()
-        return [
-            {
-                "id": r['id'],
-                "question_hash": r['question_hash'],
-                "question": r['question'],
-                "answer": r['answer'],
-                "source": r['source'],
-                "votes": r['votes'],
-                "resolved": r['resolved'],
-                "chosen": r['chosen'],
-                "created_at": r['created_at'],
-            }
-            for r in rows
-        ]
-    except:
-        return []
-    finally:
-        conn.close()
-
-
-def vote_answer_variant(variant_id: int, user_id: int = None) -> bool:
-    """Increment vote count for a variant."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute('''
-            UPDATE answer_variants SET votes = votes + 1
-            WHERE id = ?
-        ''', (variant_id,))
-        conn.commit()
-        return cursor.rowcount > 0
-    except:
-        return False
-    finally:
-        conn.close()
-
-
-def resolve_variants(question_hash: str, chosen_variant_id: int) -> Dict[str, Any]:
-    """Mark all variants for a question_hash as resolved.
-    The chosen variant gets chosen=1, all others just resolved=1.
-    Returns the chosen variant's data."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        # Mark all variants as resolved
-        cursor.execute('''
-            UPDATE answer_variants SET resolved = 1, chosen = 0
-            WHERE question_hash = ?
-        ''', (question_hash,))
-        # Mark the chosen one
-        cursor.execute('''
-            UPDATE answer_variants SET chosen = 1
-            WHERE id = ?
-        ''', (chosen_variant_id,))
-        conn.commit()
-
-        # Return chosen variant data
-        cursor.execute('''
-            SELECT id, question_hash, question, answer, source, votes
-            FROM answer_variants WHERE id = ?
-        ''', (chosen_variant_id,))
-        row = cursor.fetchone()
-        if row:
-            return {
-                "id": row['id'],
-                "question_hash": row['question_hash'],
-                "question": row['question'],
-                "answer": row['answer'],
-                "source": row['source'],
-                "votes": row['votes'],
-            }
-        return {}
-    except Exception as e:
-        print(f"❌ resolve_variants error: {e}")
-        return {}
-    finally:
-        conn.close()
-
-
-def get_winning_variant(question_hash: str) -> Optional[Dict[str, Any]]:
-    """Get the winning (chosen) variant for a resolved question.
-    Returns None if no resolved variant exists."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute('''
-            SELECT id, question, answer, source, votes
-            FROM answer_variants
-            WHERE question_hash = ? AND resolved = 1 AND chosen = 1
-            LIMIT 1
-        ''', (question_hash,))
-        row = cursor.fetchone()
-        if row:
-            return {
-                "id": row['id'],
-                "question": row['question'],
-                "answer": row['answer'],
-                "source": row['source'],
-                "votes": row['votes'],
-            }
-        return None
-    except:
-        return None
-    finally:
-        conn.close()
 
 def get_feedback_stats() -> Dict[str, Any]:
     """Get feedback statistics"""
