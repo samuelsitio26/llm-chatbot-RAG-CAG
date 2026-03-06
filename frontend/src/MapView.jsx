@@ -31,6 +31,38 @@ const goldIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
+// Custom blue icon for user's current location
+const blueIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+// Haversine formula: distance in km between two lat/lng points
+function haversineDistance(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const toRad = (deg) => deg * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+// Component to fly map to a given position
+function FlyToLocation({ position }) {
+  const map = useMap();
+  useEffect(() => {
+    if (position) {
+      map.flyTo([position.lat, position.lng], 13, { duration: 1.5 });
+    }
+  }, [position, map]);
+  return null;
+}
+
 // Component to fit map bounds to markers
 function FitBounds({ locations }) {
   const map = useMap();
@@ -55,6 +87,29 @@ function MapView({
 }) {
   const [mapCenter] = useState([2.6500, 98.8500]); // Danau Toba center
   const [mapZoom] = useState(10);
+  const [userLocation, setUserLocation] = useState(null);
+  const [isLocating, setIsLocating] = useState(false);
+  const [locationError, setLocationError] = useState(null);
+
+  const handleLocateMe = () => {
+    if (!navigator.geolocation) {
+      setLocationError('Browser tidak mendukung geolocation.');
+      return;
+    }
+    setIsLocating(true);
+    setLocationError(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setIsLocating(false);
+      },
+      (err) => {
+        setLocationError('Tidak dapat mengakses lokasi. Pastikan izin lokasi diaktifkan.');
+        setIsLocating(false);
+      },
+      { timeout: 10000 }
+    );
+  };
   
   // Filter locations if highlightLocation is specified
   const displayLocations = highlightLocation 
@@ -64,7 +119,16 @@ function MapView({
     : (showAll ? locations : []);
   
   // If filtering didn't find anything, show all
-  const finalLocations = displayLocations.length > 0 ? displayLocations : locations;
+  const baseLocations = displayLocations.length > 0 ? displayLocations : locations;
+
+  // Sort by distance from user if user location is available
+  const finalLocations = userLocation
+    ? [...baseLocations].sort((a, b) => {
+        const distA = haversineDistance(userLocation.lat, userLocation.lng, a.lat, a.lng);
+        const distB = haversineDistance(userLocation.lat, userLocation.lng, b.lat, b.lng);
+        return distA - distB;
+      })
+    : baseLocations;
   
   if (!locations || locations.length === 0) {
     return (
@@ -159,6 +223,11 @@ function MapView({
                     }}>
                       <strong>Lng:</strong> {location.lng.toFixed(4)}°
                     </p>
+                    {userLocation && (
+                      <p style={{ margin: '0.25rem 0', fontSize: '0.85rem', color: '#1d4ed8', fontWeight: '600' }}>
+                        📏 {haversineDistance(userLocation.lat, userLocation.lng, location.lat, location.lng).toFixed(1)} km dari Anda
+                      </p>
+                    )}
                   </div>
                   
                   {location.source && location.source !== 'default' && (
@@ -198,6 +267,19 @@ function MapView({
           );
         })}
         
+        {userLocation && (
+          <Marker position={[userLocation.lat, userLocation.lng]} icon={blueIcon}>
+            <Popup>
+              <div style={{ minWidth: '150px' }}>
+                <h3 style={{ margin: '0 0 0.5rem 0', color: '#1d4ed8', fontSize: '1rem' }}>📌 Posisi Anda</h3>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#555' }}>
+                  {userLocation.lat.toFixed(5)}°, {userLocation.lng.toFixed(5)}°
+                </p>
+              </div>
+            </Popup>
+          </Marker>
+        )}
+        <FlyToLocation position={userLocation} />
         <FitBounds locations={finalLocations} />
       </MapContainer>
       
@@ -211,8 +293,35 @@ function MapView({
         fontSize: '0.85rem',
         color: 'rgba(255, 255, 255, 0.8)'
       }}>
-        <span>📍 {finalLocations.length} lokasi wisata</span>
-        <span style={{ color: '#fbbf24' }}>Klik marker untuk detail</span>
+        <span>📍 {finalLocations.length} lokasi wisata{userLocation ? ' · Diurutkan terdekat' : ''}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {locationError && (
+            <span style={{ color: '#f87171', fontSize: '0.75rem' }}>{locationError}</span>
+          )}
+          {userLocation && (
+            <span style={{ color: '#60a5fa', fontSize: '0.8rem' }}>📌 Lokasi ditemukan</span>
+          )}
+          <button
+            onClick={handleLocateMe}
+            disabled={isLocating}
+            style={{
+              background: userLocation ? 'linear-gradient(135deg, #1d4ed8, #1e40af)' : 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+              border: 'none',
+              color: 'white',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '6px',
+              cursor: isLocating ? 'not-allowed' : 'pointer',
+              fontSize: '0.8rem',
+              fontWeight: '600',
+              opacity: isLocating ? 0.7 : 1,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.3rem'
+            }}
+          >
+            {isLocating ? '⏳ Mencari...' : '📍 Lokasi Saya'}
+          </button>
+        </div>
       </div>
     </div>
   );
