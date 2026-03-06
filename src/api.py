@@ -140,7 +140,7 @@ async def lifespan(app: FastAPI):
         
         # Initialize Gemini model
         print("📦 Loading Gemini API model...")
-        model = GeminiChatModel(model_name="gemini-2.5-flash")
+        model = GeminiChatModel(model_name="gemini-2.5-pro")
         
         # Initialize encoder for embeddings
         # Model: paraphrase-multilingual-MiniLM-L12-v2
