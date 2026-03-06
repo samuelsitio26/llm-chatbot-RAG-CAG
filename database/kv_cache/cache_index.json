@@ -144,6 +144,97 @@
       "total_dislikes": 0,
       "regen_count": 0,
       "status": "unverified"
+    },
+    "9d4887195193f1528ae6a6bcf592dcee": {
+      "query": "🏨 Fasilitas kamar apa saja yang tersedia di Vany Villa Balige?",
+      "response": "Fasilitas kamar yang tersedia di Vany Villa Balige meliputi shower dengan air panas, AC, dan WiFi gratis, serta kamar mandi pribadi lengkap dengan toilet, bidet, bathtub, perlengkapan mandi, tisu toilet, handuk, dan seprai. Di dalam kamar juga tersedia TV layar datar/Smart TV, sound system, meja kerja, papan jemur jemur baju, tirai anti tembus pandang, serta akses kamar berdampingan. Untuk kenyamanan tambahan, kamar dilengkapi dapur kecil dengan microwave, kompor, kulkas, ketel listrik, dan peralatan makan, serta area patio atau teras, ruang makan outdoor, dan pemandangan danau di beberapa unit.",
+      "context": "from_faq",
+      "created_at": "2026-03-06T14:21:38.869461",
+      "last_accessed": "2026-03-06T14:21:38.869461",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "ff2eb0f8112e7d7dfdcd781754b6be9b": {
+      "query": "sapa raja hotel",
+      "response": "Maaf, informasi mengenai \"Sapa Raja Hotel\" belum tersedia dalam dokumen yang saya miliki.\n\nNamun, jika Anda tertarik dengan hotel lain di sekitar Danau Toba, berikut beberapa rekomendasi hotel yang bisa Anda pertimbangkan:\n\n🏨 **Mutiara Balige Hotel**\n*   **Deskripsi:** Pilihan terjangkau di Balige yang cocok untuk *backpacker* dan wisatawan yang mengutamakan kenyamanan tanpa biaya tinggi. Menawarkan pelayanan 24 jam dan WiFi di seluruh area.\n*   **Lokasi:** Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara\n*   **Biaya:** Rp270.000 - Rp680.000\n*   **Review:** Rating 4.1/5. Posisi di depan jalan persis dan aksesnya dekat kalau mau kemana-mana.\n\n🏨 **Lago Hotel & Resto**\n*   **Deskripsi:** Hotel nyaman dan terjangkau di Balige, cocok untuk *backpacker*, keluarga, pasangan, maupun tamu yang menginap jangka panjang. Menawarkan fasilitas memadai, ruang pertemuan luas, restoran, serta WiFi di seluruh area. Memiliki suasana bangunan bersejarah yang unik.\n*   **Lokasi:** Jl. Sibola Hotang, Sibola Hotangsas, Toba, Sumatera Utara 22312\n*   **Biaya:** Rp469.998 – Rp1.000.000\n*   **Review:** Rating 4.5/5. Hotel dengan kualitas kamar, sarapan, lokasi, dan parkiran yang sesuai harganya. Pas di depan Danau Toba. Ada kafe yang enak juga kopi dan makanannya. Pelayanannya keren sekali, sangat ramah dan peduli ke *customer*.\n\n🏨 **Purnama Balige Hotel**\n*   **Deskripsi:** Sebuah hotel bintang 4 dengan 158 kamar, menawarkan pengalaman menginap yang mewah dan nyaman.\n*   **Lokasi:** Jl. Pardede Pasir No.10, Kec. Balige, Sumatera Utara 22314\n*   **Biaya:** Rp609.000 - Rp1.300.000\n*   **Review:** Rating 4.0/5. Lokasi tepat di tepi Danau Toba, dengan resto menghadap langsung ke danau. Keren buat foto dan nyantai. Tersedia fasilitas sauna. Pelayanan bapak *security*-nya bagus, ramah, sopan, dan sigap.\n\n🏨 **Tiara Bunga Hotel**\n*   **Deskripsi:** Akomodasi nyaman dan terjangkau di kawasan Tampahan, menawarkan pelayanan memuaskan dengan fasilitas yang baik. Resepsionis 24 jam siap membantu kebutuhan tamu.\n*   **Lokasi:** Jl. Raya TaraBunga, Tara Bunga, Kec. Tampahan, Toba, Sumatera Utara 22312\n\n🏨 **Vany Villa Balige**\n*   **Deskripsi:** Resor ini menawarkan pengalaman menginap yang mewah dan berkesan dengan suasana tenang dan privat. Fasilitas seperti kolam renang dan hidangan spesial melengkapi kenyamanan.\n*   **Lokasi:** Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera\n\nJika Anda memiliki pertanyaan lain atau ingin informasi lebih lanjut mengenai tempat wisata atau akomodasi di sekitar Danau Toba, jangan ragu untuk bertanya!",
+      "context": "[Sumber 1 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\nadalah keluarga owner jdi ttp ala carte. Benar atau tidaknya, saran \nsaja semoga kedepannya mau seberapapun jumlah tamu \nsebaiknya prasmanan saja.  \nAnyway, thanks atas sasagunnya saat checkout!\"\n\n[Sumber 2 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\nSaya 20 orang datang mendadak tidak menyangka pelayanan bisa \nlangsung diterima.  \nSekali lagi kami ucapkan terimakasih\" \n \nMutiara Balige Hotel \nDeskripsi   : Mutiara Balige Hotel adalah pilihan terjangkau ",
+      "created_at": "2026-03-06T14:28:06.057128",
+      "last_accessed": "2026-03-06T14:28:06.057128",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "e34257d3c4aee17346f998ace28ebce2": {
+      "query": "bagaimana menuju tiara bunga hotel",
+      "response": "Untuk menuju Tiara Bunga Hotel, Anda bisa mempertimbangkan informasi berikut:\n\n*   **Lokasi:** Jl. Raya TaraBunga, Tara Bunga, Kec. Tampahan, Toba, Sumatera Utara 22312.\n*   **Akses:** Berdasarkan salah satu ulasan, \"Satu-satunya akses adalah naik perahu dari Hotel Oppu Herty.\"\n\nJika Anda ingin tahu lebih banyak tentang hotel atau tempat lain, jangan ragu untuk bertanya!",
+      "context": "[Sumber 1 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\n100.000 per orang termasuk sarapan.\"\"Bangunan rapi Dan \nruangan bersih, lengkap dengan lift.\" \n \nTiara Bunga Hotel \nDeskripsi   : Hotel Tiara Bunga adalah akomodasi nyaman dan terjangkau di \nkawasan Tampahan, menawarkan pelayanan memuaskan dengan \nfasilitas yang baik. Dengan resepsionis 24 jam yang siap \nmembantu kebutuhan tamu, hotel ini menjadi pilihan tepat bagi \nAnda yang mencari tempat beristirahat yang nyaman tanpa \nmenguras kantong. \nLong & ",
+      "created_at": "2026-03-06T14:28:41.741404",
+      "last_accessed": "2026-03-06T14:28:41.741404",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "20c18bfef31bed190fc982370c829cae": {
+      "query": "bagaimana menuju hotel mutiara balige dari laguboti",
+      "response": "Maaf, informasi mengenai cara menuju **Mutiara Balige Hotel** dari Laguboti belum tersedia dalam dokumen.\n\nNamun, saya bisa memberikan beberapa informasi detail tentang **Mutiara Balige Hotel**:\n*   **Deskripsi**: Pilihan terjangkau di Balige yang cocok untuk backpacker dan wisatawan yang mengutamakan kenyamanan tanpa biaya tinggi. Menawarkan pelayanan 24 jam, WiFi di seluruh area, dan fasilitas memadai untuk pengalaman menginap yang menyenangkan.\n*   **Lokasi**: Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara.\n*   **Biaya menginap**: Rp270.000 - Rp680.000.\n*   **Review**: Rating 4.1/5, dengan ulasan positif mengenai posisi di depan jalan persis dan akses yang dekat ke mana-mana.\n\nApakah ada pertanyaan lain mengenai hotel-hotel di sekitar Danau Toba?",
+      "context": "[Sumber 1 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\nSaya 20 orang datang mendadak tidak menyangka pelayanan bisa \nlangsung diterima.  \nSekali lagi kami ucapkan terimakasih\" \n \nMutiara Balige Hotel \nDeskripsi   : Mutiara Balige Hotel adalah pilihan terjangkau di Balige yang \ncocok untuk backpacker dan wisatawan yang mengutamakan \nkenyamanan tanpa biaya tinggi. Dengan pelayanan 24 jam, WiFi di \nseluruh area, dan fasilitas memadai, hotel ini menawarkan \npengalaman menginap yang menyenangkan bagi para t",
+      "created_at": "2026-03-06T14:30:39.412184",
+      "last_accessed": "2026-03-06T14:30:39.412184",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "2300ea47d0d29b3cca083f82d2ed6c08": {
+      "query": "dimana letak grnd mareda hotel",
+      "response": "Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.\n\nTerkait pertanyaan Anda mengenai letak Grnd Mareda Hotel, maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki.\n\nNamun, saya punya beberapa rekomendasi hotel menarik lainnya di Balige yang mungkin cocok untuk Anda:\n\n*   🏡 **Vany Villa Balige**\n    *   **Lokasi:** Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera Utara.\n    *   **Deskripsi:** Resor mewah dengan suasana tenang dan privat. Menawarkan kolam renang dan hidangan spesial. Cocok untuk liburan tak terlupakan dan family time. Kamar luas, ada balkon, beberapa unit dilengkapi dapur mini dan kulkas.\n    *   **Biaya:** Rp550.000 - Rp1.900.000.\n    *   **Rating:** 4.5/5.\n\n*   🏨 **The Boat Homestay and Spa**\n    *   **Deskripsi:** Akomodasi nyaman dan terjangkau di Balige. Terletak di pinggir jalan besar, memiliki kamar luas dengan balkon. Ada dermaga di bibir danau dengan kafe yang nyaman untuk ngemil dan ngopi. Dekat dengan pasar, restoran legendaris, dan tempat wisata. Stafnya hangat dan ramah. Kamar tidak ber-AC, namun kipas angin bisa dipinjam.\n    *   **Lokasi:** Diapit 2 jalan utama, dekat pasar dan resto lejen.\n\n*   🛏️ **Nauli Inn Balige**\n    *   **Deskripsi:** Pilihan akomodasi cerdas di Balige dengan pelayanan baik dan harga terjangkau. Meskipun ramah di kantong, penginapan ini menyediakan fasilitas memadai serta WiFi di seluruh area publik. Kamar cukup luas dan bersih.\n    *   **Harga:** Hari biasa sekitar Rp165.000, Sabtu-Minggu Rp175.000 untuk kamar standar. Kamar dengan 3 tempat tidur sekitar Rp300.000.\n    *   **Lokasi:** Strategis, membuat hotel diminati banyak pengunjung.\n\n*   🌟 **Ita Soposurung**\n    *   **Deskripsi:** Pilihan akomodasi yang tepat di Balige, menawarkan kenyamanan dan akses lokasi yang strategis bagi para wisatawan yang ingin beristirahat dengan tenang.\n\n*   🏨 **Hotel Bahagia**\n    *   **Lokasi:** Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312.\n    *   **Deskripsi:** Fasilitas lengkap termasuk restoran dengan menu lokal dan internasional, kolam renang, gym, lapangan tenis, spa, serta ruang pertemuan. Lokasi strategis dekat destinasi wisata populer dan layanan ramah seperti resepsionis 24 jam, concierge, dan antar-jemput Bandara Silangit. Ideal untuk liburan, perjalanan romantis, maupun perjalanan bisnis.\n    *   **Biaya:** Rp103.000 - Rp1.600.000.\n    *   **Rating:** 4.0/5.\n\nSemoga rekomendasi ini membantu Anda menemukan tempat menginap yang sempurna! Apakah ada hal lain yang ingin Anda tanyakan atau butuh bantuan lebih lanjut dalam merencanakan perjalanan Anda?",
+      "context": "[Sumber 1 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\nmencari lagi! Terletak di pinggiran kota di sepanjang jalan utama, \npenginapan ini menawarkan suasana yang tenang dan damai.  \nKamarnya bersih dan nyaman, dan kamar mandinya dilengkapi air \npanas. Sarapan sederhana namun lezat juga sudah termasuk \ndalam paket. Namun, yang membedakan akomodasi ini adalah \nstafnya yang berdedikasi dan selalu siap membantu segala \nkebutuhan, terima kasih banyak kepada Kak Imelda!  \nSangat direkomendasikan!\"\n\n[Sumber 2",
+      "created_at": "2026-03-06T14:32:27.158673",
+      "last_accessed": "2026-03-06T14:32:27.158673",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "b2d041b47d715cb51e374b568774612a": {
+      "query": "dimana letak grand mareda hotel\n\n",
+      "response": "Maaf, informasi mengenai Grand Mareda Hotel belum tersedia dalam dokumen ini.\n\nBerikut adalah beberapa rekomendasi hotel yang tersedia di dokumen:\n\n*   🏨 **Hotel Bahagia**\n    *   **Lokasi:** Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312\n    *   **Fasilitas:** Restoran (menu lokal & internasional), kolam renang, gym, lapangan tenis, spa, ruang pertemuan, resepsionis 24 jam, concierge, antar-jemput Bandara Silangit.\n    *   **Biaya masuk:** Rp103.000 - Rp1.600.000\n    *   **Review:** Rating 4,0/5. \"Saya sering menginap di Hotel Bahagia sangat rapi.\"\n\n*   🏡 **Vany Villa Balige**\n    *   **Lokasi:** Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera Utara\n    *   **Deskripsi:** Resor dengan suasana tenang dan privat, menawarkan pengalaman menginap mewah dan berkesan.\n    *   **Fasilitas:** Kolam renang, hidangan spesial.\n    *   **Biaya masuk:** Rp550.000 - Rp1.900.000\n    *   **Review:** Rating 4.5/5. \"Ini si Villa rekomendasi soalnya kamarnya luas mau itu lantai 1 dan lantai 2 nya ada balkonnya juga kalo lantai 1 nya bisa masak dan ada juga mini kulkas nya, ada juga restorannya dua lantai ada indoor dan outdoornya dan satu lagi yang buat saya rekomendasikan Villa ini, Vany Villa Balige juga punya kolam renangnya. Intinya nggak bakal rugih deh nginap atau makan di Vany Villa and Resto Balige deh.\"\n\n*   🏨 **Mutiara Balige Hotel**\n    *   **Lokasi:** Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara\n    *   **Deskripsi:** Pilihan terjangkau di Balige yang cocok untuk backpacker dan wisatawan yang mengutamakan kenyamanan tanpa biaya tinggi.\n    *   **Fasilitas:** Pelayanan 24 jam, WiFi di seluruh area, fasilitas memadai.\n    *   **Biaya masuk:** Rp270.000 - Rp680.000\n    *   **Review:** Rating 4.1/5. \"+ posisi di depan jalan persis dan aksesnya dekat kalau mau kemana-mana.\"\n\n*   🏨 **Nauli Inn Balige**\n    *   **Deskripsi:** Pilihan akomodasi cerdas di Balige, menawarkan pelayanan baik dengan harga terjangkau.\n    *   **Fasilitas:** Fasilitas memadai, WiFi di seluruh area publik.\n\n*   🏨 **Tiara Bunga Hotel**\n    *   **Lokasi:** Jl. Raya TaraBunga, Tara Bunga, Kec. Tampahan, Toba, Sumatera Utara 22312\n    *   **Deskripsi:** Akomodasi nyaman dan terjangkau di kawasan Tampahan, menawarkan pelayanan memuaskan dengan fasilitas yang baik.\n    *   **Fasilitas:** Resepsionis 24 jam.\n\nApakah ada hal lain yang ingin Anda ketahui tentang akomodasi di sekitar Danau Toba?",
+      "context": "[Sumber 1 | Hotel | hal. ?]\n[Sumber: hotel.pdf]\nFasilitasnya lengkap, termasuk restoran dengan menu lokal dan \ninternasional, kolam renang, gym, lapangan tenis, spa, serta ruang \npertemuan untuk acara bisnis maupun keluarga. Dengan lokasi \nstrategis dekat destinasi wisata populer dan layanan ramah \nseperti resepsionis 24 jam, concierge, dan antar -jemput Bandara \nSilangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan \nromantis, maupun perjalanan bisnis di Balige. \nLong & Lat   :  2.",
+      "created_at": "2026-03-06T14:33:14.348447",
+      "last_accessed": "2026-03-06T14:33:49.353930",
+      "source": "rag_staging",
+      "staging_access": 1,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
+    },
+    "f7f073ce1aeb93fa2e01c7bf13b6c9d2": {
+      "query": "🏨 Apa saja fasilitas yang tersedia di Grand Mareda Hotel?",
+      "response": "Grand Mareda Hotel menyediakan berbagai fasilitas yang dapat digunakan tamu, seperti WiFi gratis, resepsionis 24 jam, layanan antar jemput bandara (biaya tambahan), ruang tamu, serta pilihan menginap mingguan/bulanan. Hotel ini juga menawarkan parkir gratis termasuk valet, WiFi publik, ruang merokok, penitipan bagasi, layanan laundry/dry cleaning, serta sistem keamanan dengan kunci pintu smart dan penjaga pintu. Untuk kenyamanan kamar, tersedia patio atau teras, TV kabel, televisi, shower, serta pemandangan danau. Fasilitas tambahan meliputi ruang makan dengan makanan halal, layanan pijat, penyewaan mobil dan motor, serta restoran. Hotel ini juga menerapkan standar kebersihan Tiket CLEAN untuk memastikan kenyamanan dan keamanan tamu selama menginap.",
+      "context": "from_faq",
+      "created_at": "2026-03-06T14:33:34.788720",
+      "last_accessed": "2026-03-06T14:33:34.788720",
+      "source": "rag_staging",
+      "staging_access": 0,
+      "total_likes": 0,
+      "total_dislikes": 0,
+      "regen_count": 0,
+      "status": "unverified"
     }
   }
 }
