@@ -841,7 +841,7 @@ const UserProfile = () => {
                 <h4>⚠️ Zona Berbahaya</h4>
                 <p>Menghapus akun akan menghapus semua data Anda secara permanen. Tindakan ini tidak dapat dibatalkan.</p>
                 <button className="up-delete-btn" disabled>
-                  <Trash2 size={18} />
+                  <Shield size={18} />
                   Hapus Akun (Coming Soon)
                 </button>
               </div>
