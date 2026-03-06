@@ -20,7 +20,7 @@ class GeminiChatModel:
     Includes context-based fallback when API fails
     """
     
-    def __init__(self, model_name: str = "gemini-2.5-flash"):
+    def __init__(self, model_name: str = "gemini-2.5-pro"):
         self.model_name = model_name
         
         # Support multiple API keys for rotation
@@ -258,8 +258,8 @@ class GeminiChatModel:
         
         # Models to try (updated for 2025/2026 - older models deprecated)
         models_to_try = [
-            "gemini-2.5-flash",
             "gemini-2.5-pro",
+            "gemini-2.5-flash",
             "gemini-2.0-flash-exp",
             self.model_name
         ]
