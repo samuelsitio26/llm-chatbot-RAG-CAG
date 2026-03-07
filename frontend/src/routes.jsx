@@ -47,6 +47,12 @@ export const publicRoutes = [
     element: AuthCallback,
     name: 'OAuth Callback',
     description: 'Handle Google OAuth callback'
+  },
+  {
+    path: '/information',
+    element: Login,
+    name: 'Information',
+    description: 'Informasi tentang aplikasi TobaInsight'
   }
 ];
 

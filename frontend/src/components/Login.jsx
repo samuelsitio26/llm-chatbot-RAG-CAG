@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn } from 'lucide-react';
+import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn, ChevronDown, ChevronUp } from 'lucide-react';
 import './Login.css';
 
 // Google Icon SVG Component
@@ -27,6 +27,10 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Refs for two-section scroll page
+  const loginSectionRef = useRef(null);
+  const infoSectionRef = useRef(null);
+
   // Auto-detect register mode from /register route
   const [isRegisterMode, setIsRegisterMode] = useState(location.pathname === '/register');
 
@@ -46,6 +50,39 @@ const Login = () => {
       setError(`Login Google gagal: ${oauthError}`);
     }
   }, [location]);
+
+  // Auto-scroll to info section if URL is /information on first load
+  React.useEffect(() => {
+    if (location.pathname === '/information') {
+      const timer = setTimeout(() => {
+        infoSectionRef.current?.scrollIntoView({ behavior: 'instant' });
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Update URL based on which section is visible (IntersectionObserver)
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === infoSectionRef.current) {
+              window.history.replaceState(null, '', '/information');
+            } else if (entry.target === loginSectionRef.current) {
+              const path = isRegisterMode ? '/register' : '/login';
+              window.history.replaceState(null, '', path);
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    if (loginSectionRef.current) observer.observe(loginSectionRef.current);
+    if (infoSectionRef.current) observer.observe(infoSectionRef.current);
+    return () => observer.disconnect();
+  }, [isRegisterMode]);
 
   // Handle Google Sign In - redirect to backend OAuth
   const handleGoogleSignIn = () => {
@@ -137,23 +174,50 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      {/* Background decorations */}
-      <div className="login-bg-pattern"></div>
+    <div className="login-wrapper">
+      {/* ====== SECTION 1: LOGIN FORM ====== */}
+      <section className="login-page" ref={loginSectionRef}>
+        {/* Background decorations */}
+        <div className="login-bg-pattern"></div>
       
-      <div className="login-container">
-        {/* Logo Section */}
-        <div className="login-logo-section">
-          <div className="login-logo">
-            <img src="/images/logo.png" alt="Toba Tourism" />
+        <div className="login-container">
+          {/* Left Panel - Branding */}
+          <div className="login-left-panel">
+            <div className="login-logo">
+              <img src="/images/logo.png" alt="Toba Tourism" />
+            </div>
+            <h1 className="login-title">Toba Tourism</h1>
+            <p className="login-subtitle">
+              {isAdminLogin ? 'Admin Dashboard' : 'Sistem Rekomendasi Wisata'}
+            </p>
+            <p className="login-left-desc">
+              Temukan destinasi wisata terbaik di kawasan Danau Toba dengan panduan AI yang cerdas dan personal
+            </p>
+            <div className="login-left-dots">
+              <span></span><span></span><span></span>
+            </div>
           </div>
-          <h1 className="login-title">Toba Tourism</h1>
-          <p className="login-subtitle">
-            {isAdminLogin ? 'Admin Dashboard' : 'Sistem Rekomendasi Wisata'}
-          </p>
-        </div>
 
-        {/* Login/Register Form */}
+          {/* Right Panel - Form */}
+          <div className="login-right-panel">
+            {/* Mobile compact header */}
+            <div className="login-mobile-header">
+              <img src="/images/logo.png" alt="Toba Tourism" />
+              <div>
+                <h1 className="login-title">Toba Tourism</h1>
+                <p className="login-subtitle">{isAdminLogin ? 'Admin Dashboard' : 'Sistem Rekomendasi Wisata'}</p>
+              </div>
+            </div>
+
+            <div className="login-form-header">
+              <h2 className="login-form-title">
+                {isRegisterMode ? 'Buat Akun Baru' : 'Selamat Datang'}
+              </h2>
+              <p className="login-form-subtitle">
+                {isRegisterMode ? 'Lengkapi data berikut untuk mendaftar' : 'Masukkan kredensial Anda untuk melanjutkan'}
+              </p>
+            </div>
+
         <form className="login-form" onSubmit={handleSubmit}>
 
           {error && (
@@ -291,7 +355,118 @@ const Login = () => {
 
 
         </form>
-      </div>
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <button
+          type="button"
+          className="scroll-down-btn"
+          onClick={() => infoSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label="Lihat informasi aplikasi"
+        >
+          <span>Tentang Aplikasi</span>
+          <ChevronDown size={18} className="bounce-icon" />
+        </button>
+      </section>
+
+      {/* ====== SECTION 2: INFORMATION ====== */}
+      <section className="info-page" ref={infoSectionRef}>
+        <div className="info-content">
+
+          {/* Header */}
+          <div className="info-header">
+            <img src="/images/logo.png" alt="TobaInsight" className="info-logo" />
+            <h1 className="info-title">TobaInsight</h1>
+            <p className="info-tagline">Sistem Rekomendasi Cerdas Pariwisata Danau Toba</p>
+          </div>
+
+          {/* Tujuan Aplikasi */}
+          <div className="info-section">
+            <h2 className="info-section-title">Tujuan Aplikasi</h2>
+            <p className="info-description">
+              TobaInsight dirancang untuk membantu wisatawan menemukan destinasi terbaik di kawasan
+              Danau Toba, Sumatera Utara. Dengan teknologi AI berbasis model bahasa besar (LLM) dan
+              sistem rekomendasi cerdas, aplikasi ini memberikan saran wisata yang personal dan relevan
+              berdasarkan preferensi setiap pengguna.
+            </p>
+            <div className="info-features">
+              <div className="info-feature-card">
+                <span className="feature-icon">🗺️</span>
+                <h3>Rekomendasi Personal</h3>
+                <p>Dapatkan rekomendasi destinasi wisata yang disesuaikan dengan preferensi dan minat Anda</p>
+              </div>
+              <div className="info-feature-card">
+                <span className="feature-icon">🤖</span>
+                <h3>AI Chatbot Cerdas</h3>
+                <p>Tanya jawab interaktif dengan AI tentang tempat wisata, kuliner, dan budaya Danau Toba</p>
+              </div>
+              <div className="info-feature-card">
+                <span className="feature-icon">📍</span>
+                <h3>Informasi Lengkap</h3>
+                <p>Temukan detail lokasi, jam buka, harga tiket, dan tips perjalanan secara lengkap</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Tampilan Aplikasi */}
+          <div className="info-preview-section">
+            <h2 className="info-section-title">Tampilan Aplikasi</h2>
+            <div className="info-preview-image">
+              <img src="/images/page1.png" alt="Tampilan TobaInsight" />
+            </div>
+          </div>
+
+          {/* Cara Penggunaan */}
+          <div className="info-section">
+            <h2 className="info-section-title">Cara Penggunaan</h2>
+            <div className="info-steps">
+              <div className="info-step">
+                <div className="step-number">1</div>
+                <div className="step-content">
+                  <h3>Buat Akun atau Login</h3>
+                  <p>Daftarkan diri atau masuk menggunakan akun Google untuk memulai perjalanan</p>
+                </div>
+              </div>
+              <div className="info-step">
+                <div className="step-number">2</div>
+                <div className="step-content">
+                  <h3>Mulai Percakapan</h3>
+                  <p>Ketik pertanyaan atau kebutuhan wisata Anda di kolom chat yang tersedia</p>
+                </div>
+              </div>
+              <div className="info-step">
+                <div className="step-number">3</div>
+                <div className="step-content">
+                  <h3>Terima Rekomendasi</h3>
+                  <p>AI memberikan rekomendasi destinasi terpersonalisasi beserta informasi lengkapnya</p>
+                </div>
+              </div>
+              <div className="info-step">
+                <div className="step-number">4</div>
+                <div className="step-content">
+                  <h3>Jelajahi Danau Toba</h3>
+                  <p>Nikmati pengalaman wisata yang lebih menyenangkan dengan panduan TobaInsight</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="info-footer">
+            <button
+              type="button"
+              className="back-to-login-btn"
+              onClick={() => loginSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <ChevronUp size={18} />
+              <span>Kembali ke Login</span>
+            </button>
+            <p className="info-copyright">© 2025 TobaInsight — Sistem Rekomendasi Pariwisata Danau Toba</p>
+          </div>
+
+        </div>
+      </section>
     </div>
   );
 };
