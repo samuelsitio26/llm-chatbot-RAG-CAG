@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn, ChevronDown, ChevronUp } from 'lucide-react';
+import { User, Lock, Eye, EyeOff, AlertCircle, Loader2, UserPlus, LogIn, ChevronDown, ChevronUp, Compass, Bot, Info } from 'lucide-react';
 import './Login.css';
 
 // Google Icon SVG Component
@@ -401,17 +401,17 @@ const Login = () => {
             </p>
             <div className="info-features">
               <div className="info-feature-card">
-                <span className="feature-icon">🗺️</span>
+                <Compass size={36} className="feature-icon" />
                 <h3>Rekomendasi Personal</h3>
                 <p>Dapatkan rekomendasi destinasi wisata yang disesuaikan dengan preferensi dan minat Anda</p>
               </div>
               <div className="info-feature-card">
-                <span className="feature-icon">🤖</span>
+                <Bot size={36} className="feature-icon" />
                 <h3>AI Chatbot Cerdas</h3>
                 <p>Tanya jawab interaktif dengan AI tentang tempat wisata, kuliner, dan budaya Danau Toba</p>
               </div>
               <div className="info-feature-card">
-                <span className="feature-icon">📍</span>
+                <Info size={36} className="feature-icon" />
                 <h3>Informasi Lengkap</h3>
                 <p>Temukan detail lokasi, jam buka, harga tiket, dan tips perjalanan secara lengkap</p>
               </div>
