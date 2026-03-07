@@ -21,7 +21,6 @@
  * - /admin/lokasiwisata : Lokasi wisata
  * - /admin/faqmanagement : FAQ Management
  * - /admin/analytics : Analytics
- * - /admin/systemstatus : System Status
  * - /admin/settings : Settings
  * - /admin/chat : Chat (admin)
  * - /admin/profile : Profile (admin)
@@ -148,13 +147,6 @@ export const adminRoutes = [
     roles: ['admin', 'operator']
   },
   {
-    path: '/admin/systemstatus',
-    element: AdminDashboard,
-    name: 'System Status',
-    description: 'Status sistem',
-    roles: ['admin', 'operator']
-  },
-  {
     path: '/admin/settings',
     element: AdminDashboard,
     name: 'Settings',
@@ -256,7 +248,6 @@ export const adminMenu = [
   { path: '/admin/lokasiwisata', icon: '📍', label: 'Lokasi Wisata' },
   { path: '/admin/faqmanagement', icon: '💬', label: 'FAQ Management' },
   { path: '/admin/analytics', icon: '📈', label: 'Analytics' },
-  { path: '/admin/systemstatus', icon: '🖥️', label: 'System Status' },
   { path: '/admin/cachecontrol', icon: '🗄️', label: 'Cache Control' },
   { path: '/admin/settings', icon: '⚙️', label: 'Settings' },
   { path: '/admin/chat', icon: '💬', label: 'Chat' },

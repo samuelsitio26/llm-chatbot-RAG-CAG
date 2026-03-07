@@ -1185,7 +1185,21 @@
 }
 
 .qt-num { color: #64748b; width: 32px; }
+.qt-user {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #cbd5e1;
+}
 .qt-question { max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qt-answer {
+  max-width: 360px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #cbd5e1;
+}
 .qt-latency { font-family: monospace; color: #93c5fd; white-space: nowrap; }
 .qt-time { color: #64748b; white-space: nowrap; font-size: 12px; }
 .qt-rating { text-align: center; }
