@@ -616,13 +616,16 @@ def get_all_users(include_inactive: bool = False) -> List[Dict[str, Any]]:
     
     try:
         query = '''
-            SELECT id, username, email, name, avatar, role, bio, location,
-                   created_at, last_login, is_active
-            FROM users
+            SELECT u.id, u.username, u.email, u.name, u.avatar, u.role, u.bio, u.location,
+                   u.created_at, u.last_login, u.is_active,
+                   COUNT(ch.id) AS chat_count,
+                   MAX(ch.created_at) AS last_chat_at
+            FROM users u
+            LEFT JOIN chat_history ch ON ch.user_id = u.id
         '''
         if not include_inactive:
-            query += " WHERE is_active = 1"
-        query += " ORDER BY created_at DESC"
+            query += " WHERE u.is_active = 1"
+        query += " GROUP BY u.id ORDER BY u.created_at DESC"
         
         cursor.execute(query)
         users = cursor.fetchall()
@@ -639,6 +642,8 @@ def get_all_users(include_inactive: bool = False) -> List[Dict[str, Any]]:
                 "location": u['location'],
                 "createdAt": u['created_at'],
                 "lastLogin": u['last_login'],
+                "chatCount": u['chat_count'] or 0,
+                "lastActive": u['last_chat_at'] or u['last_login'],
                 "isActive": bool(u['is_active'])
             }
             for u in users
@@ -1090,10 +1095,25 @@ def get_analytics_data(limit_recent: int = 50) -> Dict[str, Any]:
 
         # --- Recent per-query table ---
         cursor.execute('''
-            SELECT ch.id, ch.question, ch.category, ch.response_time_ms, ch.created_at,
-                   f.rating
+            SELECT ch.id,
+                   ch.question,
+                   ch.answer,
+                   ch.category,
+                   ch.response_time_ms,
+                   ch.created_at,
+                   COALESCE(u.name, u.username, 'Guest') AS asked_by,
+                   lf.rating
             FROM chat_history ch
-            LEFT JOIN feedback f ON f.chat_id = ch.id
+            LEFT JOIN users u ON u.id = ch.user_id
+            LEFT JOIN (
+                SELECT f.chat_id, f.rating
+                FROM feedback f
+                INNER JOIN (
+                    SELECT chat_id, MAX(id) AS max_id
+                    FROM feedback
+                    GROUP BY chat_id
+                ) latest ON latest.max_id = f.id
+            ) lf ON lf.chat_id = ch.id
             ORDER BY ch.created_at DESC
             LIMIT ?
         ''', (limit_recent,))
@@ -1101,6 +1121,8 @@ def get_analytics_data(limit_recent: int = 50) -> Dict[str, Any]:
             {
                 "id": row['id'],
                 "question": (row['question'] or "")[:120],
+                "answer": (row['answer'] or "")[:220],
+                "asked_by": row['asked_by'] or 'Guest',
                 "source": row['category'],
                 "response_time_ms": row['response_time_ms'],
                 "rating": row['rating'],

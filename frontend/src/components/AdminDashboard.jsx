@@ -107,7 +107,7 @@ const AdminDashboard = () => {
     '/admin/faqmanagement': 'faqs',
     '/admin/cachecontrol': 'cache',
     '/admin/analytics': 'analytics',
-    '/admin/systemstatus': 'system',
+    '/admin/systemstatus': 'dashboard',
     '/admin/settings': 'settings',
   };
 
@@ -119,7 +119,6 @@ const AdminDashboard = () => {
     'faqs': '/admin/faqmanagement',
     'cache': '/admin/cachecontrol',
     'analytics': '/admin/analytics',
-    'system': '/admin/systemstatus',
     'settings': '/admin/settings',
   };
 
@@ -284,7 +283,6 @@ const AdminDashboard = () => {
     { id: 'faqs', label: 'FAQ Management', icon: MessageSquare, path: '/admin/faqmanagement' },
     { id: 'cache', label: 'Cache Control', icon: Database, path: '/admin/cachecontrol' },
     { id: 'analytics', label: 'Analytics', icon: BarChart3, path: '/admin/analytics' },
-    { id: 'system', label: 'System Status', icon: Server, path: '/admin/systemstatus' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/admin/settings' },
   ];
 
@@ -310,8 +308,6 @@ const AdminDashboard = () => {
         return <CacheControl getAuthHeaders={getAuthHeaders} stats={stats} onRefresh={fetchStats} />;
       case 'analytics':
         return <AnalyticsView getAuthHeaders={getAuthHeaders} />;
-      case 'system':
-        return <SystemStatusView systemStatus={systemStatus} onRefresh={fetchSystemStatus} />;
       case 'settings':
         return <SettingsView user={user} />;
       default:
@@ -683,10 +679,6 @@ const DashboardOverview = ({ stats, adminStats, systemStatus, locations, faqs, l
           <button className="action-btn" onClick={() => onNavigate('locations')}>
             <MapPin size={20} />
             <span>Lokasi Wisata</span>
-          </button>
-          <button className="action-btn" onClick={() => onNavigate('system')}>
-            <Server size={20} />
-            <span>System Status</span>
           </button>
         </div>
       </div>
@@ -1567,7 +1559,9 @@ const AnalyticsView = ({ getAuthHeaders }) => {
             <thead>
               <tr>
                 <th>#</th>
+                <th>Penanya</th>
                 <th>Pertanyaan</th>
+                <th>Jawaban</th>
                 <th>Sumber</th>
                 <th>Latensi</th>
                 <th>Feedback</th>
@@ -1578,7 +1572,9 @@ const AnalyticsView = ({ getAuthHeaders }) => {
               {(data?.recent_queries || []).map((q, i) => (
                 <tr key={q.id}>
                   <td className="qt-num">{i + 1}</td>
+                  <td className="qt-user" title={q.asked_by || 'Guest'}>{q.asked_by || 'Guest'}</td>
                   <td className="qt-question" title={q.question}>{q.question}</td>
+                  <td className="qt-answer" title={q.answer || '—'}>{q.answer || '—'}</td>
                   <td>{sourceLabel(q.source)}</td>
                   <td className="qt-latency">{fmtMs(q.response_time_ms)}</td>
                   <td className="qt-rating">{ratingIcon(q.rating)}</td>
@@ -1587,64 +1583,6 @@ const AnalyticsView = ({ getAuthHeaders }) => {
               ))}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// System Status View Component
-const SystemStatusView = ({ systemStatus, onRefresh }) => {
-  return (
-    <div className="system-view">
-      <div className="view-header">
-        <h2>System Status</h2>
-        <button className="refresh-btn" onClick={onRefresh}>
-          <RefreshCw size={18} />
-          <span>Refresh</span>
-        </button>
-      </div>
-      <div className="system-info-grid">
-        <div className="system-info-card">
-          <h4>Model Information</h4>
-          <div className="info-row">
-            <span>Model Name:</span>
-            <span>{systemStatus?.model_name || 'N/A'}</span>
-          </div>
-          <div className="info-row">
-            <span>Model Loaded:</span>
-            <span className={systemStatus?.model_loaded ? 'status-active' : 'status-inactive'}>
-              {systemStatus?.model_loaded ? 'Yes' : 'No'}
-            </span>
-          </div>
-          <div className="info-row">
-            <span>Device:</span>
-            <span>{systemStatus?.device || 'N/A'}</span>
-          </div>
-        </div>
-        <div className="system-info-card">
-          <h4>Cache Status</h4>
-          <div className="info-row">
-            <span>KV Cache Entries:</span>
-            <span>{systemStatus?.kv_cache_entries || 0}</span>
-          </div>
-          <div className="info-row">
-            <span>Summary Cache Entries:</span>
-            <span>{systemStatus?.kv_cache_entries || 0}</span>
-          </div>
-        </div>
-        <div className="system-info-card">
-          <h4>System Health</h4>
-          <div className="info-row">
-            <span>Status:</span>
-            <span className={systemStatus?.status === 'healthy' ? 'status-active' : 'status-warning'}>
-              {systemStatus?.status || 'Unknown'}
-            </span>
-          </div>
-          <div className="info-row">
-            <span>Uptime:</span>
-            <span>{systemStatus?.uptime || 'N/A'}</span>
-          </div>
         </div>
       </div>
     </div>
