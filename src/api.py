@@ -1522,6 +1522,99 @@ async def get_avatar(filename: str):
     raise HTTPException(status_code=404, detail="Avatar not found")
 
 
+# ============================================
+# Regenerate & Choose Variant Endpoints
+# ============================================
+
+class RegenerateRequest(BaseModel):
+    question: str
+    old_answer: str
+    cache_key: Optional[str] = None
+    conversation_id: Optional[str] = None
+
+
+class ChooseVariantRequest(BaseModel):
+    variant_id: int
+    question_hash: Optional[str] = None
+    chosen_answer: str
+
+
+@app.post("/api/chat/regenerate")
+async def regenerate_answer(request: RegenerateRequest, authorization: str = Header(None)):
+    """Generate a new answer for the same question, bypassing cache."""
+    global cag_system
+
+    if not cag_system:
+        raise HTTPException(status_code=503, detail="System not initialized")
+
+    user = await get_current_user(authorization)
+    user_prefs = user.get('favoriteCategories') if user else []
+
+    # Load conversation context
+    chat_history = []
+    if request.conversation_id:
+        chat_history = db.get_conversation_context(request.conversation_id, limit=8)
+
+    try:
+        # Force fresh generation — skip cache
+        result = cag_system.get_response(
+            query=request.question,
+            chat_history=chat_history,
+            use_cache=False,   # always bypass cache for regeneration
+            k=8,
+            max_new_tokens=2048,
+            temperature=0.9,   # slightly higher temp for variation
+            user_preferences=user_prefs or [],
+        )
+
+        new_answer = result.get("response", "")
+        new_cache_key = result.get("cache_key") or request.cache_key
+
+        variants = [
+            {"id": -1, "answer": request.old_answer, "source": "original", "votes": 0},
+            {"id": -2, "answer": new_answer, "source": "regenerated", "votes": 0},
+        ]
+
+        print(f"🔄 Regenerated answer for: {request.question[:50]}...")
+
+        return {
+            "old_answer": request.old_answer,
+            "new_answer": new_answer,
+            "variants": variants,
+            "cache_key": new_cache_key,
+        }
+
+    except Exception as e:
+        print(f"❌ Error regenerating: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/chat/choose-variant")
+async def choose_variant(request: ChooseVariantRequest, authorization: str = Header(None)):
+    """Record which variant the user chose and update the KV cache accordingly."""
+    global cag_system
+
+    try:
+        # Update KV cache with the chosen answer if we have a hash
+        if request.question_hash and cag_system:
+            # If user chose regenerated (-2), that answer replaces the cached one
+            if request.variant_id == -2:
+                cag_system.kv_cache.update_entry(
+                    request.question_hash, request.chosen_answer
+                )
+                print(f"💾 Cache updated with chosen regenerated answer: {request.question_hash[:8]}...")
+            elif request.variant_id == -1:
+                # User preferred original — record a like to reinforce it
+                cag_system.kv_cache.record_feedback(request.question_hash, 1)
+                print(f"👍 Original answer reinforced: {request.question_hash[:8]}...")
+
+        return {"success": True, "message": "Variant choice recorded"}
+
+    except Exception as e:
+        print(f"❌ Error choosing variant: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
