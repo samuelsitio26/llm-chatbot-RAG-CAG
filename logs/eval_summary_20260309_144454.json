@@ -1,0 +1,63 @@
+{
+  "timestamp": "20260309_144454",
+  "dataset_size": 30,
+  "rag": {
+    "time_avg": 3.8211,
+    "time_std": 1.288,
+    "time_min": 1.804,
+    "time_max": 6.66,
+    "chr": 0.0,
+    "bert": 0.6377,
+    "bert_std": 0.026,
+    "comp": 1.0,
+    "comp_std": 0.0,
+    "hall": 0.0928,
+    "hall_std": 0.0903,
+    "irr": 0.0268,
+    "irr_std": 0.0708,
+    "rel": 0.9731,
+    "rel_std": 0.0708,
+    "recall": 0.0,
+    "recall_std": 0.0,
+    "eir": 0.2976,
+    "eir_std": 0.2639,
+    "em": 0.0,
+    "em_std": 0.0,
+    "token_f1": 0.1119,
+    "tf1_std": 0.052
+  },
+  "cag": {
+    "time_avg": 1.0356,
+    "time_std": 1.4365,
+    "time_min": 0.038,
+    "time_max": 4.332,
+    "chr": 66.67,
+    "bert": 0.8845,
+    "bert_std": 0.1667,
+    "comp": 1.0,
+    "comp_std": 0.0,
+    "hall": 0.6667,
+    "hall_std": 0.4795,
+    "irr": 0.0863,
+    "irr_std": 0.1314,
+    "rel": 0.9137,
+    "rel_std": 0.1314,
+    "recall": 0.0,
+    "recall_std": 0.0,
+    "eir": 0.0,
+    "eir_std": 0.0,
+    "em": 0.6667,
+    "em_std": 0.4795,
+    "token_f1": 0.7147,
+    "tf1_std": 0.4112
+  },
+  "speedup_factor": 3.6897,
+  "scenario_faq": {
+    "total_hits": 20,
+    "avg_time": 0.06
+  },
+  "scenario_kvcache": {
+    "total_tested": 10,
+    "avg_speedup": 0.912
+  }
+}
