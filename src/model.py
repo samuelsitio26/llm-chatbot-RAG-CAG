@@ -19,8 +19,37 @@ class GeminiChatModel:
     No SDK required - uses direct HTTP requests
     Includes context-based fallback when API fails
     """
-    
-    def __init__(self, model_name: str = "gemini-2.5-pro"):
+
+    # ── Capability config per model ──────────────────────────────────
+    MODEL_CONFIG = {
+        "gemini-2.5-pro": {
+            "max_output_tokens": 8192,
+            "timeout":           60,
+            "supports_thinking": False,  # thinkingConfig NOT supported → error 400
+        },
+        "gemini-2.5-flash": {
+            "max_output_tokens": 4096,
+            "timeout":           30,
+            "supports_thinking": True,   # thinkingConfig supported
+        },
+        "gemini-2.0-flash-exp": {
+            "max_output_tokens": 2048,
+            "timeout":           30,
+            "supports_thinking": False,
+        },
+        "gemini-1.5-flash": {
+            "max_output_tokens": 2048,
+            "timeout":           30,
+            "supports_thinking": False,
+        },
+        "gemini-1.5-pro": {
+            "max_output_tokens": 4096,
+            "timeout":           30,
+            "supports_thinking": False,
+        },
+    }
+
+    def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
         
         # Support multiple API keys for rotation
@@ -235,61 +264,81 @@ class GeminiChatModel:
     def _mark_key_failed(self, key):
         """Mark an API key as temporarily failed"""
         self.failed_keys[key] = time_module.time()
-        # Move to next key
         self.current_key_index = (self.current_key_index + 1) % len(self.api_keys)
 
+    def _build_models_to_try(self) -> list:
+        """
+        Bangun urutan model fallback berdasarkan self.model_name.
+        Primary model selalu duluan, fallback menyesuaikan.
+        """
+        all_fallbacks = {
+            "gemini-2.5-flash":    ["gemini-1.5-flash", "gemini-2.0-flash-exp"],
+            "gemini-2.5-pro":      ["gemini-2.5-flash", "gemini-1.5-flash"],
+            "gemini-1.5-flash":    ["gemini-2.5-flash"],
+            "gemini-1.5-pro":      ["gemini-2.5-flash", "gemini-1.5-flash"],
+            "gemini-2.0-flash-exp": ["gemini-2.5-flash", "gemini-1.5-flash"],
+        }
+        fallbacks = all_fallbacks.get(self.model_name, ["gemini-2.5-flash"])
+        return [self.model_name] + [m for m in fallbacks if m != self.model_name]
+
     def _call_gemini_api(self, prompt: str, max_tokens: int = 512, temperature: float = 0.7) -> str:
-        """Call Gemini API via REST with retry logic for rate limits"""
-        
+        """Call Gemini API via REST — primary model first, fallback if needed."""
+
         api_key = self._get_available_api_key()
         if not api_key:
             print("⚠️ No API keys available")
-            return None  # Return None to trigger fallback
-        
+            return None
+
         # Rate limiting: wait if needed
-        current_time = time_module.time()
+        current_time    = time_module.time()
         time_since_last = current_time - self.last_request_time
         if time_since_last < self.min_request_interval:
             wait_time = self.min_request_interval - time_since_last
             print(f"⏳ Rate limit protection: waiting {wait_time:.1f}s...")
             time_module.sleep(wait_time)
-        
+
         self.last_request_time = time_module.time()
-        
-        # Models to try (updated for 2025/2026 - older models deprecated)
-        models_to_try = [
-            "gemini-2.5-pro",
-            "gemini-2.5-flash",
-            "gemini-2.0-flash-exp",
-            self.model_name
-        ]
-        
-        headers = {"Content-Type": "application/json"}
-        
-        # Disable thinking for faster, more complete responses
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {
-                "temperature": temperature,
-                "maxOutputTokens": max_tokens,
-                "topP": 0.9,
-                "topK": 40,
-                "thinkingConfig": {
-                    "thinkingBudget": 0  # Disable thinking to use all tokens for output
-                }
-            }
-        }
-        
-        last_error = None
-        
+
+        models_to_try = self._build_models_to_try()
+        headers       = {"Content-Type": "application/json"}
+        last_error    = None
+
         for model in models_to_try:
+            cfg = self.MODEL_CONFIG.get(model, {
+                "max_output_tokens": 2048,
+                "timeout":           30,
+                "supports_thinking": False,
+            })
+
+            # Gunakan max antara caller vs minimum config model
+            effective_max_tokens = max(max_tokens, cfg["max_output_tokens"])
+
             url = f"{self.base_url}/{model}:generateContent?key={api_key}"
-            
-            for attempt in range(3):  # Reduced attempts to fail faster
+
+            generation_config = {
+                "temperature":     temperature,
+                "maxOutputTokens": effective_max_tokens,
+                "topP":            0.9,
+                "topK":            40,
+            }
+
+            # thinkingConfig HANYA untuk model yang support (saat ini: gemini-2.5-flash)
+            if cfg["supports_thinking"]:
+                generation_config["thinkingConfig"] = {"thinkingBudget": 0}
+
+            payload = {
+                "contents":         [{"parts": [{"text": prompt}]}],
+                "generationConfig": generation_config,
+            }
+
+            for attempt in range(3):
                 try:
-                    response = requests.post(url, headers=headers, json=payload, timeout=30)
-                    
-                    # Handle rate limit (429) - mark key failed and return None for fallback
+                    print(f"📡 {model} (maxTokens={effective_max_tokens}), attempt {attempt+1}...")
+                    response = requests.post(
+                        url, headers=headers, json=payload,
+                        timeout=cfg["timeout"]
+                    )
+
                     if response.status_code == 429:
                         print(f"⏳ Rate limited on {model}, attempt {attempt + 1}/3")
                         if attempt < 2:
@@ -297,51 +346,61 @@ class GeminiChatModel:
                             continue
                         else:
                             self._mark_key_failed(api_key)
-                            return None  # Trigger fallback
-                    
-                    # Handle 404 - try next model immediately
-                    if response.status_code == 404:
-                        print(f"⚠️ Model {model} not found, trying next...")
+                            break  # coba model berikutnya
+
+                    if response.status_code in [400, 404]:
+                        print(f"⚠️ {model} error {response.status_code}: {response.text[:100]}")
+                        break  # skip ke model berikutnya
+
+                    if response.status_code != 200:
+                        print(f"⚠️ {model} unexpected {response.status_code}: {response.text[:100]}")
                         break
-                    
-                    response.raise_for_status()
+
                     result = response.json()
-                    
+
                     if "candidates" in result and len(result["candidates"]) > 0:
-                        candidate = result["candidates"][0]
+                        candidate     = result["candidates"][0]
+                        finish_reason = candidate.get("finishReason", "unknown")
+
                         if "content" in candidate and "parts" in candidate["content"]:
-                            parts = candidate["content"]["parts"]
-                            if len(parts) > 0 and "text" in parts[0]:
-                                print(f"✅ Response from {model}")
-                                return parts[0]["text"].strip()
-                    
-                    return None  # Trigger fallback
-                    
+                            parts      = candidate["content"]["parts"]
+                            text_parts = [p["text"] for p in parts if "text" in p]
+                            if text_parts:
+                                full_text = "\n".join(text_parts).strip()
+                                if len(full_text) > 10:
+                                    print(f"✅ Response from {model} ({len(full_text)} chars, reason: {finish_reason})")
+                                    return full_text
+
+                        if finish_reason == "MAX_TOKENS":
+                            print(f"⚠️ {model} MAX_TOKENS — skip to next model")
+                            break
+
+                        print(f"⚠️ No content, finishReason: {finish_reason}")
+
+                    break
+
                 except requests.exceptions.RequestException as e:
                     last_error = e
-                    error_str = str(e)
-                    
-                    # Network/DNS error - return None for fallback immediately
-                    if "Name" in error_str or "resolve" in error_str or "connection" in error_str.lower():
+                    error_str  = str(e)
+
+                    if any(x in error_str for x in ["Name", "resolve", "connection"]):
                         print(f"🌐 Network error: {error_str[:50]}...")
                         return None
-                    
-                    # If 429, mark key failed
+
                     if "429" in error_str:
                         self._mark_key_failed(api_key)
-                        return None
-                    
-                    # If 404, skip to next model
-                    if "404" in error_str:
                         break
-                    
+
+                    if "404" in error_str or "400" in error_str:
+                        break
+
                     print(f"⚠️ {model} attempt {attempt + 1} failed: {str(e)[:50]}")
                     if attempt < 2:
                         time_module.sleep(2)
                     continue
-        
-        print(f"❌ All Gemini models failed: {str(last_error)[:50] if last_error else 'unknown'}")
-        return None  # Return None to trigger fallback
+
+        print(f"❌ All models failed: {str(last_error)[:50] if last_error else 'unknown'}")
+        return None
     
     def generate_response(
         self,
@@ -425,17 +484,15 @@ PERTANYAAN: {query}
 
 JAWABAN (hanya berdasarkan dokumen di atas):"""
             
-            # Try Gemini API first
+            # Call Gemini — fallback model otomatis via _build_models_to_try
             result = self._call_gemini_api(prompt, max_tokens=max_new_tokens, temperature=temperature)
-            
-            # If API failed or returned empty, try general Gemini as last resort
+
+            # Jika semua model gagal, fallback ke general knowledge (1x saja)
             if result is None or len(result) < 10:
-                print("🔄 Gemini API failed or returned empty — retrying with general knowledge...")
-                general_answer = self._ask_gemini_general(query)
-                if general_answer:
-                    return general_answer
-                return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
-            
+                print("🔄 API failed — fallback general knowledge (1x only)...")
+                answer = self._ask_gemini_general(query)
+                return answer or "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
+
             return result
         else:
             # No context available — try LLM general knowledge
