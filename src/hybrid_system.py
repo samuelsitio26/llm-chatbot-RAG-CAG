@@ -227,6 +227,7 @@ class CAGSystem:
     ) -> Dict:
         """Get response using CAG system"""
         start_time = time.time()
+        is_first_message = not bool(chat_history)
         
         # Classify intent
         intent = self.model._classify_intent(query)
@@ -429,7 +430,6 @@ class CAGSystem:
         print(f"📄 Retrieved {len(relevant_docs)} chunks, context: {len(context)} chars")
         
         # Generate response
-        is_first_message = not bool(chat_history)  # greet only on the very first turn
         generation_start = time.time()
         try:
             response = self.model.generate_response(
