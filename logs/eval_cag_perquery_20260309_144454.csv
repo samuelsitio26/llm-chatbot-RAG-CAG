@@ -1,0 +1,31 @@
+query,time,cache,bert,comp,hall,relevance,irr,recall,eir,em,token_f1
+Di mana sebaiknya saya menginap di Balige?,0.047,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa yang membuat Balige terkenal?,0.049,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel apa saja yang terbaik di dekat Pantai Lumban Bul-Bul?,0.061,True,1.0,1.0,1.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apa saja hotel terbaik di dekat Batikta?,0.049,True,1.0,1.0,1.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Apa saja restoran paling populer di Balige?,0.061,True,1.0,1.0,1.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Hotel mana yang terbaik untuk menginap di Balige?,0.038,True,1.0,1.0,1.0,0.5,0.5,0.0,0.0,1.0,1.0
+Hotel apa di Balige yang memiliki kolam renang?,0.047,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel apa di Balige yang menyediakan sarapan terbaik?,0.055,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Labersa Hotel & Convention Center Toba Balige bintang berapa,2.989,False,0.6849,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2182
+Berapa jumlah kamar yang tersedia di Labersa Hotel & Convent,2.983,False,0.6483,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1161
+Fasilitas apa saja yang tersedia di Labersa Hotel & Conventi,0.1,True,1.0,1.0,1.0,0.875,0.125,0.0,0.0,1.0,1.0
+Berapa harga menginap di Labersa Hotel & Convention Center T,4.332,False,0.6696,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1387
+Kapan waktu check-in & check-out di Labersa Hotel & Conventi,0.072,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.048,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa lantai yang tersedia di Labersa Hotel & Conventio,2.397,False,0.6178,1.0,0.0,0.875,0.125,0.0,0.0,0.0,0.135
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.065,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.054,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Labersa Hotel & Co,0.075,True,1.0,1.0,1.0,0.75,0.25,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Labersa Hotel & Conven,0.082,True,1.0,1.0,1.0,0.8889,0.1111,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Labersa Hotel & Co,0.06,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di Labersa Hotel and Convention Cen,0.073,True,1.0,1.0,1.0,0.875,0.125,0.0,0.0,1.0,1.0
+"Apakah Labersa Hotel and Convention Center Toba, Balige mena",0.061,True,1.0,1.0,1.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Labersa Hotel and Conventio,0.06,True,1.0,1.0,1.0,0.875,0.125,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Labersa Hotel and Conventi,3.423,False,0.6586,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1566
+Berapa lama waktu perjalanan dari Labersa Hotel and Conventi,2.666,False,0.6821,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2
+Berapa rating bintang resmi untuk Labersa Hotel and Conventi,2.927,False,0.6722,1.0,0.0,0.8889,0.1111,0.0,0.0,0.0,0.1923
+Ada berapa tamu yang dapat menginap di Labersa Hotel & Conve,2.857,False,0.6432,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1098
+Damar Toba bintang berapa?,2.644,False,0.6295,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0886
+Berapa jumlah kamar yang tersedia di Damar Toba,2.657,False,0.6283,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0855
+Fasilitas apa saja yang tersedia di Damar Toba?,0.038,True,1.0,1.0,1.0,0.75,0.25,0.0,0.0,1.0,1.0

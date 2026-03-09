@@ -1,0 +1,8 @@
+Metric,RAG_mean,CAG_mean,t_stat,p_value,Cohen_d,significant,direction_ok
+Response Time,3.8211,1.0356,6.2864,0.0,1.1477,True,True
+BERTScore F1,0.6377,0.8845,-7.5991,0.0,-1.3874,True,True
+Completeness,1.0,1.0,,,0.0,False,True
+Hallucination Rate,0.0928,0.6667,-7.5345,0.0,-1.3756,True,False
+Irrelevancy Score,0.0268,0.0863,-2.4617,0.02,-0.4495,True,False
+RAG Recall,0.0,0.0,,,0.0,False,True
+EIR,0.2976,0.0,6.1761,0.0,1.1276,True,False
