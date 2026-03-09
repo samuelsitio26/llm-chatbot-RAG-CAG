@@ -290,6 +290,23 @@ class KVCacheManager:
         self.save_cache()
         return {"replaced": replaced, "status": new_status, "regen_count": regen_count}
     
+    def update_entry(self, query_hash: str, new_response: str) -> bool:
+        """Replace the cached response for a given hash (used after user chooses regenerated variant)."""
+        if query_hash in self.staging:
+            self.staging[query_hash]['response'] = new_response
+            self.staging[query_hash]['last_regenerated'] = datetime.now().isoformat()
+            self.staging[query_hash]['status'] = 'unverified'
+            self.save_cache()
+            print(f"🔄 Staging entry updated with chosen answer: {query_hash[:8]}...")
+            return True
+        if query_hash in self.cache:
+            self.cache[query_hash]['response'] = new_response
+            self.cache[query_hash]['last_accessed'] = datetime.now().isoformat()
+            self.save_cache()
+            print(f"🔄 Confirmed entry updated with chosen answer: {query_hash[:8]}...")
+            return True
+        return False
+
     def clear(self):
         """Clear all cache (confirmed + staging)"""
         self.cache = {}
