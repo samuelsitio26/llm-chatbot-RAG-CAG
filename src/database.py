@@ -802,14 +802,16 @@ def get_conversation_context(conversation_id: str, limit: int = 8) -> List[Dict[
     conn = get_db_connection()
     cursor = conn.cursor()
     try:
+        # DESC to get the LAST `limit` turns (most recent), then reverse for chronological order
         cursor.execute('''
             SELECT question, answer
             FROM chat_history
             WHERE conversation_id = ?
-            ORDER BY created_at ASC
+            ORDER BY created_at DESC
             LIMIT ?
         ''', (conversation_id, limit))
         rows = cursor.fetchall()
+        rows = list(reversed(rows))  # restore chronological order
         history = []
         for row in rows:
             history.append({"role": "user", "content": row["question"]})
