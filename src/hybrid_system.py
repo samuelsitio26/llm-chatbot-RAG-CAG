@@ -373,6 +373,18 @@ class CAGSystem:
                     if is_first_message else
                     "Ini adalah lanjutan percakapan — JANGAN memulai jawaban dengan sapaan (Halo, Horas, Selamat datang, dsb). Langsung jawab pertanyaan."
                 )
+                # Include chat history for context-aware follow-up
+                _history_general = ""
+                if chat_history and len(chat_history) > 0:
+                    _h_lines = []
+                    for msg in chat_history[-8:]:
+                        role = "Pengguna" if msg.get('role') == 'user' else "Asisten"
+                        _h_lines.append(f"  {role}: {msg.get('content', '')[:300]}")
+                    _history_general = (
+                        "\n\nKONTEKS PERCAKAPAN SEBELUMNYA:\n"
+                        + "\n".join(_h_lines)
+                        + "\n\nGunakan konteks di atas jika pertanyaan baru merujuk ke topik sebelumnya.\n"
+                    )
                 general_prompt = (
                     "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
                     f"Pengguna bertanya: \"{query}\"\n\n"
@@ -382,6 +394,7 @@ class CAGSystem:
                     "Jika pertanyaan BENAR-BENAR tidak relevan (mengandung kata kasar, NSFW, "
                     "atau topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
                     f"{_greeting_rule_general}\n"
+                    f"{_history_general}"
                     "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
                 )
                 llm_response = self.model._call_gemini_api(

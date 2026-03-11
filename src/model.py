@@ -463,6 +463,22 @@ class GeminiChatModel:
                 "10. Ini adalah lanjutan percakapan — JANGAN memulai jawaban dengan sapaan (Halo, Horas, Selamat datang, dsb). Langsung jawab pertanyaan."
             )
 
+            # Format chat history for context-aware multi-turn conversation
+            history_section = ""
+            if chat_history and len(chat_history) > 0:
+                history_lines = []
+                for msg in chat_history[-8:]:  # Last 8 messages (4 turns)
+                    role = "Pengguna" if msg.get('role') == 'user' else "Asisten"
+                    content = msg.get('content', '')[:300]
+                    history_lines.append(f"  {role}: {content}")
+                history_section = (
+                    "\n\nKONTEKS PERCAKAPAN SEBELUMNYA:\n"
+                    + "\n".join(history_lines)
+                    + "\n\n(Gunakan konteks percakapan di atas untuk memahami maksud pengguna "
+                    "jika pertanyaan baru merujuk ke topik sebelumnya, misalnya 'tempat itu', "
+                    "'yang tadi', 'saingannya', 'alternatif lain', dll.)\n"
+                )
+
             prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah, informatif, dan detail.
 
 INSTRUKSI PENTING:
@@ -476,7 +492,7 @@ INSTRUKSI PENTING:
 8. JANGAN pernah menulis "(Tidak disebutkan namanya...)" — nama selalu ada di dokumen, cari dengan teliti
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
 {greeting_rule}
-{pref_hint}
+{pref_hint}{history_section}
 INFORMASI DOKUMEN:
 {context[:6000]}
 
