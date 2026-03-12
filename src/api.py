@@ -263,7 +263,7 @@ def is_location_query(query: str) -> bool:
     Only these queries should trigger the map display.
     """
     query_lower = query.lower()
-    
+
     location_keywords = [
         'dimana', 'di mana', 'lokasi', 'keberadaan', 'alamat',
         'tempat wisata', 'letak', 'posisi', 'koordinat',
@@ -272,7 +272,7 @@ def is_location_query(query: str) -> bool:
         'kendaraan', 'transportasi', 'bus', 'travel', 'angkutan', 'ferry', 'kapal',
         'naik apa', 'pakai apa', 'pergi ke', 'menuju ke',
     ]
-    
+
     import re
     recommendation_patterns = [
         r'\d+\s*(tempat|wisata|destinasi|lokasi|pantai|air terjun|danau|bukit|pulau)',
@@ -282,18 +282,18 @@ def is_location_query(query: str) -> bool:
         r'daftar.*(tempat|wisata|destinasi|pantai)',
         r'list.*(tempat|wisata|destinasi|pantai)',
     ]
-    
+
     if any(kw in query_lower for kw in location_keywords):
         return True
-    
+
     for pattern in recommendation_patterns:
         if re.search(pattern, query_lower):
             return True
-    
+
     # Trigger map if user mentions a known Toba area
     if extract_destination_from_query(query):
         return True
-    
+
     return False
 
 
@@ -321,10 +321,9 @@ def _location_name_matches_response(loc_name: str, response_text: str) -> bool:
     """Check if a location name is mentioned in response text using word-level matching."""
     response_lower = response_text.lower()
     loc_lower = loc_name.lower()
-    # Exact substring match
     if loc_lower in response_lower:
         return True
-    # Word-level: all significant words of loc name appear in response
+    # All significant words of the name appear in response
     words = [w for w in loc_lower.split() if len(w) > 3]
     if words and all(w in response_lower for w in words):
         return True
@@ -332,7 +331,7 @@ def _location_name_matches_response(loc_name: str, response_text: str) -> bool:
 
 
 def get_locations_by_area(destination: str, count: int = 5) -> list:
-    """Filter locations.json by a specific destination area (name/location/address)."""
+    """Filter locations.json by a specific destination area."""
     import json, os
     locations_file = os.path.join(
         os.path.dirname(__file__), '..', 'database', 'Locations', 'locations.json'
@@ -350,7 +349,6 @@ def get_locations_by_area(destination: str, count: int = 5) -> list:
             or dest_lower in loc.get('address', '').lower()
             or dest_lower in loc.get('description', '').lower()
         ]
-        # Sort by rating descending
         matched.sort(key=lambda x: x.get('rating', 0), reverse=True)
         return [{
             'name': loc.get('name'), 'lat': loc.get('lat'), 'lng': loc.get('lng'),
@@ -364,7 +362,7 @@ def get_locations_by_area(destination: str, count: int = 5) -> list:
 
 
 def match_response_to_all_locations(response_text: str, count: int = 5) -> list:
-    """Find locations from the full locations.json that are mentioned in response_text."""
+    """Find locations from locations.json whose names are mentioned in response_text."""
     import json, os
     locations_file = os.path.join(
         os.path.dirname(__file__), '..', 'database', 'Locations', 'locations.json'
@@ -624,17 +622,16 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
             if query_type == 'tourism':
                 print(f"🏖️ Tourism query — destination='{destination}', count={requested_count}")
 
-                # Step 1: If user asked about a specific area, filter by that area first
+                # Step 1: Filter by destination area, then match response text
                 if destination:
                     area_locs = get_locations_by_area(destination, count=requested_count)
                     if area_locs:
-                        # Among area locs, prefer those actually mentioned in the response
                         mentioned = [l for l in area_locs
                                      if _location_name_matches_response(l['name'], response_text)]
                         relevant_locations = mentioned if mentioned else area_locs
                         print(f"📍 Area '{destination}': {len(relevant_locations)} locations")
 
-                # Step 2: If no area match, scan ALL locations.json for names in the response
+                # Step 2: Scan all locations.json for names mentioned in response
                 if not relevant_locations:
                     relevant_locations = match_response_to_all_locations(response_text, count=requested_count)
                     print(f"📍 Response-match fallback: {len(relevant_locations)} locations")
@@ -653,7 +650,7 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
                     relevant_locations = pdf_locations[:requested_count]
                     print(f"📍 PDF extraction: {len(relevant_locations)} locations")
 
-                # Step 2: Fallback — show locations in the destination area from locations.json
+                # Step 2: Fallback — show wisata locations in destination area
                 if not relevant_locations and destination:
                     relevant_locations = get_locations_by_area(destination, count=requested_count)
                     print(f"📍 Destination area fallback '{destination}': {len(relevant_locations)} locations")
