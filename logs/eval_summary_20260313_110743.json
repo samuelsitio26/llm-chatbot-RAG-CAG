@@ -1,0 +1,63 @@
+{
+  "timestamp": "20260313_110743",
+  "dataset_size": 200,
+  "rag": {
+    "time_avg": 3.8659,
+    "time_std": 1.2349,
+    "time_min": 1.818,
+    "time_max": 7.301,
+    "chr": 0.0,
+    "bert": 0.6289,
+    "bert_std": 0.0291,
+    "comp": 0.7144,
+    "comp_std": 0.3243,
+    "hall": 0.0892,
+    "hall_std": 0.1181,
+    "irr": 0.0305,
+    "irr_std": 0.082,
+    "rel": 0.9695,
+    "rel_std": 0.082,
+    "recall": 0.2833,
+    "recall_std": 0.3503,
+    "eir": 0.222,
+    "eir_std": 0.2565,
+    "em": 0.0,
+    "em_std": 0.0,
+    "token_f1": 0.1035,
+    "tf1_std": 0.0593
+  },
+  "cag": {
+    "time_avg": 1.5276,
+    "time_std": 1.7311,
+    "time_min": 0.0,
+    "time_max": 5.66,
+    "chr": 56.49999999999999,
+    "bert": 0.8418,
+    "bert_std": 0.1819,
+    "comp": 0.9488,
+    "comp_std": 0.1617,
+    "hall": 0.0,
+    "hall_std": 0.0,
+    "irr": 0.0692,
+    "irr_std": 0.1285,
+    "rel": 0.9308,
+    "rel_std": 0.1285,
+    "recall": 0.0,
+    "recall_std": 0.0,
+    "eir": 0.0,
+    "eir_std": 0.0,
+    "em": 0.565,
+    "em_std": 0.497,
+    "token_f1": 0.6168,
+    "tf1_std": 0.439
+  },
+  "speedup_factor": 2.5307,
+  "scenario_faq": {
+    "total_hits": 113,
+    "avg_time": 0.059
+  },
+  "scenario_kvcache": {
+    "total_tested": 87,
+    "avg_speedup": 0.981
+  }
+}
