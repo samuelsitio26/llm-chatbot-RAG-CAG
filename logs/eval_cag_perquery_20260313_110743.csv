@@ -1,0 +1,201 @@
+query,time,cache,bert,comp,hall,relevance,irr,recall,eir,em,token_f1
+Di mana sebaiknya saya menginap di Balige?,0.008,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa yang membuat Balige terkenal?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel apa saja yang terbaik di dekat Pantai Lumban Bul-Bul?,0.0,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apa saja hotel terbaik di dekat Batikta?,0.002,True,1.0,1.0,0.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Apa saja restoran paling populer di Balige?,0.005,True,1.0,1.0,0.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Hotel mana yang terbaik untuk menginap di Balige?,0.004,True,1.0,1.0,0.0,0.5,0.5,0.0,0.0,1.0,1.0
+Hotel apa di Balige yang memiliki kolam renang?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel apa di Balige yang menyediakan sarapan terbaik?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Labersa Hotel & Convention Center Toba Balige bintang berapa,3.021,False,0.7089,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2286
+Berapa jumlah kamar yang tersedia di Labersa Hotel & Convent,2.992,False,0.6451,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.12
+Fasilitas apa saja yang tersedia di Labersa Hotel & Conventi,0.0,True,1.0,1.0,0.0,0.875,0.125,0.0,0.0,1.0,1.0
+Berapa harga menginap di Labersa Hotel & Convention Center T,4.1,False,0.6483,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1029
+Kapan waktu check-in & check-out di Labersa Hotel & Conventi,0.004,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa lantai yang tersedia di Labersa Hotel & Conventio,2.755,False,0.6113,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.131
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.002,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,0.004,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Labersa Hotel & Co,0.001,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Labersa Hotel & Conven,0.002,True,1.0,1.0,0.0,0.8889,0.1111,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Labersa Hotel & Co,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di Labersa Hotel and Convention Cen,0.0,True,1.0,1.0,0.0,0.875,0.125,0.0,0.0,1.0,1.0
+"Apakah Labersa Hotel and Convention Center Toba, Balige mena",0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Labersa Hotel and Conventio,0.0,True,1.0,1.0,0.0,0.875,0.125,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Labersa Hotel and Conventi,2.988,False,0.675,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1944
+Berapa lama waktu perjalanan dari Labersa Hotel and Conventi,3.443,False,0.687,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2121
+Berapa rating bintang resmi untuk Labersa Hotel and Conventi,3.475,False,0.6485,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1527
+Ada berapa tamu yang dapat menginap di Labersa Hotel & Conve,3.827,False,0.6417,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1102
+Damar Toba bintang berapa?,3.116,False,0.6044,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.0678
+Berapa jumlah kamar yang tersedia di Damar Toba,3.074,False,0.6443,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0741
+Fasilitas apa saja yang tersedia di Damar Toba?,0.002,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Berapa harga menginap di Damar Toba?,3.394,False,0.6409,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.0961
+Kapan waktu check-in & check-out di Damar Toba?,0.004,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Damar Toba menyediakan sarapan?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa lantai yang tersedia di Damar Toba?,3.208,False,0.5444,0.5,0.0,1.0,0.0,0.0,0.0,0.0,0.0465
+Apakah Damar Toba menyediakan parkir?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Damar Toba memperbolehkan late check out?,0.005,True,1.0,1.0,0.0,0.4,0.6,0.0,0.0,1.0,1.0
+Apakah Damar Toba menyediakan airport transfer?,0.004,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Damar Toba?,0.0,True,1.0,1.0,0.0,0.5,0.5,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Damar Toba?,0.004,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Damar Toba?,0.002,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di Damar Toba?,3.928,False,0.6484,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0909
+Berapa lama waktu perjalanan dari Damar Toba - Lakeside Eate,3.661,False,0.6609,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1678
+Berapa lama waktu perjalanan dari Damar Toba ~ Lakeside Eate,5.66,False,0.6495,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1358
+Apa alamat VILLA BORNEO?,0.006,True,1.0,1.0,0.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Apa waktu check-in & check-out standar di VILLA BORNEO?,0.006,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas yang tersedia di VILLA BORNEO?,0.001,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari villa borneo ke Pantai Lum,4.639,False,0.6115,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0677
+Berapa lama waktu perjalanan dari villa borneo ke Bandar Uda,4.286,False,0.6243,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0807
+Berapa jumlah kamar yang tersedia di Sapadia Villa Balige?,4.598,False,0.645,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0839
+Fasilitas apa saja yang tersedia di Sapadia Villa Balige?,0.005,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa harga menginap di Sapadia Villa Balige?,4.426,False,0.641,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0837
+Kapan waktu check-in & check-out di Sapadia Villa Balige?,0.004,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa kamar yang tersedia di Sapadia Villa Balige?,2.915,False,0.5828,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0559
+Apakah Sapadia Villa Balige menyediakan parkir?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Sapadia Villa Bali,0.0,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Apa yang terdekat dari Sapadia Villa Balige?,0.007,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Sapadia Villa Balige?,0.003,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di Sapadia Villa Balige?,3.618,False,0.6266,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1136
+Berapa lama waktu perjalanan dari SAPADIA VILLA BALIGE III k,2.824,False,0.6981,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2062
+Berapa lama waktu perjalanan dari SAPADIA VILLA BALIGE III k,3.957,False,0.6432,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1438
+Gemma Hotel Balige bintang berapa?,2.589,False,0.6955,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.2157
+Berapa jumlah kamar yang tersedia di Gemma Hotel Balige?,3.525,False,0.6451,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0845
+Seberapa dekat Gemma Hotel Balige ke pusat kota?,3.339,False,0.6051,0.3333,0.0,1.0,0.0,0.0,0.0,0.0,0.0828
+Fasilitas apa saja yang tersedia di Gemma Hotel Balige?,0.003,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa harga menginap di Gemma Hotel Balige?,3.78,False,0.6432,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1121
+Kapan waktu check-in & check-out di Gemma Hotel Balige?,0.002,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Gemma Hotel Balige menyediakan sarapan?,0.005,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa lantai yang tersedia di gemma Hotel Balige?,4.369,False,0.5862,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0667
+Apakah Gemma Hotel Balige menyediakan parkir?,0.004,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Gemma Hotel Balige menyediakan airport transfer?,0.002,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Gemma Hotel Balige,0.0,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Gemma Hotel Balige?,0.002,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Gemma Hotel Balige,0.003,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di Gemma Hotel Balige?,3.334,False,0.6386,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.1139
+Berapa lama waktu perjalanan dari Gemma Hotel Balige ke Pant,3.501,False,0.6772,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1818
+Berapa lama waktu perjalanan dari Gemma Hotel Balige ke Band,3.634,False,0.6464,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1227
+Apa bandara terdekat dengan Brain Homestay?,0.0,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Brain Homestay ke Air Terj,4.406,False,0.6125,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0439
+Berapa lama waktu perjalanan dari Brain Homestay ke Bandar U,3.074,False,0.6294,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.119
+Berapa jumlah kamar yang tersedia di Hotel Tiara Bunga?,3.508,False,0.644,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0968
+Fasilitas apa saja yang tersedia di Hotel Tiara Bunga?,0.002,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa harga menginap di Hotel Tiara Bunga?,4.772,False,0.6554,0.5,0.0,1.0,0.0,0.0,0.0,0.0,0.1098
+Kapan waktu check-in & check-out di Hotel Tiara Bunga?,0.005,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel bintang berapa Hotel Tiara Bunga?,3.227,False,0.6377,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.0758
+Ada berapa lantai yang tersedia di Hotel Tiara Bunga?,2.712,False,0.6305,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.099
+Ada berapa kamar yang tersedia di Hotel Tiara Bunga?,2.777,False,0.6031,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.073
+Apakah Hotel Tiara Bunga menyediakan parkir?,0.002,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Hotel Tiara Bunga?,0.065,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Hotel Tiara Bunga?,0.049,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Hotel Tiara Bunga?,0.058,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di Hotel Tiara Bunga?,3.31,False,0.6376,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.0988
+Kapan waktu check-in dan check-out untuk Tiara Bunga Hotel?,0.06,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di Tiara Bunga Hotel?,0.043,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apakah Tiara Bunga Hotel menawarkan Wi-Fi gratis?,0.05,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Tiara Bunga Hotel?,0.049,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Tiara Bunga Hotel ke Panta,3.848,False,0.6249,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0897
+Berapa lama waktu perjalanan dari Tiara Bunga Hotel ke Banda,3.116,False,0.6546,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1429
+Apakah Hotel Santo Djaya menawarkan Wi-Fi gratis?,0.041,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Hotel Santo Djaya dilengkapi kolam renang?,0.043,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Hotel Santo Djaya?,0.042,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Hotel Santo Djaya ke Panta,4.416,False,0.6157,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0865
+Berapa lama waktu perjalanan dari Hotel Santo Djaya ke Banda,2.557,False,0.6832,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2062
+Di mana alamat Nauli Inn Balige?,0.037,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Pukul berapa waktu check-in & check-out di Nauli Inn Balige?,2.151,False,0.6926,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.2424
+Apa saja fasilitas yang tersedia di Nauli Inn Balige?,0.045,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Nauli Inn ke Bandar Udara ,3.175,False,0.6423,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1154
+Berapa jumlah kamar yang tersedia di Nauli Inn Balige?,2.909,False,0.6347,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1008
+Hotel bintang berapa Nauli Inn Balige?,2.816,False,0.6482,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.1333
+Ada berapa lantai yang tersedia di Nauli Inn Balige?,2.669,False,0.5782,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0847
+Ada berapa kamar yang tersedia di Nauli Inn Balige?,2.635,False,0.5725,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0746
+Apakah Nauli Inn Balige menyediakan parkir?,0.052,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Di mana alamat Grand Mareda Hotel?,0.109,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Pukul berapa waktu check-in & check-out di Grand Mareda Hote,3.489,False,0.6786,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1939
+Apa saja fasilitas yang tersedia di Grand Mareda Hotel?,0.056,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Grand Mareda Hotel menawarkan Wi-Fi gratis?,0.049,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Apakah Grand Mareda Hotel dilengkapi kolam renang?,0.145,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Grand Mareda Hotel?,0.132,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Grand Mareda Hotel ke Pant,3.66,False,0.607,1.0,0.0,0.875,0.125,0.0,0.0,0.0,0.069
+Berapa lama waktu perjalanan dari Grand Mareda Hotel ke Band,3.227,False,0.6844,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.2
+Apa saja fasilitas utama di RAP Hotel Balige?,0.12,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apakah RAP Hotel Balige menawarkan Wi-Fi gratis?,0.12,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah RAP Hotel Balige dilengkapi kolam renang?,0.056,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di RAP Hotel Balige?,0.173,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari RAP Hotel Balige ke Pantai,2.55,False,0.6778,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1923
+Berapa lama waktu perjalanan dari RAP Hotel Balige ke Bandar,3.262,False,0.669,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1739
+Berapa rating bintang resmi untuk RAP Hotel Balige?,3.906,False,0.5758,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0667
+Berapa jumlah kamar yang tersedia di RAP Hotel Balige?,2.852,False,0.6381,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0811
+Berapa harga menginap di RAP Hotel Balige?,2.961,False,0.7048,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1882
+Kapan waktu check-in & check-out di RAP Hotel Balige?,0.056,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah RAP Hotel Balige menyediakan sarapan?,0.116,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel bintang berapa RAP Hotel Balige?,2.676,False,0.6482,0.3333,0.0,1.0,0.0,0.0,0.0,0.0,0.1212
+Ada berapa lantai yang tersedia di RAP Hotel Balige?,3.02,False,0.6034,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.096
+Ada berapa kamar yang tersedia di RAP Hotel Balige?,3.439,False,0.6061,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.08
+Apakah RAP Hotel Balige menyediakan parkir?,0.135,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di RAP Hotel Balige?,0.165,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di RAP Hotel Balige?,0.126,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di RAP Hotel Balige?,3.813,False,0.6284,0.75,0.0,1.0,0.0,0.0,0.0,0.0,0.1071
+Bagaimana cara menuju dari bandara terdekat ke RAP Hotel Bal,0.151,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Berapa tarif menginap di RAP Hotel Balige?,3.756,False,0.6616,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.1089
+Bagaimana kebijakan pembatalan untuk RAP Hotel Balige?,0.134,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di J&J Guest House 1 Rumah?,3.6,False,0.6501,0.5,0.0,1.0,0.0,0.0,0.0,0.0,0.2444
+Apakah J&J Guest House 1 Rumah menawarkan Wi-Fi gratis?,4.996,False,0.6208,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1158
+Apakah J&J Guest House 1 Rumah dilengkapi kolam renang?,3.686,False,0.6173,0.6667,0.0,0.8333,0.1667,0.0,0.0,0.0,0.1184
+Apakah tempat parkir tersedia di J&J Guest House 1 Rumah?,0.151,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari J&J Guest House 1 Rumah ke,3.139,False,0.6209,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.132
+Berapa lama waktu perjalanan dari J&J Guest House 1 Rumah ke,3.287,False,0.6254,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1171
+Kapan waktu check-in & check-out di Balige J&J Guesthouse 1?,0.078,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Balige J&J Guesthouse 1 menyediakan parkir?,0.172,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Balige J&J Guesthouse 1 menyediakan airport transfer?,0.235,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Balige J&J Guestho,0.172,True,1.0,1.0,0.0,0.5,0.5,0.0,0.0,1.0,1.0
+Di mana alamat Balige J&J Guesthouse 1?,0.206,True,1.0,1.0,0.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Apakah Brussels Homestay menawarkan Wi-Fi gratis?,0.131,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Brussels Homestay dilengkapi kolam renang?,0.16,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Brussels Homestay?,0.108,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Brussels Homestay ke Panta,2.697,False,0.6367,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1622
+Berapa lama waktu perjalanan dari Brussels Homestay ke Banda,4.193,False,0.6452,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0918
+Di mana alamat BRUSSELS HOMESTAY BALIGE?,0.095,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Pukul berapa waktu check-in & check-out di BRUSSELS HOMESTAY,3.354,False,0.6526,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1854
+Apa saja fasilitas yang tersedia di BRUSSELS HOMESTAY BALIGE,0.186,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Kapan waktu check-in dan check-out untuk Hotel Adela?,0.133,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di Hotel Adela?,0.117,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Apakah Hotel Adela menawarkan Wi-Fi gratis?,0.048,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Apakah Hotel Adela dilengkapi kolam renang?,0.037,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Hotel Adela?,0.051,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Hotel Adela ke Pantai Lumb,2.99,False,0.6432,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1286
+Berapa lama waktu perjalanan dari Hotel Adela ke Bandar Udar,4.343,False,0.6441,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0818
+Berapa rating bintang resmi untuk Hotel Adela?,2.828,False,0.6007,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.051
+Berapa jumlah kamar yang tersedia di Hotel O Adela?,3.916,False,0.6135,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0686
+Apakah Hotel O Adela menyediakan parkir?,0.046,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa alamat Hotel Adela?,0.033,True,1.0,1.0,0.0,0.6667,0.3333,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Vany Villa Balige ke Panta,3.683,False,0.6586,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1705
+Berapa lama waktu perjalanan dari Vany Villa Balige ke Banda,3.461,False,0.6629,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1692
+Vany Villa Balige bintang berapa?,4.117,False,0.64,0.3333,0.0,1.0,0.0,0.0,0.0,0.0,0.0829
+Berapa jumlah kamar yang tersedia di Vany Villa Balige?,2.379,False,0.6305,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0896
+Fasilitas apa saja yang tersedia di Vany Villa Balige?,0.068,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa harga menginap di Vany Villa Balige?,4.15,False,0.6355,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1004
+Kapan waktu check-in & check-out di Vany Villa Balige?,0.141,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Vany Villa Balige menyediakan sarapan?,0.053,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Hotel bintang berapa Vany Villa Balige?,3.48,False,0.5854,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.0676
+Ada berapa lantai yang tersedia di Vany Villa Balige?,2.697,False,0.5752,0.5,0.0,1.0,0.0,0.0,0.0,0.0,0.069
+Ada berapa kamar yang tersedia di Vany Villa Balige?,3.212,False,0.5825,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0662
+Apakah Vany Villa Balige menyediakan parkir?,0.055,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Vany Villa Balige menyediakan kolam renang?,0.052,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Vany Villa Balige menyediakan airport transfer?,0.039,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Apa kata traveller yang sudah menginap di Vany Villa Balige?,0.062,True,1.0,1.0,0.0,0.6,0.4,0.0,0.0,1.0,1.0
+Jenis kamar apa saja yang tersedia di Vany Villa Balige?,0.136,True,1.0,1.0,0.0,0.8333,0.1667,0.0,0.0,1.0,1.0
+Fasilitas kamar apa saja yang tersedia di Vany Villa Balige?,0.148,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa tamu yang dapat menginap di Vany Villa Balige?,3.154,False,0.6243,0.6667,0.0,1.0,0.0,0.0,0.0,0.0,0.1103
+Di mana alamat Vany Villa Balige?,0.105,True,1.0,1.0,0.0,0.75,0.25,0.0,0.0,1.0,1.0
+Apakah di Vany Villa Balige tersedia fasilitas kolam renang?,0.152,True,1.0,1.0,0.0,0.8571,0.1429,0.0,0.0,1.0,1.0
+Kapan waktu check-in dan check-out untuk Lago Hotel & Resto?,0.137,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apa saja fasilitas utama di Lago Hotel & Resto?,0.117,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Apakah Lago Hotel & Resto menawarkan Wi-Fi gratis?,0.131,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah Lago Hotel & Resto dilengkapi kolam renang?,0.138,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Apakah tempat parkir tersedia di Lago Hotel & Resto?,0.133,True,1.0,1.0,0.0,0.8,0.2,0.0,0.0,1.0,1.0
+Berapa lama waktu perjalanan dari Lago Hotel & Resto ke Band,2.865,False,0.6509,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.177
+Berapa jumlah kamar yang tersedia di Lago Hotel and Resto?,3.626,False,0.6385,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1029
+Berapa harga menginap di Lago Hotel and Resto?,3.337,False,0.6406,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1283
+Apakah Lago Hotel and Resto menyediakan sarapan?,0.201,True,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,1.0
+Ada berapa lantai yang tersedia di Lago Hotel and Resto?,3.047,False,0.6182,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.1026
