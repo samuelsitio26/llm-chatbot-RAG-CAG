@@ -4,6 +4,7 @@ Complete Cache-Augmented Generation (CAG) System
 from typing import Dict, List, Optional
 import time
 import os
+import re
 
 # Import dengan error handling
 try:
@@ -26,20 +27,32 @@ from langchain_community.vectorstores.utils import DistanceStrategy
 class CAGSystem:
     """Complete Cache-Augmented Generation System"""
 
-    # Cosine-similarity threshold for FAISS retrieval.
-    # FAISS with COSINE strategy + normalized embeddings uses inner-product search.
-    # Scores = cosine similarity in [0, 1]  (higher = more similar).
-    #   1.0  = identical
-    #   0.50 = loosely related
-    #   0.30 = borderline relevant  ← current threshold
-    #   0.00 = orthogonal / unrelated
-    # Filter: KEEP chunks with score >= RETRIEVAL_THRESHOLD.
-    # Requires encode_kwargs={'normalize_embeddings': True} in the encoder.
-    RETRIEVAL_THRESHOLD = 0.30
+    # ──────────────────────────────────────────────────────────────────────────
+    # PARAMETER RETRIEVAL DOKUMEN
+    # FAISS + DistanceStrategy.COSINE mengembalikan JARAK L2 (bukan similarity).
+    # Artinya: nilai LEBIH KECIL = LEBIH MIRIP  (0.0 = identik, > 1.0 = jauh)
+    #
+    # Setiap chunk dinilai dengan HYBRID SCORE gabungan (0.0 – 1.0):
+    #
+    #   faiss_sim = 1 - (jarak / MAX_FAISS_DISTANCE)   ← kemiripan semantik/vektor
+    #   kw_score  = proporsi kata query yang ada di chunk ← kecocokan keyword
+    #   hybrid    = faiss_sim × HYBRID_WEIGHT_VECTOR
+    #             + kw_score  × HYBRID_WEIGHT_KEYWORD
+    #
+    # Chunk LOLOS jika hybrid >= RELEVANCE_THRESHOLD
+    # Makin TINGGI RELEVANCE_THRESHOLD → seleksi makin KETAT
+    # ──────────────────────────────────────────────────────────────────────────
+    MAX_FAISS_DISTANCE    = 1.20   # jarak absolut maks — lebih dari ini = tidak relevan
+    HYBRID_WEIGHT_VECTOR  = 0.60   # bobot kemiripan semantik (vektor embedding)
+    HYBRID_WEIGHT_KEYWORD = 0.40   # bobot kecocokan kata-kata penting query
+    RELEVANCE_THRESHOLD   = 0.30   # skor minimum untuk lolos ke konteks LLM (0.0–1.0)
 
     INVALID_PATTERNS = [
         "homestay tidak tersedia",
         "tidak tersedia dalam database",
+        "belum tersedia dalam dokumen",
+        "belum tersedia dalam dokumen yang saya miliki",
+        "informasi mengenai menu",
         "Halo is a term",
         "space opera",
         "science fiction",
@@ -70,7 +83,93 @@ class CAGSystem:
         self.faq_gen = FAQGenerator()
         self.database = None
         self.docs_loaded = False
-    
+        self.loaded_docs = []
+
+    def _extract_place_name(self, query: str) -> Optional[str]:
+        """Extract a likely place name from a user query like 'menu di Cantik Daijo Cafe'."""
+        query_clean = re.sub(r'\s+', ' ', query).strip(" ?!.,")
+        patterns = [
+            r'(?:menu|alamat|harga|jam operasional|ulasan)\s+di\s+(.+)$',
+            r'(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$',
+            r'(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$',
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, query_clean, flags=re.IGNORECASE)
+            if match:
+                candidate = match.group(1).strip(" ?!.,")
+                if len(candidate) >= 4:
+                    return candidate
+
+        return None
+
+    def _find_specific_place_docs(self, query: str, limit: int = 3) -> List:
+        """Find chunks that explicitly mention a specific place asked in the query."""
+        place_name = self._extract_place_name(query)
+        if not place_name or not self.loaded_docs:
+            return []
+
+        place_lower = place_name.lower()
+        matched = []
+        for doc in self.loaded_docs:
+            content_lower = doc.page_content.lower()
+            if place_lower in content_lower:
+                matched.append(doc)
+
+        if not matched:
+            return []
+
+        expanded = []
+        seen_keys = set()
+        for doc in matched:
+            meta = getattr(doc, 'metadata', {})
+            src = meta.get('source')
+            idx = meta.get('chunk_index')
+            for candidate in self.loaded_docs:
+                candidate_meta = getattr(candidate, 'metadata', {})
+                same_source = candidate_meta.get('source') == src
+                candidate_idx = candidate_meta.get('chunk_index')
+                if same_source and isinstance(idx, int) and isinstance(candidate_idx, int) and abs(candidate_idx - idx) <= 1:
+                    key = (src, candidate_idx)
+                    if key not in seen_keys:
+                        expanded.append(candidate)
+                        seen_keys.add(key)
+
+        return expanded[:limit]
+
+    def _keyword_overlap_score(self, query: str, chunk_text: str) -> float:
+        """
+        Hitung proporsi kata penting dari query yang muncul di dalam chunk.
+
+        Cara kerja:
+          - Buang stop words (kata umum) dan kata pendek (< 3 karakter)
+          - Hitung berapa banyak kata penting yang ditemukan di teks chunk
+          - Kembalikan rasio: hits / total_kata_penting  (0.0 – 1.0)
+
+        Contoh:
+          query = "menu Cantik Daijo Cafe"
+          → kata penting: [menu, Cantik, Daijo, Cafe]
+          → chunk mengandung semua 4 kata → skor = 1.0
+          → chunk mengandung 2 kata       → skor = 0.5
+          → chunk tidak ada satu pun      → skor = 0.0
+        """
+        STOP_WORDS = {
+            'apa', 'saja', 'ada', 'dan', 'atau', 'ini', 'itu', 'di',
+            'ke', 'dari', 'untuk', 'dengan', 'pada', 'adalah', 'yang',
+            'bagaimana', 'berapa', 'dimana', 'siapa', 'tentang',
+            'info', 'informasi', 'tolong', 'bisa', 'boleh',
+            'saya', 'kamu', 'kalian', 'kapan', 'apakah',
+        }
+        q_words = [
+            w.lower() for w in re.findall(r'\w+', query)
+            if w.lower() not in STOP_WORDS and len(w) > 2
+        ]
+        if not q_words:
+            return 0.0
+        chunk_lower = chunk_text.lower()
+        hits = sum(1 for w in q_words if w in chunk_lower)
+        return hits / len(q_words)
+
     def _is_invalid_response(self, response: str) -> bool:
         """Check if a response is invalid"""
         if not response or len(response.strip()) < 30:
@@ -188,10 +287,13 @@ class CAGSystem:
         docs = text_splitter.split_documents(merged_docs)
 
         # Prepend source filename to every chunk so the LLM always knows context
-        for doc in docs:
+        for chunk_index, doc in enumerate(docs):
             src = doc.metadata.get("source", "")
+            doc.metadata["chunk_index"] = chunk_index
             if src and not doc.page_content.startswith(f"[{src}]"):
                 doc.page_content = f"[Sumber: {src}]\n{doc.page_content}"
+
+        self.loaded_docs = docs
         
         print(f"📄 Loaded {total_page_count} halaman dari {len(merged_docs)} file, "
               f"split into {len(docs)} chunks")
@@ -274,19 +376,23 @@ class CAGSystem:
         query_hash = self.kv_cache._hash_query(query)
         if use_cache:
             cached = self.kv_cache.get(query)
-            if cached and not self._is_invalid_response(cached.get("response", "")):
-                hit_type = "STAGING" if cached.get("from_staging") else "HIT"
-                print(f"✅ Cache {hit_type}: {query[:50]}...")
-                return {
-                    "response": cached["response"],
-                    "source": "cag_cache",
-                    "cache_used": True,
-                    "response_time": time.time() - start_time,
-                    "access_count": cached.get("access_count", 0),
-                    "num_chunks": 0,
-                    "context": cached.get("context", ""),
-                    "cache_key": query_hash,
-                }
+            if cached:
+                if self._is_invalid_response(cached.get("response", "")):
+                    self.kv_cache.delete_entry(query_hash)
+                    print(f"⚠️ Ignored invalid cached response: {query[:50]}...")
+                else:
+                    hit_type = "STAGING" if cached.get("from_staging") else "HIT"
+                    print(f"✅ Cache {hit_type}: {query[:50]}...")
+                    return {
+                        "response": cached["response"],
+                        "source": "cag_cache",
+                        "cache_used": True,
+                        "response_time": time.time() - start_time,
+                        "access_count": cached.get("access_count", 0),
+                        "num_chunks": 0,
+                        "context": cached.get("context", ""),
+                        "cache_key": query_hash,
+                    }
 
         # FAQ search — before hitting FAISS
         # Searches faq_tourism.json directly, bypassing vector retrieval.
@@ -311,14 +417,40 @@ class CAGSystem:
         retrieval_start = time.time()
         try:
             raw_results = self.database.similarity_search_with_score(query, k=k)
+            raw_results = sorted(raw_results, key=lambda item: float(item[1]))
+            top_score = float(raw_results[0][1]) if raw_results else 0.0
 
-            # ── Threshold filtering ──────────────────────────────────────────
-            # Keep only chunks with cosine similarity >= RETRIEVAL_THRESHOLD.
-            # Embeddings are L2-normalized → FAISS IP scores = cosine similarity.
+            specific_place_docs = self._find_specific_place_docs(query, limit=min(max(k // 2, 2), 4))
+
+            # ── Hybrid Scoring ───────────────────────────────────────────────
+            # Setiap chunk mendapat HYBRID SCORE (0.0–1.0) dari dua komponen:
+            #
+            #   1. faiss_sim : kemiripan semantik dari embedding vektor
+            #                  konversi: makin kecil jarak FAISS → makin besar sim
+            #   2. kw_score  : proporsi kata penting query yang ada di teks chunk
+            #
+            # Chunk LOLOS jika hybrid_score >= RELEVANCE_THRESHOLD
+            # ─────────────────────────────────────────────────────────────────
+            scored_chunks = []
+            for doc, faiss_dist in raw_results:
+                d         = float(faiss_dist)
+                faiss_sim = max(0.0, 1.0 - d / self.MAX_FAISS_DISTANCE)
+                kw_score  = self._keyword_overlap_score(query, doc.page_content)
+                hybrid    = (faiss_sim * self.HYBRID_WEIGHT_VECTOR
+                             + kw_score * self.HYBRID_WEIGHT_KEYWORD)
+                scored_chunks.append((doc, d, faiss_sim, kw_score, hybrid))
+
+            # Urutkan: skor hybrid tertinggi (paling relevan) duluan
+            scored_chunks.sort(key=lambda x: x[4], reverse=True)
+
+            # Filter: hanya chunk yang melewati ambang batas relevansi
             threshold_passed = [
-                (doc, score) for doc, score in raw_results
-                if score >= self.RETRIEVAL_THRESHOLD
+                (doc, dist) for doc, dist, fsim, kw, hyb in scored_chunks
+                if hyb >= self.RELEVANCE_THRESHOLD
             ]
+
+            prioritized = [(doc, 0.0) for doc in specific_place_docs]
+            merged_results = prioritized + threshold_passed
 
             # ── Deduplication ────────────────────────────────────────────────
             # Remove chunks whose content is >70 % identical to an already-kept
@@ -326,7 +458,7 @@ class CAGSystem:
             # wasting context slots that could go to genuinely different info.
             seen_contents: list = []
             deduped: list = []
-            for doc, score in threshold_passed:
+            for doc, score in merged_results:
                 content = (doc.page_content if hasattr(doc, 'page_content') else str(doc)).strip()
                 # Check overlap ratio against every kept chunk
                 is_duplicate = False
@@ -350,14 +482,16 @@ class CAGSystem:
                     deduped.append(doc)
                     seen_contents.append(content)
 
-            relevant_docs = deduped
+            relevant_docs = deduped[:k]
 
-            if raw_results:
-                top_score = raw_results[0][1]
+            if scored_chunks:
+                top = scored_chunks[0]
                 print(
-                    f"🔍 Retrieval: {len(raw_results)} raw "
-                    f"→ {len(threshold_passed)} passed threshold ({self.RETRIEVAL_THRESHOLD}) "
-                    f"→ {len(relevant_docs)} after dedup, top_score={top_score:.4f}"
+                    f"🔍 Retrieval: {len(raw_results)} raw"
+                    f" → {len(threshold_passed)} lolos threshold (hybrid ≥ {self.RELEVANCE_THRESHOLD})"
+                    f" → {len(specific_place_docs)} exact-place match"
+                    f" → {len(relevant_docs)} after dedup"
+                    f" | best: hybrid={top[4]:.2f} (vektor={top[2]:.2f}, keyword={top[3]:.2f})"
                 )
         except Exception as e:
             print(f"❌ Retrieval error: {e}")

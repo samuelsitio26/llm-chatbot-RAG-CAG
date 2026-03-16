@@ -307,6 +307,27 @@ class KVCacheManager:
             return True
         return False
 
+    def delete_entry(self, query_hash: str) -> bool:
+        """Delete a cache entry from confirmed or staging storage."""
+        removed = False
+
+        if query_hash in self.staging:
+            del self.staging[query_hash]
+            removed = True
+
+        if query_hash in self.cache:
+            del self.cache[query_hash]
+            removed = True
+
+        if query_hash in self.access_count:
+            del self.access_count[query_hash]
+
+        if removed:
+            self.save_cache()
+            print(f"🗑️ Removed invalid cache entry: {query_hash[:8]}...")
+
+        return removed
+
     def clear(self):
         """Clear all cache (confirmed + staging)"""
         self.cache = {}

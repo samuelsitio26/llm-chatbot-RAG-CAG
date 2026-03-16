@@ -491,6 +491,8 @@ INSTRUKSI PENTING:
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
 8. JANGAN pernah menulis "(Tidak disebutkan namanya...)" — nama selalu ada di dokumen, cari dengan teliti
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
+11. Jika pengguna menanyakan SATU tempat spesifik, fokus jawab tempat itu saja, bukan daftar rekomendasi umum.
+12. Jika dokumen memuat field eksplisit seperti "Menu", "Harga", "Jam Operasional", atau "Alamat", salin fakta tersebut dengan setia dari dokumen.
 {greeting_rule}
 {pref_hint}{history_section}
 INFORMASI DOKUMEN:
