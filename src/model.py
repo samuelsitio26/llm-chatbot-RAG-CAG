@@ -99,12 +99,20 @@ class GeminiChatModel:
         import re
         if re.search(r'\d+\s*[\+\-\*\/x]\s*\d+', query_lower) or 'berapa' in query_lower:
             return 'general_question'
+
+        # Document-style business/place questions should stay grounded in tourism docs.
+        if re.search(
+            r'\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas)\b',
+            query_lower,
+        ):
+            return 'tourism'
         
         # Strong tourism keywords that definitely indicate Toba tourism query
         strong_tourism_keywords = [
             'wisata', 'pantai', 'danau', 'hotel', 'penginapan', 'homestay',
             'villa', 'resort', 'toba', 'samosir', 'balige', 'parapat', 'tomok', 
-            'tuktuk', 'sipiso', 'kuliner', 'batak', 'ulos', 'air terjun'
+            'tuktuk', 'sipiso', 'kuliner', 'batak', 'ulos', 'air terjun',
+            'menu', 'warung', 'rumah makan', 'restoran', 'restaurant', 'kedai'
         ]
         
         # Check strong tourism keywords first (takes highest priority)
@@ -118,7 +126,7 @@ class GeminiChatModel:
             'harga', 'murah', 'mahal', 'honeymoon', 'keluarga', 'makanan', 
             'cafe', 'resto', 'museum', 'budaya', 'adat', 'sumut', 'sumatera', 
             'medan', 'siantar', 'karo', 'dairi', 'tempat', 'makan', 'menginap', 
-            'jalan-jalan', 'view', 'pemandangan', 'gunung'
+            'jalan-jalan', 'view', 'pemandangan', 'gunung', 'kulineran'
         ]
         
         for kw in weak_tourism_keywords:
@@ -136,6 +144,37 @@ class GeminiChatModel:
         
         # Default: treat as general question
         return 'general_question'
+
+    def _extract_subject_from_query(self, query: str) -> str:
+        """Extract the most likely subject/place mentioned in a document-grounded query."""
+        query_clean = re.sub(r'\s+', ' ', query).strip(' ?!.,')
+        patterns = [
+            r'(?:menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas)\s+(?:makanan\s+)?di\s+(.+)$',
+            r'(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$',
+            r'(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$',
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, query_clean, flags=re.IGNORECASE)
+            if match:
+                subject = match.group(1).strip(' ?!.,')
+                if len(subject) >= 3:
+                    return subject
+
+        return ''
+
+    def _build_document_unavailable_response(self, query: str) -> str:
+        """Return an honest fallback when the requested fact is not found in the docs."""
+        subject = self._extract_subject_from_query(query)
+        if subject:
+            return (
+                f"Maaf, informasi tentang {subject} belum tersedia dalam dokumen yang saya miliki. "
+                "Silakan coba nama tempat lain atau ubah pertanyaan agar lebih spesifik."
+            )
+        return (
+            "Maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki. "
+            "Silakan coba nama tempat lain atau ubah pertanyaan agar lebih spesifik."
+        )
     
     def _is_query_relevant_to_context(self, query: str, context: str) -> bool:
         """Check if query is actually relevant to the retrieved context"""
@@ -434,7 +473,11 @@ class GeminiChatModel:
         
         # Check if context is actually relevant
         if has_context and not self._is_query_relevant_to_context(query, context):
-            print("⚠️ Retrieved context not relevant to query — trying LLM general knowledge")
+            print("⚠️ Retrieved context not relevant to query")
+            if intent == 'tourism':
+                return self._build_document_unavailable_response(query)
+
+            print("⚠️ Falling back to LLM general knowledge")
             general_answer = self._ask_gemini_general(query)
             if general_answer:
                 return general_answer
@@ -489,10 +532,12 @@ INSTRUKSI PENTING:
 5. Jika informasi tidak ada dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
 6. JANGAN mengarang informasi yang tidak ada dalam dokumen
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
-8. JANGAN pernah menulis "(Tidak disebutkan namanya...)" — nama selalu ada di dokumen, cari dengan teliti
+8. JANGAN pernah menulis teks placeholder seperti "(Tidak disebutkan namanya...)", "(Nama tidak tersedia)", atau sejenisnya — gunakan nama yang tertulis di dokumen apa adanya
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
-11. Jika pengguna menanyakan SATU tempat spesifik, fokus jawab tempat itu saja, bukan daftar rekomendasi umum.
-12. Jika dokumen memuat field eksplisit seperti "Menu", "Harga", "Jam Operasional", atau "Alamat", salin fakta tersebut dengan setia dari dokumen.
+10. Jika pengguna menanyakan SATU tempat spesifik, fokus jawab tempat itu saja, bukan daftar rekomendasi umum.
+11. Jika dokumen memuat field eksplisit seperti "Menu", "Harga", "Jam Operasional", atau "Alamat", salin fakta tersebut dengan setia dari dokumen.
+12. Jika dokumen "Data Terstruktur: Lokasi Database" tersedia dalam konteks, WAJIB masukkan SEMUA tempat yang tercantum di sana ke dalam jawaban — jangan melewatkan satu pun.
+13. Untuk pertanyaan "apa saja" atau "daftar", tampilkan SELURUH tempat yang ada dalam konteks, bukan hanya sebagian.
 {greeting_rule}
 {pref_hint}{history_section}
 INFORMASI DOKUMEN:
@@ -513,6 +558,10 @@ JAWABAN (hanya berdasarkan dokumen di atas):"""
 
             return result
         else:
+            # No context available — keep tourism/business queries grounded to docs.
+            if intent == 'tourism':
+                return self._build_document_unavailable_response(query)
+
             # No context available — try LLM general knowledge
             general_answer = self._ask_gemini_general(query)
             if general_answer:

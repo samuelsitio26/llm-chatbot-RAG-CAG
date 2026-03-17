@@ -5,6 +5,7 @@ from typing import Dict, List, Optional
 import time
 import os
 import re
+from difflib import SequenceMatcher
 
 # Import dengan error handling
 try:
@@ -53,6 +54,8 @@ class CAGSystem:
         "belum tersedia dalam dokumen",
         "belum tersedia dalam dokumen yang saya miliki",
         "informasi mengenai menu",
+        "tidak memiliki daftar menu spesifik",
+        "berdasarkan pengalaman dan pengetahuan umum",
         "Halo is a term",
         "space opera",
         "science fiction",
@@ -89,7 +92,7 @@ class CAGSystem:
         """Extract a likely place name from a user query like 'menu di Cantik Daijo Cafe'."""
         query_clean = re.sub(r'\s+', ' ', query).strip(" ?!.,")
         patterns = [
-            r'(?:menu|alamat|harga|jam operasional|ulasan)\s+di\s+(.+)$',
+            r'(?:menu|alamat|harga|jam operasional|ulasan)\s+(?:makanan\s+)?di\s+(.+)$',
             r'(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$',
             r'(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$',
         ]
@@ -103,25 +106,60 @@ class CAGSystem:
 
         return None
 
+    def _normalize_match_text(self, text: str) -> str:
+        """Normalize text for robust place-name matching."""
+        normalized = re.sub(r'[^\w\s]', ' ', text.lower(), flags=re.UNICODE)
+        return re.sub(r'\s+', ' ', normalized).strip()
+
+    def _fuzzy_token_coverage(self, phrase: str, text: str) -> float:
+        """Measure how well phrase tokens are represented in text, tolerating minor typos."""
+        phrase_tokens = [t for t in self._normalize_match_text(phrase).split() if len(t) > 1]
+        if not phrase_tokens:
+            return 0.0
+
+        text_tokens = set(self._normalize_match_text(text).split())
+        if not text_tokens:
+            return 0.0
+
+        matched = 0
+        for phrase_token in phrase_tokens:
+            if phrase_token in text_tokens:
+                matched += 1
+                continue
+
+            has_fuzzy_match = any(
+                abs(len(candidate) - len(phrase_token)) <= 2
+                and SequenceMatcher(None, phrase_token, candidate).ratio() >= 0.84
+                for candidate in text_tokens
+            )
+            if has_fuzzy_match:
+                matched += 1
+
+        return matched / len(phrase_tokens)
+
     def _find_specific_place_docs(self, query: str, limit: int = 3) -> List:
         """Find chunks that explicitly mention a specific place asked in the query."""
         place_name = self._extract_place_name(query)
         if not place_name or not self.loaded_docs:
             return []
 
-        place_lower = place_name.lower()
+        place_lower = self._normalize_match_text(place_name)
         matched = []
         for doc in self.loaded_docs:
-            content_lower = doc.page_content.lower()
-            if place_lower in content_lower:
-                matched.append(doc)
+            content_lower = self._normalize_match_text(doc.page_content)
+            coverage = 1.0 if place_lower in content_lower else self._fuzzy_token_coverage(place_name, doc.page_content)
+            if coverage >= 0.84:
+                matched.append((coverage, doc))
 
         if not matched:
             return []
 
+        matched.sort(key=lambda item: item[0], reverse=True)
+        matched_docs = [doc for _, doc in matched]
+
         expanded = []
         seen_keys = set()
-        for doc in matched:
+        for doc in matched_docs:
             meta = getattr(doc, 'metadata', {})
             src = meta.get('source')
             idx = meta.get('chunk_index')
@@ -136,6 +174,97 @@ class CAGSystem:
                         seen_keys.add(key)
 
         return expanded[:limit]
+
+    # ─── Category keyword map: maps JSON category → query keywords ───────────
+    CATEGORY_KEYWORD_MAP: dict = {
+        'bukit':       ['bukit', 'perbukitan', 'puncak', 'hill'],
+        'pantai':      ['pantai', 'beach', 'pesisir'],
+        'air_terjun':  ['air terjun', 'waterfall', 'curug'],
+        'danau':       ['danau', 'lake'],
+        'budaya':      ['budaya', 'museum', 'adat', 'sejarah', 'heritage'],
+        'rekreasi':    ['rekreasi', 'kolam renang', 'wahana', 'taman'],
+        'desa_wisata': ['desa wisata', 'kampung wisata'],
+        'alam':        ['alam', 'panorama'],
+        'geowisata':   ['geowisata', 'geo wisata'],
+        'tour':        ['tour', 'paket wisata'],
+    }
+
+    def _extract_listing_categories(self, query_lower: str) -> List[str]:
+        """Extract requested categories from query with priority to specific intent words."""
+        # Prioritize explicit hill/perbukitan intent so 'di Danau Toba' does not trigger danau category.
+        if any(token in query_lower for token in ['perbukitan', 'bukit', 'puncak', 'hill']):
+            return ['bukit']
+
+        categories: List[str] = []
+        for category, keywords in self.CATEGORY_KEYWORD_MAP.items():
+            if any(kw in query_lower for kw in keywords):
+                categories.append(category)
+
+        # Remove duplicate categories while preserving order.
+        return list(dict.fromkeys(categories))
+
+    def _is_listing_query(self, query: str) -> bool:
+        """Return True if the user is asking for a *list* of places (not a single place)."""
+        q = query.lower()
+        listing_signals = ['apa saja', 'semua', 'daftar', 'list', 'sebutkan', 'rekomendasikan',
+                           'ada apa saja', 'apa aja', 'mana saja', 'berapa banyak']
+        return any(sig in q for sig in listing_signals)
+
+    def _load_locations(self) -> list:
+        """Load locations.json; returns [] on any error."""
+        import json
+        locations_file = os.path.join(
+            os.path.dirname(__file__), '..', 'database', 'Locations', 'locations.json'
+        )
+        try:
+            with open(locations_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"⚠️ Could not load locations.json: {e}")
+            return []
+
+    def _get_locations_json_context(self, query: str) -> str:
+        """
+        Build a structured context block from locations.json for category/listing queries.
+        Returns empty string if no relevant locations found.
+        """
+        query_lower = query.lower()
+
+        # Detect which categories the query is asking about
+        target_categories = self._extract_listing_categories(query_lower)
+
+        if not target_categories:
+            return ""
+
+        locations = self._load_locations()
+        if not locations:
+            return ""
+
+        matched = []
+        for loc in locations:
+            cat = loc.get('category', '')
+            if cat in target_categories:
+                matched.append(loc)
+
+        if not matched:
+            return ""
+
+        # Sort by rating descending
+        matched.sort(key=lambda x: x.get('rating', 0), reverse=True)
+
+        lines = ["[Data Terstruktur: Lokasi Database]"]
+        for i, loc in enumerate(matched, 1):
+            lines.append(
+                f"Tempat {i}: {loc.get('name', 'N/A')}\n"
+                f"- Kategori : {loc.get('category', 'N/A')}\n"
+                f"- Deskripsi: {loc.get('description', 'N/A')}\n"
+                f"- Lokasi   : {loc.get('location', 'N/A')}\n"
+                f"- Alamat   : {loc.get('address', 'N/A')}\n"
+                f"- Harga    : {loc.get('price', 'N/A')}\n"
+                f"- Jam Buka : {loc.get('hours', 'N/A')}\n"
+                f"- Rating   : {loc.get('rating', 'N/A')}/5"
+            )
+        return "\n\n".join(lines)
 
     def _keyword_overlap_score(self, query: str, chunk_text: str) -> float:
         """
@@ -413,6 +542,10 @@ class CAGSystem:
                     "cache_key": query_hash,
                 }
         
+        # For listing queries (apa saja, daftar, etc.), retrieve more FAISS chunks
+        if self._is_listing_query(query):
+            k = max(k, 15)
+
         # RAG: Retrieve relevant chunks — Layer 1: Retrieval Confidence Gate
         retrieval_start = time.time()
         try:
@@ -500,6 +633,51 @@ class CAGSystem:
 
         # === Layer 1: no context from docs → fallback to LLM general knowledge ===
         if not relevant_docs:
+            # For listing/category queries, try locations.json as a fallback source.
+            if self._is_listing_query(query):
+                structured_ctx = self._get_locations_json_context(query)
+                if structured_ctx:
+                    print(f"📍 FAISS returned nothing — using structured locations data for listing query")
+                    context = structured_ctx
+                    # Skip straight to generation with only the JSON context
+                    generation_start = time.time()
+                    try:
+                        response = self.model.generate_response(
+                            query=query,
+                            context=context,
+                            chat_history=chat_history or [],
+                            max_new_tokens=max_new_tokens,
+                            temperature=temperature,
+                            user_preferences=user_preferences or [],
+                            is_first_message=is_first_message,
+                        )
+                    except Exception as e:
+                        print(f"❌ Generation error: {e}")
+                        response = f"Maaf, terjadi kesalahan saat memproses pertanyaan: {str(e)}"
+                    if use_cache and not self._is_invalid_response(response):
+                        self.kv_cache.put(query, response, context[:500])
+                    return {
+                        "response": response,
+                        "source": "rag",
+                        "cache_used": False,
+                        "response_time": time.time() - start_time,
+                        "num_chunks": 0,
+                        "context": context,
+                        "cache_key": query_hash,
+                    }
+
+            if intent == 'tourism':
+                print("⚠️ No chunks passed retrieval threshold — returning document-grounded unavailable response")
+                return {
+                    "response": self.model._build_document_unavailable_response(query),
+                    "source": "no_relevant_context",
+                    "cache_used": False,
+                    "response_time": time.time() - start_time,
+                    "num_chunks": 0,
+                    "context": "",
+                    "cache_key": query_hash,
+                }
+
             print(f"⚠️ No chunks passed retrieval threshold — falling back to LLM general knowledge")
             try:
                 _greeting_rule_general = (
@@ -574,6 +752,15 @@ class CAGSystem:
                 context_parts.append(f"[Sumber {i} | {src_label} | hal. {page_num}]\n{content}")
         
         context = "\n\n".join(context_parts)
+
+        # For listing/category queries, prepend structured locations.json data so
+        # all known places for that category are always included.
+        if self._is_listing_query(query):
+            structured_ctx = self._get_locations_json_context(query)
+            if structured_ctx:
+                context = structured_ctx + "\n\n" + context if context else structured_ctx
+                print(f"📍 Injected structured locations context ({len(structured_ctx)} chars)")
+
         print(f"📄 Retrieved {len(relevant_docs)} chunks, context: {len(context)} chars")
         
         # Generate response
