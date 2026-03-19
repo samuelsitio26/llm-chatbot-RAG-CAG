@@ -100,10 +100,50 @@ class CAGSystem:
         for pattern in patterns:
             match = re.search(pattern, query_clean, flags=re.IGNORECASE)
             if match:
-                candidate = match.group(1).strip(" ?!.,")
+                candidate = self._clean_place_candidate(match.group(1))
                 if len(candidate) >= 4:
                     return candidate
 
+        return None
+
+    def _clean_place_candidate(self, candidate: str) -> str:
+        """Normalize extracted place candidate and remove trailing attribute clauses."""
+        cleaned = re.sub(r'\s+', ' ', candidate).strip(" ?!.,")
+        # Example: "D'Barans Cafe dan jam buka nya" -> "D'Barans Cafe"
+        cleaned = re.sub(
+            r'\s+(?:dan|&|serta)\s+(?:jam|harga|alamat|ulasan|review|menu|fasilitas)\b.*$',
+            '',
+            cleaned,
+            flags=re.IGNORECASE,
+        ).strip(" ?!.,")
+        return cleaned
+
+    def _is_followup_reference_query(self, query: str) -> bool:
+        """Detect short follow-up queries that rely on previous place context."""
+        query_lower = query.lower().strip()
+        has_attribute = any(kw in query_lower for kw in [
+            'menu', 'alamat', 'harga', 'jam', 'operasional', 'ulasan', 'review', 'fasilitas'
+        ])
+        has_reference = any(kw in query_lower for kw in [
+            'nya', 'itu', 'disitu', 'di situ', 'yang tadi', 'tempat itu', 'di sana'
+        ])
+        has_explicit_place = self._extract_place_name(query) is not None
+        return has_attribute and has_reference and not has_explicit_place
+
+    def _extract_last_place_from_history(self, chat_history: List[Dict]) -> Optional[str]:
+        """Extract most recent place name from user messages in chat history."""
+        if not chat_history:
+            return None
+
+        for msg in reversed(chat_history):
+            if msg.get('role') != 'user':
+                continue
+            content = (msg.get('content') or '').strip()
+            if not content:
+                continue
+            place = self._extract_place_name(content)
+            if place:
+                return place
         return None
 
     def _normalize_match_text(self, text: str) -> str:
@@ -462,6 +502,16 @@ class CAGSystem:
         
         # Classify intent
         intent = self.model._classify_intent(query)
+
+        # Follow-up grounding: map pronoun-based questions to the last place in history.
+        retrieval_query = query
+        contextual_followup = False
+        if self._is_followup_reference_query(query) and chat_history:
+            last_place = self._extract_last_place_from_history(chat_history)
+            if last_place:
+                retrieval_query = f"{query.strip()} di {last_place}".strip()
+                contextual_followup = True
+                print(f"🔗 Follow-up query grounded to previous place: {last_place}")
         
         # Handle greeting
         if intent == 'greeting':
@@ -503,7 +553,7 @@ class CAGSystem:
         
         # Check cache
         query_hash = self.kv_cache._hash_query(query)
-        if use_cache:
+        if use_cache and not contextual_followup:
             cached = self.kv_cache.get(query)
             if cached:
                 if self._is_invalid_response(cached.get("response", "")):
@@ -526,7 +576,7 @@ class CAGSystem:
         # FAQ search — before hitting FAISS
         # Searches faq_tourism.json directly, bypassing vector retrieval.
         # Entries with a real answer are returned immediately as CAG hits.
-        if use_cache:
+        if use_cache and not contextual_followup:
             faq_hit = self._search_faq(query)
             if faq_hit:
                 faq_response = faq_hit['answer']
@@ -543,17 +593,17 @@ class CAGSystem:
                 }
         
         # For listing queries (apa saja, daftar, etc.), retrieve more FAISS chunks
-        if self._is_listing_query(query):
+        if self._is_listing_query(retrieval_query):
             k = max(k, 15)
 
         # RAG: Retrieve relevant chunks — Layer 1: Retrieval Confidence Gate
         retrieval_start = time.time()
         try:
-            raw_results = self.database.similarity_search_with_score(query, k=k)
+            raw_results = self.database.similarity_search_with_score(retrieval_query, k=k)
             raw_results = sorted(raw_results, key=lambda item: float(item[1]))
             top_score = float(raw_results[0][1]) if raw_results else 0.0
 
-            specific_place_docs = self._find_specific_place_docs(query, limit=min(max(k // 2, 2), 4))
+            specific_place_docs = self._find_specific_place_docs(retrieval_query, limit=min(max(k // 2, 2), 4))
 
             # ── Hybrid Scoring ───────────────────────────────────────────────
             # Setiap chunk mendapat HYBRID SCORE (0.0–1.0) dari dua komponen:
@@ -568,7 +618,7 @@ class CAGSystem:
             for doc, faiss_dist in raw_results:
                 d         = float(faiss_dist)
                 faiss_sim = max(0.0, 1.0 - d / self.MAX_FAISS_DISTANCE)
-                kw_score  = self._keyword_overlap_score(query, doc.page_content)
+                kw_score  = self._keyword_overlap_score(retrieval_query, doc.page_content)
                 hybrid    = (faiss_sim * self.HYBRID_WEIGHT_VECTOR
                              + kw_score * self.HYBRID_WEIGHT_KEYWORD)
                 scored_chunks.append((doc, d, faiss_sim, kw_score, hybrid))
@@ -634,8 +684,8 @@ class CAGSystem:
         # === Layer 1: no context from docs → fallback to LLM general knowledge ===
         if not relevant_docs:
             # For listing/category queries, try locations.json as a fallback source.
-            if self._is_listing_query(query):
-                structured_ctx = self._get_locations_json_context(query)
+            if self._is_listing_query(retrieval_query):
+                structured_ctx = self._get_locations_json_context(retrieval_query)
                 if structured_ctx:
                     print(f"📍 FAISS returned nothing — using structured locations data for listing query")
                     context = structured_ctx
@@ -755,8 +805,8 @@ class CAGSystem:
 
         # For listing/category queries, prepend structured locations.json data so
         # all known places for that category are always included.
-        if self._is_listing_query(query):
-            structured_ctx = self._get_locations_json_context(query)
+        if self._is_listing_query(retrieval_query):
+            structured_ctx = self._get_locations_json_context(retrieval_query)
             if structured_ctx:
                 context = structured_ctx + "\n\n" + context if context else structured_ctx
                 print(f"📍 Injected structured locations context ({len(structured_ctx)} chars)")
