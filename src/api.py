@@ -543,35 +543,26 @@ async def get_locations():
         if os.path.exists(locations_file):
             with open(locations_file, 'r', encoding='utf-8') as f:
                 locations_data = json.load(f)
-            
-            # Enhance location data with better names from source
+
+            # Pass all fields from locations.json directly to the frontend
             enhanced_locations = []
-            for idx, loc in enumerate(locations_data):
-                # Try to get better name from source
-                source = loc.get("source", "")
-                name = loc.get("name", "")
-                
-                # Create better location names based on source
-                if "transportasi" in source.lower():
-                    name = f"Transportasi - Lokasi {idx + 1}"
-                elif "fasilitas" in source.lower():
-                    name = f"Fasilitas Umum - Lokasi {idx + 1}"
-                elif "hotel" in source.lower() or "penginapan" in source.lower():
-                    name = f"Hotel/Penginapan - Lokasi {idx + 1}"
-                elif "wisata" in source.lower() or "pantai" in source.lower():
-                    name = f"Tempat Wisata - Lokasi {idx + 1}"
-                else:
-                    name = f"Lokasi {idx + 1}"
-                
+            for loc in locations_data:
+                if loc.get("lat") is None or loc.get("lng") is None:
+                    continue
                 enhanced_locations.append({
-                    "name": name,
-                    "lat": loc.get("lat"),
-                    "lng": loc.get("lng"),
-                    "description": f"Sumber: {source}",
-                    "source": source,
-                    "category": loc.get("category", "general")
+                    "name":        loc.get("name", ""),
+                    "lat":         loc.get("lat"),
+                    "lng":         loc.get("lng"),
+                    "description": loc.get("description", ""),
+                    "category":    loc.get("category", "wisata"),
+                    "location":    loc.get("location", ""),
+                    "address":     loc.get("address", ""),
+                    "price":       loc.get("price", ""),
+                    "hours":       loc.get("hours", ""),
+                    "rating":      loc.get("rating"),
+                    "source":      loc.get("source", ""),
                 })
-            
+
             return {
                 "success": True,
                 "locations": enhanced_locations,

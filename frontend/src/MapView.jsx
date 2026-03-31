@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import React, { useState, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -11,81 +11,122 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
 });
 
-// Custom red icon for tourism locations
-const redIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+// ── Icons ────────────────────────────────────────────────────────────────────
+function makeIcon(color) {
+  return new L.Icon({
+    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+}
 
-// Custom gold icon for highlighted locations
-const goldIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+const ICONS = {
+  red:  makeIcon('red'),
+  gold: makeIcon('gold'),
+  blue: makeIcon('blue'),
+};
 
-// Custom blue icon for user's current location
-const blueIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+// ── Category metadata (emoji + label only, all markers red) ──────────────────
+const CATEGORY_META = {
+  pantai:             { label: 'Pantai',       emoji: '🏖️' },
+  air_terjun:         { label: 'Air Terjun',   emoji: '💧' },
+  danau:              { label: 'Danau',         emoji: '🏞️' },
+  bukit:              { label: 'Bukit',         emoji: '⛰️' },
+  gunung:             { label: 'Gunung',        emoji: '🏔️' },
+  desa_wisata:        { label: 'Desa Wisata',   emoji: '🏘️' },
+  budaya:             { label: 'Budaya',        emoji: '🏛️' },
+  rekreasi:           { label: 'Rekreasi',      emoji: '🎡' },
+  geowisata:          { label: 'Geowisata',     emoji: '🪨' },
+  tour:               { label: 'Tur',           emoji: '🧭' },
+  kuliner:            { label: 'Kuliner',       emoji: '🍽️' },
+  restaurant:         { label: 'Restoran',      emoji: '🍽️' },
+  hotel:              { label: 'Hotel',         emoji: '🏨' },
+  penginapan:         { label: 'Penginapan',    emoji: '🛏️' },
+  accommodation_data: { label: 'Penginapan',    emoji: '🏨' },
+};
+const DEFAULT_META = { label: 'Wisata', emoji: '📍' };
 
-// Haversine formula: distance in km between two lat/lng points
+function getCategoryMeta(category) {
+  return CATEGORY_META[category] || DEFAULT_META;
+}
+
+function getMarkerIcon(isHighlighted) {
+  return isHighlighted ? ICONS.gold : ICONS.red;
+}
+
+function renderStars(rating) {
+  if (!rating && rating !== 0) return null;
+  const rounded = Math.round(rating * 2) / 2;
+  return '★'.repeat(Math.floor(rounded)) + (rounded % 1 ? '½' : '') + '☆'.repeat(5 - Math.ceil(rounded));
+}
+
+// ── Haversine distance ────────────────────────────────────────────────────────
 function haversineDistance(lat1, lng1, lat2, lng2) {
   const R = 6371;
-  const toRad = (deg) => deg * Math.PI / 180;
+  const toRad = (deg) => (deg * Math.PI) / 180;
   const dLat = toRad(lat2 - lat1);
   const dLng = toRad(lng2 - lng1);
-  const a = Math.sin(dLat / 2) ** 2 +
+  const a =
+    Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-// Component to fly map to a given position
+// ── FlyToLocation: only flies when position genuinely changes ─────────────────
 function FlyToLocation({ position }) {
   const map = useMap();
+  const lastPos = useRef(null);
+
   useEffect(() => {
-    if (position) {
-      map.flyTo([position.lat, position.lng], 13, { duration: 1.5 });
+    if (!position) return;
+    const isSame =
+      lastPos.current &&
+      lastPos.current.lat === position.lat &&
+      lastPos.current.lng === position.lng;
+    if (!isSame) {
+      map.flyTo([position.lat, position.lng], 14, { duration: 1.5 });
+      lastPos.current = position;
     }
   }, [position, map]);
+
   return null;
 }
 
-// Component to fit map bounds to markers
-function FitBounds({ locations }) {
+// ── FitBounds: only re-fits when highlightLocation changes, not on re-renders ─
+function FitBounds({ locations, highlightLocation }) {
   const map = useMap();
-  
+  const prevHighlight = useRef(undefined);
+  const initialFit = useRef(false);
+
   useEffect(() => {
-    if (locations && locations.length > 0) {
-      const bounds = L.latLngBounds(locations.map(loc => [loc.lat, loc.lng]));
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
+    if (!locations || locations.length === 0) return;
+    const highlightChanged = highlightLocation !== prevHighlight.current;
+    if (!initialFit.current || highlightChanged) {
+      const bounds = L.latLngBounds(locations.map((loc) => [loc.lat, loc.lng]));
+      map.fitBounds(bounds, {
+        padding: [50, 50],
+        maxZoom: highlightLocation ? 14 : 12,
+      });
+      initialFit.current = true;
+      prevHighlight.current = highlightLocation;
     }
-  }, [locations, map]);
-  
+  }, [locations, highlightLocation, map]);
+
   return null;
 }
 
-// Main MapView Component
-function MapView({ 
-  locations = [], 
-  height = '400px', 
-  showAll = true, 
+// ── Main MapView Component ────────────────────────────────────────────────────
+function MapView({
+  locations = [],
+  height = '420px',
+  showAll = true,
   highlightLocation = null,
-  onMarkerClick = null 
+  onMarkerClick = null,
 }) {
-  const [mapCenter] = useState([2.6500, 98.8500]); // Danau Toba center
+  const [mapCenter] = useState([2.65, 98.85]);
   const [mapZoom] = useState(10);
   const [userLocation, setUserLocation] = useState(null);
   const [isLocating, setIsLocating] = useState(false);
@@ -103,220 +144,398 @@ function MapView({
         setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setIsLocating(false);
       },
-      (err) => {
-        setLocationError('Tidak dapat mengakses lokasi. Pastikan izin lokasi diaktifkan.');
+      () => {
+        setLocationError('Tidak dapat mengakses lokasi. Aktifkan izin lokasi.');
         setIsLocating(false);
       },
       { timeout: 10000 }
     );
   };
-  
-  // Filter locations if highlightLocation is specified
-  const displayLocations = highlightLocation 
-    ? locations.filter(loc => 
+
+  const displayLocations = highlightLocation
+    ? locations.filter((loc) =>
         loc.name.toLowerCase().includes(highlightLocation.toLowerCase())
       )
-    : (showAll ? locations : []);
-  
-  // If filtering didn't find anything, show all
+    : showAll
+    ? locations
+    : [];
+
   const baseLocations = displayLocations.length > 0 ? displayLocations : locations;
 
-  // Sort by distance from user if user location is available
   const finalLocations = userLocation
     ? [...baseLocations].sort((a, b) => {
-        const distA = haversineDistance(userLocation.lat, userLocation.lng, a.lat, a.lng);
-        const distB = haversineDistance(userLocation.lat, userLocation.lng, b.lat, b.lng);
-        return distA - distB;
+        const dA = haversineDistance(userLocation.lat, userLocation.lng, a.lat, a.lng);
+        const dB = haversineDistance(userLocation.lat, userLocation.lng, b.lat, b.lng);
+        return dA - dB;
       })
     : baseLocations;
-  
+
   if (!locations || locations.length === 0) {
     return (
-      <div style={{ 
-        padding: '2rem', 
-        textAlign: 'center', 
-        background: 'rgba(30, 41, 59, 0.6)', 
-        borderRadius: '8px',
-        border: '1px solid rgba(220, 38, 38, 0.3)'
-      }}>
-        <p style={{ color: 'rgba(255, 255, 255, 0.7)', margin: 0 }}>
-          📍 No location data available. Run extract_locations.py first.
+      <div
+        style={{
+          padding: '2rem',
+          textAlign: 'center',
+          background: 'rgba(30, 41, 59, 0.6)',
+          borderRadius: '8px',
+          border: '1px solid rgba(220, 38, 38, 0.3)',
+        }}
+      >
+        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0 }}>
+          📍 Data lokasi tidak tersedia.
         </p>
       </div>
     );
   }
 
   return (
-    <div style={{ 
-      borderRadius: '12px', 
-      overflow: 'hidden', 
-      border: '2px solid #fbbf24',
-      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
-    }}>
-      <MapContainer 
-        center={mapCenter} 
-        zoom={mapZoom} 
+    <div
+      style={{
+        borderRadius: '14px',
+        overflow: 'hidden',
+        border: '2px solid #fbbf24',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+      }}
+    >
+      {/* Map title bar */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+          padding: '0.55rem 1rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          borderBottom: '1px solid rgba(251,191,36,0.3)',
+        }}
+      >
+        <span style={{ fontSize: '1rem' }}>🗺️</span>
+        <span
+          style={{
+            color: '#fbbf24',
+            fontWeight: '700',
+            fontSize: '0.9rem',
+            letterSpacing: '0.04em',
+          }}
+        >
+          Peta Wisata Danau Toba
+        </span>
+        <span
+          style={{
+            marginLeft: 'auto',
+            background: 'rgba(251,191,36,0.15)',
+            color: '#fbbf24',
+            border: '1px solid rgba(251,191,36,0.4)',
+            borderRadius: '20px',
+            padding: '2px 10px',
+            fontSize: '0.72rem',
+            fontWeight: '600',
+          }}
+        >
+          {finalLocations.length} lokasi
+        </span>
+      </div>
+
+      {/* Map */}
+      <MapContainer
+        center={mapCenter}
+        zoom={mapZoom}
         style={{ height, width: '100%' }}
         scrollWheelZoom={true}
+        zoomControl={true}
       >
+        {/* CartoDB Voyager – closest free tile to Google Maps style */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          maxZoom={19}
         />
-        
-        {finalLocations.map((location, idx) => {
-          const isHighlighted = highlightLocation && 
-            location.name.toLowerCase().includes(highlightLocation.toLowerCase());
-          
+
+        {finalLocations.map((loc, idx) => {
+          const isHighlighted =
+            highlightLocation &&
+            loc.name.toLowerCase().includes(highlightLocation.toLowerCase());
+          const meta = getCategoryMeta(loc.category);
+          const distance = userLocation
+            ? haversineDistance(userLocation.lat, userLocation.lng, loc.lat, loc.lng)
+            : null;
+
           return (
-            <Marker 
-              key={`${location.lat}-${location.lng}-${idx}`}
-              position={[location.lat, location.lng]}
-              icon={isHighlighted ? goldIcon : redIcon}
+            <Marker
+              key={`${loc.lat}-${loc.lng}-${idx}`}
+              position={[loc.lat, loc.lng]}
+              icon={getMarkerIcon(isHighlighted)}
               eventHandlers={{
-                click: () => {
-                  if (onMarkerClick) onMarkerClick(location);
-                }
+                click: () => onMarkerClick && onMarkerClick(loc),
               }}
             >
-              <Popup>
-                <div style={{ minWidth: '180px', maxWidth: '250px' }}>
-                  <h3 style={{ 
-                    marginBottom: '0.5rem', 
-                    marginTop: 0,
-                    color: '#dc2626',
-                    fontSize: '1.1rem',
-                    borderBottom: '2px solid #fbbf24',
-                    paddingBottom: '0.5rem'
-                  }}>
-                    📍 {location.name}
+              {/* Tooltip: shows name on hover */}
+              <Tooltip direction="top" offset={[0, -38]} opacity={0.97}>
+                <div
+                  style={{
+                    fontWeight: '700',
+                    fontSize: '0.78rem',
+                    color: '#1e293b',
+                    whiteSpace: 'nowrap',
+                    maxWidth: '220px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {meta.emoji} {loc.name}
+                  {distance !== null && (
+                    <span style={{ color: '#2563eb', marginLeft: '0.4rem', fontWeight: '500' }}>
+                      · {distance.toFixed(1)} km
+                    </span>
+                  )}
+                </div>
+              </Tooltip>
+
+              {/* Popup: full info card */}
+              <Popup minWidth={275} maxWidth={315}>
+                <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                  {/* Category badge */}
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      background: isHighlighted ? '#d97706' : '#dc2626',
+                      color: '#fff',
+                      fontSize: '0.68rem',
+                      fontWeight: '700',
+                      padding: '2px 9px',
+                      borderRadius: '12px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.06em',
+                      marginBottom: '0.4rem',
+                    }}
+                  >
+                    {meta.emoji} {meta.label}
+                  </span>
+
+                  {/* Name */}
+                  <h3
+                    style={{
+                      margin: '0 0 0.3rem 0',
+                      fontSize: '1rem',
+                      fontWeight: '700',
+                      color: '#1e293b',
+                      lineHeight: '1.3',
+                    }}
+                  >
+                    {loc.name}
                   </h3>
-                  
-                  {location.description && (
-                    <p style={{ 
-                      margin: '0.5rem 0', 
-                      fontSize: '0.9rem',
-                      color: '#333',
-                      lineHeight: '1.4'
-                    }}>
-                      {location.description}
+
+                  {/* Rating */}
+                  {loc.rating != null && (
+                    <div
+                      style={{
+                        color: '#f59e0b',
+                        fontSize: '0.9rem',
+                        letterSpacing: '1px',
+                        marginBottom: '0.4rem',
+                      }}
+                    >
+                      {renderStars(loc.rating)}
+                      <span
+                        style={{
+                          color: '#64748b',
+                          fontSize: '0.75rem',
+                          marginLeft: '0.35rem',
+                          letterSpacing: 'normal',
+                        }}
+                      >
+                        {loc.rating.toFixed(1)} / 5
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Description */}
+                  {loc.description && (
+                    <p
+                      style={{
+                        margin: '0 0 0.5rem 0',
+                        fontSize: '0.8rem',
+                        color: '#475569',
+                        lineHeight: '1.5',
+                        borderLeft: '3px solid #dc2626',
+                        paddingLeft: '0.5rem',
+                      }}
+                    >
+                      {loc.description.length > 130
+                        ? loc.description.slice(0, 130) + '…'
+                        : loc.description}
                     </p>
                   )}
-                  
-                  <div style={{ 
-                    background: '#f5f5f5', 
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    marginTop: '0.5rem'
-                  }}>
-                    <p style={{ 
-                      margin: '0.25rem 0', 
-                      fontSize: '0.85rem',
-                      color: '#666'
-                    }}>
-                      <strong>Lat:</strong> {location.lat.toFixed(4)}°
-                    </p>
-                    <p style={{ 
-                      margin: '0.25rem 0', 
-                      fontSize: '0.85rem',
-                      color: '#666'
-                    }}>
-                      <strong>Lng:</strong> {location.lng.toFixed(4)}°
-                    </p>
-                    {userLocation && (
-                      <p style={{ margin: '0.25rem 0', fontSize: '0.85rem', color: '#1d4ed8', fontWeight: '600' }}>
-                        📏 {haversineDistance(userLocation.lat, userLocation.lng, location.lat, location.lng).toFixed(1)} km dari Anda
-                      </p>
+
+                  {/* Info rows */}
+                  <div
+                    style={{
+                      background: '#f8fafc',
+                      borderRadius: '8px',
+                      padding: '0.5rem 0.6rem',
+                      fontSize: '0.78rem',
+                      color: '#475569',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.28rem',
+                    }}
+                  >
+                    {loc.address && (
+                      <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'flex-start' }}>
+                        <span style={{ flexShrink: 0 }}>📍</span>
+                        <span style={{ lineHeight: '1.4' }}>{loc.address}</span>
+                      </div>
+                    )}
+                    {loc.location && !loc.address && (
+                      <div style={{ display: 'flex', gap: '0.4rem' }}>
+                        <span>🗺️</span>
+                        <span>{loc.location}</span>
+                      </div>
+                    )}
+                    {loc.hours && (
+                      <div style={{ display: 'flex', gap: '0.4rem' }}>
+                        <span>🕐</span>
+                        <span>{loc.hours}</span>
+                      </div>
+                    )}
+                    {loc.price && (
+                      <div style={{ display: 'flex', gap: '0.4rem' }}>
+                        <span>💰</span>
+                        <span style={{ color: '#16a34a', fontWeight: '600' }}>{loc.price}</span>
+                      </div>
+                    )}
+                    {distance !== null && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          gap: '0.4rem',
+                          color: '#1d4ed8',
+                          fontWeight: '600',
+                          borderTop: '1px solid #e2e8f0',
+                          paddingTop: '0.28rem',
+                          marginTop: '0.1rem',
+                        }}
+                      >
+                        <span>📏</span>
+                        <span>{distance.toFixed(1)} km dari lokasi Anda</span>
+                      </div>
                     )}
                   </div>
-                  
-                  {location.source && location.source !== 'default' && (
-                    <p style={{ 
-                      marginTop: '0.5rem', 
-                      marginBottom: 0,
-                      fontSize: '0.75rem',
-                      color: '#999',
-                      fontStyle: 'italic'
-                    }}>
-                      📄 {location.source}
-                    </p>
-                  )}
-                  
-                  <a 
-                    href={`https://www.google.com/maps?q=${location.lat},${location.lng}`}
+
+                  {/* Google Maps button */}
+                  <a
+                    href={`https://www.google.com/maps?q=${loc.lat},${loc.lng}&z=17`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      display: 'block',
-                      marginTop: '0.75rem',
-                      padding: '0.5rem',
-                      background: '#dc2626',
-                      color: 'white',
-                      textAlign: 'center',
-                      borderRadius: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                      marginTop: '0.6rem',
+                      padding: '0.45rem',
+                      background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                      color: '#fff',
+                      borderRadius: '7px',
                       textDecoration: 'none',
-                      fontSize: '0.85rem',
-                      fontWeight: '500'
+                      fontSize: '0.82rem',
+                      fontWeight: '700',
+                      letterSpacing: '0.02em',
                     }}
                   >
-                    🗺️ Open in Google Maps
+                    🗺️ Buka di Google Maps
                   </a>
                 </div>
               </Popup>
             </Marker>
           );
         })}
-        
+
+        {/* User location marker */}
         {userLocation && (
-          <Marker position={[userLocation.lat, userLocation.lng]} icon={blueIcon}>
+          <Marker
+            position={[userLocation.lat, userLocation.lng]}
+            icon={ICONS.blue}
+            zIndexOffset={1000}
+          >
+            <Tooltip direction="top" offset={[0, -38]} opacity={1} permanent>
+              <div
+                style={{
+                  fontWeight: '700',
+                  fontSize: '0.75rem',
+                  color: '#1e40af',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                📌 Lokasi Saya
+              </div>
+            </Tooltip>
             <Popup>
-              <div style={{ minWidth: '150px' }}>
-                <h3 style={{ margin: '0 0 0.5rem 0', color: '#1d4ed8', fontSize: '1rem' }}>📌 Posisi Anda</h3>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: '#555' }}>
+              <div style={{ fontFamily: 'system-ui, sans-serif', minWidth: '165px' }}>
+                <h3 style={{ margin: '0 0 0.4rem 0', color: '#1d4ed8', fontSize: '0.95rem' }}>
+                  📌 Posisi Anda
+                </h3>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#555' }}>
                   {userLocation.lat.toFixed(5)}°, {userLocation.lng.toFixed(5)}°
                 </p>
               </div>
             </Popup>
           </Marker>
         )}
+
+        {/* Smart fly-to: only flies when userLocation genuinely changes */}
         <FlyToLocation position={userLocation} />
-        <FitBounds locations={finalLocations} />
+        {/* Smart fit-bounds: only refits on initial load or new highlight */}
+        <FitBounds locations={finalLocations} highlightLocation={highlightLocation} />
       </MapContainer>
-      
-      {/* Legend */}
-      <div style={{
-        background: 'rgba(26, 26, 26, 0.95)',
-        padding: '0.5rem 1rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        fontSize: '0.85rem',
-        color: 'rgba(255, 255, 255, 0.8)'
-      }}>
-        <span>📍 {finalLocations.length} lokasi wisata{userLocation ? ' · Diurutkan terdekat' : ''}</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+
+      {/* Footer legend + controls */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+          padding: '0.55rem 1rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '0.5rem',
+          borderTop: '1px solid rgba(251,191,36,0.2)',
+        }}
+      >
+        {/* Legend */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)' }}>
+          <span>📍 {finalLocations.length} lokasi wisata</span>
+          {userLocation && <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.7rem' }}>· diurutkan terdekat</span>}
+        </div>
+
+        {/* Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           {locationError && (
-            <span style={{ color: '#f87171', fontSize: '0.75rem' }}>{locationError}</span>
+            <span style={{ color: '#f87171', fontSize: '0.71rem' }}>{locationError}</span>
           )}
           {userLocation && (
-            <span style={{ color: '#60a5fa', fontSize: '0.8rem' }}>📌 Lokasi ditemukan</span>
+            <span style={{ color: '#60a5fa', fontSize: '0.75rem', fontWeight: '500' }}>
+              ✓ Lokasi ditemukan
+            </span>
           )}
           <button
             onClick={handleLocateMe}
             disabled={isLocating}
             style={{
-              background: userLocation ? 'linear-gradient(135deg, #1d4ed8, #1e40af)' : 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+              background: userLocation
+                ? 'linear-gradient(135deg, #1e40af, #1d4ed8)'
+                : 'linear-gradient(135deg, #2563eb, #3b82f6)',
               border: 'none',
-              color: 'white',
-              padding: '0.35rem 0.75rem',
-              borderRadius: '6px',
+              color: '#fff',
+              padding: '0.4rem 0.9rem',
+              borderRadius: '8px',
               cursor: isLocating ? 'not-allowed' : 'pointer',
               fontSize: '0.8rem',
-              fontWeight: '600',
+              fontWeight: '700',
               opacity: isLocating ? 0.7 : 1,
               display: 'flex',
               alignItems: 'center',
-              gap: '0.3rem'
+              gap: '0.3rem',
+              boxShadow: '0 2px 10px rgba(37,99,235,0.45)',
             }}
           >
             {isLocating ? '⏳ Mencari...' : '📍 Lokasi Saya'}
