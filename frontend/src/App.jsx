@@ -227,7 +227,25 @@ function App() {
           setMessages(conv.messages);
           return;
         }
-        // Fetch from server
+        // Check localStorage enriched cache first (preserves relevant_locations for maps)
+        try {
+          const cached = localStorage.getItem(msgCacheKey);
+          if (cached) {
+            const cacheMap = JSON.parse(cached);
+            if (cacheMap[activeConvId] && cacheMap[activeConvId].length > 0) {
+              const cachedMsgs = cacheMap[activeConvId];
+              setMessages(cachedMsgs);
+              setConversations(prev => ({
+                ...prev,
+                [activeConvId]: { ...prev[activeConvId], messages: cachedMsgs },
+              }));
+              return;
+            }
+          }
+        } catch (e) {
+          // ignore cache read errors, fall through to server fetch
+        }
+        // Fetch from server (fallback — no relevant_locations, map won't show for old msgs)
         try {
           const res = await axios.get(
             `${API_BASE_URL}/conversations/${activeConvId}/history`,
@@ -262,6 +280,11 @@ function App() {
   }, [activeConvId]);
 
   // Persist conversations — only localStorage for guests
+  // localStorage key for enriched message data (relevant_locations, metadata, etc.)  
+  const msgCacheKey = isAuthenticated && user?.id
+    ? `toba_msgcache_${user.id}`
+    : 'toba_msgcache_guest';
+
   const persistConversations = (next) => {
     if (!isAuthenticated) {
       try {
@@ -270,7 +293,18 @@ function App() {
         console.error('Error saving conversations', e);
       }
     }
-    // Logged-in users: server is source of truth, no localStorage needed
+    // Always cache enriched messages (incl. relevant_locations) for map restore on refresh
+    try {
+      const cache = {};
+      Object.values(next).forEach(conv => {
+        if (conv.messages && conv.messages.length > 0) {
+          cache[conv.id] = conv.messages;
+        }
+      });
+      localStorage.setItem(msgCacheKey, JSON.stringify(cache));
+    } catch (e) {
+      console.error('Error caching messages', e);
+    }
   };
 
   // Fetch system status
