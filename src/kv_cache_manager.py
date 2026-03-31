@@ -33,7 +33,7 @@ class KVCacheManager:
         
         if os.path.exists(self.cache_file):
             try:
-                with open(self.cache_file, 'r', encoding='utf-8') as f:
+                with open(self.cache_file, 'r', encoding='utf-8-sig') as f:
                     data = json.load(f)
                     self.cache = data.get('cache', {})
                     self.access_count = data.get('access_count', {})

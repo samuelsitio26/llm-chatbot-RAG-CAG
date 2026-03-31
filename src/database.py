@@ -857,6 +857,43 @@ def get_user_conversations(user_id: int, limit: int = 50) -> List[Dict[str, Any]
         conn.close()
 
 
+def delete_conversation(conversation_id: str, user_id: int) -> bool:
+    """Delete a single conversation and its chat history for a specific user."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Only delete if it belongs to this user
+        cursor.execute('DELETE FROM chat_history WHERE conversation_id = ? AND user_id = ?',
+                       (conversation_id, user_id))
+        cursor.execute('DELETE FROM conversations WHERE id = ? AND user_id = ?',
+                       (conversation_id, user_id))
+        conn.commit()
+        return cursor.rowcount >= 0
+    except Exception as e:
+        print(f"delete_conversation error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def clear_user_conversations(user_id: int) -> int:
+    """Delete ALL conversations and chat history for a user. Returns count deleted."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('DELETE FROM chat_history WHERE user_id = ?', (user_id,))
+        chat_deleted = cursor.rowcount
+        cursor.execute('DELETE FROM conversations WHERE user_id = ?', (user_id,))
+        conv_deleted = cursor.rowcount
+        conn.commit()
+        return conv_deleted
+    except Exception as e:
+        print(f"clear_user_conversations error: {e}")
+        return 0
+    finally:
+        conn.close()
+
+
 # ============================================
 # System Stats Functions
 # ============================================

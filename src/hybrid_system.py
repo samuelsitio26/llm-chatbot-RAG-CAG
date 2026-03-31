@@ -30,15 +30,26 @@ class CAGSystem:
 
     # ──────────────────────────────────────────────────────────────────────────
     # PARAMETER RETRIEVAL DOKUMEN
+    # Sistem ini menggunakan HYBRID RETRIEVAL: FAISS (dense) + BM25 (sparse).
+    #
+    # Pendekatan ini didukung oleh literatur:
+    #   • Karpukhin et al. (2020) "Dense Passage Retrieval" (Facebook AI)
+    #     → embedding vektor unggul untuk semantic matching
+    #   • Robertson & Zaragoza (2009) "The Probabilistic Relevance Framework:
+    #     BM25 and Beyond" → BM25 unggul untuk exact keyword matching
+    #   • Ma et al. (2021) "Simple yet Effective Neural Ranking and Reranking
+    #     Baselines for Cross-Lingual Information Retrieval" → hybrid BM25+dense
+    #     konsisten memberikan hasil lebih baik dari masing-masing komponen
+    #
     # FAISS + DistanceStrategy.COSINE mengembalikan JARAK L2 (bukan similarity).
     # Artinya: nilai LEBIH KECIL = LEBIH MIRIP  (0.0 = identik, > 1.0 = jauh)
     #
     # Setiap chunk dinilai dengan HYBRID SCORE gabungan (0.0 – 1.0):
     #
-    #   faiss_sim = 1 - (jarak / MAX_FAISS_DISTANCE)   ← kemiripan semantik/vektor
-    #   kw_score  = proporsi kata query yang ada di chunk ← kecocokan keyword
+    #   faiss_sim = 1 - (jarak / MAX_FAISS_DISTANCE)   ← kemiripan semantik/vektor (FAISS)
+    #   bm25_norm = bm25_raw / (bm25_raw + 1)          ← kecocokan keyword probabilistik (BM25)
     #   hybrid    = faiss_sim × HYBRID_WEIGHT_VECTOR
-    #             + kw_score  × HYBRID_WEIGHT_KEYWORD
+    #             + bm25_norm × HYBRID_WEIGHT_KEYWORD
     #
     # Chunk LOLOS jika hybrid >= RELEVANCE_THRESHOLD
     # Makin TINGGI RELEVANCE_THRESHOLD → seleksi makin KETAT
@@ -55,6 +66,13 @@ class CAGSystem:
         "belum tersedia dalam dokumen yang saya miliki",
         "informasi mengenai menu",
         "tidak memiliki daftar menu spesifik",
+        "informasi mengenai ulasan",
+        "ulasan untuk",
+        "informasi mengenai lokasi",
+        "belum tersedia dalam dokumen yang saya miliki",
+        "belum tersedia secara rinci",
+        "lokasi pasti",
+        "tidak tersedia secara rinci",
         "berdasarkan pengalaman dan pengetahuan umum",
         "Halo is a term",
         "space opera",
@@ -87,14 +105,32 @@ class CAGSystem:
         self.database = None
         self.docs_loaded = False
         self.loaded_docs = []
+        # BM25 index — built after documents are loaded
+        # Reference: Robertson & Zaragoza (2009), "The Probabilistic Relevance Framework:
+        # BM25 and Beyond". Foundation and Trends in Information Retrieval.
+        self.bm25_index = None
 
     def _extract_place_name(self, query: str) -> Optional[str]:
         """Extract a likely place name from a user query like 'menu di Cantik Daijo Cafe'."""
         query_clean = re.sub(r'\s+', ' ', query).strip(" ?!.,")
         patterns = [
-            r'(?:menu|alamat|harga|jam operasional|ulasan)\s+(?:makanan\s+)?di\s+(.+)$',
+            # Format dengan 'di': "menu di X", "ulasan di X"
+            r'(?:menu|alamat|harga|jam operasional|ulasan|review|fasilitas)\s+(?:makanan\s+)?di\s+(.+)$',
             r'(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$',
             r'(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$',
+            # Format tanpa 'di': "ulasan D'Barans Cafe", "menu dbarans cafe"
+            r'(?:menu|ulasan|review|alamat|harga|jam|fasilitas)\s+(.{4,})$',
+            # Format lokasi: "X berada dimana", "X ada dimana", "X terletak dimana"
+            r'(.+?)\s+(?:berada|terletak|ada)\s+(?:di\s+)?(?:mana|dimana)\s*[?.]?$',
+            # Format: "dimana X", "di mana letak X"
+            r'(?:dimana|di\s+mana)\s+(?:letak\s+|lokasi\s+|alamat\s+)?(.+?)\s*[?.]?$',
+            # Format: "lokasi X dimana", "alamat X berada"
+            r'(?:lokasi|letak|alamat)\s+(.+?)(?:\s+dimana|\s+berada|\s+ada|\s+terletak)\s*[?.]?$',
+            # Format: "tempat penginapan X berada dimana", "hotel X ada dimana"
+            r'(?:tempat\s+)?(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|warung|rumah\s+makan|wisata)\s+(.+?)\s+(?:berada|ada|terletak|dimana|di\s+mana)',
+            # Standalone type+name: "tempat penginapan labersa", "hotel labersa", "wisata sipiso-piso"
+            # Fallback paling akhir — hanya aktif jika semua pattern di atas gagal
+            r'(?:tempat\s+)?(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|warung|rumah\s+makan|wisata|objek\s+wisata)\s+(.{4,})$',
         ]
 
         for pattern in patterns:
@@ -116,6 +152,16 @@ class CAGSystem:
             cleaned,
             flags=re.IGNORECASE,
         ).strip(" ?!.,")
+        # Buang prefix tipe tempat: "tempat penginapan labersa" → "labersa"
+        # Jika setelah strip masih >= 3 karakter
+        TYPE_PREFIX = (
+            r'^(?:tempat\s+)?'
+            r'(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|'
+            r'warung|rumah\s+makan|wisata|objek\s+wisata)\s+'
+        )
+        stripped = re.sub(TYPE_PREFIX, '', cleaned, flags=re.IGNORECASE).strip(" ?!.,")
+        if len(stripped) >= 3:
+            cleaned = stripped
         return cleaned
 
     def _is_followup_reference_query(self, query: str) -> bool:
@@ -177,7 +223,7 @@ class CAGSystem:
 
         return matched / len(phrase_tokens)
 
-    def _find_specific_place_docs(self, query: str, limit: int = 3) -> List:
+    def _find_specific_place_docs(self, query: str, limit: int = 10) -> List:
         """Find chunks that explicitly mention a specific place asked in the query."""
         place_name = self._extract_place_name(query)
         if not place_name or not self.loaded_docs:
@@ -207,7 +253,9 @@ class CAGSystem:
                 candidate_meta = getattr(candidate, 'metadata', {})
                 same_source = candidate_meta.get('source') == src
                 candidate_idx = candidate_meta.get('chunk_index')
-                if same_source and isinstance(idx, int) and isinstance(candidate_idx, int) and abs(candidate_idx - idx) <= 1:
+                # Window ±3: mencakup nama tempat, detail, menu, ulasan yang bisa
+                # tersebar hingga beberapa chunk setelah header nama tempat di PDF
+                if same_source and isinstance(idx, int) and isinstance(candidate_idx, int) and abs(candidate_idx - idx) <= 3:
                     key = (src, candidate_idx)
                     if key not in seen_keys:
                         expanded.append(candidate)
@@ -306,38 +354,95 @@ class CAGSystem:
             )
         return "\n\n".join(lines)
 
-    def _keyword_overlap_score(self, query: str, chunk_text: str) -> float:
-        """
-        Hitung proporsi kata penting dari query yang muncul di dalam chunk.
+    # ── Stop words untuk tokenisasi BM25 ────────────────────────────────────
+    BM25_STOP_WORDS = {
+        'apa', 'saja', 'ada', 'dan', 'atau', 'ini', 'itu', 'di',
+        'ke', 'dari', 'untuk', 'dengan', 'pada', 'adalah', 'yang',
+        'bagaimana', 'berapa', 'dimana', 'siapa', 'tentang',
+        'info', 'informasi', 'tolong', 'bisa', 'boleh',
+        'saya', 'kamu', 'kalian', 'kapan', 'apakah',
+    }
 
-        Cara kerja:
-          - Buang stop words (kata umum) dan kata pendek (< 3 karakter)
-          - Hitung berapa banyak kata penting yang ditemukan di teks chunk
-          - Kembalikan rasio: hits / total_kata_penting  (0.0 – 1.0)
-
-        Contoh:
-          query = "menu Cantik Daijo Cafe"
-          → kata penting: [menu, Cantik, Daijo, Cafe]
-          → chunk mengandung semua 4 kata → skor = 1.0
-          → chunk mengandung 2 kata       → skor = 0.5
-          → chunk tidak ada satu pun      → skor = 0.0
-        """
-        STOP_WORDS = {
-            'apa', 'saja', 'ada', 'dan', 'atau', 'ini', 'itu', 'di',
-            'ke', 'dari', 'untuk', 'dengan', 'pada', 'adalah', 'yang',
-            'bagaimana', 'berapa', 'dimana', 'siapa', 'tentang',
-            'info', 'informasi', 'tolong', 'bisa', 'boleh',
-            'saya', 'kamu', 'kalian', 'kapan', 'apakah',
-        }
-        q_words = [
-            w.lower() for w in re.findall(r'\w+', query)
-            if w.lower() not in STOP_WORDS and len(w) > 2
+    def _tokenize_for_bm25(self, text: str) -> List[str]:
+        """Tokenisasi teks untuk BM25: buang stop words dan token pendek."""
+        return [
+            w.lower() for w in re.findall(r'\w+', text)
+            if w.lower() not in self.BM25_STOP_WORDS and len(w) > 2
         ]
-        if not q_words:
+
+    def _build_bm25_index(self) -> None:
+        """
+        Bangun BM25Okapi index dari seluruh chunk yang sudah dimuat.
+
+        BM25 (Okapi BM25) adalah model retrieval probabilistik berbasis
+        term frequency dan inverse document frequency dengan normalisasi
+        panjang dokumen. Diperkenalkan oleh Robertson et al. (1994) dan
+        dijabarkan lebih lanjut di Robertson & Zaragoza (2009).
+
+        Index dibangun sekali saat load_documents() dan digunakan setiap
+        kali get_response() menghitung hybrid score.
+        """
+        try:
+            from rank_bm25 import BM25Okapi
+        except ImportError:
+            print("⚠️  rank-bm25 tidak terpasang. Jalankan: pip install rank-bm25")
+            self.bm25_index = None
+            return
+
+        if not self.loaded_docs:
+            self.bm25_index = None
+            return
+
+        tokenized_corpus = [
+            self._tokenize_for_bm25(doc.page_content)
+            for doc in self.loaded_docs
+        ]
+        self.bm25_index = BM25Okapi(tokenized_corpus)
+        print(f"   ✅ BM25 index dibangun: {len(self.loaded_docs)} chunks")
+
+    def _bm25_score(self, query: str, doc) -> float:
+        """
+        Kembalikan skor BM25 yang dinormalisasi ke rentang [0.0 – 1.0) untuk
+        satu chunk yang sudah diambil oleh FAISS.
+
+        Normalisasi: score / (score + 1) — fungsi monoton, terbatas di [0, 1).
+        Fallback ke keyword overlap sederhana jika BM25 index belum tersedia.
+
+        Parameter doc harus memiliki metadata['chunk_index'] yang berisi
+        posisi chunk di self.loaded_docs (diset saat load_documents).
+        """
+        if self.bm25_index is None:
+            # Fallback: keyword overlap sederhana
+            text = doc.page_content if hasattr(doc, 'page_content') else str(doc)
+            q_words = self._tokenize_for_bm25(query)
+            if not q_words:
+                return 0.0
+            chunk_lower = text.lower()
+            hits = sum(1 for w in q_words if w in chunk_lower)
+            return hits / len(q_words)
+
+        query_tokens = self._tokenize_for_bm25(query)
+        if not query_tokens:
             return 0.0
-        chunk_lower = chunk_text.lower()
-        hits = sum(1 for w in q_words if w in chunk_lower)
-        return hits / len(q_words)
+
+        # Ambil posisi chunk di corpus BM25 via metadata chunk_index
+        meta = getattr(doc, 'metadata', {})
+        chunk_idx = meta.get('chunk_index')
+        if chunk_idx is None or chunk_idx >= len(self.loaded_docs):
+            # chunk_index tidak tersedia — fallback ke overlap
+            text = doc.page_content if hasattr(doc, 'page_content') else str(doc)
+            q_words = self._tokenize_for_bm25(query)
+            if not q_words:
+                return 0.0
+            hits = sum(1 for w in q_words if w in text.lower())
+            return hits / len(q_words)
+
+        # Hitung skor BM25 untuk seluruh corpus, ambil skor chunk ini
+        scores = self.bm25_index.get_scores(query_tokens)
+        raw = float(scores[chunk_idx])
+
+        # Normalisasi ke [0, 1): f(x) = x / (x + 1)
+        return raw / (raw + 1.0) if raw > 0.0 else 0.0
 
     def _is_invalid_response(self, response: str) -> bool:
         """Check if a response is invalid"""
@@ -476,6 +581,11 @@ class CAGSystem:
         )
         
         self.docs_loaded = True
+
+        # Bangun BM25 index dari chunk yang sama
+        print("📊 Building BM25 index...")
+        self._build_bm25_index()
+
         elapsed = time.time() - start_time
         
         print(f"✅ CAG ready: {len(docs)} chunks in {elapsed:.2f}s")
@@ -603,14 +713,18 @@ class CAGSystem:
             raw_results = sorted(raw_results, key=lambda item: float(item[1]))
             top_score = float(raw_results[0][1]) if raw_results else 0.0
 
-            specific_place_docs = self._find_specific_place_docs(retrieval_query, limit=min(max(k // 2, 2), 4))
+            specific_place_docs = self._find_specific_place_docs(retrieval_query, limit=min(k + 2, 10))
 
-            # ── Hybrid Scoring ───────────────────────────────────────────────
+            # ── Hybrid Scoring (FAISS + BM25) ───────────────────────────────
             # Setiap chunk mendapat HYBRID SCORE (0.0–1.0) dari dua komponen:
             #
-            #   1. faiss_sim : kemiripan semantik dari embedding vektor
+            #   1. faiss_sim : kemiripan semantik dari embedding vektor (FAISS)
             #                  konversi: makin kecil jarak FAISS → makin besar sim
-            #   2. kw_score  : proporsi kata penting query yang ada di teks chunk
+            #   2. bm25_norm : skor BM25Okapi yang dinormalisasi ke [0,1)
+            #                  menangkap exact keyword match + IDF weighting
+            #
+            # Kombinasi FAISS + BM25 didukung oleh:
+            #   Karpukhin et al. (2020) DPR; Ma et al. (2021) hybrid retrieval
             #
             # Chunk LOLOS jika hybrid_score >= RELEVANCE_THRESHOLD
             # ─────────────────────────────────────────────────────────────────
@@ -618,10 +732,10 @@ class CAGSystem:
             for doc, faiss_dist in raw_results:
                 d         = float(faiss_dist)
                 faiss_sim = max(0.0, 1.0 - d / self.MAX_FAISS_DISTANCE)
-                kw_score  = self._keyword_overlap_score(retrieval_query, doc.page_content)
+                bm25_norm = self._bm25_score(retrieval_query, doc)
                 hybrid    = (faiss_sim * self.HYBRID_WEIGHT_VECTOR
-                             + kw_score * self.HYBRID_WEIGHT_KEYWORD)
-                scored_chunks.append((doc, d, faiss_sim, kw_score, hybrid))
+                             + bm25_norm * self.HYBRID_WEIGHT_KEYWORD)
+                scored_chunks.append((doc, d, faiss_sim, bm25_norm, hybrid))
 
             # Urutkan: skor hybrid tertinggi (paling relevan) duluan
             scored_chunks.sort(key=lambda x: x[4], reverse=True)
@@ -674,7 +788,7 @@ class CAGSystem:
                     f" → {len(threshold_passed)} lolos threshold (hybrid ≥ {self.RELEVANCE_THRESHOLD})"
                     f" → {len(specific_place_docs)} exact-place match"
                     f" → {len(relevant_docs)} after dedup"
-                    f" | best: hybrid={top[4]:.2f} (vektor={top[2]:.2f}, keyword={top[3]:.2f})"
+                    f" | best: hybrid={top[4]:.2f} (vektor={top[2]:.2f}, bm25={top[3]:.2f})"
                 )
         except Exception as e:
             print(f"❌ Retrieval error: {e}")
@@ -811,6 +925,19 @@ class CAGSystem:
                 context = structured_ctx + "\n\n" + context if context else structured_ctx
                 print(f"📍 Injected structured locations context ({len(structured_ctx)} chars)")
 
+        # For transport / route queries, inject distance & transport data
+        try:
+            from location_service import is_transport_query, extract_route_places, build_transport_context
+            if is_transport_query(query):
+                origin_name, dest_name = extract_route_places(query)
+                if origin_name and dest_name:
+                    transport_ctx = build_transport_context(origin_name, dest_name)
+                    if transport_ctx:
+                        context = transport_ctx + "\n\n" + context if context else transport_ctx
+                        print(f"🚗 Injected transport context ({len(transport_ctx)} chars)")
+        except ImportError:
+            pass
+
         print(f"📄 Retrieved {len(relevant_docs)} chunks, context: {len(context)} chars")
         
         # Generate response
@@ -828,6 +955,31 @@ class CAGSystem:
         except Exception as e:
             print(f"❌ Generation error: {e}")
             response = f"Maaf, terjadi kesalahan saat memproses pertanyaan: {str(e)}"
+
+        # Retry once if response is invalid but context has substantial data.
+        # This catches cases where the LLM says "belum tersedia" despite having
+        # the relevant information in the provided context.
+        if self._is_invalid_response(response) and len(context) > 300:
+            print(f"⚠️ Invalid response detected with context available — retrying with stronger prompt...")
+            try:
+                retry_context = (
+                    f"[PERINGATAN SISTEM: Jawaban sebelumnya ditolak karena mengatakan informasi 'tidak tersedia' "
+                    f"padahal konteks dokumen menyediakan data. BACA ULANG konteks dengan teliti dan jawab "
+                    f"berdasarkan informasi yang ADA. Jangan menuliskan 'belum tersedia' jika data bisa ditemukan di bawah.]\n\n"
+                    + context
+                )
+                response = self.model.generate_response(
+                    query=query,
+                    context=retry_context,
+                    chat_history=chat_history or [],
+                    max_new_tokens=max_new_tokens,
+                    temperature=max(temperature, 0.3),
+                    user_preferences=user_preferences or [],
+                    is_first_message=is_first_message,
+                )
+                print(f"🔄 Retry response: {len(response)} chars")
+            except Exception as e:
+                print(f"❌ Retry generation error: {e}")
         
         generation_time = time.time() - generation_start
         total_time = time.time() - start_time

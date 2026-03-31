@@ -95,14 +95,16 @@ class GeminiChatModel:
                 if query_lower.startswith(phrase):
                     return 'greeting'
         
-        # Detect general questions (math, basic questions) - answer then redirect
+        # Detect pure math questions (e.g. "2 + 2", "5 x 3")
         import re
-        if re.search(r'\d+\s*[\+\-\*\/x]\s*\d+', query_lower) or 'berapa' in query_lower:
+        if re.search(r'\d+\s*[\+\-\*\/x]\s*\d+', query_lower):
             return 'general_question'
 
         # Document-style business/place questions should stay grounded in tourism docs.
+        # NOTE: "berapa" is intentionally handled here — "bintang berapa", "harga berapa",
+        # "berapa kamar" etc. are tourism/FAQ questions, NOT general math.
         if re.search(
-            r'\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas)\b',
+            r'\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas|berapa|bintang)\b',
             query_lower,
         ):
             return 'tourism'
@@ -112,7 +114,9 @@ class GeminiChatModel:
             'wisata', 'pantai', 'danau', 'hotel', 'penginapan', 'homestay',
             'villa', 'resort', 'toba', 'samosir', 'balige', 'parapat', 'tomok', 
             'tuktuk', 'sipiso', 'kuliner', 'batak', 'ulos', 'air terjun',
-            'menu', 'warung', 'rumah makan', 'restoran', 'restaurant', 'kedai'
+            'menu', 'warung', 'rumah makan', 'restoran', 'restaurant', 'kedai',
+            'rute', 'jarak', 'transportasi', 'kendaraan', 'akomodasi',
+            'naik apa', 'cara ke', 'menuju',
         ]
         
         # Check strong tourism keywords first (takes highest priority)
@@ -149,15 +153,39 @@ class GeminiChatModel:
         """Extract the most likely subject/place mentioned in a document-grounded query."""
         query_clean = re.sub(r'\s+', ' ', query).strip(' ?!.,')
         patterns = [
+            # Format dengan 'di'
             r'(?:menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas)\s+(?:makanan\s+)?di\s+(.+)$',
             r'(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$',
             r'(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$',
+            # Format tanpa 'di': "ulasan D'Barans Cafe", "menu dbarans cafe"
+            r'(?:menu|ulasan|review|alamat|harga|jam|fasilitas)\s+(.{4,})$',
+            # Format lokasi: "X berada dimana", "X ada dimana"
+            r'(.+?)\s+(?:berada|terletak|ada)\s+(?:di\s+)?(?:mana|dimana)\s*[?.]?$',
+            # Format: "dimana X", "di mana letak X"
+            r'(?:dimana|di\s+mana)\s+(?:letak\s+|lokasi\s+|alamat\s+)?(.+?)\s*[?.]?$',
+            # Format: "lokasi X dimana", "alamat X berada"
+            r'(?:lokasi|letak|alamat)\s+(.+?)(?:\s+dimana|\s+berada|\s+ada|\s+terletak)\s*[?.]?$',
+            # Format: "tempat penginapan X berada dimana", "hotel X ada dimana"
+            r'(?:tempat\s+)?(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|warung|rumah\s+makan|wisata)\s+(.+?)\s+(?:berada|ada|terletak|dimana|di\s+mana)',
+            # Standalone type+name: "tempat penginapan labersa", "hotel labersa"
+            r'(?:tempat\s+)?(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|warung|rumah\s+makan|wisata|objek\s+wisata)\s+(.{4,})$',
         ]
+
+        # Prefix tipe tempat yang dibuang dari hasil ekstraksi
+        TYPE_PREFIX = (
+            r'^(?:tempat\s+)?'
+            r'(?:penginapan|hotel|resort|villa|homestay|cafe|restoran|'
+            r'warung|rumah\s+makan|wisata|objek\s+wisata)\s+'
+        )
 
         for pattern in patterns:
             match = re.search(pattern, query_clean, flags=re.IGNORECASE)
             if match:
                 subject = match.group(1).strip(' ?!.,')
+                # Buang prefix tipe jika ada
+                stripped = re.sub(TYPE_PREFIX, '', subject, flags=re.IGNORECASE).strip(' ?!.,')
+                if len(stripped) >= 3:
+                    subject = stripped
                 if len(subject) >= 3:
                     return subject
 
@@ -529,15 +557,18 @@ INSTRUKSI PENTING:
 2. Untuk setiap tempat wisata/hotel/rumah makan, SELALU sebutkan NAMA LENGKAPNYA sebagaimana tertulis di dokumen
 3. Gunakan format yang rapi dengan emoji dan bullet points
 4. Berikan minimal 3-5 rekomendasi jika tersedia dalam dokumen
-5. Jika informasi tidak ada dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
+5. Jika informasi BENAR-BENAR tidak ada sama sekali dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
 6. JANGAN mengarang informasi yang tidak ada dalam dokumen
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
 8. JANGAN pernah menulis teks placeholder seperti "(Tidak disebutkan namanya...)", "(Nama tidak tersedia)", atau sejenisnya — gunakan nama yang tertulis di dokumen apa adanya
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
 10. Jika pengguna menanyakan SATU tempat spesifik, fokus jawab tempat itu saja, bukan daftar rekomendasi umum.
-11. Jika dokumen memuat field eksplisit seperti "Menu", "Harga", "Jam Operasional", atau "Alamat", salin fakta tersebut dengan setia dari dokumen.
+11. Jika dokumen memuat field eksplisit seperti "Menu", "Harga", "Jam Operasional", "Alamat", "Lokasi", atau "Long & Lat", salin fakta tersebut dengan setia dari dokumen.
 12. Jika dokumen "Data Terstruktur: Lokasi Database" tersedia dalam konteks, WAJIB masukkan SEMUA tempat yang tercantum di sana ke dalam jawaban — jangan melewatkan satu pun.
 13. Untuk pertanyaan "apa saja" atau "daftar", tampilkan SELURUH tempat yang ada dalam konteks, bukan hanya sebagian.
+14. PARTIAL NAME MATCHING: Jika nama yang disebutkan pengguna hanya SEBAGIAN dari nama lengkap di dokumen, anggap itu tempat yang sama dan jawab lengkap. Misalnya jika pengguna menyebut sebagian nama dan di dokumen ada nama yang mengandung kata-kata tersebut, gunakan data tempat tersebut.
+15. QUERY LOKASI (dimana/alamat/lokasi): Jika konteks mengandung field Lokasi, Alamat, Long & Lat, atau koordinat dari tempat yang ditanyakan, WAJIB tampilkan semua data tersebut. DILARANG KERAS mengatakan "lokasi tidak tersedia" atau "belum tersedia secara rinci" jika data lokasi ADA dalam konteks.
+16. QUERY TRANSPORTASI / RUTE: Jika konteks mengandung "[Data Rute & Transportasi]", gunakan data tersebut untuk menjawab pertanyaan tentang jarak, rute, kendaraan, atau cara menuju dari satu tempat ke tempat lain. Sebutkan jarak estimasi, rekomendasi transportasi, dan estimasi waktu tempuh.
 {greeting_rule}
 {pref_hint}{history_section}
 INFORMASI DOKUMEN:

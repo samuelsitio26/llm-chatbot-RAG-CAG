@@ -164,56 +164,113 @@ function App() {
     }
   };
 
-  // Load conversations from localStorage - PER USER
+  // Load conversations — from SERVER for logged-in users, localStorage for guests
   useEffect(() => {
-    try {
-      // Generate unique storage key based on user ID
-      // Guest users use 'guest', logged-in users use their ID
-      const storageKey = user?.id 
-        ? `toba_conversations_user_${user.id}` 
-        : 'toba_conversations_guest';
-      
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        setConversations(parsed);
-        const ids = Object.keys(parsed);
-        if (ids.length > 0) setActiveConvId(ids[0]);
-      } else {
-        // create default conversation
+    const loadConversations = async () => {
+      try {
+        if (isAuthenticated && token) {
+          // ── Logged-in: load from server (single source of truth) ──
+          const res = await axios.get(`${API_BASE_URL}/conversations`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const serverConvs = res.data.conversations || [];
+          if (serverConvs.length > 0) {
+            const mapped = {};
+            serverConvs.forEach(c => {
+              mapped[c.id] = { id: c.id, title: c.title, messages: [] };
+            });
+            setConversations(mapped);
+            setActiveConvId(serverConvs[0].id);
+          } else {
+            // No conversations on server — start fresh
+            const id = `conv_${Date.now()}`;
+            setConversations({ [id]: { id, title: 'General', messages: [] } });
+            setActiveConvId(id);
+          }
+          // Clean up stale localStorage for this user
+          localStorage.removeItem(`toba_conversations_user_${user.id}`);
+        } else {
+          // ── Guest: use localStorage ──
+          const saved = localStorage.getItem('toba_conversations_guest');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            setConversations(parsed);
+            const ids = Object.keys(parsed);
+            if (ids.length > 0) setActiveConvId(ids[0]);
+          } else {
+            const id = `conv_${Date.now()}`;
+            const init = { [id]: { id, title: 'General', messages: [] } };
+            setConversations(init);
+            setActiveConvId(id);
+          }
+        }
+      } catch (e) {
+        console.error('Error loading conversations', e);
+        // Fallback: start fresh
         const id = `conv_${Date.now()}`;
-        const init = {
-          [id]: { id, title: 'General', messages: [] }
-        };
-        setConversations(init);
+        setConversations({ [id]: { id, title: 'General', messages: [] } });
         setActiveConvId(id);
       }
-    } catch (e) {
-      console.error('Error loading conversations', e);
-    }
-  }, [user?.id]); // Re-run when user changes (login/logout)
+    };
+    loadConversations();
+  }, [user?.id, isAuthenticated, token]);
 
+  // When switching conversation, load messages from server for logged-in users
   useEffect(() => {
     if (!activeConvId) return;
-    // sync messages view with active conversation
-    const conv = conversations[activeConvId];
-    if (conv) setMessages(conv.messages || []);
-  }, [activeConvId, conversations]);
 
-  // Generate storage key based on user
-  const getStorageKey = () => {
-    return user?.id 
-      ? `toba_conversations_user_${user.id}` 
-      : 'toba_conversations_guest';
-  };
+    const loadMessages = async () => {
+      if (isAuthenticated && token) {
+        // Check if we already have messages loaded in memory for this conv
+        const conv = conversations[activeConvId];
+        if (conv && conv.messages && conv.messages.length > 0) {
+          setMessages(conv.messages);
+          return;
+        }
+        // Fetch from server
+        try {
+          const res = await axios.get(
+            `${API_BASE_URL}/conversations/${activeConvId}/history`,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          const history = res.data.history || [];
+          // Convert server format [{role, content}] to frontend message format
+          const msgs = history.map((h, i) => ({
+            id: `m_db_${i}`,
+            role: h.role,
+            content: h.content,
+            timestamp: new Date().toISOString(),
+            metadata: {},
+          }));
+          setMessages(msgs);
+          // Cache in local state so we don't re-fetch on every switch
+          setConversations(prev => ({
+            ...prev,
+            [activeConvId]: { ...prev[activeConvId], messages: msgs },
+          }));
+        } catch (e) {
+          console.error('Error loading conversation history', e);
+          setMessages([]);
+        }
+      } else {
+        // Guest: sync from local state
+        const conv = conversations[activeConvId];
+        if (conv) setMessages(conv.messages || []);
+      }
+    };
+    loadMessages();
+  }, [activeConvId]);
 
+  // Persist conversations — only localStorage for guests
   const persistConversations = (next) => {
-    try {
-      const storageKey = getStorageKey();
-      localStorage.setItem(storageKey, JSON.stringify(next));
-    } catch (e) {
-      console.error('Error saving conversations', e);
+    if (!isAuthenticated) {
+      try {
+        localStorage.setItem('toba_conversations_guest', JSON.stringify(next));
+      } catch (e) {
+        console.error('Error saving conversations', e);
+      }
     }
+    // Logged-in users: server is source of truth, no localStorage needed
   };
 
   // Fetch system status
@@ -384,8 +441,20 @@ function App() {
     persistConversations(next);
   };
 
-  const deleteConversation = (id) => {
+  const deleteConversation = async (id) => {
     if (!window.confirm('Hapus percakapan ini?')) return;
+
+    // Delete from server if logged in
+    if (isAuthenticated && token) {
+      try {
+        await axios.delete(`${API_BASE_URL}/conversations/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (e) {
+        console.error('Error deleting conversation from server', e);
+      }
+    }
+
     const next = { ...conversations };
     delete next[id];
     setConversations(next);
@@ -606,7 +675,9 @@ function App() {
   };
 
   const handleExampleClick = (query) => {
-    setInput(query);
+    // Strip leading emoji + space before sending — emojis are display-only
+    const clean = query.indexOf(' ') !== -1 ? query.substring(query.indexOf(' ') + 1) : query;
+    setInput(clean);
     inputRef.current?.focus();
   };
 
