@@ -638,6 +638,25 @@ class CAGSystem:
         
         # Handle general questions (math, etc.)
         if intent == 'general_question':
+            # Defensive FAQ check: some queries are misrouted here but have a real
+            # tourism FAQ answer (e.g. "seberapa jauh...").  Check before giving a
+            # generic Gemini answer so the grounded answer is always preferred.
+            if use_cache and not contextual_followup:
+                faq_hit = self._search_faq(query)
+                if faq_hit:
+                    faq_response = faq_hit['answer']
+                    _hash = self.kv_cache._hash_query(query)
+                    self.kv_cache.put(query, faq_response, "from_faq")
+                    print(f"📖 FAQ match (general_question path): {query[:60]}...")
+                    return {
+                        "response": faq_response,
+                        "source": "cag_cache",
+                        "cache_used": True,
+                        "response_time": time.time() - start_time,
+                        "num_chunks": 0,
+                        "context": "from_faq",
+                        "cache_key": _hash,
+                    }
             response = self.model._get_general_answer(query)
             return {
                 "response": response,

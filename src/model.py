@@ -101,10 +101,11 @@ class GeminiChatModel:
             return 'general_question'
 
         # Document-style business/place questions should stay grounded in tourism docs.
-        # NOTE: "berapa" is intentionally handled here — "bintang berapa", "harga berapa",
-        # "berapa kamar" etc. are tourism/FAQ questions, NOT general math.
+        # NOTE: "berapa" / "seberapa" are intentionally handled here — "bintang berapa",
+        # "harga berapa", "seberapa jauh" etc. are tourism/FAQ questions, NOT general math.
+        # Using 'berapa\b' (no leading \b) so that "seberapa" is also matched.
         if re.search(
-            r'\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas|berapa|bintang)\b',
+            r'\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas|bintang)\b|berapa\b',
             query_lower,
         ):
             return 'tourism'
@@ -115,7 +116,7 @@ class GeminiChatModel:
             'villa', 'resort', 'toba', 'samosir', 'balige', 'parapat', 'tomok', 
             'tuktuk', 'sipiso', 'kuliner', 'batak', 'ulos', 'air terjun',
             'menu', 'warung', 'rumah makan', 'restoran', 'restaurant', 'kedai',
-            'rute', 'jarak', 'transportasi', 'kendaraan', 'akomodasi',
+            'rute', 'jarak', 'jauh', 'seberapa', 'transportasi', 'kendaraan', 'akomodasi',
             'naik apa', 'cara ke', 'menuju',
         ]
         
