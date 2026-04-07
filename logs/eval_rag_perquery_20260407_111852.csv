@@ -1,0 +1,201 @@
+query,time,cache,bert,comp,hall,relevance,irr,recall,eir,em,token_f1
+Berapa lama waktu perjalanan dari Hotel O Balige City Near T,8.212,False,0.707,1.0,0.4918,1.0,0.0,0.0,0.0512,0.0,0.3478
+Ada berapa tamu yang dapat menginap di Sapadia Villa Balige?,8.274,False,0.5695,0.3333,0.4735,1.0,0.0,0.6667,0.2414,0.0,0.075
+Kapan waktu check-in & check-out di Labersa Hotel & Conventi,7.55,False,0.6763,0.5,0.2999,1.0,0.0,0.0,0.0421,0.0,0.2785
+Apakah ada kamar dengan kamar mandi pribadi di Aluna Bay Hot,9.002,False,0.6676,1.0,0.318,1.0,0.0,1.0,0.2346,0.0,0.1154
+Apa saja fasilitas utama di J&J Guest House 1 Rumah?,2.662,False,0.6557,0.3333,0.624,0.8,0.2,1.0,0.0783,0.0,0.17
+Berapa rating bintang resmi untuk RAP Hotel Balige?,2.017,False,0.6719,1.0,0.5394,1.0,0.0,0.0,0.0231,0.0,0.16
+Apakah Grand Mareda Hotel menawarkan Wi-Fi gratis?,2.665,False,0.6483,1.0,0.37,1.0,0.0,0.5,0.1073,0.0,0.1154
+Jenis kamar apa saja yang tersedia di Gemma Hotel Balige?,7.04,False,0.6689,0.0,0.436,1.0,0.0,1.0,0.0286,0.0,0.2222
+Apakah Aluna Bay Hotel ada kolam renang?,7.528,False,0.6953,0.6667,0.6303,1.0,0.0,0.6667,0.0224,0.0,0.25
+Ada berapa kamar yang tersedia di Sapadia Villa Balige?,2.307,False,0.5848,0.5,0.4972,1.0,0.0,1.0,0.0443,0.0,0.1538
+Berapa harga menginap di HW Hubers Laguboti?,7.12,False,0.6684,0.0,0.6137,1.0,0.0,0.0,0.0429,0.0,0.1562
+Rekomendasi Rumah Makan atau Restoran dengan Menu Sehat di k,15.149,False,0.6122,1.0,0.2397,0.8889,0.1111,0.5,0.4858,0.0,0.1148
+Ada berapa tamu yang dapat menginap di Nabasa Hotel Balige?,7.261,False,0.6474,0.3333,0.5136,1.0,0.0,0.3333,0.0673,0.0,0.1212
+Apa waktu check-in & check-out standar di VILLA BORNEO?,0.2,False,0.6657,0.0,0.7273,0.2,0.8,0.0,0.0103,0.0,0.0513
+Di mana alamat Mutiara Balige Hotel?,2.679,False,0.6667,0.0,0.4725,0.75,0.25,0.0,0.0773,0.0,0.2188
+Hotel bintang berapa Hotel O Karisma Residence?,8.051,False,0.6727,0.6667,0.4816,0.75,0.25,0.3333,0.0521,0.0,0.1351
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,3.142,False,0.7087,1.0,0.3142,1.0,0.0,0.0,0.0901,0.0,0.2368
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,7.277,False,0.7072,1.0,0.4113,0.875,0.125,1.0,0.0537,0.0,0.275
+Berapa lama waktu perjalanan dari villa borneo ke Bandar Uda,7.452,False,0.6716,1.0,0.2618,1.0,0.0,1.0,0.1032,0.0,0.1975
+Di mana alamat Grand Mareda Hotel?,2.761,False,0.6568,0.0,0.3694,0.75,0.25,0.0,0.0991,0.0,0.175
+Apa saja fasilitas utama di RAP Hotel Balige?,2.218,False,0.6327,0.0,0.488,1.0,0.0,1.0,0.0231,0.0,0.1064
+Berapa lama waktu perjalanan dari Tendy Guest House ke Banda,7.396,False,0.6953,1.0,0.4002,0.8889,0.1111,0.0,0.0824,0.0,0.2286
+Bahagia Hotel bintang berapa?,7.056,False,0.6408,0.6667,0.5881,1.0,0.0,0.3333,0.0215,0.0,0.1159
+Apakah Labersa Hotel & Convention Center Toba Balige menyedi,7.993,False,0.6499,0.6667,0.3271,1.0,0.0,0.6667,0.2082,0.0,0.1412
+Apakah Mutiara Balige Hotel menawarkan Wi-Fi gratis?,2.905,False,0.6044,0.5,0.234,0.6667,0.3333,0.5,0.2439,0.0,0.0552
+Berapa lama waktu perjalanan dari Hotel Santo Djaya ke Banda,8.299,False,0.6515,1.0,0.2669,0.8889,0.1111,0.0,0.0857,0.0,0.1513
+Fasilitas kamar apa saja yang tersedia di Bobocabin Kaldera ,7.821,False,0.6565,1.0,0.4758,1.0,0.0,1.0,0.0183,0.0,0.1915
+Berapa harga menginap di Hotel O Balige City Near Tugu Juara,2.372,False,0.6857,0.0,0.5173,1.0,0.0,1.0,0.0435,0.0,0.2727
+Kapan waktu check-in & check-out di Bobocabin Kaldera Toba?,8.506,False,0.6751,0.5,0.5088,1.0,0.0,0.0,0.0233,0.0,0.2353
+Kapan waktu biaya paling hemat untuk mengunjungi Laguboti?,4.066,False,0.644,0.5,,1.0,0.0,,,0.0,0.1342
+Berapa lama waktu perjalanan dari OYO 90645 Karisma Residenc,8.454,False,0.6299,1.0,0.3359,0.7,0.3,0.0,0.2353,0.0,0.0925
+Pukul berapa waktu check-in & check-out di Grand Mareda Hote,7.114,False,0.645,0.5,0.56,1.0,0.0,0.0,0.0236,0.0,0.2222
+Apakah Hotel Sere Nauli meneyediakan sarapan?,8.586,False,0.6694,0.0,0.6789,0.6,0.4,0.6667,0.0264,0.0,0.0822
+Berapa kisaran harga kamar untuk menginap di Mutiara Balige ,3.091,False,0.672,0.0,0.4958,1.0,0.0,0.5,0.0515,0.0,0.1786
+Apakah J&J Guest House 1 Rumah dilengkapi kolam renang?,2.358,False,0.6194,1.0,,1.0,0.0,,,0.0,0.141
+Apa saja hotel terbaik di dekat Batikta?,7.429,False,0.5939,1.0,0.3141,0.6667,0.3333,1.0,0.3671,0.0,0.0421
+Berapa harga menginap di Hotel Tiara Bunga?,2.871,False,0.6659,0.0,0.5289,0.6,0.4,0.5,0.0606,0.0,0.1159
+Fasilitas apa saja yang tersedia di Bobocabin Kaldera Toba?,11.138,False,0.6135,0.1667,0.5765,1.0,0.0,0.8333,0.0217,0.0,0.0654
+Rekomendasi destinasi wisata pantai untuk rekreasi berenang ,9.371,False,0.6619,1.0,0.5877,1.0,0.0,0.0,0.4286,0.0,0.2436
+Fasilitas apa saja yang tersedia di Vany Villa Balige?,4.373,False,0.6691,0.5,0.5533,1.0,0.0,1.0,0.0925,0.0,0.2098
+Bagaimana kebijakan pembatalan untuk Sopo Almonsari?,4.214,False,0.6553,1.0,,1.0,0.0,,,0.0,0.0849
+Berapa jumlah kamar yang tersedia di Hotel Tiara Bunga?,9.343,False,0.6833,1.0,0.5166,1.0,0.0,1.0,0.0404,0.0,0.2034
+Apakah Nauli Inn Balige menyediakan parkir?,7.914,False,0.6991,0.5,0.5503,0.8,0.2,0.75,0.0364,0.0,0.2319
+Vany Villa Balige bintang berapa?,10.5,False,0.6284,0.6667,0.4477,1.0,0.0,0.6667,0.5062,0.0,0.0905
+Apa saja pilihan transportasi darat dari Medan menuju Kabupa,2.58,False,0.6404,0.3333,0.2676,1.0,0.0,1.0,0.0968,0.0,0.1587
+Rekomendasi tempat rekreasi di Kabupaten Toba,5.611,False,0.603,1.0,0.2545,1.0,0.0,0.0,0.6438,0.0,0.0662
+Apakah tempat parkir tersedia di Lago Hotel & Resto?,7.698,False,0.6803,0.6667,0.7194,1.0,0.0,0.0,0.0098,0.0,0.2222
+Fasilitas apa saja yang tersedia di Sapadia Villa Balige?,3.495,False,0.6216,0.2,0.3764,1.0,0.0,1.0,0.0892,0.0,0.1932
+Apakah Vany Villa Balige menyediakan airport transfer?,9.982,False,0.613,0.4,0.3474,1.0,0.0,0.0,0.5342,0.0,0.0598
+Kapan waktu check-in & check-out di Vany Villa Balige?,0.219,False,0.608,0.0,0.755,0.2,0.8,0.0,0.0046,0.0,0.0455
+Berapa jumlah kamar yang tersedia di Bahagia Hotel?,8.306,False,0.7082,1.0,0.539,1.0,0.0,0.5,0.0425,0.0,0.1923
+Jenis kamar apa saja yang tersedia di RAP Hotel Balige?,2.977,False,0.6908,0.6,0.4575,1.0,0.0,0.6,0.0338,0.0,0.175
+Apakah tempat parkir tersedia di Labersa Hotel and Conventio,9.37,False,0.6345,1.0,0.2727,1.0,0.0,0.0,0.33,0.0,0.0957
+Jenis kamar apa saja yang tersedia di Hotel Sere Nauli?,8.47,False,0.6468,1.0,0.4876,1.0,0.0,0.0,0.0238,0.0,0.1573
+Ada berapa lantai yang tersedia di Nabasa Hotel Balige?,3.024,False,0.6497,0.5,0.516,1.0,0.0,0.5,0.0769,0.0,0.1039
+Fasilitas apa saja yang tersedia di Gemma Hotel Balige?,4.462,False,0.6514,0.8,0.3224,1.0,0.0,1.0,0.1274,0.0,0.1812
+Apakah Lago Hotel & Resto dilengkapi kolam renang?,4.362,False,0.6061,0.6667,0.1783,0.8333,0.1667,1.0,0.2939,0.0,0.0784
+Ada berapa tamu yang dapat menginap di Damar Toba?,7.912,False,0.657,0.25,0.7114,1.0,0.0,0.0,0.0146,0.0,0.1224
+Apakah Hotel Nabasa memiliki kolam renang?,4.07,False,0.6094,1.0,0.2175,1.0,0.0,1.0,0.2616,0.0,0.0758
+Di mana alamat Balige J&J Guesthouse 1?,0.332,False,0.6475,0.0,,0.6667,0.3333,,,0.0,0.2273
+Fasilitas apa saja yang tersedia di Ita Soposurung?,3.02,False,0.6677,0.5,0.5641,1.0,0.0,0.75,0.1072,0.0,0.1871
+Apakah Ita Soposurung Hotel dilengkapi kolam renang?,3.032,False,0.7339,1.0,0.475,1.0,0.0,0.6667,0.0452,0.0,0.2745
+Jenis kamar apa saja yang tersedia di Vany Villa Balige?,3.602,False,0.6353,1.0,0.4136,1.0,0.0,0.0,0.0502,0.0,0.2353
+Ada berapa lantai yang tersedia di Mutiara Balige Hotel?,7.947,False,0.6509,0.5,0.5666,1.0,0.0,0.5,0.0464,0.0,0.127
+Apakah Hotel Santo Djaya dilengkapi kolam renang?,9.39,False,0.6851,1.0,0.2061,1.0,0.0,0.6667,0.1045,0.0,0.1628
+Apakah Damar Toba memperbolehkan late check out?,8.439,False,0.6308,0.3333,0.2941,0.8,0.2,0.0,0.4277,0.0,0.0905
+Berapa lama waktu perjalanan dari Labersa Hotel and Conventi,3.95,False,0.6637,1.0,0.4968,0.8,0.2,0.0,0.0796,0.0,0.2247
+Jenis kamar apa saja yang tersedia di Hotel O Balige City Ne,9.139,False,0.6584,0.75,0.4254,1.0,0.0,0.5,0.0726,0.0,0.2804
+Apakah tempat parkir tersedia di Grand Mareda Hotel?,7.689,False,0.6578,0.6667,0.4192,1.0,0.0,0.6667,0.0271,0.0,0.1404
+Apakah Balige J&J Guesthouse 1 menyediakan airport transfer?,0.099,False,0.6958,0.2,,0.0,1.0,,,0.0,0.0571
+Apakah HOTEL ALMONSARI menyediakan parkir?,8.593,False,0.6443,0.25,0.4067,0.5,0.5,0.75,0.041,0.0,0.1333
+Destinasi wisata mana di Kabupaten Toba yang cocok untuk men,4.775,False,0.642,1.0,0.2603,1.0,0.0,1.0,0.5455,0.0,0.2359
+Kapan waktu check-in & check-out di Sapadia Villa Balige?,0.2,False,0.6295,0.0,0.755,0.2,0.8,0.0,0.0046,0.0,0.0488
+Apa pilihan transportasi udara dari Medan ke Kabupaten Toba?,7.054,False,0.6669,0.0,0.3856,1.0,0.0,0.6667,0.0386,0.0,0.1895
+Apa yang bisa dilakukan di Aluna Bay Hotel?,9.019,False,0.6464,0.25,0.4962,1.0,0.0,0.5,0.0376,0.0,0.1404
+Apakah Hotel Sere Nauli menyediakan parkir?,6.505,False,0.6077,1.0,0.3358,1.0,0.0,1.0,0.7787,0.0,0.0446
+Apa kata traveller yang sudah menginap di Ita Soposurung?,3.515,False,0.6051,0.0,0.4525,0.75,0.25,0.0,0.2553,0.0,0.0584
+Fasilitas kamar apa saja yang tersedia di Vany Villa Balige?,5.708,False,0.6639,0.3333,0.5329,1.0,0.0,1.0,0.0335,0.0,0.2252
+Hotel bintang berapa Hotel Tiara Bunga?,8.731,False,0.6186,0.6667,0.3309,1.0,0.0,0.3333,0.1847,0.0,0.0847
+Apakah di Vany Villa Balige tersedia fasilitas kolam renang?,7.218,False,0.75,1.0,0.5707,1.0,0.0,0.6667,0.041,0.0,0.375
+Apakah Vany Villa Balige menyediakan parkir?,2.638,False,0.7125,0.6667,0.5148,0.8,0.2,1.0,0.0426,0.0,0.2319
+Hotel bintang berapa Nauli Inn Balige?,4.078,False,0.6296,0.6667,0.3485,1.0,0.0,0.3333,0.181,0.0,0.1053
+Ada berapa tamu yang dapat menginap di RAP Hotel Balige?,2.599,False,0.6649,0.0,0.5492,0.6,0.4,0.75,0.0272,0.0,0.1132
+Fasilitas apa saja yang tersedia di Hotel O Balige City Near,10.556,False,0.6378,0.4,0.35,1.0,0.0,0.8,0.1892,0.0,0.1727
+Apakah Damar Toba menyediakan airport transfer?,6.9,False,0.6901,0.4,0.403,1.0,0.0,0.0,0.0261,0.0,0.1786
+Berapa harga menginap di Bahagia Hotel?,2.671,False,0.6479,0.0,0.5488,0.5,0.5,0.6667,0.0519,0.0,0.0625
+Seberapa jauh HW Hubers Laguboti dari pusat Laguboti?,0.084,False,0.5979,0.0,,0.0,1.0,,,0.0,0.0
+Apa kata traveller yang sudah menginap di Hotel Tiara Bunga?,3.249,False,0.5848,0.0,0.4507,0.8,0.2,0.0,0.2576,0.0,0.0448
+Apakah Nabasa Hotel Balige menyediakan sarapan?,7.928,False,0.6644,0.0,0.3908,0.6,0.4,0.6667,0.0532,0.0,0.1
+Restoran mana saja yang memiliki view Danau Toba di Kabupate,6.027,False,0.5954,1.0,0.3341,1.0,0.0,1.0,0.17,0.0,0.0717
+Tipe kamar seperti apa yang bisa saya pesan di HW Hubers Lag,3.473,False,0.6034,0.5,,0.8,0.2,,,0.0,0.0558
+Ada berapa tamu yang dapat menginap di Hotel Sere Nauli?,2.902,False,0.6708,0.3333,0.4934,1.0,0.0,0.6667,0.0362,0.0,0.129
+Di mana alamat Hotel Baritaland Balige?,7.138,False,0.6354,0.3333,0.4747,1.0,0.0,0.3333,0.0365,0.0,0.1739
+Berapa tarif menginap di RAP Hotel Balige?,2.251,False,0.6947,0.0,0.4652,1.0,0.0,0.0,0.038,0.0,0.1754
+Cemilan rekomendasi khas di Kabupaten Toba,11.996,False,0.6008,1.0,0.3495,1.0,0.0,0.0,0.8371,0.0,0.0375
+Kapan waktu check-in dan check-out untuk Mutiara Balige Hote,9.113,False,0.6155,0.6667,0.2062,1.0,0.0,0.3333,0.3041,0.0,0.1103
+Berapa jumlah kamar yang tersedia di HOTEL ALMONSARI?,8.563,False,0.7269,1.0,0.6322,1.0,0.0,0.5,0.0163,0.0,0.2174
+Berapa rating bintang resmi untuk Hotel Adela?,2.55,False,0.6485,1.0,0.5236,1.0,0.0,0.0,0.0299,0.0,0.1702
+Berapa jumlah kamar yang tersedia di Damar Toba,7.785,False,0.686,1.0,0.7008,1.0,0.0,0.0,0.0195,0.0,0.1667
+Berapa lama waktu perjalanan dari Grand Mareda Hotel ke Pant,4.324,False,0.5859,1.0,0.3477,0.875,0.125,0.0,0.1162,0.0,0.1221
+Berapa biaya menginap di Hotel Mutiara Balige per malam?,3.042,False,0.7076,0.5,0.5266,0.8333,0.1667,0.5,0.0335,0.0,0.274
+Apa saja fasilitas yang tersedia di Hotel Almonsari?,8.18,False,0.6751,0.25,0.532,1.0,0.0,1.0,0.0233,0.0,0.1667
+Di mana saya bisa menemukan hotel murah di Balige?,8.319,False,0.6158,0.6,0.284,1.0,0.0,0.4,0.5707,0.0,0.0727
+Apakah ada penginapan murah di daerah Ajibata?,9.325,False,0.6571,0.4,0.309,1.0,0.0,0.4,0.3571,0.0,0.1342
+Berapa biaya menginap di Labersa Hotel?,2.656,False,0.6813,0.3333,0.4599,0.75,0.25,0.6667,0.0659,0.0,0.1975
+Berapa harga kamar di Hotel Sere Nauli?,2.673,False,0.6513,0.6667,0.468,0.8,0.2,0.6667,0.0407,0.0,0.1772
+Apa keunggulan kamar di Hotel Sere Nauli dibanding hotel lai,7.371,False,0.6683,0.6667,0.4989,0.6667,0.3333,0.3333,0.0379,0.0,0.1895
+Ada berapa lantai di Hotel Sere Nauli?,7.161,False,0.6769,0.5,0.4852,1.0,0.0,0.5,0.0317,0.0,0.1509
+Seberapa jauh Hotel Sere Nauli dari bandara?,2.612,False,0.6255,0.0,0.4384,1.0,0.0,1.0,0.0583,0.0,0.1031
+Di mana alamat Hotel Bahagia?,2.934,False,0.6321,0.3333,0.3468,1.0,0.0,0.0,0.3846,0.0,0.1029
+Di mana letak Hotel Labersa?,2.722,False,0.6554,1.0,0.2464,0.6667,0.3333,1.0,0.1274,0.0,0.1772
+Apakah ada penginapan dekat Air Terjun Sipiso-piso?,8.276,False,0.7117,0.5,0.498,1.0,0.0,0.3333,0.0663,0.0,0.2195
+Seberapa jauh Hotel Andela dari Air Terjun Sipiso-piso?,7.243,False,0.6702,0.0,0.6101,1.0,0.0,0.3333,0.04,0.0,0.2353
+Wisata apa yang paling populer di sekitar Danau Toba?,5.681,False,0.6183,0.3333,0.2818,1.0,0.0,0.3333,0.8512,0.0,0.0513
+Apa saja tempat wisata yang ada di Balige?,5.247,False,0.5994,0.0,0.2787,1.0,0.0,0.5,0.3097,0.0,0.0334
+Wisata apa yang paling dekat dengan pusat kota Balige?,3.222,False,0.6387,0.6667,0.3778,1.0,0.0,0.6667,0.2134,0.0,0.1437
+Apa saja destinasi wisata antara Laguboti dan Balige?,5.899,False,0.6132,0.5,0.6248,1.0,0.0,0.5,0.2545,0.0,0.0813
+Apa saja lokasi wisata yang bisa dikunjungi di sekitar Danau,6.911,False,0.6154,0.6667,0.1671,0.8,0.2,0.6667,0.5328,0.0,0.0356
+Apa wisata terbaik di Toba beserta harga tiketnya?,5.239,False,0.6058,1.0,0.3178,1.0,0.0,0.5,0.4842,0.0,0.0948
+Adakah tempat wisata sejarah di sekitar Danau Toba?,8.96,False,0.6115,0.3333,0.2826,0.8,0.2,0.0,0.8726,0.0,0.0434
+Di mana saja air terjun yang bisa dikunjungi di Toba?,5.781,False,0.6102,0.6667,0.2631,0.75,0.25,0.6667,0.2596,0.0,0.0674
+Di mana lokasi Pantai Meat dan berapa harga tiket masuknya?,3.012,False,0.6182,0.3333,0.1999,0.6667,0.3333,0.3333,0.4654,0.0,0.1209
+Seperti apa suasana di Pantai Meat?,2.977,False,0.6475,0.75,0.5099,1.0,0.0,0.75,0.3731,0.0,0.1502
+Di mana lokasi Pantai Bul-Bul?,3.452,False,0.6563,0.0,0.4929,1.0,0.0,0.0,0.1379,0.0,0.1593
+Seperti apa tempat wisata Lumban Bul-Bul itu?,7.406,False,0.7108,0.0,0.5926,1.0,0.0,0.6667,0.0306,0.0,0.24
+Apa saja fasilitas yang tersedia di Lumban Bul-Bul?,2.703,False,0.6338,0.2,0.5154,1.0,0.0,0.6,0.082,0.0,0.1667
+Berapa harga tiket masuk Lumban Bul-Bul?,7.703,False,0.6841,0.6667,0.6736,1.0,0.0,0.3333,0.0286,0.0,0.2069
+Di mana lokasi Air Terjun Bidadari?,3.487,False,0.6543,1.0,0.3746,1.0,0.0,1.0,0.0981,0.0,0.1765
+Berapa biaya masuk ke Air Terjun Sipiso-piso?,6.806,False,0.6861,1.0,0.6125,1.0,0.0,0.6667,0.0241,0.0,0.2188
+Adakah wisata rumah pohon di sekitar Danau Toba?,2.821,False,0.6599,0.6667,0.2943,0.8333,0.1667,0.6667,0.2201,0.0,0.2516
+Apakah ada area camping di sekitar Danau Toba?,3.05,False,0.6687,0.6,0.2875,1.0,0.0,0.0,0.1262,0.0,0.1429
+Bagaimana cara menggunakan transportasi umum untuk ke lokasi,6.986,False,0.6828,0.8,0.5277,1.0,0.0,0.0,0.0093,0.0,0.3014
+Wisata apa yang cocok untuk berenang di sekitar Balige?,3.298,False,0.6164,0.5,0.2421,1.0,0.0,0.25,0.2718,0.0,0.1125
+Apakah ada pantai di Balige?,4.656,False,0.6279,1.0,0.1681,1.0,0.0,0.5,0.3087,0.0,0.0686
+Di mana saya bisa menikmati suasana pantai yang tenang di Ba,3.165,False,0.6995,1.0,0.3489,1.0,0.0,1.0,0.2766,0.0,0.2282
+Apakah aman berwisata solo ke Danau Toba?,9.83,False,0.6579,0.75,0.302,0.8,0.2,0.25,0.6596,0.0,0.0727
+Wisata apa yang bisa saya kunjungi dengan budget Rp100.000?,4.381,False,0.6591,0.75,0.4739,0.75,0.25,0.5,0.812,0.0,0.1333
+Sebutkan 3 wisata terjangkau di sekitar Danau Toba,5.47,False,0.6765,1.0,0.2083,0.8,0.2,0.6,0.171,0.0,0.1684
+Rekomendasikan paket hotel dan wisata untuk 3 hari 2 malam d,9.045,False,0.6588,0.5,0.2965,0.8571,0.1429,0.5,0.2329,0.0,0.1046
+Destinasi wisata mana yang cocok untuk liburan keluarga di T,6.774,False,0.6133,1.0,0.193,0.6667,0.3333,1.0,0.8889,0.0,0.0502
+Apa saja kuliner khas dari sekitar Danau Toba?,7.446,False,0.6436,0.3333,0.4912,1.0,0.0,0.3333,0.0282,0.0,0.175
+Makanan khas apa yang bisa saya coba saat berkunjung ke Bali,10.729,False,0.6836,1.0,0.3339,0.8,0.2,0.75,0.3475,0.0,0.1006
+Di mana saya bisa makan di rumah makan Batak di Toba?,5.051,False,0.6312,0.6,0.6086,1.0,0.0,0.4,0.6646,0.0,0.1089
+Apakah ada cafe dengan suasana yang bagus di Balige?,8.3,False,0.6934,0.3333,0.4667,0.75,0.25,0.3333,0.0585,0.0,0.1961
+Di mana bisa makan dengan pemandangan langsung ke Danau Toba,3.555,False,0.6251,0.3333,0.1715,1.0,0.0,0.3333,0.2212,0.0,0.0857
+Adakah restoran halal di sekitar Lumban Bul-Bul?,10.162,False,0.6354,0.8,0.2774,0.8,0.2,0.6,0.5095,0.0,0.0821
+Berapa harga makanan di Rumah Makan Islam Nauli?,7.217,False,0.6084,1.0,0.5406,0.6667,0.3333,1.0,0.0231,0.0,0.1408
+Jam berapa Rumah Makan Islam Nauli buka?,7.354,False,0.57,0.0,0.5628,0.5,0.5,0.5,0.0407,0.0,0.1034
+Di mana saja tempat makan yang bagus di sekitar Danau Toba?,3.571,False,0.6282,0.3333,0.3927,1.0,0.0,0.3333,0.1081,0.0,0.1538
+Apakah ada pertunjukan tari atau adat Batak yang bisa disaks,3.821,False,0.6635,0.75,0.3509,1.0,0.0,0.25,0.2103,0.0,0.1441
+Di mana saya bisa membeli ulos Batak asli di sekitar Balige?,7.323,False,0.6785,0.75,0.6216,1.0,0.0,0.25,0.0338,0.0,0.1795
+Apakah ada museum budaya Batak di sekitar Danau Toba?,2.663,False,0.6442,1.0,0.3786,1.0,0.0,1.0,0.1468,0.0,0.1875
+Apa itu Huta Ginjang dan bagaimana cara ke sana?,0.028,False,0.6206,0.0,,0.0,1.0,,,0.0,0.0
+Bagaimana sejarah Balige sebagai kota di tepi Danau Toba?,6.907,False,0.6759,0.4,0.6994,1.0,0.0,0.4,0.0328,0.0,0.1842
+Adakah galeri seni atau pusat kerajinan tangan di Balige?,7.342,False,0.7298,0.6,0.5663,0.8571,0.1429,0.6,0.0291,0.0,0.2597
+Kapan waktu terbaik untuk mengunjungi festival budaya di Tob,6.797,False,0.6733,0.6667,0.4667,1.0,0.0,0.6667,0.0546,0.0,0.2192
+Bagaimana cara mencapai Balige dari Bandara Silangit?,2.461,False,0.6598,0.25,0.143,0.75,0.25,0.5,0.1224,0.0,0.163
+Berapa lama perjalanan dari Medan ke Balige menggunakan bus?,8.032,False,0.6103,0.3333,0.2391,1.0,0.0,0.3333,0.4142,0.0,0.0625
+Apakah ada layanan feri di sekitar Danau Toba untuk wisatawa,2.674,False,0.6573,0.75,0.3032,1.0,0.0,0.5,0.1888,0.0,0.0966
+Berapa biaya menyewa sepeda motor untuk keliling Balige satu,7.023,False,0.6571,0.5,0.5234,1.0,0.0,0.0,0.0511,0.0,0.1351
+Bagaimana cara menuju Air Terjun Situmurun dari Balige?,6.683,False,0.6771,0.0,0.3267,1.0,0.0,0.25,0.0357,0.0,0.1846
+Apakah ada angkutan umum dari Balige ke Parapat?,2.602,False,0.6714,0.75,0.3801,1.0,0.0,0.5,0.2788,0.0,0.1654
+Apakah ada aplikasi ojek online yang beroperasi di Balige?,0.046,False,0.6673,0.0,0.7493,0.0,1.0,0.1667,0.015,0.0,0.0
+Berapa harga sewa mobil lengkap dengan sopir untuk seharian ,7.053,False,0.6852,0.6,0.5561,1.0,0.0,0.0,0.0324,0.0,0.1818
+"Apakah ada penginapan di sekitar Kecamatan Palipi, Samosir?",3.831,False,0.6493,0.6667,0.2961,1.0,0.0,1.0,0.4671,0.0,0.0796
+Adakah homestay di desa wisata sekitar Danau Toba?,10.875,False,0.633,0.75,0.3289,0.8333,0.1667,0.75,0.5976,0.0,0.0973
+Di mana tempat menginap yang bagus di Parapat?,3.187,False,0.6779,0.75,0.2888,1.0,0.0,0.25,0.5439,0.0,0.2162
+Apakah ada villa atau resort dengan pemandangan Danau Toba?,3.403,False,0.6425,0.6,0.2878,1.0,0.0,0.8,0.3238,0.0,0.1165
+"Berapa harga penginapan backpacker di sekitar Tuk Tuk, Samos",9.462,False,0.6794,0.75,0.5474,1.0,0.0,0.75,0.0343,0.0,0.2368
+Apakah ada penginapan dengan fasilitas kolam renang di luar ,4.761,False,0.6683,0.8333,0.3066,1.0,0.0,0.8333,0.3724,0.0,0.1377
+Rekomendasikan penginapan yang ramah keluarga di sekitar Dan,6.546,False,0.6754,1.0,0.3449,0.8333,0.1667,1.0,0.2244,0.0,0.1356
+Apakah ada tempat menginap di dekat Air Terjun Situmurun?,5.273,False,0.6411,0.6,0.2193,1.0,0.0,0.6,0.3629,0.0,0.1085
+Apakah ada jalur hiking di sekitar perbukitan Danau Toba?,6.472,False,0.6481,1.0,0.1702,1.0,0.0,0.4,0.8571,0.0,0.0717
+Di mana saya bisa melakukan paragliding di sekitar Toba?,7.808,False,0.7084,0.5,0.413,1.0,0.0,0.0,0.0407,0.0,0.2373
+Apakah ada kegiatan kayak atau kano di Danau Toba?,12.311,False,0.6574,1.0,0.1744,1.0,0.0,0.25,0.8578,0.0,0.0815
+Apakah ada spot snorkeling atau diving di Danau Toba?,10.923,False,0.6507,1.0,0.2258,1.0,0.0,0.0,0.7704,0.0,0.099
+Di mana lokasi camping ground resmi di sekitar Danau Toba?,3.039,False,0.6237,1.0,0.187,1.0,0.0,0.25,0.1435,0.0,0.1983
+Apakah ada kegiatan memancing yang diperbolehkan di Danau To,3.958,False,0.6427,0.75,0.4044,0.8,0.2,0.75,0.4363,0.0,0.0952
+Apakah ada wahana air atau banana boat di Danau Toba?,7.034,False,0.7055,0.75,0.3745,1.0,0.0,0.0,0.0441,0.0,0.2651
+Apakah tersedia ATM atau money changer di Balige?,0.046,False,0.7036,0.2,0.8744,0.2,0.8,0.0,0.0,0.0,0.05
+Apakah sinyal internet atau WiFi tersedia di tempat wisata T,11.715,False,0.6021,0.8,0.3399,1.0,0.0,0.2,0.8889,0.0,0.0372
+Apakah ada klinik atau rumah sakit terdekat dari pusat Balig,3.584,False,0.6539,0.5,0.4404,0.6667,0.3333,0.75,0.1905,0.0,0.1802
+Jam berapa sebaiknya mengunjungi Pantai Bul-Bul agar tidak r,4.453,False,0.6554,0.25,0.3597,1.0,0.0,0.25,0.2512,0.0,0.1237
+Apakah kawasan wisata Balige aman untuk dikunjungi malam har,6.056,False,0.6372,0.8,0.2729,0.6667,0.3333,0.6,0.5689,0.0,0.064
+Apakah ada pusat oleh-oleh khas Toba yang bisa dikunjungi di,11.218,False,0.624,0.8,0.3299,1.0,0.0,0.6,0.6787,0.0,0.0681
+Kapan musim ramai wisatawan datang ke Danau Toba?,7.571,False,0.6588,0.6667,0.3668,1.0,0.0,0.3333,0.0317,0.0,0.1867
+Apakah ada event atau festival tahunan di Balige?,2.35,False,0.6235,0.0,0.2497,1.0,0.0,0.0,0.4918,0.0,0.1356
+Kapan Festival Danau Toba biasanya diadakan?,7.005,False,0.6683,0.6667,0.3812,1.0,0.0,0.0,0.0307,0.0,0.1765
+Apakah ada pesta rakyat atau pasar malam di Balige?,2.034,False,0.6648,0.2,0.3866,0.4,0.6,0.6,0.0673,0.0,0.1263
+Apakah ada konser musik atau pertunjukan budaya di Toba?,14.397,False,0.632,0.8,0.2198,1.0,0.0,0.0,0.8222,0.0,0.0723
+Kapan Pesta Danau Toba berikutnya akan diadakan?,7.403,False,0.658,0.3333,0.4512,0.75,0.25,0.0,0.0317,0.0,0.175
+Adakah pesta adat Batak di sekitar Balige yang terbuka untuk,11.009,False,0.6411,1.0,0.4831,0.8571,0.1429,0.6667,0.6047,0.0,0.0946
+Apa itu makanan arsik dan di mana bisa mencobanya di Toba?,3.087,False,0.6455,0.5,0.5583,1.0,0.0,0.5,0.1737,0.0,0.1158
+Di mana saya bisa mencoba ikan bakar khas Batak di Balige?,9.683,False,0.6578,1.0,0.3415,1.0,0.0,0.25,0.1557,0.0,0.1408
+Apakah ada warung yang menjual saksang di sekitar Balige?,8.199,False,0.7064,0.6,0.2931,1.0,0.0,0.6,0.1353,0.0,0.2
+Apa minuman tradisional khas Batak yang bisa dicoba saat wis,12.261,False,0.6907,0.25,0.6083,0.8571,0.1429,0.0,0.0049,0.0,0.1935
+Apakah ada pasar tradisional di Balige yang menjual makanan ,6.743,False,0.6367,1.0,0.4105,1.0,0.0,1.0,0.5605,0.0,0.0962
+Di mana bisa membeli kopi Batak asli di Balige?,4.168,False,0.6128,0.6667,0.5647,0.8,0.2,0.3333,0.2392,0.0,0.1238
+Apa perbedaan kuliner Batak Toba dan kuliner Sunda yang bisa,3.51,False,0.613,0.0,0.5224,1.0,0.0,0.3333,0.3241,0.0,0.1092
+Apakah ada kapal wisata yang bisa disewa untuk mengelilingi ,4.711,False,0.6493,0.6667,0.1139,1.0,0.0,0.5,0.2311,0.0,0.1287

@@ -1,0 +1,2592 @@
+query,kw,gt,resp,ctx,time,cache,first_time,second_time,speedup,cache_hit_2nd
+Berapa biaya menginap di Hotel Mutiara Balige per malam?,"['pemesanan', 'menginap']","Biaya menginap di Hotel Mutiara Balige per malam bervariasi tergantung tipe kamar dan waktu pemesanan, namun umumnya berkisar antara Rp300.000 hingga Rp700.000. Untuk harga yang lebih akurat, disarankan untuk mengecek langsung melalui situs pemesanan atau menghubungi hotel.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Mengenai pertanyaan Anda tentang biaya menginap di Mutiara Balige Hotel, berikut informasinya:
+
+*   **Mutiara Balige Hotel**
+    *   **Biaya masuk**: Rp270.000 - Rp680.000
+
+Hotel ini adalah pilihan terjangkau di Balige yang cocok untuk backpacker dan wisatawan yang mengutamakan kenyamanan tanpa biaya tinggi. Mereka menawarkan pelayanan 24 jam dan WiFi di seluruh area.
+
+Apakah ada hal lain yang ingin Anda ketahui atau tempat lain yang ingin Anda tanyakan? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Saya 20 orang datang mendadak tidak menyangka pelayanan bisa 
+langsung diterima.  
+Sekali lagi kami ucapkan terimakasih"" 
+ 
+Mutiara Balige Hotel 
+Deskripsi   : Mutiara Balige Hotel adalah pilihan terjangkau di Balige yang 
+cocok untuk backpacker dan wisatawan yang mengutamakan 
+kenyamanan tanpa biaya tinggi. Dengan pelayanan 24 jam, WiFi di 
+seluruh area, dan fasilitas memadai, hotel ini menawarkan 
+pengalaman menginap yang menyenangkan bagi para t",0.006,True,3.509,0.006,582.94,True
+Di mana saya bisa menemukan hotel murah di Balige?,"['menemukan', 'hotel', 'murah', 'pusat', 'kota']","Anda bisa menemukan hotel murah di Balige di pusat kota, dekat pasar tradisional, atau di sepanjang jalan utama. Beberapa penginapan juga tersedia di sekitar area Pelabuhan Balige.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan hotel murah di Balige. 😊
+
+Berikut adalah beberapa rekomendasi hotel terjangkau di Balige berdasarkan informasi yang tersedia:
+
+*   **Mutiara Balige Hotel**
+    *   **Deskripsi**: Pilihan terjangkau di Balige yang cocok untuk backpacker dan wisatawan yang mengutamakan kenyamanan tanpa biaya tinggi. Menawarkan pelayanan 24 jam, WiFi di seluruh area, dan fasilitas memadai.
+    *   **Lokasi**: Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara
+    *   **Long & Lat**: 2.333818556, 99.05884354
+    *   **Biaya masuk**: Rp270.000 - Rp680.000
+    *   **Review**: Rating 4.1/5. Posisi di depan jalan persis dan aksesnya dekat kalau mau kemana-mana.
+
+*   **Hotel dengan Long & Lat 2.334248896, 99.07088452**
+    *   **Deskripsi**: Menawarkan pelayanan ramah dengan harga terjangkau. Dengan resepsionis 24 jam dan WiFi di seluruh area, hotel ini memberikan kenyamanan dan kemudahan bagi setiap tamu.
+    *   **Lokasi**: Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat**: 2.334248896, 99.07088452
+    *   **Biaya masuk**: Rp113.174 - Rp144.813
+    *   **Review**: Rating 3.5/5. Penginapan yang murah tapi kualitasnya bagus, jadi *worth it* menginap di sini. Kamar hotel berukuran cukup, namun untuk muslim *space* sholat terbatas. Kekurangannya di parkir yang sempit, tidak bisa parkir kalau bawa rombongan mobil.
+
+*   **Gemma Hotel Balige**
+    *   **Deskripsi**: Hotel nyaman dan terjangkau di Balige, cocok untuk berbagai jenis wisatawan, mulai dari backpacker, pasangan, keluarga, hingga tamu yang berencana menginap jangka panjang. Menawarkan fasilitas lengkap untuk bisnis maupun liburan, suasana yang tenang, serta privasi yang tetap terjaga. Dikenal memberikan pelayanan memuaskan dan menjadi pilihan bijak bagi pengunjung Balige.
+    *   **Lokasi**: Jl. Pemandian No.1 B, Sangkar Nihuta, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat**: 2.334276256, 99.05647375
+    *   **Biaya masuk**: Rp 500.000 - Rp 1.000.000
+
+*   **Nauli Inn Balige**
+    *   **Deskripsi**: Pilihan akomodasi cerdas di Balige, menawarkan pelayanan baik dengan harga terjangkau. Meski ramah di kantong, penginapan ini tetap menyediakan fasilitas yang memadai serta WiFi di seluruh area publik, membuat tamu merasa nyaman selama menginap.
+    *   **Long & Lat**: 2.344915591, 99.07874798
+
+*   **Hotel dengan Long & Lat 2.329467317, 99.0545349**
+    *   **Deskripsi**: Nyaman dan terjangkau di Balige, sehingga menjadi pilihan yang tepat bagi para pelancong yang ingin menikmati masa menginap yang rileks tanpa harus mengeluarkan banyak biaya.
+    *   **Long & Lat**: 2.329467317, 99.0545349
+
+Semoga informasi ini membantu Anda menemukan penginapan yang sesuai! Jika ada pertanyaan lain atau ingin tahu lebih banyak tentang tempat tertentu, jangan ragu untuk bertanya ya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+nyaman dan terjangkau di Balige, sehingga menjadi pilihan yang 
+tepat bagi para pelancong yang ingin menikmati masa menginap 
+yang rileks tanpa harus mengeluarkan banyak biaya. 
+Long & Lat   :  2.329467317, 99.0545349
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Saya 20 orang datang mendadak tidak menyangka pelayanan bisa 
+langsung diterima.  
+Sekali lagi kami ucapkan terimakasih"" 
+ 
+Mutiara Balige Hotel 
+Deskripsi   : Mutiara Balige Hotel adal",0.006,True,5.912,0.006,1071.42,True
+Apakah ada penginapan murah di daerah Ajibata?,"['beberapa', 'penginapan', 'murah', 'wisma', 'homestay']","Ya, ada beberapa penginapan murah di Ajibata, seperti wisma dan homestay yang menawarkan harga terjangkau. Anda bisa menemukan pilihan yang sesuai dengan anggaran Anda.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Maaf, informasi mengenai penginapan murah di daerah Ajibata belum tersedia dalam dokumen yang saya miliki.
+
+Namun, jika Anda mencari penginapan dengan harga terjangkau, saya punya rekomendasi di Balige:
+
+*   **Hotel Ompu Herti Balige**
+    *   **Lokasi:** Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat:** 2.334248896, 99.07088452
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp113.174 - Rp144.813
+    *   **Review:** Hotel ini mendapatkan rating 3.5/5. Beberapa tamu menilai penginapan ini murah dengan kualitas bagus, bahkan ada yang mendapatkan diskon untuk kamar keluarga saat libur Lebaran. Namun, perlu diperhatikan bahwa area parkir mungkin sempit jika Anda datang dengan rombongan mobil.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar Danau Toba? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menginap di Balige, menawarkan pelayanan ramah dengan harga 
+terjangkau. Dengan resepsionis 24 jam dan WiFi di seluruh area, 
+hotel ini memberikan kenyamanan dan kemudahan bagi setiap 
+tamu. 
+Long & Lat   :  2.334248896, 99.07088452 
+ 
+Lokasi : Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, 
+Sumatera Utara 22312 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp113.174 - Rp144.813 
+ 
+Review  : Rating 3.5/5 ""Penginapan yg murah tapi kualitasnya bagus jdi 
+worth it nginap disini. Dapat diskon pula di kamar besar utk 
+keluarga, waktu nginap di libur lebaran.  
+Cuma kurangnya di parkirnya saja. Parkirnya sempit gak bsa parkir 
+klo bawa rombongan mobil""  
+ 
+""kamar hotel berukuran cukup, cuma untuk muslim space sholat 
+terbatas, bisa tp sangat ngepas",9.487,False,8.7,9.487,0.92,False
+Berapa biaya menginap di Labersa Hotel?,"['pemesanan', 'menginap', 'bervariasi']","Biaya menginap di Labersa Hotel bervariasi tergantung jenis kamar dan waktu pemesanan, tetapi umumnya berkisar antara Rp 500.000 hingga Rp 1.500.000 per malam. Untuk harga pasti, disarankan untuk memeriksa langsung melalui situs web hotel atau platform pemesanan online.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Untuk biaya menginap di **Labersa Hotel and Convention Center Toba, Balige**, biayanya adalah **Rp 1.140.000 – Rp 2.349.500**.
+
+Apakah ada hal lain yang ingin Anda ketahui tentang Labersa Hotel atau tempat lainnya di Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Akomodasi 
+Labersa Hotel and Convention Center Toba, Balige 
+Deskripsi   : Labersa Toba Hotel & Convention Center adalah hotel bintang 4 
+dengan 152 kamar, terletak di antara pusat bisnis dan objek  
+wisata yang cocok untuk perjalanan bisnis dan liburan Anda di 
+Sumatera Utara. Jaraknya hanya sekitar 25 menit dari Bandara 
+Internasional Sisingamangaraja XII dan 3 menit dari ibu kota 
+Kabupaten Toba (Balige). Labersa Toba Hotel & Convention Center 
+",0.0,True,2.225,0.0,0.0,True
+Apa keunggulan kamar di Hotel Sere Nauli dibanding hotel lain?,"['menawarkan', 'memiliki', 'keunggulan']","Hotel Sere Nauli memiliki keunggulan lokasi yang strategis di pinggir Danau Toba, menawarkan pemandangan danau yang indah langsung dari kamar. Selain itu, hotel ini sering kali menawarkan pengalaman menginap dengan nuansa lokal yang kental.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Maaf, informasi mengenai Hotel Sere Nauli tidak tersedia dalam dokumen yang saya miliki. Namun, saya bisa memberikan informasi detail tentang beberapa hotel lain di Balige yang mungkin menarik bagi Anda.
+
+Berikut adalah beberapa hotel yang tersedia informasinya:
+
+*   **Nauli Inn**
+    *   **Deskripsi:** Pilihan akomodasi cerdas di Balige, menawarkan pelayanan baik dengan harga terjangkau. Meskipun ramah di kantong, penginapan ini tetap menyediakan fasilitas yang memadai serta WiFi di seluruh area publik, membuat tamu merasa nyaman selama menginap.
+    *   **Long & Lat:** 2.344915591, 99.07874798
+
+*   **Hotel Nabasa**
+    *   **Deskripsi:** Akomodasi nyaman dan terjangkau di Balige, cocok untuk backpacker, keluarga, pasangan, maupun tamu yang menunggu penerbangan dari Bandara Silangit. Dengan fasilitas lengkap seperti ruang pertemuan, restoran, WiFi, dan pelayanan 24 jam, hotel ini menawarkan pengalaman menginap yang praktis dan menyenangkan bagi berbagai jenis wisatawan.
+    *   **Lokasi:** Jl. Siliwangi No.8, Kec. Balige, Toba, Sumatera Utara
+    *   **Kategori:** Hotel
+    *   **Biaya Masuk:** Rp327.600 - Rp411.527
+    *   **Review:** Rating 4,1/5. ""Lokasinya strategis tepat di tepi danau Toba, dengan akses yang sangat mudah ke jalan utama. Dekat dengan pelabuhan Ferry.""
+    *   **Long & Lat:** 2.336182536, 99.06245485
+
+*   **Hotel Bahagia**
+    *   **Deskripsi:** Fasilitasnya lengkap, termasuk restoran dengan menu lokal dan internasional, kolam renang, gym, lapangan tenis, spa, serta ruang pertemuan untuk acara bisnis maupun keluarga. Dengan lokasi strategis dekat destinasi wisata populer dan layanan ramah seperti resepsionis 24 jam, concierge, dan antar-jemput Bandara Silangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan romantis, maupun perjalanan bisnis di Balige.
+    *   **Lokasi:** Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori:** Hotel
+    *   **Biaya Masuk:** Rp103.000 - Rp1.600.000
+    *   **Review:** Rating 4,0/5. ""Saya sering menginap di Hotel Bahagia sangat rapi.""
+    *   **Long & Lat:** 2.334626536, 99.06503272
+
+*   **Vany Villa Balige**
+    *   **Deskripsi:** Dengan suasana tenang dan privat, resor ini menawarkan pengalaman menginap yang mewah dan berkesan. Fasilitas seperti kolam renang dan hidangan spesial semakin melengkapi kenyamanan selama menginap, menjadikan Vany Villa Balige pilihan sempurna untuk liburan yang tak terlupakan.
+    *   **Lokasi:** Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera
+    *   **Long & Lat:** 2.320473739, 99.06194228
+
+Apakah ada hal lain yang ingin Anda ketahui atau tempat lain yang ingin Anda tanyakan? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+hari biasa 165.000 sedangkan sabtu minggu 175.000. Yang isi 3 
+bed berharga 300.000 an""  
+ 
+""Satu satunya hotel di porsea kayanya         
+Cukup bersih, 1 malam untuk 3 orang 180rb, kamar cukup luas""  
+ 
+""Lokasi nya yang strategis membuat hotel sangat diminati para 
+pengunjung. Lokasi sangat nyaman dan bersih."" 
+ 
+Nauli Inn 
+Deskripsi   : Nauli Inn Balige adalah pilihan akomodasi cerdas di Balige, 
+menawarkan pelayanan baik dengan harga terjangkau.",0.0,True,6.006,0.0,0.0,True
+Seberapa jauh Hotel Sere Nauli dari bandara?,['sekitar'],"Hotel Sere Nauli terletak sekitar 20 km dari Bandara Sibisa (USS) dan sekitar 120 km dari Bandara Internasional Kualanamu (KNO). Perjalanan dari Sibisa memakan waktu sekitar 30-40 menit, sedangkan dari Kualanamu sekitar 3-4 jam.","Halo! Senang sekali bisa membantu Anda merencanakan perjalanan ke Danau Toba.
+
+Maaf, informasi mengenai jarak Hotel Sere Nauli dari bandara tidak tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan mengenai Danau Toba? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Fasilitasnya lengkap, termasuk restoran dengan menu lokal dan 
+internasional, kolam renang, gym, lapangan tenis, spa, serta ruang 
+pertemuan untuk acara bisnis maupun keluarga. Dengan lokasi 
+strategis dekat destinasi wisata populer dan layanan ramah 
+seperti resepsionis 24 jam, concierge, dan antar -jemput Bandara 
+Silangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan 
+romantis, maupun perjalanan bisnis di Balige. 
+Long & Lat   :  2.334626536, 99.06503272 
+ 
+Lokasi : Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. 
+Balige, Toba, Sumatera Utara 22312 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp103.000 - Rp1.600.000 
+ 
+Review  : Rating 4,0/5 ""Saya sering menginap di Hotel Bahagia sangat rapi
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+ramah."" 
+Hotel Nabasa 
+Deskripsi   : Nabasa Hotel Balige adalah akomodasi nyaman dan terjangkau di 
+Balige, cocok untuk backpacker, keluarga, pasangan, maupun 
+tamu yang menunggu penerbangan dari Bandara Silangit. Dengan 
+fasilitas lengkap seperti ruang pertemuan, restoran, WiFi, dan 
+pelayanan 24 jam, hotel ini menawarkan pengalaman menginap 
+yang praktis dan menyenangkan bagi berbagai jenis wisatawan. 
+Long & Lat   :  2.336182536, 99.06245485 
+ 
+Lokasi : Jl. Siliwangi No.8, Kec. Balige, Toba, Sumatera Utara 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp327.600 - Rp411.527 
+ 
+Review  : Rating 4,.1/5 ""Lokasinya strategis tepat di tepi danau Toba, 
+dengan akses yang sangat mudah ke jalan utama. Dekat dengan 
+pelabuhan Ferry .
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Center, Pasar Balige, dan kawasan wisata Danau Toba lainnya. 
+Lokasinya yang strategis memberikan akses mudah ke berbagai 
+tempat wisata, pusat kota, fasilitas kuliner, dan transportasi. 
+Bandara Silangit dapat dicapai dalam waktu sekitar 15 –20 menit 
+menggunakan taksi atau transportasi online. Dengan kombinasi 
+pemandangan Danau Toba, layanan ramah, fasilitas lengkap, serta 
+aksesibilitas yang mudah, Hotel Dizon Balige menjadi pilihan 
+akomodasi yang memberikan kenyamanan sekaligus pengalaman 
+budaya yang kaya. 
+Long & Lat   :  2.336618556, 99.06397691
+
+[Sumber 4 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Disarankan bawa kendaraan pribadi karena lokasinya cukup jauh 
+dari jalan utama, warung, dan tempat makan. Kalau mau kamar di 
+lantai 2, periksa dan pastikan airnya jalan dengan lancar sebelum 
+pesan. Kamarnya cukup lusuh, tapi bersih. Parkiran luas dan ada 
+Mushola. Harga Rp 150.000/orang dan bisa ditawar. Servis 
+tergolong baik."" 
+ 
+Vany Villa Balige 
+Deskripsi   : Vany Villa Balige adalah resor nyaman di Balige, ideal untuk 
+berbagai jenis tamu, mulai dari backpacker, pasangan, keluarga, 
+hingga wisatawan yang menunggu penerbangan berikutnya. 
+Dengan desain unik, fasilitas lengkap untuk bisnis maupun liburan, 
+serta suasana tenang dan privat, resor ini menawarkan 
+pengalaman menginap yang mewah dan berkesan. Fasilitas
+
+[Sumber 5 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Saya 20 orang datang mendadak tidak menyangka pelayanan bisa 
+langsung diterima.  
+Sekali lagi kami ucapkan terimakasih"" 
+ 
+Mutiara Balige Hotel 
+Deskripsi   : Mutiara Balige Hotel adalah pilihan terjangkau di Balige yang 
+cocok untuk backpacker dan wisatawan yang mengutamakan 
+kenyamanan tanpa biaya tinggi. Dengan pelayanan 24 jam, WiFi di 
+seluruh area, dan fasilitas memadai, hotel ini menawarkan 
+pengalaman menginap yang menyenangkan bagi para tamu. 
+Long & Lat   :  2.333818556, 99.05884354 
+ 
+Lokasi : Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp270.000 - Rp680.000 
+ 
+Review  : Rating 4.1/5 ""+ posisi di depan jalan persis dan aksesnya dekat 
+kalau mau kemana -mana",2.76,False,7.439,2.76,2.7,False
+Di mana letak Hotel Labersa?,['terletak'],"Hotel Labersa terletak di Parapat, Simalungun, Sumatera Utara, di tepi Danau Toba.","Halo! Selamat datang di Danau Toba yang indah! Saya siap membantu Anda menjelajahi pesona tempat ini.
+
+Untuk Hotel Labersa, berikut adalah detail lokasinya:
+
+🏨 **Labersa Hotel and Convention Center Toba, Balige**
+*   **Lokasi**: Jl. Saribu Raja Saribu Raja Janji Maria, Kec. Balige, Sumatera Utara
+*   **Long & Lat**: 2.3387227656692455, 99.08216877648591
+
+Hotel ini berjarak sekitar 25 menit dari Bandara Internasional Sisingamangaraja XII dan 3 menit dari ibu kota Kabupaten Toba (Balige).
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba atau tempat-tempat menarik lainnya? Jangan ragu untuk bertanya, ya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Akomodasi 
+Labersa Hotel and Convention Center Toba, Balige 
+Deskripsi   : Labersa Toba Hotel & Convention Center adalah hotel bintang 4 
+dengan 152 kamar, terletak di antara pusat bisnis dan objek  
+wisata yang cocok untuk perjalanan bisnis dan liburan Anda di 
+Sumatera Utara. Jaraknya hanya sekitar 25 menit dari Bandara 
+Internasional Sisingamangaraja XII dan 3 menit dari ibu kota 
+Kabupaten Toba (Balige). Labersa Toba Hotel & Convention Center 
+",0.008,True,2.637,0.008,340.02,True
+Apakah ada penginapan dekat Air Terjun Sipiso-piso?,"['beberapa', 'penginapan', 'villa', 'berlokasi', 'cukup', 'dekat']","Ya, ada beberapa penginapan dan villa yang berlokasi cukup dekat dengan Air Terjun Sipiso-piso, terutama di sekitar desa Tongging yang merupakan titik awal untuk mencapai air terjun tersebut.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Mengenai pertanyaan Anda tentang penginapan dekat Air Terjun Sipiso-piso, maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki.
+
+Namun, saya bisa memberikan informasi tentang beberapa hotel menarik di sekitar Balige yang mungkin bisa menjadi pilihan Anda:
+
+*   **Hotel Bahagia**
+    *   **Lokasi:** Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat:** 2.334626536, 99.06503272
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp103.000 - Rp1.600.000
+    *   **Fasilitas:** Restoran dengan menu lokal dan internasional, kolam renang, gym, lapangan tenis, spa, serta ruang pertemuan untuk acara bisnis maupun keluarga.
+    *   **Layanan:** Resepsionis 24 jam, concierge, dan antar-jemput Bandara Silangit.
+    *   **Review:** Rating 4,0/5. Sering menginap, sangat rapi.
+
+*   **Hotel Ita Sososurung**
+    *   **Lokasi:** Balige atau Soposurung (tidak disebutkan alamat lengkap, namun disebut dekat Balige/Soposurung)
+    *   **Fasilitas:** Family Room, taman bermain anak, cafe dengan free karaoke, kamar yang nyaman dan bersih.
+    *   **Review:** Sangat direkomendasikan untuk bersantai bersama teman dan keluarga. Harga makanan lumayan standar.
+
+*   Ada juga sebuah penginapan yang tidak disebutkan namanya secara spesifik dalam dokumen, namun sangat direkomendasikan karena:
+    *   **Lokasi:** Di pinggiran kota di sepanjang jalan utama, menawarkan suasana yang tenang dan damai.
+    *   **Fasilitas:** Kamar bersih dan nyaman, kamar mandi dilengkapi air panas, sarapan sederhana namun lezat sudah termasuk.
+    *   **Pelayanan:** Stafnya berdedikasi dan selalu siap membantu, khususnya Kak Imelda.
+
+Apakah ada hal lain yang ingin Anda tanyakan atau tempat lain yang ingin Anda ketahui informasinya?","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+mencari lagi! Terletak di pinggiran kota di sepanjang jalan utama, 
+penginapan ini menawarkan suasana yang tenang dan damai.  
+Kamarnya bersih dan nyaman, dan kamar mandinya dilengkapi air 
+panas. Sarapan sederhana namun lezat juga sudah termasuk 
+dalam paket. Namun, yang membedakan akomodasi ini adalah 
+stafnya yang berdedikasi dan selalu siap membantu segala 
+kebutuhan, terima kasih banyak kepada Kak Imelda!  
+Sangat direkomendasikan!""
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Fasilitasnya lengkap, termasuk restoran dengan menu lokal dan 
+internasional, kolam renang, gym, lapangan tenis, spa, serta ruang 
+pertemuan untuk acara bisnis maupun keluarga. Dengan lokasi 
+strategis dekat destinasi wisata populer dan layanan ramah 
+seperti resepsionis 24 jam, concierge, dan antar -jemput Bandara 
+Silangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan 
+romantis, maupun perjalanan bisnis di Balige. 
+Long & Lat   :  2.334626536, 99.06503272 
+ 
+Lokasi : Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. 
+Balige, Toba, Sumatera Utara 22312 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp103.000 - Rp1.600.000 
+ 
+Review  : Rating 4,0/5 ""Saya sering menginap di Hotel Bahagia sangat rapi
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+borong banyak angkot dari depan hotel. Bagi keluarga tersedia 
+juga Family Room dan taman bermain anak. Bagi yg ingin ke danau 
+toba bisa jalan kaki sambil olahraga atau naik becak. Hotel Ita 
+Sososurung recommended deh kalau ke Balige atau Soposurung.""  
+ 
+""Cafe nya sangat nyaman dan kita juga free karaoke. Makanan nya 
+enak enak.  
+Dan untuk kamar hotelnya sangat nyaman dan bersih..  
+Tempat nya sangat recomand untuk  
+Nyantai bareng teman dan keluarga  
+Untuk harga makanan masih lumayan standar  
+Pokoknya datang ke hotel Ita soposurung ngak bakalan nyesel deh  
+#hotelitasoposurung#  
+#itasoposurungbalige#  
+#hotel#  
+#balige#"" 
+ 
+""Pernah menjajal kafenya. 2 kali kunjungan dalam sehari. 
+Menunya beragam. Rasa standar. Harga juga masih wajar.",15.256,False,3289.166,15.256,215.59,False
+Seberapa jauh Hotel Andela dari Air Terjun Sipiso-piso?,"['sekitar', 'berjarak', 'kilometer']",Hotel Andela berjarak sekitar 25 kilometer dari Air Terjun Sipiso-piso. Perjalanan ini biasanya memakan waktu sekitar 45 menit hingga satu jam dengan mobil.,"Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Maaf, informasi mengenai jarak Hotel Andela dari Air Terjun Sipiso-piso belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar Danau Toba? Saya dengan senang hati akan membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Disarankan bawa kendaraan pribadi karena lokasinya cukup jauh 
+dari jalan utama, warung, dan tempat makan. Kalau mau kamar di 
+lantai 2, periksa dan pastikan airnya jalan dengan lancar sebelum 
+pesan. Kamarnya cukup lusuh, tapi bersih. Parkiran luas dan ada 
+Mushola. Harga Rp 150.000/orang dan bisa ditawar. Servis 
+tergolong baik."" 
+ 
+Vany Villa Balige 
+Deskripsi   : Vany Villa Balige adalah resor nyaman di Balige, ideal untuk 
+berbagai jenis tamu, mulai dari backpacker, pasangan, keluarga, 
+hingga wisatawan yang menunggu penerbangan berikutnya. 
+Dengan desain unik, fasilitas lengkap untuk bisnis maupun liburan, 
+serta suasana tenang dan privat, resor ini menawarkan 
+pengalaman menginap yang mewah dan berkesan. Fasilitas
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Fasilitasnya lengkap, termasuk restoran dengan menu lokal dan 
+internasional, kolam renang, gym, lapangan tenis, spa, serta ruang 
+pertemuan untuk acara bisnis maupun keluarga. Dengan lokasi 
+strategis dekat destinasi wisata populer dan layanan ramah 
+seperti resepsionis 24 jam, concierge, dan antar -jemput Bandara 
+Silangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan 
+romantis, maupun perjalanan bisnis di Balige. 
+Long & Lat   :  2.334626536, 99.06503272 
+ 
+Lokasi : Jl. Sisingamangaraja Kelurahan No.21, Napitupulu Bagasan, Kec. 
+Balige, Toba, Sumatera Utara 22312 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp103.000 - Rp1.600.000 
+ 
+Review  : Rating 4,0/5 ""Saya sering menginap di Hotel Bahagia sangat rapi
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+permata tersembunyi terbaik di sekitar Balige. Pasti akan kembali 
+lagi suatu hari nanti. Pertahankan pelayanannya yang baik."" 
+ 
+Hotel Santo Djaya 
+Deskripsi   : Hotel Santo Djaya terletak di Jl. SM -Raja (No. 95), Pasar Porsea, 
+Kabupaten Toba Samosir, menjadikannya salah satu pilihan 
+penginapan di Porsea. Hotel ini menawarkan akomodasi dengan 
+tarif relatif terjangkau dan menyediakan fasilitas dasar untuk
+
+[Sumber 4 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+borong banyak angkot dari depan hotel. Bagi keluarga tersedia 
+juga Family Room dan taman bermain anak. Bagi yg ingin ke danau 
+toba bisa jalan kaki sambil olahraga atau naik becak. Hotel Ita 
+Sososurung recommended deh kalau ke Balige atau Soposurung.""  
+ 
+""Cafe nya sangat nyaman dan kita juga free karaoke. Makanan nya 
+enak enak.  
+Dan untuk kamar hotelnya sangat nyaman dan bersih..  
+Tempat nya sangat recomand untuk  
+Nyantai bareng teman dan keluarga  
+Untuk harga makanan masih lumayan standar  
+Pokoknya datang ke hotel Ita soposurung ngak bakalan nyesel deh  
+#hotelitasoposurung#  
+#itasoposurungbalige#  
+#hotel#  
+#balige#"" 
+ 
+""Pernah menjajal kafenya. 2 kali kunjungan dalam sehari. 
+Menunya beragam. Rasa standar. Harga juga masih wajar.
+
+[Sumber 5 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+serta suasana tenang dan privat, resor ini menawarkan 
+pengalaman menginap yang mewah dan berkesan. Fasilitas 
+seperti kolam renang dan hidangan spesial semakin melengkapi 
+kenyamanan selama menginap, menjadikan Vany Villa Balige 
+pilihan sempurna untuk liburan yang tak terlupakan. 
+Long & Lat   :  2.320473739, 99.06194228 
+ 
+Lokasi : Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera",7.493,False,8.033,7.493,1.07,False
+Wisata apa yang paling populer di sekitar Danau Toba?,"['desa', 'alam', 'khususnya']","Wisata alam di Danau Toba, khususnya Pulau Samosir, sangat populer. Pengunjung dapat menikmati keindahan danau, air terjun, serta budaya Batak di desa-desa tradisional.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan tempat ini.
+
+Berdasarkan informasi yang saya miliki, berikut adalah beberapa akomodasi populer di sekitar Danau Toba, khususnya di Balige:
+
+*   🏨 **Labersa Hotel and Convention Center Toba, Balige**
+    *   **Deskripsi:** Hotel bintang 4 ini memiliki 152 kamar dan terletak strategis antara pusat bisnis dan objek wisata. Hanya sekitar 25 menit dari Bandara Internasional Sisingamangaraja XII dan 3 menit dari Balige. Hotel ini juga berada di kawasan Danau Toba dan dilengkapi dengan fasilitas kolam renang, taman air, serta taman hiburan fantasi Toba.
+    *   **Long & Lat:** 2.3387227656692455, 99.08216877648591
+    *   **Lokasi:** Jl. Saribu Raja Saribu Raja Janji Maria, Kec. Balige, Sumatera Utara
+    *   **Kategori:** Hotel, Pantai
+    *   **Biaya masuk:** Rp 1.140.000 – Rp 2.349.500
+    *   **Review:** Rating 9.4/10. ""Lumayan bersih, makanan bervariasi, lokasi oke, staff ramah, ada waterpark. Sejauh ini sangat memuaskan untuk liburan bersama keluarga.""
+
+*   🏡 **Damar Toba ~ Lakeside Eatery & Stay**
+    *   **Deskripsi:** Akomodasi dan tempat makan tepi Danau Toba yang terletak di Pantai Lumban Silintong, Balige. Berjarak 30 menit dari Bandara Silangit dan dekat Pelabuhan Balige. Dibuka pada Januari 2022, tempat ini dikenal dengan rating 4,8/5 di Google. Menawarkan ruang kerja tepi danau dengan internet cepat. Sebagai penginapan butik, Damar Toba memiliki enam kamar double-bed berdesain elegan berukuran 18m², lengkap dengan Smart TV (Netflix & Vidio), LAN 15 Mbps, Wi-Fi, USB charger, brankas laptop, ketel, AC, pemanas air, serta meja kerja yang menghadap ke danau. Semua kamar bebas rokok. Menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan.
+    *   **Long & Lat:** 2.358818759, 99.04911658
+    *   **Lokasi:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp 834.000 – Rp 1.015.000
+    *   **Review:** Rating 4.8/5. “Pelayanannya bagus, sangat terorganisir, dan para staff-nya juga ramah sekali”.
+
+*   🌳 **Villa Borneo**
+    *   **Deskripsi:** Berlokasi di Balige dan menawarkan taman, area menginap di Balige, menawarkan pelayanan ramah dengan harga terjangkau. Dengan resepsionis 24 jam dan WiFi di seluruh area, hotel ini memberikan kenyamanan dan kemudahan bagi setiap tamu.
+    *   **Long & Lat:** 2.334248896, 99.07088452
+    *   **Lokasi:** Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp113.174 - Rp144.813
+    *   **Review:** Rating 3.5/5. ""Penginapan yg murah tapi kualitasnya bagus jdi worth it nginap disini. Dapat diskon pula di kamar besar utk keluarga, waktu nginap di libur lebaran. Cuma kurangnya di parkirnya saja. Parkirnya sempit gak bsa parkir klo bawa rombongan mobil"" dan ""kamar hotel berukuran cukup, cuma untuk muslim space sholat terbatas, bisa tp sangat ngepas"".
+
+Apakah ada hal lain yang ingin Anda ketahui atau tempat spesifik yang ingin Anda tanyakan? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Akomodasi 
+Labersa Hotel and Convention Center Toba, Balige 
+Deskripsi   : Labersa Toba Hotel & Convention Center adalah hotel bintang 4 
+dengan 152 kamar, terletak di antara pusat bisnis dan objek  
+wisata yang cocok untuk perjalanan bisnis dan liburan Anda di 
+Sumatera Utara. Jaraknya hanya sekitar 25 menit dari Bandara 
+Internasional Sisingamangaraja XII dan 3 menit dari ibu kota 
+Kabupaten Toba (Balige). Labersa Toba Hotel & Convention Center 
+",0.011,True,6.021,0.011,571.86,True
+Apa saja tempat wisata yang ada di Balige?,"['menawarkan', 'keindahan']",Balige menawarkan Danau Toba dengan keindahan alamnya. Anda bisa mengunjungi Makam Raja Sisingamangaraja XII dan Museum Batak TB Silalahi Center untuk mengenal budaya dan sejarah Batak. Ada juga Pasar Balige untuk mencari oleh-oleh khas.,"Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan kuliner di sekitar Danau Toba.
+
+Berdasarkan informasi yang tersedia, berikut adalah daftar tempat makan yang berada di sekitar Balige:
+
+*   **Warung Makan Muslim Bu Nurul (Halal)**
+    *   📍 **Alamat**: Jl. P. Siantar, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara 22313, Indonesia (83MF+X2 Sibola Hotangsas, Toba, Sumatera Utara, Indonesia)
+    *   🌍 **Longitude, Latitude**: 2.335081597, 99.07250314
+    *   🍽️ **Menu**: Soto Ayam, Belu Tumis Cabe Hijau, Air Kelapa Muda
+    *   💰 **Harga**: Rp 15.000 – Rp 25.000
+    *   ⏰ **Jam Operasional**: Maaf, jam operasional belum tersedia.
+    *   ⭐ **Ulasan**: Rating 5/5. ""Masakan kampung dan enak."", ""Alhamdulillah. Mampir di warung makan Muslim bu Nurul untuk lepaskan lelah dan makan malam. Sajian khas masakan jawa dengan sambel merah pedas dan ada manis manisnya mampu menggugah selera sampai kenyang insyaAllah.""
+
+*   **Sinar Minang Restaurant & Convetion Hall**
+    *   📍 **Alamat**: Jl. Siborongborong - Parapat No.2, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara, Indonesia (83PF+C8 Sibola Hotangsas, Toba, Sumatera Utara, Indonesia)
+    *   🌍 **Longitude, Latitude**: 2.336247756, 99.07342024
+    *   🍽️ **Menu**: Jeroan Masak Gule, Rendang, Sambal, Teh Talua Teh Telur, Dendeng, Ayam Balado, Sup Daging Sapi, Ikan Goreng, Nasi Ayam Goreng Telur Dadar, Aneka Masakan Khas Padang Melayu, Sayur Kailan, Nasi Padang, Sajian Lauk, Gulai Ayam Kampung, Kopi Susu, Makanan Padang, Telor Dadar, Jengkol Teri Cabe IJO, Kerupuk Gulai, Sayur Nangka.
+    *   💰 **Harga**: Rp 25.000,00 - Rp 75.000,00
+    *   ⏰ **Jam Operasional**: 09.00 WIB - 23.00 WIB
+    *   ⭐ **Ulasan**: Rating 4.4/5. ""Located in the main road of Balige, approximately 15 minutes from downtown. Parking lot, clean toilet and musholla are available. I think this is the best Minang resto in Balige I've ever known. A little bit expensive but worth for starving stomach. The rendang meat was so tasty and original, as well as it's dendeng. Highly recommended place for halal food.""
+
+*   **Damar Toba – Lakeside Eaterry & Stay**
+    *   📍 **Alamat**: Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 22312, Indonesia (83R2+56 Lumban Silintong, Toba, Sumatera Utara, Indonesia)
+    *   🌍 **Longitude, Latitude**: 2.340638356, 99.05059712
+    *   🍽️ **Menu**: Mie Gomak, Mie Goreng, Sate, Fried Rice with Chicken Wings, Kopi Latte, Ikan Naniura, Nasi Liwet Daging Balado, Mango Sticky Rice Pudding, Caffè Latte, Fish Fillet Natinombur, Americano Coffee, American Breakfast, Ice Cream Croissant.
+    *   💰 **Harga**: Rp 30.000,00 - Rp 700.000,00
+    *   ⏰ **Jam Operasional**: 07.00 WIB - 22.00 WIB
+    *   ⭐ **Ulasan**: Rating 4.8/5. ""We stayed here""
+
+Apakah ada pertanyaan lain atau tempat spesifik yang ingin Anda ketahui lebih lanjut? Jangan ragu untuk bertanya!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Warung Makan Muslim Bu Nurul (Halal) 
+Alamat  : Jl. P. Siantar, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara 22313, 
+Indonesia (83MF+X2 Sibola Hotangsas, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.335081597, 99.07250314 
+Menu  : Soto Ayam, Belu Tumis Cabe Hijau, Air Kelapa Muda 
+Harga  : Rp 15.000 – Rp 25.000 
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Masakan kampung dan enak.” , “Alhamdulillah.  
+Mampir",0.01,True,13.146,0.01,1377.13,True
+Wisata apa yang paling dekat dengan pusat kota Balige?,"['pusat', 'terdekat', 'kota']","Wisata terdekat dengan pusat kota Balige adalah Danau Toba sendiri, dengan beberapa titik seperti Pantai Lumban Bulbul atau Tugu D.I. Panjaitan yang mudah diakses. Selain itu, Pasar Balige juga merupakan pusat aktivitas lokal yang menarik untuk dijelajahi.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan tempat ini. 😊
+
+Untuk pertanyaan Anda mengenai wisata yang paling dekat dengan pusat kota Balige, berdasarkan informasi yang tersedia, **Balerong (Onan Balerong)** adalah pilihan yang paling tepat.
+
+Berikut detail lengkapnya:
+
+*   **Nama Lengkap:** Balerong (Onan Balerong)
+*   **Kategori:** Budaya
+*   **Lokasi:** Kecamatan Balige, Kabupaten Toba
+*   **Alamat:** Jl. Lintas Sumatera No.88, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312
+*   **Longitude, Latitude:** 2.334614936, 99.06575814
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00"" (Catatan: Review ini tampaknya salah kutip karena menyebut kolam renang, padahal Balerong adalah pasar tradisional).
+*   **Deskripsi:** Balerong adalah kompleks bersejarah di pusat kota Balige yang memiliki enam bangunan dengan desain atap dan ukiran khas rumah adat Batak. Awalnya berfungsi sebagai tempat musyawarah para tokoh adat, kini Balerong menjadi pasar tradisional yang aktif dan pusat aktivitas ekonomi di Balige. Pasar ini sangat ramai terutama pada hari Jumat, yang dikenal sebagai ""Hari Pekan"".
+
+Balerong sangat dekat dengan pusat kota Balige dan bahkan disebutkan bisa dicapai dengan berjalan kaki dari beberapa hotel di area tersebut.
+
+Apakah ada hal lain yang ingin Anda tanyakan atau tempat lain yang ingin Anda ketahui? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+dengan akses yang sangat mudah ke jalan utama. Dekat dengan 
+pelabuhan Ferry .  
+Juga berada di pusat kota Balige dekat dengan perkantoran 
+Pemda. Untuk ke pasar tradisional Balige bisa jalan kaki. Mencari 
+kuliner malam hari juga bisa dengan jalan kaki.  
+Pagi hari sekitar hotel tersedia warung makan muslim yang 
+menjual lontong sayur dan berbagai makanan lainnya  
+Tersedia ruang parkiran cukup luas.  
+Saya menempati deluxe room dengan view danau ",0.006,True,4.236,0.006,694.35,True
+Apa saja destinasi wisata antara Laguboti dan Balige?,"['menemukan', 'destinasi']","Antara Laguboti dan Balige, Anda akan menemukan destinasi seperti Monumen Raja Sisingamangaraja XII di Balige, yang merupakan salah satu tempat bersejarah yang penting. Anda juga bisa mengunjungi Pasar Balige untuk merasakan kehidupan lokal dan mencicipi kuliner khas Batak.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan destinasi wisata menarik di sekitar sini.
+
+Berdasarkan informasi yang tersedia, berikut adalah beberapa destinasi wisata yang bisa Anda kunjungi di area sekitar Laguboti dan Balige:
+
+*   **Mual Sirambe Nauli**
+    *   **Deskripsi:** Dikenal sebagai sumber kehidupan atau sumber air bagi masyarakat sekitar, menawarkan keindahan alam sekaligus budaya lokal.
+    *   **Lokasi:** Kecamatan Laguboti, Kabupaten Toba
+    *   **Alamat:** 84WF+FRV, Sitangkola, Kec. Laguboti, Toba, Sumatera Utara 22381
+    *   **Longitude, Lattitude:** 2.296416721, 99.11722224
+    *   **Kategori:** Alam
+    *   **Biaya Masuk:** Gratis
+    *   **Jam Operasional:** 24 jam
+    *   **Review:** Rating 4.6/5.
+
+*   **Liang Sipege**
+    *   **Deskripsi:** Gua di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, yang dikenal sebagai habitat kelelawar dan penghasil guano untuk pupuk organik. Gua ini juga menyimpan legenda.
+    *   **Kategori:** Alam
+    *   **Biaya Masuk:** Rp 5.000 – Rp 10.000
+    *   **Jam Operasional:** 24 jam
+    *   **Review:** Rating 4.4/5. ""Tempat yg cukup indah, bisa berenang"".
+
+*   **Wisata Rumah Pohon (Bukit Tarabunga)**
+    *   **Deskripsi:** Destinasi wisata alam di Kecamatan Tampahan yang menawarkan pemandangan Danau Toba dari ketinggian. Lokasi ini memiliki spot rumah pohon yang menjadi daya tarik utama untuk bersantai dan berfoto dengan pemandangan memukau, serta dilengkapi berbagai fasilitas pendukung seperti tempat makan dan area parkir.
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Longitude, Lattitude:** 2.351617634, 99.02532755
+    *   **Kategori:** Alam
+
+*   **Desa Jonggi Nihuta dan Air Terjun Bidadari**
+    *   **Deskripsi:** Potensi wisata alam dan relaksasi yang besar, meskipun masih minim fasilitas dan akses. Berpotensi menjadi destinasi wisata unggulan.
+    *   **Lokasi:** Kecamatan Lumban Julu, Kabupaten Toba
+    *   **Alamat:** HX3W+7FV, Jonggi Nihuta, Lumban Julu, Toba, North Sumatra 22386
+    *   **Longitude, Lattitude:** 2.55352147, 98.99605561
+    *   **Kategori:** Alam
+    *   **Biaya Masuk:** Gratis
+    *   **Jam Operasional:** 24 jam
+    *   **Review:** Rating 4/5.
+
+Apakah ada hal lain yang ingin Anda ketahui atau tempat lain yang ingin Anda eksplorasi? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Fasilitasnya lengkap, termasuk restoran dengan menu lokal dan 
+internasional, kolam renang, gym, lapangan tenis, spa, serta ruang 
+pertemuan untuk acara bisnis maupun keluarga. Dengan lokasi 
+strategis dekat destinasi wisata populer dan layanan ramah 
+seperti resepsionis 24 jam, concierge, dan antar -jemput Bandara 
+Silangit, hotel ini menjadi pilihan ideal untuk liburan, perjalanan 
+romantis, maupun perjalanan bisnis di Balige. 
+Long & Lat   :  2.",0.0,True,4.208,0.0,0.0,True
+Apa saja lokasi wisata yang bisa dikunjungi di sekitar Danau Toba?,"['saja', 'sekitar', 'mengunjungi']","Tentu saja! Di sekitar Danau Toba, Anda bisa mengunjungi Pulau Samosir dengan Tomok dan Tuktuknya yang terkenal, menikmati pemandangan di Bukit Indah Simarjarunjung, atau menjelajahi keindahan Air Terjun Sipiso-piso.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan pesona Danau Toba. Berikut adalah beberapa lokasi wisata dan akomodasi yang bisa Anda kunjungi di sekitar Danau Toba berdasarkan informasi yang saya miliki:
+
+🏞️ **Tempat Wisata:**
+
+*   **Swiss Van Toba**
+    *   **Kategori:** Danau
+    *   **Deskripsi:** Kawasan perairan ini menyerupai Danau Riffelsee di Swiss dengan garis pantai sepanjang 28 km, air jernih, dan sejuk. Sangat cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+    *   **Lokasi:** Kecamatan Ajibata, Kabupaten Toba
+    *   **Alamat:** JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+    *   **Harga:** Gratis
+    *   **Jam Buka:** 24 jam
+    *   **Rating:** 5.0/5
+
+🏨 **Akomodasi:**
+
+*   **Labersa Hotel and Convention Center Toba, Balige**
+    *   **Deskripsi:** Hotel bintang 4 dengan 152 kamar, terletak di antara pusat bisnis dan objek wisata. Cocok untuk perjalanan bisnis dan liburan Anda di Sumatera Utara. Hanya sekitar 25 menit dari Bandara Internasional Sisingamangaraja XII dan 3 menit dari ibu kota Kabupaten Toba (Balige). Hotel ini juga terletak di kawasan Danau Toba, danau vulkanik terbesar di dunia. Labersa Toba & Convention Center memiliki fasilitas kolam renang, taman air, dan taman hiburan fantasi Toba.
+    *   **Long & Lat:** 2.3387227656692455, 99.08216877648591
+    *   **Lokasi:** Jl. Saribu Raja Saribu Raja Janji Maria, Kec. Balige, Sumatera Utara
+    *   **Kategori:** Hotel, Pantai
+    *   **Biaya masuk:** Rp 1.140.000 – Rp 2.349.500
+    *   **Review:** Rating 9.4/10 ""Lumayan bersih, makanan bervariasi, lokasi oke, staff ramah, ada waterpark. Sejauh ini sangat memuaskan untuk liburan bersama keluarga.""
+
+*   **Damar Toba ~ Lakeside Eatery & Stay**
+    *   **Deskripsi:** Akomodasi dan tempat makan tepi Danau Toba di Pantai Lumban Silintong, Balige. Berjarak 30 menit dari Bandara Silangit dan dekat Pelabuhan Balige. Dibuka pada Januari 2022, tempat ini cepat dikenal dengan rating 4,8/5 di Google dan menawarkan ruang kerja tepi danau dengan internet cepat. Sebagai penginapan butik, Damar Toba memiliki enam kamar double-bed berdesain elegan berukuran 18m², lengkap dengan Smart TV (Netflix & Vidio), LAN 15 Mbps, Wi-Fi, USB charger, brankas laptop, ketel, AC, pemanas air, serta meja kerja yang menghadap ke danau. Semua kamar bebas rokok. Menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan. Damar Toba juga menyediakan kenyamanan modern dan pesona lokal, Damar Toba menjadi titik awal ideal untuk menikmati Balige dan menjelajahi keindahan Danau Toba.
+    *   **Long & Lat:** 2.358818759, 99.04911658
+    *   **Lokasi:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp 834.000 – Rp 1.015.000
+    *   **Review:** Rating 4.8/5 ""Pelayanannya bagus, sangat teroganisir, dan para staff bya juga ramah sekali.""
+
+*   **Villa Borneo**
+    *   **Deskripsi:** VILLA BORNEO berlokasi di Balige dan menawarkan taman, area menginap di Balige, menawarkan pelayanan ramah dengan harga terjangkau. Dengan resepsionis 24 jam dan WiFi di seluruh area, hotel ini memberikan kenyamanan dan kemudahan bagi setiap tamu.
+    *   **Long & Lat:** 2.334248896, 99.07088452
+    *   **Lokasi:** Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp113.174 - Rp144.813
+    *   **Review:** Rating 3.5/5 ""Penginapan yg murah tapi kualitasnya bagus jdi worth it nginap disini. Dapat diskon pula di kamar besar utk keluarga, waktu nginap di libur lebaran. Cuma kurangnya di parkirnya saja. Parkirnya sempit gak bsa parkir klo bawa rombongan mobil"" ""kamar hotel berukuran cukup, cuma untuk muslim space sholat terbatas, bisa tp sangat ngepas toilet ok bersih dn air panas ada setiap saat kebersihan kamar dn kasur 4.5/5 harga di aplikasi 177rb mnrt aku sih worth it ya, aku dapat kamar bawah, dengan fasilitas TV,AC, air panas setiap saat berfungsi dgn baik. overall 4.8/5"" ""Kami pikir OYO sudah sangat buruk karena banyak ulasan buruk di sebagian besar hotel OYO yang mengatakan itu kotor, tetapi tidak dengan yang satu ini. Kamarnya bersih, dan baunya harum. Selama saya menginap, bantalnya berbau harum. Hanya ada sedikit masalah dengan pancurannya, responsnya agak lambat karena ketika Anda mencoba beralih ke air panas, butuh beberapa saat sampai airnya panas, dan airnya tidak terlalu deras karena beberapa lubang tidak mengeluarkan air. Dan tidak ada bumbu seperti sampo, tisu toilet, sikat gigi, pasta gigi, dan barang-barang yang biasa Anda temukan di hotel. Tempat ini lebih seperti penginapan, tuan rumahnya juga cukup ramah. Ingatlah untuk menggunakan kunci Anda untuk mengunci pintu karena terkunci secara manual. Secara keseluruhan bagus.""
+
+*   **Hotel Sere Nauli**
+    *   **Deskripsi:** Serenauli merujuk pada Hotel Sere Nauli, sebuah hotel asri di Laguboti, Toba, Sumatera Utara, yang berlokasi strategis dekat Danau Toba dan menawarkan pemandangan sawah serta pegunungan. Hotel ini menyediakan fasilitas seperti restoran, kolam renang, area bermain anak, dan ruang pertemuan, serta memiliki akses mudah ke tempat wisata di sekitar wilayah Toba.
+
+Apakah ada hal lain yang ingin Anda ketahui atau tempat spesifik yang ingin Anda tanyakan? Saya siap membantu!","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Swiss Van Toba
+- Kategori : danau
+- Deskripsi: Kawasan perairan menyerupai Danau Riffelsee Swiss. Garis pantai 28 km dengan air jernih dan sejuk. Cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+- Lokasi   : Kecamatan Ajibata, Kabupaten Toba
+- Alamat   : JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+- Harga    : Gratis
+- Jam Buka : 24 jam
+- Rating   : 5.0/5
+
+[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Akomodasi 
+Labersa Hotel a",0.002,True,7.432,0.002,3431.69,True
+Apa wisata terbaik di Toba beserta harga tiketnya?,"['tiket', 'masuk']","Wisata terbaik di Toba adalah Danau Toba itu sendiri dengan Pulau Samosir sebagai daya tarik utamanya. Untuk harga tiket, tidak ada tiket masuk khusus untuk Danau Toba, namun Anda perlu membayar tiket kapal feri untuk menyeberang ke Pulau Samosir, yang biasanya berkisar antara Rp15.000 hingga Rp25.000 per orang sekali jalan. Di Pulau Samosir, beberapa atraksi seperti Museum Batak atau pemandian air panas mungkin memiliki tiket masuk terpisah.","Halo! Saya siap membantu Anda menjelajahi keindahan Danau Toba. 😊
+
+Berikut adalah beberapa rekomendasi tempat wisata terbaik di Toba beserta harga tiketnya, berdasarkan informasi yang tersedia:
+
+*   **Pantai Pakoddian Tampahan**
+    *   📍 **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   📝 **Deskripsi:** Pantai Pakkodian berada di Kecamatan Tampahan, Kabupaten Toba menjadi tempat yang mengasyikkan bagi pengunjung, khususnya pemancing. Batuan alam yang tersusun rapi menjadi tempat duduk yang tepat sambil melemparkan kail ke Danau Toba. Batuan tersebut membentuk tempat duduk yang cocok jadi tempat bersantai sambil menunggu tangkapan. Dari batuan tersebut, bisa menikmati keindahan Danau Toba.
+    *   💰 **Biaya Masuk:** Gratis
+    *   ⏰ **Jam Operasional:** 24 jam
+    *   ⭐ **Review:** Rating 5/5. ""Lokasi keren untuk melihat sunset dan menatap keindahan danau toba dari sekitar kota balige""
+
+*   **Adian Nalambok**
+    *   📍 **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   🛣️ **Alamat:** Jl. Singgolom Raya, Lintong Nihuta, Kec. Tampahan, Toba, Sumatera Utara 22312 82V9+43
+    *   📝 **Deskripsi:** Adian Nalambok hadir untuk para wisatawan yang ingin rehat sejenak dalam perjalanan. Selain menyediakan tempat santai, area puncak perbukitan menjadi titik pandang yang sudah banyak menarik minat pengunjung atas pesona alaminya. Secara fungsional, Adian Nalambok merupakan rest area di Kab. Toba yang menjadi tempat.
+    *   💰 **Biaya Masuk:** Gratis
+    *   ⏰ **Jam Operasional:** 24 jam
+    *   ⭐ **Review:** Rating 5/5. ""Lokasi keren untuk melihat sunset dan menatap keindahan danau toba dari sekitar kota balige""
+
+*   **[Nama tidak disebutkan di dokumen]** (Lokasi: Kecamatan Uluan)
+    *   📍 **Lokasi:** Kecamatan Uluan, Kabupaten Toba
+    *   🛣️ **Alamat:** C486+C7J, Partoruan Janji Matogu, Uluan, Toba, North Sumatra
+    *   🗺️ **Longitude, Latitude:** 2.416394938, 99.11064895
+    *   💰 **Biaya Masuk:** Gratis
+    *   ⏰ **Jam Operasional:** 24 jam
+    *   ⭐ **Review:** Rating 4.4/5. ""Mantap untuk tempat wisatanya dengan pemandangan yang oke bagett dan bersih. Cuman ada sedikit""
+
+*   **[Nama tidak disebutkan di dokumen]** (Lokasi: Kecamatan Balige)
+    *   📍 **Lokasi:** Kecamatan Balige, Kabupaten Toba
+    *   🛣️ **Alamat:** 82XR+J4W, Lumban Silintong, Kec. Balige, Toba, Sumatera Utara 22312
+    *   💰 **Biaya Masuk:** Rp 7.500 – Rp 15.000
+    *   ⏰ **Jam Operasional:** 05.00 - 17.00
+    *   ⭐ **Review:** Rating 5/5. ""Tempat bagus, restoran nya banyak yang recommended dan air terjun.""
+
+Apakah ada hal lain yang ingin Anda tanyakan atau tempat spesifik yang ingin Anda ketahui lebih lanjut? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+kolam renang, area bermain anak, dan ruang pertemuan, serta 
+memiliki akses mudah ke tempat wisata di sekitar wilayah Toba 
+fantasi Toba. 
+Long & Lat   :  2.352903837, 99.12175214 
+ 
+Lokasi : Jl. Sisingamangaraja No.1, Ps. Laguboti, Kec. Laguboti, Toba, 
+Sumatera Utara 22381 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp499.000 - Rp575.000  
+ 
+Review  : Rating 4.1/5 ""Salah satu penginapan pilihan kalau ada acara di 
+porsea... suasana tenang, alam huta, kol",0.017,True,5.414,0.017,318.86,True
+Adakah tempat wisata sejarah di sekitar Danau Toba?,"['situs', 'beberapa', 'mengunjungi']","Ya, ada beberapa. Anda dapat mengunjungi Makam Raja Sidabutar di Pulau Samosir, atau situs-situs bersejarah Batak lainnya yang tersebar di sekitar Danau Toba.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan tempat-tempat menarik di sini.
+
+Berdasarkan informasi yang tersedia, ada satu tempat yang dapat dikategorikan sebagai tempat wisata sejarah di sekitar Danau Toba:
+
+*   **Balerong - Balige**
+    *   **Deskripsi:** Balerong di Balige, atau yang lebih dikenal dengan Pasar Onan Balerong, adalah kompleks bersejarah di pusat kota Balige yang memiliki enam bangunan.
+
+Selain Balerong - Balige, ada beberapa tempat wisata lain yang mungkin menarik bagi Anda, meskipun tidak secara eksplisit disebut sebagai tempat sejarah:
+
+*   **Kolam Renang NaIas**
+    *   **Deskripsi:** Kolam renang ini adalah salah satu fasilitas rekreasi di kompleks yang juga memiliki museum, restoran, dan tempat lainnya untuk menikmati alam Danau Toba.
+    *   **Longitude, Lattitude:** 2.330965357, 99.04951613
+    *   **Lokasi:** Kecamatan Balige, Kabupaten Toba
+    *   **Alamat:** 82MW+RWJ, Silalahi Pagar Batu, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori:** Wisata Rekreasi
+    *   **Biaya Masuk:** Rp 15.000 – Rp 20.000
+    *   **Jam Operasional:** 09.00 WIB – 18.00 WIB
+    *   **Review:** Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00""
+
+*   **Bukit Tarabunga**
+    *   **Deskripsi:** Bukit Tarabunga di Kecamatan Tampahan, dekat Balige, menawarkan panorama Danau Toba yang menakjubkan, termasuk pemandangan Samosir, Muara, dan Desa Meat. Kawasan perbukitan ini berpotensi dikembangkan sebagai area wisata, termasuk arena motocross. Tarabunga terkenal sebagai lokasi favorit untuk menikmati *sunrise* dan *sunset*, sebelum melanjutkan waktu bersantai ke kafe-kafe di Lumban Silintong.
+    *   **Longitude, Lattitude:** 2.345042879, 99.01725513
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+
+*   **Bukit Dolok Tolong**
+    *   **Deskripsi:** Bukit Dolok Tolong berada di Toba Samosir dengan ketinggian mencapai 1.200 meter di atas permukaan laut, menjadikannya salah satu titik tertinggi di kawasan Danau Toba. Bukit ini menawarkan panorama Danau Toba yang menakjubkan, terutama saat matahari terbenam. Uniknya, pengunjung tidak harus mendaki lama untuk mencapai puncak karena terdapat jalur beraspal yang lebar, memungkinkan akses dengan kendaraan roda dua maupun roda empat. Bukit Dolok Tolong cocok bagi wisatawan yang ingin menikmati keindahan alam tanpa harus melakukan pendakian berat.
+    *   **Longitude, Lattitude:** 2.323272878, 99.02547942
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat:** 82FG+65G, Tampahan, Toba Samosir, Gurgur Aek Raja, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori:** Alam
+
+*   **Puncak ini (tanpa nama spesifik)**
+    *   **Deskripsi:** Puncak ini menyajikan pemandangan Danau Toba dari ketinggian. Tempat ini cocok untuk refleksi karena suasananya yang tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta angin sejuk. Puncak ini mungkin bukan destinasi paling populer, tetapi justru dianggap istimewa karena keheningannya.
+    *   **Longitude, Lattitude:** 2.341294836, 99.00879424
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat:** 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, Toba, Sumatera Utara 22312
+
+*   **Tempat wisata di Desa Motung (tanpa nama spesifik)**
+    *   **Deskripsi:** Tempat wisata di Desa Motung ini menyajikan pemandangan luar biasa. Lanskap panorama danau terhampat begitu luas. Di sudut lainnya, kamu akan takjub usai melihat pemukiman penduduk yang tertata di pinggir danau. Berada di ketinggian yang sangat mengundang kedinginan di malam hari jadi persiapakan perlengkapan tidur yang lengkap agar anda tidak kedinginan di malam hari. Pemandangan... (informasi terpotong)
+    *   **Longitude, Lattitude:** 2.635997564513177, 98.92109488310636
+    *   **Lokasi:** Kecamatan Ajibata, Kabupaten Toba
+    *   **Alamat:** JWPC+8C4, Motung, Kec. Ajibata, Toba, Sumatera Utara
+    *   **Kategori:** Alam
+    *   **Jam Operasional:** 24 jam
+    *   **Biaya Masuk:** Gratis
+    *   **Review:** Rating 5/5. ""Lokasi kemping menarik di Danau Toba.""
+
+Apakah ada pertanyaan lain yang bisa saya bantu?","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Nama kolam renangnya adalah Kolam Renang NaIas, yang merupakan salah satu fasilitas 
+rekreasi di kompleks tersebut selain museum, restoran, dan tempat lainnya untuk 
+menikmati alam Danau Toba. 
+Longitude , Lattitude : 2.330965357, 99.04951613 
+Lokasi : Kecamatan Balige, Kabupaten Toba 
+Alamat : 82MW+RWJ, Silalahi Pagar Batu, Kec. Balige, Toba, Sumatera 
+Utara 22312 
+Kategori : Wisata Rekreasi 
+Biaya Masuk : Rp 15.000 – Rp 20.000 
+Jam Operasional ",0.0,True,6.99,0.0,0.0,True
+Di mana saja air terjun yang bisa dikunjungi di Toba?,"['saja', 'terjun', 'kunjungi']","Tentu saja! Beberapa air terjun yang bisa Anda kunjungi di sekitar Danau Toba adalah Air Terjun Sipisopiso di Tongging, Air Terjun Situmurun di Samosir, dan Air Terjun Janji di Harian Boho.","Halo! Selamat datang di Danau Toba yang indah! Saya siap membantu Anda menemukan berbagai keajaiban di sini.
+
+Untuk pertanyaan Anda tentang air terjun yang bisa dikunjungi di Toba, berikut adalah daftar lengkapnya berdasarkan informasi yang saya miliki:
+
+*   **Air Terjun Siboruon Balige**
+    *   🏞️ **Deskripsi:** Surga tersembunyi di Balige dengan aliran air yang memantul seperti cermin raksasa di tengah hutan. Spot swafoto kekinian dan favorit pecinta alam.
+    *   📍 **Lokasi:** Kecamatan Balige, Kabupaten Toba
+    *   🗺️ **Alamat:** 73QM+VH2, Siboruon, Kec. Balige, Toba, Sumatera Utara 22312
+    *   💰 **Harga:** Gratis
+    *   ⏰ **Jam Buka:** 08.00 - 17.00
+    *   ⭐ **Rating:** 4.7/5
+
+*   **Air Terjun Morena**
+    *   🏞️ **Deskripsi:** Air terjun dengan akses mudah, hanya 5 menit berjalan kaki dari jalan utama.
+    *   📍 **Lokasi:** Kecamatan Pintu Pohan Merant, Kabupaten Toba
+    *   🗺️ **Alamat:** H989+G7J, Jl. Sigura - Gura, Meranti Utara, Kec. Pintu Pohan Merant, Toba, Sumatera Utara 21274
+    *   💰 **Harga:** Gratis
+    *   ⏰ **Jam Buka:** 08.00 - 18.00
+    *   ⭐ **Rating:** 4.7/5
+
+*   **Air Terjun Aek Limut**
+    *   🏞️ **Deskripsi:** Air terjun setinggi 70 meter di pinggir jalan lintas. Air jernih mengalir lembut membentuk kolam kecil sebelum ke Sungai Asahan. Mudah diakses tanpa trekking.
+    *   📍 **Lokasi:** Kecamatan Pintu Pohan Merant, Kabupaten Toba
+    *   🗺️ **Alamat:** H86X+262, Jl. Sigura - Gura, Meranti Utara, Kec. Pintu Pohan Merant, Toba, Sumatera Utara 21274
+    *   💰 **Harga:** Gratis
+    *   ⏰ **Jam Buka:** 08.00 - 18.00
+    *   ⭐ **Rating:** 4.5/5
+
+*   **Air Terjun Simanimbo**
+    *   🏞️ **Deskripsi:** Air terjun empat tingkat dengan air mengalir deras ke Bendungan Sigura-gura. Tingkat pertama seperti air terjun kembar. Masih bersih dan sepi pengunjung.
+    *   📍 **Lokasi:** Kecamatan Pintu Pohan Merant, Kabupaten Toba
+    *   🗺️ **Alamat:** G777+H73, Ambar Halim, Pintu Pohan Merant, Toba, North Sumatra 22384
+    *   💰 **Harga:** Gratis
+    *   ⏰ **Jam Buka:** 24 jam
+    *   ⭐ **Rating:** 4.4/5
+
+*   **Air Terjun Sampuran**
+    *   🏞️ **Deskripsi:** Surga tersembunyi untuk backpacker dan pecinta petualangan. Perjalanan 45 menit dari Balige, dilanjut trekking 60 menit untuk mencapai lokasi.
+    *   📍 **Lokasi:** Kecamatan Lumban Lobu, Kabupaten Toba
+    *   🗺️ **Alamat:** G4WH+MPG, Lumban Lobu, Bonatua Lunasi, Toba, North Sumatra 21262
+    *   💰 **Harga:** Gratis
+    *   ⏰ **Jam Buka:** 24 jam
+    *   ⭐ **Rating:** 4.4/5
+
+*   **Air Terjun Situmurun**
+    *   🏞️ **Deskripsi:** Air terjun yang langsung mengalir ke Danau Toba, juga disebut Air Terjun Binangalom yang berarti sungai dan penyejuk.
+    *   📍 **Lokasi:** Kecamatan Lumban Julu, Kabupaten Toba
+    *   🗺️ **Alamat:** H34Q+Q9P, Jangga Dolok, Lumban Julu, Toba, North Sumatra 22386 (dari Data Terstruktur) dan Jonggi Nihuta, Hatinggian, Kec. Lumban Julu, Toba, Sumatera Utara 22386 (dari Sumber 3)
+    *   💰 **Harga:** Rp 5.000 – Rp 10.000
+    *   ⏰ **Jam Buka:** 08.00 - 17.00
+    *   ⭐ **Rating:** 4.0/5 (dari Data Terstruktur) dan Rating 5/5 (dari Sumber 4)
+    *   🗺️ **Longitude, Latitude:** 2.537730210260568, 99.00801408303306
+
+Apakah ada air terjun spesifik yang ingin Anda ketahui lebih lanjut, atau mungkin Anda ingin tahu tentang tempat wisata lain di Danau Toba? Jangan ragu untuk bertanya lagi!","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Air Terjun Siboruon Balige
+- Kategori : air_terjun
+- Deskripsi: Surga tersembunyi di Balige dengan aliran air yang memantul seperti cermin raksasa di tengah hutan. Spot swafoto kekinian dan favorit pecinta alam.
+- Lokasi   : Kecamatan Balige, Kabupaten Toba
+- Alamat   : 73QM+VH2, Siboruon, Kec. Balige, Toba, Sumatera Utara 22312
+- Harga    : Gratis
+- Jam Buka : 08.00 - 17.00
+- Rating   : 4.7/5
+
+Tempat 2: Air Terjun Morena
+- Kategori : air_terjun
+- D",0.0,True,6.614,0.0,0.0,True
+Di mana lokasi Pantai Meat dan berapa harga tiket masuknya?,"['terletak', 'sisi', 'barat']","Pantai Meat terletak di sisi barat daya Danau Toba, dekat Balige, Kabupaten Toba. Harga tiket masuknya sekitar Rp5.000 per orang.","Halo! Selamat datang di Danau Toba! Saya siap membantu perjalanan wisatamu. 😊
+
+Untuk Pantai Meat, berikut detail lokasinya dan informasi lainnya:
+
+*   **Nama Lengkap:** Pantai Meat Balige
+*   **Deskripsi:** Pantai ini terletak di Desa Meat, Kecamatan Tampahan, Kabupaten Toba Samosir, sekitar 12 km dari Kota Balige. Memikat dengan pasir putih halus, air laut biru jernih, dan pohon cemara yang meneduh. Pengunjung bisa bersantai, bermain pasir, berenang, atau memancing, serta menikmati suasana tenang dan alami. Dekat pantai, desa nelayan tradisional menawarkan pengalaman melihat kehidupan sehari-hari nelayan dan proses pembuatan ikan asin.
+*   **Alamat:** Jl. Raya Meat, Meat, Kec. Tampahan, Toba, Sumatera Utara 22312
+*   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+*   **Longitude, Lattitude:** 2.326126438, 99.00329323
+*   **Kategori:** Alam
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4.3/5. ""Pemandangan yg bagus belum diimbangi akses dan fasilitas umum yg baik""
+
+Ada lagi yang ingin kamu tanyakan tentang Danau Toba? Jangan sungkan bertanya ya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+ikan asin, menjadikan Pantai Meat destinasi ideal untuk menikmati keindahan alam dan 
+ketenangan jauh dari hiruk-pikuk kota. 
+Longitude , Lattitude : 2.326126438, 99.00329323 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : Jl. Raya Meat, Meat, Kec. Tampahan, Toba, Sumatera Utara 
+22312 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 4.3/5. ""Pemandangan yg bagus belum diimbangi akses 
+dan fasilitas umum yg ",0.006,True,3.026,0.006,511.32,True
+Seperti apa suasana di Pantai Meat?,"['menawarkan', 'suasana', 'tenang', 'damai']","Pantai Meat menawarkan suasana yang tenang dan damai, cocok untuk relaksasi. Airnya jernih dan pantainya bersih, ideal untuk berenang atau sekadar menikmati pemandangan. Ada juga fasilitas seperti penginapan dan restoran kecil di sekitar area tersebut.","Halo! Senang sekali bisa membantu Anda merencanakan perjalanan ke Danau Toba. Mari kita bahas tentang Pantai Meat!
+
+🏖️ **Pantai Meat** 🏖️
+
+Suasana di Pantai Meat Balige sangat memikat dengan ciri-ciri berikut:
+*   **Pasir putih halus** yang indah.
+*   **Air laut biru jernih**.
+*   Dikelilingi oleh **pohon cemara** yang meneduhkan area sekitar.
+*   Menawarkan **suasana tenang dan alami**, cocok untuk bersantai dan jauh dari hiruk-pikuk kota.
+*   Dekat dengan **desa nelayan tradisional**, sehingga pengunjung bisa melihat kehidupan sehari-hari nelayan dan proses pembuatan ikan asin.
+
+Pengunjung dapat melakukan berbagai aktivitas seperti bersantai, bermain pasir, berenang, atau memancing.
+
+**Informasi Tambahan Pantai Meat:**
+*   **Lokasi**: Kecamatan Tampahan, Kabupaten Toba
+*   **Alamat**: Jl. Raya Meat, Meat, Kec. Tampahan, Toba, Sumatera Utara 22312
+*   **Kategori**: Alam
+*   **Biaya Masuk**: Gratis
+*   **Jam Operasional**: 24 jam
+*   **Review**: Rating 4.3/5. ""Pemandangan yg bagus belum diimbangi akses dan fasilitas umum yg baik""
+*   **Longitude, Lattitude**: 2.326126438, 99.00329323
+
+Apakah ada hal lain yang ingin Anda ketahui tentang Pantai Meat atau tempat lainnya di Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Jam Operasional : 09.00 - 17.00 
+Review : Rating 5/5. ""Pengalaman yang bisa menambah umur."" 
+ 
+Air Terjun Siboruon Balige 
+Deskripsi : Air Terjun Siboruon adalah surga tersembunyi di Kecamatan 
+Balige, Kabupaten Toba Samosir. Terletak di lembah perbukitan, air terjun ini memukau 
+dengan aliran air yang memantul seperti cermin raksasa di tengah hutan. Meski aksesnya 
+cukup menantang dengan jalan berbatu dan licin, keindahan alam di sekitar, gemerc",0.004,True,3.548,0.004,821.83,True
+Di mana lokasi Pantai Bul-Bul?,['terletak'],"Pantai Bul-Bul terletak di Desa Pardomuan, Kecamatan Ajibata, Kabupaten Toba Samosir, Sumatera Utara. Lokasinya berada di tepi Danau Toba, tidak jauh dari Pelabuhan Ajibata.","Halo! Selamat datang di Danau Toba yang indah. Saya siap membantu Anda menemukan informasi yang Anda butuhkan.
+
+Berdasarkan informasi yang saya miliki, Pantai Bul Bul adalah lokasi dari **Leon Cafe**.
+
+Berikut detail lokasinya:
+*   **Alamat**: Pantai Bul Bul, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara, Indonesia (83XF+82 Sibola Hotangsas, Toba, Sumatera Utara, Indonesia)
+*   **Longitude, Latitude**: 2.348466754, 99.07254547
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar Danau Toba?","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Menu  : Mie ayam bakso, Halal 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4.5/5. “Yang suka Mie ayam dan per baksoan, warung ini bisa jadi 
+pilihan saat berkunjung ke Balige. Harga makanan disini sangat terjangkau, rasa 
+enak dan bakso uratnya juga mantap dan pasti nya HALAL, INSYAALLAH. ” 
+ 
+Bakso Dorela 
+Alamat  Jl. Gereja No.Kelurahan, Lumban Dolok Haume Bange, Kec. Balige, Toba, 
+Sumatera Utara 22312, Indonesia (83M8+",0.007,True,2.323,0.007,347.83,True
+Seperti apa tempat wisata Lumban Bul-Bul itu?,"['desa', 'tradisional', 'tepi']","Lumban Bul-Bul adalah desa tradisional Batak di tepi Danau Toba, menawarkan pemandangan danau yang indah serta pengalaman budaya yang otentik. Anda bisa menikmati keindahan alam, melihat rumah adat Batak, dan berinteraksi langsung dengan penduduk setempat.","Halo! Senang sekali bisa membantu Anda merencanakan perjalanan ke Danau Toba.
+
+Maaf, informasi mengenai tempat wisata Lumban Bul-Bul belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada tempat lain yang ingin Anda ketahui informasinya? Jangan ragu untuk bertanya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+wisata alam dan relaksasi. Meskipun potensinya besar, lokasi ini masih minim fasilitas dan 
+akses, termasuk sarana transportasi, jaringan komunikasi, serta infrastruktur pendukung 
+wisata. Dengan perhatian dan dukungan pemerintah, Desa Jonggi Nihuta dan Air Terjun 
+Bidadari berpotensi menjadi destinasi wisata unggulan, menarik wisatawan lokal maupun 
+mancanegara, serta memberdayakan masyarakat setempat melalui pengelolaan pariwisata 
+dan ekonomi kreatif. 
+Longitude , Lattitude : 2.55352147, 98.99605561 
+Lokasi : Kecamatan Lumban Julu, Kabupaten Toba 
+Alamat : HX3W+7FV, Jonggi Nihuta, Lumban Julu, Toba, North Sumatra 
+22386 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 4/5. ""Air terjun bidadari merupakan air terjun dengan
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+serta suasana tenang dan privat, resor ini menawarkan 
+pengalaman menginap yang mewah dan berkesan. Fasilitas 
+seperti kolam renang dan hidangan spesial semakin melengkapi 
+kenyamanan selama menginap, menjadikan Vany Villa Balige 
+pilihan sempurna untuk liburan yang tak terlupakan. 
+Long & Lat   :  2.320473739, 99.06194228 
+ 
+Lokasi : Jl. By Pass Balige, Sianipar Sihailhail, Kec. Balige, Toba, Sumatera
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+serta fasilitas lengkap yang dirancang untuk memberikan 
+pengalaman yang berkesan. Kamar -kamarnya dirancang nyaman, 
+dengan pilihan mulai dari kamar standar hingga suite mewah. 
+Beberapa kamar menawarkan pemandangan langsung ke Danau 
+Toba serta balkon pribadi. Fasilitas umum hotel meliputi restoran 
+dengan hidangan lokal dan internasional, kolam renang luar 
+ruangan, area lounge, pusat kebugaran, dan fasilitas pertemuan. 
+Hotel ini sering menghadirkan aktivitas budaya seperti 
+pertunjukan musik dan tarian Batak, serta menyediakan tur lokal 
+menuju destinasi sekitar Balige, termasuk Museum TB Silalahi 
+Center, Pasar Balige, dan kawasan wisata Danau Toba lainnya. 
+Lokasinya yang strategis memberikan akses mudah ke berbagai
+
+[Sumber 4 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Onan Balerong, adalah kompleks bersejarah di pusat kota Balige yang memiliki enam 
+bangunan dengan desain atap dan ukiran khas rumah adat Batak. Awalnya berfungsi 
+sebagai tempat musyawarah para tokoh adat, kini Balerong menjadi pasar tradisional yang 
+aktif dan pusat aktivitas ekonomi di Balige. Pasar ini sangat ramai terutama pada hari 
+Jumat, yang dikenal sebagai ""Hari Pekan"". 
+Longitude , Lattitude : 2.334614936, 99.06575814 
+Lokasi : Kecamatan Balige, Kabupaten Toba 
+Alamat : Jl. Lintas Sumatera No.88, Napitupulu Bagasan, Kec. Balige, 
+Toba, Sumatera Utara 22312 
+Kategori : Budaya 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari 
+Senin - Jumat Rp 15.000,00"" 
+ 
+Bukit Dolok Tolong",8.006,False,7.238,8.006,0.9,False
+Apa saja fasilitas yang tersedia di Lumban Bul-Bul?,"['menyediakan', 'fasilitas', 'toilet', 'umum', 'musala']","Lumban Bul-Bul menyediakan fasilitas seperti toilet umum, musala, dan tempat parkir. Selain itu, terdapat juga warung makan yang menjual makanan dan minuman lokal. Pengunjung juga dapat menikmati pemandangan Danau Toba yang indah dari area ini.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan tempat ini.
+
+Untuk Lumban Bul-Bul, berikut adalah fasilitas yang tersedia:
+
+*   **Fasilitas Umum:** Lumban Bul-Bul memiliki kolam yang besar dan luas untuk dewasa.
+*   **Kategori:** Alam
+*   **Biaya Masuk:** Rp 5.000 – Rp 10.000
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4.5/5. ""Dan yg dewasa juga ada besar dan luass sekali kolamnya""
+*   **Lokasi:** Lumban Julu, Kabupaten Toba
+*   **Alamat:** HXRX+84Q, UnSionggang Utara, Kec. Lumban Julu, Toba, Sumatera Utara 21174
+
+Apakah ada hal lain yang ingin Anda ketahui tentang Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+dengan akses yang sangat mudah ke jalan utama. Dekat dengan 
+pelabuhan Ferry .  
+Juga berada di pusat kota Balige dekat dengan perkantoran 
+Pemda. Untuk ke pasar tradisional Balige bisa jalan kaki. Mencari 
+kuliner malam hari juga bisa dengan jalan kaki.  
+Pagi hari sekitar hotel tersedia warung makan muslim yang 
+menjual lontong sayur dan berbagai makanan lainnya  
+Tersedia ruang parkiran cukup luas.  
+Saya menempati deluxe room dengan view danau ",0.002,True,2.635,0.002,1310.96,True
+Berapa harga tiket masuk Lumban Bul-Bul?,"['tiket', 'masuk', 'orang']",Harga tiket masuk Lumban Bul-Bul adalah Rp10.000 per orang. Kamu juga perlu membayar biaya parkir jika membawa kendaraan pribadi.,"Halo! Selamat datang di panduan wisata Danau Toba yang indah ini. Saya siap membantu perjalanan Anda.
+
+Maaf, informasi mengenai harga tiket masuk Lumban Bul-Bul belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba?","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menginap di Balige, menawarkan pelayanan ramah dengan harga 
+terjangkau. Dengan resepsionis 24 jam dan WiFi di seluruh area, 
+hotel ini memberikan kenyamanan dan kemudahan bagi setiap 
+tamu. 
+Long & Lat   :  2.334248896, 99.07088452 
+ 
+Lokasi : Jl. Sisingamangaraja No.242B, Balige I, Kec. Balige, Toba, 
+Sumatera Utara 22312 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp113.174 - Rp144.813 
+ 
+Review  : Rating 3.5/5 ""Penginapan yg murah tapi kualitasnya bagus jdi 
+worth it nginap disini. Dapat diskon pula di kamar besar utk 
+keluarga, waktu nginap di libur lebaran.  
+Cuma kurangnya di parkirnya saja. Parkirnya sempit gak bsa parkir 
+klo bawa rombongan mobil""  
+ 
+""kamar hotel berukuran cukup, cuma untuk muslim space sholat 
+terbatas, bisa tp sangat ngepas",8.552,False,6.93,8.552,0.81,False
+Di mana lokasi Air Terjun Bidadari?,['terletak'],"Air Terjun Bidadari terletak di Desa Huta Ginjang, Kecamatan Sianjur Mula-Mula, Kabupaten Samosir.","Halo! Senang sekali bisa membantu Anda merencanakan petualangan di Danau Toba yang indah ini.
+
+Untuk Air Terjun Bidadari, Jonggi Nihuta, berikut adalah detail lokasinya:
+
+*   **Nama Lengkap:** Air Terjun Bidadari Jonggi Nihuta
+*   **Lokasi:** Kecamatan Lumban Julu, Kabupaten Toba
+*   **Alamat:** HX3W+7FV, Jonggi Nihuta, Lumban Julu, Toba, North Sumatra 22386
+*   **Longitude, Lattitude:** 2.55352147, 98.99605561
+*   **Kategori:** Alam
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4/5. ""Air terjun bidadari merupakan air terjun dengan pemandangan yang sejuk dan menenangkan, cocok untuk wisata alam dan relaksasi.""
+
+Air terjun ini menawarkan pemandangan yang sejuk dan menenangkan, cocok untuk wisata alam dan relaksasi. Meskipun potensinya besar, lokasi ini masih minim fasilitas dan akses, termasuk sarana transportasi, jaringan komunikasi, serta infrastruktur pendukung wisata.
+
+Apakah ada pertanyaan lain atau tempat lain yang ingin Anda ketahui lebih lanjut? Saya siap membantu!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+kendala yaitu pinggir pantai nya tumbuh rumput coba kalau di 
+bersihkan mantap pasti"" 
+ 
+Air Terjun Belantara Nasumanggar Sampuran Margumis 
+Deskripsi : Air Terjun Sampuran di Kabupaten Toba Samosir adalah  
+sebuah surga tersembunyi yang wajib dikunjungi. Nuansa alam bebas yang mengelilingi air  
+terjun ini menawarkan pengalaman yang tak terlupakan bagi para backpacker dan pecinta  
+petualangan. Mencapai Air Terjun Sampuran memang membutuhkan per",0.006,True,2.938,0.006,532.37,True
+Berapa biaya masuk ke Air Terjun Sipiso-piso?,"['biaya', 'masuk', 'piso']",Tidak ada biaya masuk ke Air Terjun Sipiso-piso. Pengunjung hanya perlu membayar biaya parkir jika membawa kendaraan pribadi.,"Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Mengenai pertanyaan Anda tentang biaya masuk ke Air Terjun Sipiso-piso, maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba?","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Biaya Masuk : Rp 5.000 – Rp 10.000 
+Jam Operasional  : 07.00 WIB – 21.30 WIB 
+Review : Rating 4/5. Lokasinya pun dilengkapi dengan fasilitas kamar 
+mandi dan mushollah sehingga tidak mengalami kesulitan bagi umat Islam untuk 
+melaksanakan ibadah sembahyang. Di lokasi ini juga dilengkapi sarana permainan seperti 
+APV, banana boat dan naik perahu dengan harga yang masih ekonomis.(Sc: 
+tripadvisor.co.id). 
+ 
+Air Terjun Situmurun 
+Deskripsi : Air Terjun Situmurun adalah air terjun yang langsung mengalir 
+di Danau Toba, yang terletak di Desa Situmurun, Kecamatan Lumban Julu, Kabupaten Toba, 
+Sumatera Utara. Air Terjun Situmurun disebut juga Air Terjun Binangalom yang berarti sungai 
+dan penyejuk. 
+Longitude , Lattitude : 2.537730210260568, 99.00801408303306
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Biaya masuk  : Rp270.000 - Rp680.000 
+ 
+Review  : Rating 4.1/5 ""+ posisi di depan jalan persis dan aksesnya dekat 
+kalau mau kemana -mana  
++ kamarnya luas banget dan cukup bersih, ada balkon yang 
+menghadap ke jalan namun bisa keliatan Danau Toba dari balkon 
+(saya pesan yang superior non ac)  
++ walau ga pakai ac, tapi udaranya lumayan sejuk terutama di 
+malam hari  
++ aliran air di kamar mandi cukup kencang  
++ saluran TV lumayan banyak dan tidak hanya saluran lokal saja  
++ walau di pemesanan tidak tertulis dapat sarapan, namun 
+ternyata saya dikasih kupon sarapan untuk 2 ora ng (walau saya 
+sendiri). Saat saat, staf juga membolehkan saya untuk bungkus 
+makanan dan mereka menyediakan kotak untuk bungkus
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Kategori : Hotel 
+ 
+Biaya masuk  :  Rp 570.000 - Rp 1.050.000  
+ 
+Review  : Rating 4.2/5 ""Sejauh ini pengalaman pribadi saya,Tiara bunga 
+hotelnya bagus pelayanannya juga bagus,untuk view jangan di 
+ragukan lagi luar biasa indahnya.kolam renangnya juga oke. Hanya 
+saja kalo malam sebaiknya semua lampu di hidupkan aja,ada dan 
+tidak ada nya tamu. Untuk harga terjangkau Krn sudah include 
+breakfast dan penyebrangan,kamar juga cukup luas tapi siaran tv 
+nya gak jelas kabus seharusnya sudah ada Netflix. Untuk 
+kedepannya mudah2an watersport nya bertambah seperti kano 
+dan jetski."" ;  
+ 
+""Semua pengalaman sangat baik. masukkan utk managemen:  
+1. kamar mandi sebaiknya ada air panas.  
+2. makanan utk sarapan sebaiknya lebih variatif.",8.216,False,7.113,8.216,0.87,False
+Adakah wisata rumah pohon di sekitar Danau Toba?,"['rumah', 'pohon', 'sekitar', 'spot', 'foto', 'beberapa']","Ya, ada beberapa wisata rumah pohon yang bisa Anda temukan di sekitar Danau Toba. Salah satunya adalah Puncak Simarjarunjung di Simalungun yang menawarkan pemandangan indah dan spot foto menarik. Ada juga lokasi lain seperti di sekitar Tongging atau Sidikalang yang menyediakan akomodasi atau spot foto dengan konsep rumah pohon.","Halo! Tentu saja ada. Danau Toba memiliki destinasi wisata rumah pohon yang menarik untuk Anda kunjungi.
+
+🌳 **Wisata Rumah Pohon**
+*   **Deskripsi**: Wisata Rumah Pohon di Balige sebenarnya adalah Bukit Tarabunga, sebuah destinasi wisata alam di Kecamatan Tampahan yang menawarkan pemandangan Danau Toba dari ketinggian. Lokasi ini memiliki spot rumah pohon yang menjadi daya tarik utama untuk bersantai dan berfoto dengan pemandangan memukau, serta dilengkapi berbagai fasilitas pendukung seperti tempat makan dan area parkir. Untuk masuk, ada biaya masuk dan parkir yang dikenakan.
+*   **Kategori**: Alam
+*   **Biaya Masuk**: Rp 5.000 – Rp 10.000
+*   **Jam Operasional**: 24 jam
+*   **Review**: Rating 4.4/5. ""Tempat yg cukup indah,bisa berenang""
+*   **Lokasi**: Kecamatan Tampahan, Kabupaten Toba
+*   **Longitude, Lattitude**: 2.351617634, 99.02532755
+
+Selain itu, ada beberapa tempat wisata alam lain di sekitar Danau Toba yang mungkin juga menarik minat Anda:
+
+*   🏕️ **Wisata di Desa Motung**
+    *   **Deskripsi**: Tempat wisata di Desa Motung ini menyajikan pemandangan luar biasa. Lanskap panorama danau terhampat begitu luas. Di sudut lainnya, kamu akan takjub usai melihat pemukiman penduduk yang tertata di pinggir danau.
+    *   **Kategori**: Alam
+    *   **Biaya Masuk**: Gratis
+    *   **Jam Operasional**: 24 jam
+    *   **Review**: Rating 5/5. ""Lokasi kemping menarik di Danau Toba. Berada di ketinggian yang sangat mengundang kedinginan di malam hari jadi persiapakan perlengkapan tidur yang lengkap agar anda tidak kedinginan di malam hari. Pemandangan Danau Toba dari ketinggian.""
+    *   **Lokasi**: Kecamatan Ajibata, Kabupaten Toba
+    *   **Alamat**: JWPC+8C4, Motung, Kec. Ajibata, Toba, Sumatera Utara
+    *   **Longitude, Lattitude**: 2.635997564513177, 98.92109488310636
+
+*   ⛰️ **Puncak** (di Kecamatan Tampahan)
+    *   **Deskripsi**: Tempat ini cocok untuk refleksi karena suasananya yang tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta angin sejuk. Puncak ini mungkin bukan destinasi paling populer, tetapi justru dianggap istimewa karena keheningannya.
+    *   **Lokasi**: Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat**: 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude**: 2.341294836, 99.00879424
+
+*   🏞️ **Bukit Dolok Tolong**
+    *   **Deskripsi**: Toba Samosir dengan ketinggian mencapai 1.200 meter di atas permukaan laut, menjadikannya salah satu titik tertinggi di kawasan Danau Toba. Bukit ini menawarkan panorama Danau Toba yang menakjubkan, terutama saat matahari terbenam. Uniknya, pengunjung tidak harus mendaki lama untuk mencapai puncak karena terdapat jalur beraspal yang lebar, memungkinkan akses dengan kendaraan roda dua maupun roda empat. Bukit Dolok Tolong cocok bagi wisatawan yang ingin menikmati keindahan alam tanpa harus melakukan pendakian berat.
+    *   **Kategori**: Alam
+    *   **Lokasi**: Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat**: 82FG+65G, Tampahan, Toba Samosir, Gurgur Aek Raja, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude**: 2.323272878, 99.02547942
+
+*   🏊 **Kolam Renang NaIas**
+    *   **Deskripsi**: Kolam Renang NaIas merupakan salah satu fasilitas rekreasi di kompleks tersebut selain museum, restoran, dan tempat lainnya untuk menikmati alam Danau Toba.
+    *   **Kategori**: Wisata Rekreasi
+    *   **Biaya Masuk**: Rp 15.000 – Rp 20.000 (Hari Senin - Jumat Rp 15.000,00)
+    *   **Jam Operasional**: 09.00 WIB – 18.00 WIB
+    *   **Review**: Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00""
+    *   **Lokasi**: Kecamatan Balige, Kabupaten Toba
+    *   **Alamat**: 82MW+RWJ, Silalahi Pagar Batu, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude**: 2.330965357, 99.04951613
+
+Apakah ada tempat lain yang ingin Anda ketahui lebih lanjut? Jangan ragu untuk bertanya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Kategori : Alam 
+Biaya Masuk : Rp 5.000 – Rp 10.000 
+Jam Operasional : 24 jam 
+Review : Rating 4.4/5. ""Tempat yg cukup indah,bisa berenang"" 
+ 
+Wisata Rumah Pohon 
+Deskripsi : Wisata Rumah Pohon di Balige sebenarnya adalah Bukit 
+Tarabunga, sebuah destinasi wisata alam di Kecamatan Tampahan yang menawarkan 
+pemandangan Danau Toba dari ketinggian. Lokasi ini memiliki spot rumah pohon yang 
+menjadi daya tarik utama untuk bersantai dan berfoto dengan",0.004,True,10.149,0.004,2517.16,True
+Apakah ada area camping di sekitar Danau Toba?,"['area', 'beberapa', 'camping', 'tersedia', 'sekitar']","Ya, ada beberapa area camping yang tersedia di sekitar Danau Toba, baik di daratan utama maupun di Pulau Samosir. Beberapa di antaranya dikelola secara resmi, sementara yang lain merupakan area terbuka yang cocok untuk berkemah.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan Danau Toba yang memukau ini.
+
+Terkait pertanyaan Anda mengenai area camping di sekitar Danau Toba, berdasarkan informasi yang saya miliki, ada satu tempat yang disebutkan cocok untuk kemping:
+
+*   **Puncak ini**
+    *   **Deskripsi:** Tempat ini cocok untuk refleksi karena suasananya yang tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta angin sejuk. Puncak ini mungkin bukan destinasi paling populer, tetapi justru dianggap istimewa karena keheningannya. Pemandangan yang sangat menarik ketika matahari terbenam dan suasana alam yang masih alami dengan pepohonan di seputar lokasi kemping. Anda disarankan membawa perlengkapan tidur yang lengkap agar tidak kedinginan di malam hari.
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat:** 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude:** 2.341294836, 99.00879424
+
+Apakah ada hal lain yang ingin Anda tanyakan atau tempat lain yang ingin Anda ketahui lebih lanjut? Saya siap membantu!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Danau Toba dari ketinggian. Tempat ini cocok untuk refleksi karena suasananya yang 
+tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta 
+angin sejuk. Puncak ini mungkin bukan destinasi paling populer, tetapi justru dianggap 
+istimewa karena keheningannya. 
+Longitude , Lattitude : 2.341294836, 99.00879424 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, 
+T",0.0,True,2.607,0.0,0.0,True
+Bagaimana cara menggunakan transportasi umum untuk ke lokasi wisata di Toba?,"['lokasi', 'transportasi', 'umum', 'mencapai', 'wisata']","Untuk mencapai lokasi wisata di Toba menggunakan transportasi umum, Anda bisa naik angkutan kota atau minibus dari terminal terdekat di sekitar Danau Toba. Rute dan ketersediaan transportasi umum bervariasi tergantung lokasi spesifik dan waktu perjalanan Anda.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan tempat ini.
+
+Maaf, informasi mengenai cara menggunakan transportasi umum untuk ke lokasi wisata di Toba belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar Danau Toba? Saya dengan senang hati akan membantu!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Warung Makan Muslim Bu Nurul (Halal) 
+Alamat  : Jl. P. Siantar, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara 22313, 
+Indonesia (83MF+X2 Sibola Hotangsas, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.335081597, 99.07250314 
+Menu  : Soto Ayam, Belu Tumis Cabe Hijau, Air Kelapa Muda 
+Harga  : Rp 15.000 – Rp 25.000 
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Masakan kampung dan enak.” , “Alhamdulillah.  
+Mampir di warung makan Muslim bu Nurul untuk lepaskan lelah dan makan 
+malam. Sajian khas masakan jawa dengan sambel merah pedas dan ada manis 
+manisnya mampu menggugah selera sampai kenyang insyaAllah.” 
+ 
+ 
+Warung Zamzam (Halal) 
+Alamat  : Jl. Balige No.7, Parparean I, Kec. Porsea, Toba, Sumatera Utara 22384
+
+[Sumber 2 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Warung Zamzam (Halal) 
+Alamat  : Jl. Balige No.7, Parparean I, Kec. Porsea, Toba, Sumatera Utara 22384 
+Longitude, Latitude : 2.4359578846643197, 99.15787503928927 
+Harga  : 15000-25000 
+Jam Operasional : 
+Menu  : Mie Gacoan, Nasi Goreng, Mie Goreng, Indomie Goreng, Indomie Kuah, 
+Ayam Bakar, Ayam Goreng, Bebek Bakar, Bebek Goreng, Lele Goreng, Nila 
+Bakar, Nila Goreng 
+Ulasan  : Rating 5/5. Pilihan menunya banyak, tempatnya nyaman. Dan cita rasanya 
+cocok di lidah. Harganya juga nggak bikin kantong bolong. (Sc: google.com) 
+ 
+Cantik Daijo Cafe 
+Alamat  : Jl. Sisingamangaraja, Aruan, Kec. Laguboti, Toba, Sumatera Utara 22381, 
+Indonesia (9429+Q3 Aruan, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.352210152, 99.11765315
+
+[Sumber 3 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Indonesia (9429+Q3 Aruan, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.352210152, 99.11765315 
+Menu  : Vanila Milk Shake, Dimsum Udang, Kopi Americano, Tempe Crispy, Teh 
+Tarik, Nasi Lele Daijo, Kwetiau Hot Plate Seafood Gila, Nasi Ayam Penyet 
+Sambal Belacan, Daijo Pizza, Nasi Goreng Spesial, Mie Hot Plate Special, Ice 
+Thai Tea, Steak Salad, Daijo Egg Waffle, Drip Coffee, Pizza Complete, French 
+Fries, Cappuccino Latte, Chicken Katsu, Tomyam Seafood. 
+Harga  : Rp 25.000,00 - Rp 50.000,00 
+Jam Operasional : 11. 00 WIB – 22.00 WIB 
+Ulasan  : Rating 4.5/5. The pizza is ready good! Its pretty cheap, for students its a must
+
+[Sumber 4 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+go. But yesterday i waited kinda long for the foods so i hope that can improve.. 
+ill give this a 4.5/5  
+ 
+Rumah Makan Romauli 
+Alamat  : 86HM+J26, Jl. Parsoburan, Parsoburan Bar., Kec. Habinsaran, Toba, 
+Sumatera Utara 22384, Indonesia 
+Longitude, Latitude : 2.329275757, 99.23244835 
+Menu  : Babi Panggang, Sop Kosong, Daging Babi Arsik Pakai Tubis, Jahir Panggang, 
+Naniura 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4.3/5. “The place is quite comfortable, the food is also delicious. ” 
+ 
+Kedai Islam Rahayu 
+Alamat  : 86HM+G6Q, Jl. Parsoburan, Parsoburan Bar., Kec. Habinsaran, Toba, 
+Sumatera Utara 22384, Indonesia 
+Longitude, Latitude : 2.329092557, 99.23307131 
+Menu  :  
+Harga  : Rp 25.000 
+Jam Operasional :
+
+[Sumber 5 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Sumatera Utara 22384, Indonesia 
+Longitude, Latitude : 2.329092557, 99.23307131 
+Menu  :  
+Harga  : Rp 25.000 
+Jam Operasional :  
+Ulasan  : Rating 4.5/5. “Trimakasih banyak untuk bapak yang punya kedai. Beliau 
+membantu kami menunjukkan jalan pulang menuju Porsea lalu ke Pekanbaru. 
+Disini ada Mushola juga. Smoga kalian yang singgah disini bukan d. ” 
+ 
+Sinar Minang Restaurant & Convetion Hall 
+Alamat  : Jl. Siborongborong - Parapat No.2, Sibola Hotangsas, Kec. Balige, Toba, 
+Sumatera Utara, Indonesia (83PF+C8 Sibola Hotangsas, Toba, Sumatera Utara, 
+Indonesia) 
+Longitude, Latitude : 2.336247756, 99.07342024 
+Menu  : Jeroan Masak Gule, Rendang, Sambal, Teh Talua Teh Telur, Dendeng, Ayam 
+Balado, Sup Daging Sapi, Ikan Goreng, Nasi Ayam Goreng Telur Dadar,",8.523,False,6.961,8.523,0.82,False
+Wisata apa yang cocok untuk berenang di sekitar Balige?,"['sekitar', 'berenang', 'kamu', 'mencoba']","Untuk berenang di sekitar Balige, kamu bisa mencoba Danau Toba itu sendiri di beberapa area tepian yang landai. Alternatif lain adalah menikmati pemandian air panas alami di sekitar Balige yang juga cocok untuk berendam.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan tempat wisata terbaik.
+
+Berdasarkan informasi yang tersedia, untuk aktivitas berenang di sekitar Balige, Anda bisa mempertimbangkan tempat berikut:
+
+*   **Labersa Hotel and Convention Center Toba, Balige** 🏊‍♀️
+    *   **Deskripsi:** Hotel bintang 4 ini memiliki fasilitas kolam renang dan taman air. Sangat cocok untuk liburan keluarga.
+    *   **Lokasi:** Jl. Saribu Raja Saribu Raja Janji Maria, Kec. Balige, Sumatera Utara
+    *   **Long & Lat:** 2.3387227656692455, 99.08216877648591
+    *   **Kategori:** Hotel, Pantai
+    *   **Biaya Masuk:** Rp 1.140.000 – Rp 2.349.500 (kemungkinan harga menginap)
+    *   **Review:** Rating 9.4/10. ""Lumayan bersih, makanan bervariasi, lokasi oke, staff ramah, ada waterpark. Sejauh ini sangat memuaskan untuk liburan bersama keluarga.""
+
+Semoga rekomendasi ini membantu perjalanan Anda! Jika ada pertanyaan lain, jangan ragu untuk bertanya.","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Akomodasi 
+Labersa Hotel and Convention Center Toba, Balige 
+Deskripsi   : Labersa Toba Hotel & Convention Center adalah hotel bintang 4 
+dengan 152 kamar, terletak di antara pusat bisnis dan objek  
+wisata yang cocok untuk perjalanan bisnis dan liburan Anda di 
+Sumatera Utara. Jaraknya hanya sekitar 25 menit dari Bandara 
+Internasional Sisingamangaraja XII dan 3 menit dari ibu kota 
+Kabupaten Toba (Balige). Labersa Toba Hotel & Convention Center 
+",0.011,True,3.249,0.011,299.06,True
+Apakah ada pantai di Balige?,"['beberapa', 'pantai']","Ya, ada beberapa pantai di Balige, seperti Pantai Lumban Bulbul.","Halo! Tentu saja ada beberapa pantai indah di Balige yang bisa Anda kunjungi.
+
+Berdasarkan informasi yang saya miliki, berikut adalah pantai-pantai di Balige:
+
+*   🏖️ **Pantai Lumban Bulbul**
+    *   **Deskripsi**: Pantai Lumban Bulbul, juga dikenal sebagai Pantai Bulbul, adalah pantai unik yang terletak di tepi Danau Toba. Pantai ini terkenal dengan pasir putihnya dan menjadi daya tarik wisata karena berada di tepi danau, bukan laut, sehingga airnya tawar.
+    *   **Longitude, Lattitude**: 2.3484997442950992, 99.07332891236842
+    *   **Lokasi**: Kecamatan Balige, Kabupaten Toba
+    *   **Alamat**: 83XF+9VQ, Lumban Bulbul, Kec. Balige, Toba, Sumatera Utara
+    *   **Kategori**: Alam, Pantai
+    *   **Biaya Masuk**: Rp 5.000 – Rp 10.000
+    *   **Jam Operasional**: 07.00 WIB – 21.30 WIB
+    *   **Review**: Rating 4/5. ""Lokasinya pun dilengkapi dengan fasilitas kamar.""
+
+*   🏖️ **Pantai Meat**
+    *   **Deskripsi**: Pantai Meat Balige terletak di Desa Meat, Kecamatan Tampahan, Kabupaten Toba Samosir, sekitar 12 km dari Kota Balige. Pantai ini memikat dengan pasir putih halus, air laut biru jernih, dan pohon cemara yang meneduh area sekitarnya. Pengunjung dapat bersantai, bermain pasir, berenang, atau memancing, sekaligus menikmati suasana tenang dan alami. Dekat pantai, desa nelayan tradisional menawarkan pengalaman melihat kehidupan sehari-hari nelayan dan proses pembuatan ikan asin, menjadikan Pantai Meat destinasi ideal untuk menikmati keindahan alam dan ketenangan jauh dari hiruk-pikuk kota.
+    *   **Jam Operasional**: 07.00 – 21.30
+    *   **Review**: Rating 4.6/5. ""Tempatnya bagus dan cocok untuk tempat healing.""
+
+Apakah ada hal lain yang ingin Anda ketahui tentang pantai-pantai ini atau tempat wisata lainnya di Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Jam Operasional : 07.00 – 21.30 
+Review : Rating 4.6/5. ""Tempatnya bagus dan cocok untuk tempat 
+healing"" 
+ 
+Pantai Meat 
+Deskripsi : Pantai Meat Balige terletak di Desa Meat, Kecamatan 
+Tampahan, Kabupaten Toba Samosir, sekitar 12 km dari Kota Balige. Pantai ini memikat 
+dengan pasir putih halus, air laut biru jernih, dan pohon cemara yang meneduh area 
+sekitarnya. Pengunjung dapat bersantai, bermain pasir, berenang, atau memancing, 
+sekaligus m",0.007,True,3.636,0.007,515.51,True
+Di mana saya bisa menikmati suasana pantai yang tenang di Balige?,"['menikmati', 'suasana', 'pantai', 'tenang']","Anda bisa menikmati suasana pantai yang tenang di Pantai Lumban Bulbul, Balige. Pantai ini memiliki hamparan pasir putih yang indah dan air danau yang jernih, cocok untuk bersantai.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan liburan yang tak terlupakan.
+
+Untuk menikmati suasana pantai yang tenang di Balige, Anda bisa mengunjungi **Pantai Meat**.
+
+Berikut detail informasinya:
+*   **Deskripsi**: Pantai Meat Balige terletak di Desa Meat, Kecamatan Tampahan, Kabupaten Toba Samosir, sekitar 12 km dari Kota Balige. Pantai ini memikat dengan pasir putih halus, air laut biru jernih, dan pohon cemara yang meneduh area sekitarnya. Pengunjung dapat bersantai, bermain pasir, berenang, atau memancing, sekaligus menikmati suasana tenang dan alami. Dekat pantai, desa nelayan tradisional menawarkan pengalaman melihat kehidupan sehari-hari nelayan dan proses pembuatan ikan asin, menjadikan Pantai Meat destinasi ideal untuk menikmati keindahan alam dan ketenangan jauh dari hiruk-pikuk kota.
+*   **Jam Operasional**: 07.00 – 21.30
+*   **Review**: Rating 4.6/5. ""Tempatnya bagus dan cocok untuk tempat healing""
+
+Apakah ada pertanyaan lain yang bisa saya bantu?","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Review : Rating 5/5. ""Tempat bagus, restoran nya banyak yang 
+recommended""dan air terjun."" 
+ 
+Pantai Pasir Putih Parparean 
+Deskripsi : Pantai Pasir Putih Parparean di Porsea terkenal dengan pasir 
+putihnya yang cantik dan panorama Danau Toba yang luas. Pantai ini kerap dijadikan lokasi 
+syuting film karena pesonanya yang menawan. Meski selalu ramai, garis pantainya yang 
+panjang membuat pengunjung tetap bisa menikmati suasana tenang dan menemuka",0.003,True,3.059,0.003,1102.7,True
+Apakah aman berwisata solo ke Danau Toba?,"['aman', 'umum', 'berwisata', 'solo']","Secara umum, berwisata solo ke Danau Toba aman. Seperti destinasi wisata lainnya, tetap waspada dan berhati-hati, terutama saat malam hari atau di tempat yang sepi. Pastikan Anda memiliki transportasi yang aman dan akomodasi yang terpercaya.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan tempat ini.
+
+Mengenai keamanan berwisata solo ke Danau Toba, maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki.
+
+Namun, jika Anda tertarik dengan beberapa tempat wisata dan akomodasi yang ada di sekitar Danau Toba, saya bisa memberikan beberapa rekomendasi:
+
+🏞️ **Tempat Wisata Alam:**
+*   **Danau Toba dari ketinggian:** Tempat ini cocok untuk refleksi karena suasananya yang tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta angin sejuk. Puncak ini dianggap istimewa karena keheningannya.
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat:** 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude:** 2.341294836, 99.00879424
+*   **Bukit Dolok Tolong:** Bukit ini menawarkan panorama Danau Toba yang menakjubkan, terutama saat matahari terbenam. Pengunjung tidak harus mendaki lama untuk mencapai puncak karena terdapat jalur beraspal yang lebar, memungkinkan akses dengan kendaraan roda dua maupun roda empat.
+    *   **Kategori:** Alam
+    *   **Lokasi:** Kecamatan Tampahan, Kabupaten Toba
+    *   **Alamat:** 82FG+65G, Tampahan, Toba Samosir, Gurgur Aek Raja, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Longitude, Lattitude:** 2.323272878, 99.02547942
+*   **Air Terjun Belantara Nasumanggar Sampuran Margumis:** Sebuah surga tersembunyi yang wajib dikunjungi. Nuansa alam bebas yang mengelilingi air terjun ini menawarkan pengalaman yang tak terlupakan bagi para backpacker dan pecinta petualangan.
+    *   **Longitude, Lattitude:** 2.275402507, 99.14370111
+*   **Aek Limut:** Airnya jernih dan segar, mengalir lembut dari tebing dan membentuk kolam kecil sebelum menuju Sungai Asahan. Dengan fasilitas sederhana seperti area parkir, warung, dan kamar mandi, Aek Limut menjadi destinasi ideal untuk bermain air, bersantai, dan menikmati pemandangan alam sekitar.
+    *   **Kategori:** Alam
+    *   **Lokasi:** Kecamatan Pintu Pohan Merant, Kabupaten Toba
+    *   **Alamat:** H86X+262, Jl. Sigura - Gura, Meranti Utara, Kec. Pintu Pohan Merant, Toba, Sumatera Utara 21274
+    *   **Longitude, Lattitude:** 2.560327741, 99.34804018
+
+🏨 **Akomodasi:**
+*   **Damar Toba:** Hotel ini menghadap ke danau, semua kamar bebas rokok. Menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan.
+    *   **Kategori:** Hotel
+    *   **Lokasi:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+    *   **Long & Lat:** 2.358818759, 99.04911658
+    *   **Biaya masuk:** Rp 834.000 – Rp 1.015.000
+    *   **Review:** Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para staff bya juga ramah sekali”.
+*   **Villa Borneo:** Berlokasi di Balige dan menawarkan taman, area.
+
+Apakah ada hal lain yang ingin Anda ketahui tentang Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Danau Toba dari ketinggian. Tempat ini cocok untuk refleksi karena suasananya yang 
+tenang, jauh dari kebisingan, dengan pemandangan danau yang membentang luas serta 
+angin sejuk. Puncak ini mungkin bukan destinasi paling populer, tetapi justru dianggap 
+istimewa karena keheningannya. 
+Longitude , Lattitude : 2.341294836, 99.00879424 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : 82R5+CFX, Jl. Pangkodian, Lintong Nihuta, Kec. Tampahan, 
+Toba, Sumatera Utara 22312
+
+[Sumber 2 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Toba Samosir dengan ketinggian mencapai 1.200 meter di atas permukaan laut, 
+menjadikannya salah satu titik tertinggi di kawasan Danau Toba. Bukit ini menawarkan 
+panorama Danau Toba yang menakjubkan, terutama saat matahari terbenam. Uniknya, 
+pengunjung tidak harus mendaki lama untuk mencapai puncak karena terdapat jalur 
+beraspal yang lebar, memungkinkan akses dengan kendaraan roda dua maupun roda 
+empat. Bukit Dolok Tolong cocok bagi wisatawan yang ingin menikmati keindahan alam 
+tanpa harus melakukan pendakian berat. 
+Longitude , Lattitude : 2.323272878, 99.02547942 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : 82FG+65G, Tampahan, Toba Samosir, Gurgur Aek Raja, Kec. 
+Balige, Toba, Sumatera Utara 22312 
+Kategori : Alam 
+Biaya Masuk :
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231 
+Kategori :Hotel 
+ 
+Biaya masuk  : Rp 834.000 – Rp 1.015.000 
+ 
+Review  : Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para 
+staff bya juga ramah sekali”. 
+ 
+Villa Borneo 
+Deskripsi   : VILLA BORNEO berlokasi di Balige dan menawarkan taman, area
+
+[Sumber 4 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+kendala yaitu pinggir pantai nya tumbuh rumput coba kalau di 
+bersihkan mantap pasti"" 
+ 
+Air Terjun Belantara Nasumanggar Sampuran Margumis 
+Deskripsi : Air Terjun Sampuran di Kabupaten Toba Samosir adalah  
+sebuah surga tersembunyi yang wajib dikunjungi. Nuansa alam bebas yang mengelilingi air  
+terjun ini menawarkan pengalaman yang tak terlupakan bagi para backpacker dan pecinta  
+petualangan. Mencapai Air Terjun Sampuran memang membutuhkan perjuangan. Setelah  
+menempuh perjalanan dengan kendaraan roda dua atau roda empat selama kurang lebih 
+45 menit dari Kota Balige menuju Desa Hutanamora, pengunjung harus berjalan kaki 
+selama 60 menit untuk mencapai lokasi air terjun. 
+Longitude , Lattitude : 2.275402507, 99.14370111
+
+[Sumber 5 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+trekking jauh. Airnya jernih dan segar, mengalir lembut dari tebing dan membentuk kolam 
+kecil sebelum menuju Sungai Asahan. Dengan fasilitas sederhana seperti area parkir, 
+warung, dan kamar mandi, Aek Limut menjadi destinasi ideal untuk bermain air, bersantai, 
+dan menikmati pemandangan alam sekitar. 
+Longitude , Lattitude : 2.560327741, 99.34804018 
+Lokasi : Kecamatan Pintu Pohan Merant, Kabupaten Toba 
+Alamat : H86X+262, Jl. Sigura - Gura, Meranti Utara, Kec. Pintu Pohan 
+Merant, Toba, Sumatera Utara 21274 
+Kategori : Alam",13.504,False,14.255,13.504,1.06,False
+Wisata apa yang bisa saya kunjungi dengan budget Rp100.000?,"['budget', 'menikmati', 'keindahan', 'berbagai']","Dengan budget Rp100.000, Anda bisa menikmati keindahan Danau Toba dari berbagai titik pandang gratis di pinggir jalan, atau mengunjungi beberapa air terjun kecil di sekitar danau. Anda juga bisa mencoba kuliner lokal seperti mie gomak atau kopi khas Toba yang terjangkau.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan tempat wisata yang menarik.
+
+Dengan budget Rp100.000, Anda bisa mengunjungi beberapa tempat wisata yang indah. Berikut rekomendasinya:
+
+*   🌳 **Wisata Rumah Pohon**
+    *   **Deskripsi**: Wisata Rumah Pohon di Balige sebenarnya adalah Bukit Tarabunga, sebuah destinasi wisata alam di Kecamatan Tampahan yang menawarkan pemandangan Danau Toba dari ketinggian. Lokasi ini memiliki spot rumah pohon yang menjadi daya tarik utama untuk bersantai dan berfoto dengan pemandangan memukau, serta dilengkapi berbagai fasilitas pendukung seperti tempat makan dan area parkir.
+    *   **Longitude, Lattitude**: 2.351617634, 99.02532755
+    *   **Lokasi**: Kecamatan Tampahan, Kabupaten Toba
+    *   **Biaya Masuk**: Ada biaya masuk dan parkir yang dikenakan.
+    *   **Kategori**: Alam
+
+*   🏞️ **(Nama tidak disebutkan)**
+    *   **Kategori**: Alam
+    *   **Biaya Masuk**: Rp 5.000 – Rp 10.000
+    *   **Jam Operasional**: 24 jam
+    *   **Review**: Rating 4.4/5. ""Tempat yg cukup indah, bisa berenang""
+
+Apakah ada pertanyaan lain yang bisa saya bantu?","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+layanan kamar, serta resepsionis 24 jam untuk memenuhi 
+kebutuhan tamu. Lokasinya yang dekat dengan berbagai fasilitas 
+publik menjadikannya pilihan tepat bagi pelancong yang ingin 
+menjelajahi Balige dan sekitarnya. 
+Long & Lat   :  2.337945655, 99.06359097 
+ 
+Lokasi : Jl. Mulia Raja No.20, Kelurahan Napitu Puluh, Kec. Balige, Toba, 
+Sumatera Utara 22312 
+Kategori : Wisma 
+ 
+Biaya masuk  : Rp550.000 - Rp600.000 
+ 
+Review  : Rating 4,2/5  ""Untuk pe",0.01,True,5.013,0.01,488.76,True
+Sebutkan 3 wisata terjangkau di sekitar Danau Toba,"['biaya', 'terjangkau', 'masuk', 'berikut', 'wisata']","Tentu, berikut 3 wisata terjangkau di sekitar Danau Toba:
+
+1. **Pantai Bebas Parapat:** Nikmati pemandangan danau, berenang, atau menyewa perahu dengan biaya yang sangat terjangkau.
+2. **Desa Tomok, Samosir:** Jelajahi makam Raja Sidabutar dan museum Batak tanpa biaya masuk, hanya perlu membayar parkir dan mungkin donasi sukarela.
+3. **Pemandian Air Panas Sipoholon:** Rasakan khasiat air panas alami dengan biaya masuk yang murah, cocok untuk relaksasi setelah berkeliling.","Halo! Selamat datang di Danau Toba yang memukau! Saya siap membantu Anda menemukan tempat-tempat wisata terjangkau yang menawan.
+
+Berikut adalah 3 rekomendasi wisata terjangkau di sekitar Danau Toba berdasarkan informasi yang tersedia:
+
+*   **Swiss Van Toba** 🏞️
+    *   **Kategori**: Danau
+    *   **Deskripsi**: Kawasan perairan ini menyerupai Danau Riffelsee di Swiss, dengan garis pantai sepanjang 28 km, air jernih, dan sejuk. Sangat cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+    *   **Lokasi**: Kecamatan Ajibata, Kabupaten Toba
+    *   **Alamat**: JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+    *   **Harga**: Gratis
+    *   **Jam Buka**: 24 jam
+    *   **Rating**: 5.0/5
+
+*   **Desa Wisata Motung** 🌳
+    *   **Kategori**: Alam
+    *   **Deskripsi**: Tempat wisata di Desa Motung ini menyajikan pemandangan luar biasa dengan lanskap panorama danau yang terhampar luas. Anda juga akan takjub melihat pemukiman penduduk yang tertata rapi di pinggir danau.
+    *   **Lokasi**: Kecamatan Ajibata, Kabupaten Toba
+    *   **Alamat**: JWPC+8C4, Motung, Kec. Ajibata, Toba, Sumatera Utara
+    *   **Jam Operasional**: 24 jam
+    *   **Biaya Masuk**: Gratis
+    *   **Review**: Rating 5/5. ""Lokasi kemping menarik di Danau Toba. Berada di ketinggian yang sangat mengundang kedinginan di malam hari jadi persiapakan perlengkapan tidur yang lengkap agar anda tidak kedinginan di malam hari. Pemandangan""
+
+*   **Pantai Pelangi** 🌈
+    *   **Kategori**: Alam
+    *   **Deskripsi**: Pantai buatan sepanjang lebih dari 500 meter ini menawarkan sensasi baru dengan keindahan hamparan danau serta pemandangan Gunung Seminung.
+    *   **Lokasi**: Kecamatan Balige, Kabupaten Toba
+    *   **Alamat**: 934X+C47 Pantai pelangi, Lumban Pea, Kec. Balige, Toba, Sumatera Utara
+    *   **Biaya Masuk**: Rp 5.000 – Rp 10.000
+
+Semoga rekomendasi ini membantu perjalanan Anda! Jika ada pertanyaan lain atau ingin tahu lebih banyak tentang tempat spesifik, jangan ragu untuk bertanya.","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Swiss Van Toba
+- Kategori : danau
+- Deskripsi: Kawasan perairan menyerupai Danau Riffelsee Swiss. Garis pantai 28 km dengan air jernih dan sejuk. Cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+- Lokasi   : Kecamatan Ajibata, Kabupaten Toba
+- Alamat   : JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+- Harga    : Gratis
+- Jam Buka : 24 jam
+- Rating   : 5.0/5
+
+[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Center, Pasar Balige, dan ",0.008,True,5.176,0.008,642.23,True
+Rekomendasikan paket hotel dan wisata untuk 3 hari 2 malam dengan budget Rp1.500.000,"['hari', 'malam', 'rata', 'desa']","Dengan budget Rp1.500.000 untuk 3 hari 2 malam di Danau Toba, Anda bisa memilih penginapan terjangkau seperti guesthouse atau homestay di Tuk-tuk, Samosir, dengan rata-rata Rp150.000-Rp250.000 per malam. Sisa dana dapat dialokasikan untuk sewa motor (sekitar Rp75.000/hari), biaya masuk objek wisata (misalnya Makam Raja Sidabutar, Pantai Pasir Putih Parbaba), serta kuliner lokal seperti ikan arsik atau mie gomak. Anda bisa menikmati keindahan Danau Toba, menjelajahi desa-desa tradisional, dan merasakan budaya Batak yang kental.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Untuk paket hotel dan wisata 3 hari 2 malam dengan budget sekitar Rp1.500.000, berikut beberapa rekomendasi yang bisa Anda pertimbangkan berdasarkan informasi yang tersedia:
+
+**Rekomendasi Paket Hotel dan Wisata 3 Hari 2 Malam (Estimasi Budget Rp1.500.000):**
+
+*   **Pilihan 1: Fokus Wisata Alam dan Penginapan Nyaman**
+    *   **Hari 1: Kedatangan & Pemandangan Indah**
+        *   Tiba di Danau Toba.
+        *   Kunjungi **Wisata Panatapan - PANINDII** 🏞️
+            *   **Deskripsi:** Destinasi wisata alam untuk menatap pemandangan panorama Danau Toba yang indah dari ketinggian.
+            *   **Lokasi:** Kecamatan Silaen, Kabupaten Toba
+            *   **Alamat:** Perkemahan peasidari-panindii, Jl. Sibide No.100-34, Natolutali, Kec. Silaen, Toba, Sumatera Utara 22384
+            *   **Harga:** Gratis
+            *   **Jam Buka:** 24 jam
+            *   **Rating:** 5.0/5
+        *   Check-in di **Nauli Inn Balige** 🏨
+            *   **Deskripsi:** Pilihan akomodasi cerdas di Balige, menawarkan pelayanan baik dengan harga terjangkau. Menyediakan fasilitas yang memadai serta WiFi di seluruh area publik.
+            *   **Long & Lat:** 2.344915591, 99.07874798
+            *   **Estimasi Biaya:** Sekitar Rp165.000 - Rp175.000 per malam (untuk 2 orang), atau Rp180.000 (untuk 3 orang) jika menginap di Porsea.
+        *   Makan malam dan istirahat.
+    *   **Hari 2: Eksplorasi Balige**
+        *   Menjelajahi Balige dan sekitarnya.
+        *   Makan siang.
+        *   Menginap kembali di **Nauli Inn Balige**.
+    *   **Hari 3: Kembali Pulang**
+        *   Sarapan dan check-out.
+        *   Belanja oleh-oleh (opsional).
+        *   Perjalanan pulang.
+    *   **Estimasi Total Biaya:**
+        *   Penginapan (Nauli Inn Balige, 2 malam): Sekitar Rp330.000 - Rp360.000 (untuk 2 orang)
+        *   Wisata Panatapan - PANINDII: Gratis
+        *   Sisa budget (sekitar Rp1.140.000 - Rp1.170.000) bisa dialokasikan untuk transportasi, makan, dan pengeluaran pribadi lainnya.
+
+*   **Pilihan 2: Pengalaman Menginap di Homestay Unik**
+    *   **Hari 1: Kedatangan & Bersantai**
+        *   Tiba di Danau Toba.
+        *   Check-in di **Homestay di Jl. Tarutung No.100, Sangkar Nihuta, Kec. Balige, Toba** 🏡
+            *   **Lokasi:** Jl. Tarutung No.100, Sangkar Nihuta, Kec. Balige, Toba
+            *   **Kategori:** Homestay
+            *   **Biaya masuk:** Rp168.111 – Rp500.000 per malam
+            *   **Review:** Rating 4,3/5. Dibangun dengan material kayu dan batubata sehingga terasa menyatu dengan sekitarnya. Pemandangan dari depan kamar berupa pepohonan rindang yang membuat sejuk udaranya.
+        *   Bersantai di homestay, menikmati suasana alam.
+        *   Makan malam.
+    *   **Hari 2: Wisata Alam & Kuliner Lokal**
+        *   Kunjungi **Wisata Panatapan - PANINDII** 🏞️
+            *   **Deskripsi:** Destinasi wisata alam untuk menatap pemandangan panorama Danau Toba yang indah dari ketinggian.
+            *   **Lokasi:** Kecamatan Silaen, Kabupaten Toba
+            *   **Alamat:** Perkemahan peasidari-panindii, Jl. Sibide No.100-34, Natolutali, Kec. Silaen, Toba, Sumatera Utara 22384
+            *   **Harga:** Gratis
+            *   **Jam Buka:** 24 jam
+            *   **Rating:** 5.0/5
+        *   Makan siang dengan kuliner lokal.
+        *   Menginap kembali di Homestay.
+    *   **Hari 3: Check-out & Pulang**
+        *   Sarapan dan check-out.
+        *   Perjalanan pulang.
+    *   **Estimasi Total Biaya:**
+        *   Penginapan (Homestay, 2 malam): Sekitar Rp336.222 - Rp1.000.000 (tergantung jenis kamar). Untuk budget Rp1.500.000, Anda bisa memilih kamar queen size dengan kamar mandi dalam.
+        *   Wisata Panatapan - PANINDII: Gratis
+        *   Sisa budget (sekitar Rp500.000 - Rp1.163.778) bisa dialokasikan untuk transportasi, makan, dan pengeluaran pribadi lainnya.
+
+*   **Pilihan 3: Menginap di Wisma dengan Budget Terbatas**
+    *   **Hari 1: Kedatangan & Menjelajah Balige**
+        *   Tiba di Danau Toba.
+        *   Check-in di **Wisma di Jl. Mulia Raja No.20, Kelurahan Napitu Puluh, Kec. Balige, Toba** 🏨
+            *   **Lokasi:** Jl. Mulia Raja No.20, Kelurahan Napitu Puluh, Kec. Balige, Toba, Sumatera Utara 22312
+            *   **Kategori:** Wisma
+            *   **Biaya masuk:** Rp550.000 - Rp600.000 per malam
+            *   **Review:** Rating 4,2/5. Kamar sederhana tetapi bersih dan rapi, kamar mandi juga bersih dan airnya sangat dingin. Ada bangku di lantai 2 untuk duduk ramai bersama.
+            *   **Long & Lat:** 2.337945655, 99.06359097
+        *   Makan malam dan istirahat.
+    *   **Hari 2: Wisata Pemandangan Danau Toba**
+        *   Kunjungi **Wisata Panatapan - PANINDII** 🏞️
+            *   **Deskripsi:** Destinasi wisata alam untuk menatap pemandangan panorama Danau Toba yang indah dari ketinggian.
+            *   **Lokasi:** Kecamatan Silaen, Kabupaten Toba
+            *   **Alamat:** Perkemahan peasidari-panindii, Jl. Sibide No.100-34, Natolutali, Kec. Silaen, Toba, Sumatera Utara 22384
+            *   **Harga:** Gratis
+            *   **Jam Buka:** 24 jam
+            *   **Rating:** 5.0/5
+        *   Menjelajahi area sekitar Balige.
+        *   Menginap kembali di Wisma.
+    *   **Hari 3: Kembali Pulang**
+        *   Sarapan dan check-out.
+        *   Perjalanan pulang.
+    *   **Estimasi Total Biaya:**
+        *   Penginapan (Wisma, 2 malam): Sekitar Rp1.100.000 - Rp1.200.000
+        *   Wisata Panatapan - PANINDII: Gratis
+        *   Sisa budget (sekitar Rp300.000 - Rp400.000) bisa dialokasikan untuk transportasi, makan, dan pengeluaran pribadi lainnya.
+
+Semoga rekomendasi ini membantu Anda merencanakan perjalanan ke Danau Toba! Jangan ragu untuk bertanya lagi jika ada hal lain yang ingin Anda ketahui.","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Wisata Panatapan - PANINDII
+- Kategori : alam
+- Deskripsi: Destinasi wisata alam untuk menatap pemandangan panorama Danau Toba yang indah dari ketinggian.
+- Lokasi   : Kecamatan Silaen, Kabupaten Toba
+- Alamat   : Perkemahan peasidari-panindii, Jl. Sibide No.100-34, Natolutali, Kec. Silaen, Toba, Sumatera Utara 22384
+- Harga    : Gratis
+- Jam Buka : 24 jam
+- Rating   : 5.0/5
+
+[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+hari biasa 165.000 sedangk",0.006,True,11.108,0.006,1834.61,True
+Destinasi wisata mana yang cocok untuk liburan keluarga di Toba?,"['liburan', 'keluarga', 'pilihan', 'ideal']","Untuk liburan keluarga di Toba, Samosir adalah pilihan ideal dengan banyak penginapan dan aktivitas ramah anak. Kamu bisa mengunjungi Desa Tomok untuk sejarah atau bersantai di Pantai Parbaba.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan destinasi wisata yang cocok untuk liburan keluarga Anda.
+
+Berdasarkan informasi yang tersedia, berikut adalah beberapa akomodasi yang bisa menjadi pilihan ideal untuk liburan keluarga Anda di Balige, Danau Toba:
+
+*   **Damar Toba**
+    *   **Deskripsi:** Menghadap ke danau, semua kamar bebas rokok. Menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan. Damar Toba juga menyediakan kenyamanan modern dan pesona lokal, menjadi titik awal ideal untuk menikmati Balige dan menjelajahi keindahan Danau Toba.
+    *   **Lokasi:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+    *   **Long & Lat:** 2.358818759, 99.04911658
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp 834.000 – Rp 1.015.000
+    *   **Review:** Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para staff bya juga ramah sekali”.
+
+*   **VILLA BORNEO**
+    *   **Deskripsi:** Berlokasi di Balige dan menawarkan taman, area pantai pribadi, serta teras. Akomodasi ini memiliki akses ke balkon dan parkir pribadi gratis. Villa ini berjarak sejauh 21 km dari Bandara Internasional Sisingamangaraja XII.
+    *   **Lokasi:** Jl. Proyek SMK 3 Pariwisata desa, Lumban Pea, Kec. Balige, Toba, Sumatera Utara 22351
+    *   **Long & Lat:** 2.352338073, 99.10361278
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp 1.500.000
+    *   **Review:** Rating 4.7/5 “Villa / Homestay di daerah Lumban Pea yang paling bagus dan bersih. Fasilitas lengkap, furniturenya berkualitas semua, pemandangan dan lokasi villa juga oke bgt. …”.
+
+*   **SAPADIA VILLA BALIGE III**
+    *   **Deskripsi:** Akomodasi nyaman dan terjangkau di Balige, menawarkan layanan luar biasa dengan resepsionis 24 jam serta fasilitas kolam renang untuk bersantai. Tersedia pula hidangan spesial dari restorannya, menjadikannya pilihan ideal bagi tamu yang menginginkan kenyamanan dengan harga bersahabat.
+    *   **Lokasi:** Jl. Pemandian, Pardede Onan, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat:** 2.335329096, 99.05486654
+    *   **Kategori:** Villa
+    *   **Biaya masuk:** Rp 475.000 - Rp 1.100.000
+    *   **Review:** Rating 4.5/5 “Recomend banget tempat nyaa makanan dan villa nyaa enak banget buat enjoy”.
+
+*   **Gemma Hotel Balige**
+    *   **Deskripsi:** Hotel nyaman dan terjangkau di Balige, cocok untuk berbagai jenis wisatawan, mulai dari backpacker, pasangan, keluarga, hingga tamu yang berencana menginap jangka panjang. Hotel ini menawarkan fasilitas lengkap untuk bisnis maupun liburan, suasana yang tenang, serta privasi yang tetap terjaga. Dengan resepsionis 24 jam dan Wi-Fi di area umum, Gemma Hotel Balige dikenal memberikan pelayanan memuaskan dan menjadi pilihan bijak bagi pengunjung Balige.
+    *   **Lokasi:** Jl. Pemandian No.1 B, Sangkar Nihuta, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Long & Lat:** 2.334276256, 99.05647375
+    *   **Kategori:** Hotel
+    *   **Biaya masuk:** Rp 500.000 - Rp 1.000.000
+
+*   **Brain Homestay**
+    *   **Deskripsi:** Penginapan sederhana dan terjangkau di Balige, berlokasi di Hutabasagasan, Sihiong, Jangga Toruan. Cocok untuk wisatawan yang mencari tempat menginap tenang dengan akses mudah dan pelayanan ramah.
+    *   **Lokasi:** Hutabasagasan, Sihiong, Jangga Toruan, Balige, Toba, Sumatera Utara 22386
+    *   **Long & Lat:** 2.548557771, 99.08131798
+    *   **Kategori:** Homestay
+    *   **Biaya masuk:** Rp 475.000 - Rp 1.100.000
+    *   **Review:** Rating 4.7/5 ""Kamar-kamar sederhana di desa tradisional. Semuanya disiapkan untuk kami dan sangat bersih. Sekitar 100.000 per orang termasuk sarapan.""
+
+Apakah ada pertanyaan lain atau Anda ingin tahu lebih banyak tentang salah satu tempat ini? Saya siap membantu!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian N",0.008,True,7.344,0.008,913.4,True
+Apa saja kuliner khas dari sekitar Danau Toba?,"['ikan', 'ombus', 'khas']","Kuliner khas Danau Toba meliputi arsik ikan mas, naniura (ikan mas mentah dengan bumbu), saksang (daging babi/anjing dengan darah), dan mie gomak. Anda juga bisa menemukan ombus-ombus (kue beras) sebagai camilan manis.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan berbagai pesona di sekitar danau yang indah ini.
+
+Berdasarkan informasi yang tersedia, untuk kuliner khas, Damar Toba menyediakan menu **Damar Signatures**, yaitu masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan.
+
+Apakah ada hal lain yang ingin Anda tanyakan?","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Swiss Van Toba
+- Kategori : danau
+- Deskripsi: Kawasan perairan menyerupai Danau Riffelsee Swiss. Garis pantai 28 km dengan air jernih dan sejuk. Cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+- Lokasi   : Kecamatan Ajibata, Kabupaten Toba
+- Alamat   : JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+- Harga    : Gratis
+- Jam Buka : 24 jam
+- Rating   : 5.0/5
+
+[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua ",0.008,True,6.542,0.008,796.25,True
+Makanan khas apa yang bisa saya coba saat berkunjung ke Balige?,"['mencoba', 'pedas', 'bumbu', 'khas']","Saat di Balige, Anda bisa mencoba **Mie Gomak**, mi pedas dengan bumbu khas Batak. Selain itu, ada juga **Naniura**, hidangan ikan mas mentah yang diasamkan dengan jeruk nipis dan rempah.","Halo! Selamat datang di Danau Toba! Saya dengan senang hati akan membantu Anda menemukan kuliner khas yang bisa Anda coba saat berkunjung ke Balige. 🍜
+
+Berdasarkan informasi yang tersedia, berikut adalah beberapa rekomendasi makanan khas yang bisa Anda nikmati di Balige:
+
+*   **Makanan Khas Batak (Halal dan Non-Halal)**
+    *   **Saksang gota**
+    *   **Tanggo2 gota**
+    *   **Ayam napinadar**: Rasa pedas getirnya sungguh membuat sensasi segar dan ketagihan.
+    *   **Babi panggang**: Daging B2 panggang dimasak dengan arang, saat gigitan pertama terasa *smoky*, *juicy*, lembut, dan *umami* dengan bumbu Gota khas Batak Toba.
+    *   **Arsik**
+    *   Anda bisa menemukan berbagai pilihan menu khas Batak ini di salah satu rumah makan dengan rating 4.5/5 yang ulasannya menyebutkan bahwa bumbunya berasa banget, tidak pelit dari segi rasa, kualitas makanan selalu *fresh*, dan porsi yang pas.
+
+*   **Mie Gomak**
+    *   Anda bisa mencoba Mie Gomak di **Damar Toba – Lakeside Eaterry & Stay**. Selain itu, tempat ini juga menyediakan Mie Goreng, Sate, Fried Rice with Chicken Wings, dan Kopi Latte.
+
+*   **Mie Ayam dan Bakso**
+    *   Jika Anda suka Mie ayam dan perbaksoan, Anda bisa mencoba di salah satu warung di Balige yang memiliki rating 4.5/5. Ulasannya menyebutkan bahwa harganya sangat terjangkau, rasa enak, dan bakso uratnya mantap serta halal.
+    *   **Bakso Dorela** juga menyajikan Bakso, Misop, Mie Ayam, Mie Babi, dan Goreng. Ulasannya menyebutkan makanannya cukup enak dan harganya sesuai.
+
+*   **Masakan Minang**
+    *   Ada juga restoran Minang di jalan utama Balige yang berjarak sekitar 15 menit dari pusat kota. Tempat ini memiliki area parkir, toilet bersih, dan musholla. Rendang dan dendengnya sangat lezat dan otentik. Tempat ini sangat direkomendasikan untuk makanan halal.
+
+Semoga daftar ini membantu Anda dalam petualangan kuliner di Balige! Jika ada pertanyaan lain atau ingin tahu lebih banyak tentang tempat-tempat ini, jangan ragu untuk bertanya!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Menu  : Mie ayam bakso, Halal 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4.5/5. “Yang suka Mie ayam dan per baksoan, warung ini bisa jadi 
+pilihan saat berkunjung ke Balige. Harga makanan disini sangat terjangkau, rasa 
+enak dan bakso uratnya juga mantap dan pasti nya HALAL, INSYAALLAH. ” 
+ 
+Bakso Dorela 
+Alamat  Jl. Gereja No.Kelurahan, Lumban Dolok Haume Bange, Kec. Balige, Toba, 
+Sumatera Utara 22312, Indonesia (83M8+",0.0,True,3.969,0.0,0.0,True
+Di mana saya bisa makan di rumah makan Batak di Toba?,"['makan', 'menemukan', 'rumah', 'sepanjang', 'jalan']","Anda dapat menemukan rumah makan Batak di sepanjang jalan utama Parapat, Balige, dan Tomok. Banyak dari tempat makan ini menawarkan hidangan Batak otentik dengan pemandangan danau yang indah. Anda juga dapat bertanya kepada penduduk lokal untuk rekomendasi terbaik di daerah tersebut.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan pengalaman kuliner yang tak terlupakan.
+
+Jika Anda mencari rumah makan khas Batak di Toba, berikut adalah beberapa rekomendasi yang bisa Anda kunjungi:
+
+*   **Warung Kembar (Khas Batak)**
+    *   **Alamat**: Jl. Siborongborong - Parapat No.4, Hinalang Bagasan, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia (82HV+CG Hinalang Bagasan, Toba, Sumatera Utara, Indonesia)
+    *   **Longitude, Latitude**: 2.328824817, 99.04371976
+    *   **Menu**: Saksang Gota, Tanggo Tanggo Gota, Ayam Napinadar, Babi Panggang, Naniarsik
+    *   **Harga**: Rp 25.000,00 - Rp 50.000,00
+    *   **Ulasan**: Rating 4.5/5. ""Banyak pilihan menu makanan khas batak - Saksang gota, Tanggo2 gota, Ayam napinadar, Babi panggang, Arsik. Masih banyak lagi menu rekomendasi. Bumbu nya berasa banget, nggak pelit dari segi rasa, kualitas makanan yg selalu fresh, dan porsi yang pas. Daging B2 panggang dimasak dengan arang, saat gigitan pertama terasa smoky, juicy, lembut dan umami dengan bumbu Gota nya. Tentu saja ini khas batak Toba. Jangan hanya pesan 1 menu lauk, agar dapat merasakan perbedaan dan kenikmatan dari setiap masakan yang tentunya berbeda. Misalnya ayam napidar, rasa pedas getir nya sungguh membuat sensasi segar dan ketagihan. Tempat juga nyaman dan bersih. Apakah akan balik lagi kesana? Yess 1000% Must try yaa.""
+
+*   **BPK Karona**
+    *   **Alamat**: Jl. Sisingamangaraja No.Kelurahan, Balige I, Kec. Balige, Toba, Sumatera Utara 22313, Indonesia (83MC+H4 Balige I, Toba, Sumatera Utara, Indonesia)
+    *   **Longitude, Latitude**: 2.334182476, 99.07038294
+    *   **Menu**: Babi Panggang Karo
+    *   **Harga**: Rp 25.000,00 - Rp 50.000,00
+    *   **Ulasan**: Rating 4.3/5. ""Panggang dan sayurnya enak, kuah soup nya enak.""
+
+*   **Rumah Makan Khas Batak Lamhot**
+    *   **Alamat**: 83H3+JWF, Jl. Patuan Nagari, Sangkar Nihuta, Kec. Balige, Toba, Sumatera Utara 22313, Indonesia
+    *   **Longitude, Latitude**: 2.329251937, 99.05486907
+    *   **Menu**: Ikan arsik, Babi Panggang
+    *   **Harga**: Rp 25.000,00 - Rp 50.000,00
+    *   **Ulasan**: Rating 4.4/5. ""Tempat makan Khas Batak yang bisa persinggahan sementara ketika di Balige. Makanannya standard dengan harga standard, seperti Panggang (30k) dan Badak (8k).""
+
+*   **Driving Range Restaurant**
+    *   **Alamat**: 927H+G6F, Lake Toba, North Sumatra 22312, Indonesia
+    *   **Longitude, Latitude**: 2.363989013, 99.02806835
+
+Semoga rekomendasi ini membantu perjalanan kuliner Anda di Danau Toba! Jika ada pertanyaan lain atau ingin tahu lebih banyak, jangan ragu untuk bertanya! 😊","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+loved it so much, we came back three times during our stay in Balige. What 
+truly elevates the experience is the owner, Ronny. He puts his heart into every 
+drink, making each one unforgettable. If you’re a coffee lover, this is a must -
+stop.” 
+ 
+Warung Kembar (Khas Batak) 
+Alamat  : Jl. Siborongborong - Parapat No.4, Hinalang Bagasan, Kec. Balige, Toba, 
+Sumatera Utara 22312, Indonesia (82HV+CG Hinalang Bagasan, Toba, 
+Sumat",0.011,True,6.434,0.011,588.1,True
+Apakah ada cafe dengan suasana yang bagus di Balige?,"['menikmati', 'beberapa', 'kafe']","Tentu, ada beberapa kafe di Balige yang menawarkan suasana nyaman, seperti Kopi Toba atau Kedai Kopi Siantar. Anda bisa menikmati kopi lokal sambil menikmati pemandangan Danau Toba yang tenang.","Halo! 👋 Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan pesona daerah ini.
+
+Maaf, informasi mengenai cafe dengan suasana yang bagus di Balige belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar akomodasi atau tempat menarik lainnya di sekitar Danau Toba? Saya siap membantu! 😊","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+makanan nya, buat makanan lumayan, selalu diisi busa tinggal 
+sedikit..  
+Detail pentingAkses gampang karena di pinggir jalan utama medan 
+tarutung, halaman parkir luas..""  
+ 
+""terima kasih pelayanannya buat resepsionis yang perempuan, 
+waktu sy check in malam bawa ortu lagi sakit di bantu...""  
+ 
+""Hotelnya bagus, fasilitasnya cocok untuk anak -anak. Kamarnya 
+cukup besar, harga standar. Makanannya pun lumayan enak, 
+belum ada lift. Kebersihannya kurang maksimal, dasar kolam 
+renangnya agak berlumut, dibawah tempat tidur lumayan kotor, 
+kaca jendela ada cap2 dari luar. Tamannya bagus, kalau mau ke 
+Balige, bolehlah menginap disini lagi."" 
+ 
+Purnama Balige Hotel 
+Deskripsi   : Selamat datang di Purnama Hotel, sebuah hotel bintang 4 yang
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Balige, bolehlah menginap disini lagi."" 
+ 
+Purnama Balige Hotel 
+Deskripsi   : Selamat datang di Purnama Hotel, sebuah hotel bintang 4 yang 
+terletak di Malang, Indonesia. Dengan 158 kamar yang tersedia, 
+hotel ini menawarkan pengalaman menginap yang mewah dan 
+nyaman bagi para tamu. 
+Long & Lat   :  2.3345893, 99.0595625 
+ 
+Lokasi : Jl. Pardede Pasir No.10, Kec. Balige, Sumatera Utara 22314 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp 609.000 - Rp 1.300.000 
+ 
+Review  : Rating 4.0/5 ""Lokasi tepat di tepi danau Toba, Dengan resto 
+menghadap langsung ke danau. Keren buat foto dan nyantai dan 
+Selain itu kita juga bisa sauna.  
+Terutama pelayanan bapak security nya bagus, ramah, sopan, 
+sigap yaitu bapak Lasdon Uli Marbun.
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Selain itu kita juga bisa sauna.  
+Terutama pelayanan bapak security nya bagus, ramah, sopan, 
+sigap yaitu bapak Lasdon Uli Marbun.  
+Selain itu makanan untuk breakfest nya juga enak, buah""nya juga 
+segar.
+
+[Sumber 4 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Cocok untuk tempat keluarga menginap dan berlibur.""  
+ 
+""Kami menginap di Hotel Purnama Balige selama dua malam dan 
+menikmati waktu yang menyenangkan. Hotel ini indah dengan 
+pemandangan danau yang menakjubkan —sempurna untuk 
+bersantai dan menikmati suasana yang damai.  
+Stafnya sangat ramah, rendah hati, dan selalu membantu. Ada 
+juga kolam renang yang bagus untuk menyegarkan diri, dan 
+sarapan prasmanannya sungguh lezat dengan beragam pilihan.  
+Sangat direkomendasikan jika Anda sedang berkunjung ke daerah 
+ini!"" 
+ 
+""Lokasi tepat di tepi danau Toba, Dengan rearo menghadap 
+langsung ke danau. Keren buat foto.  
+Terutama pelayanam bapak security nya bagus, ramah, sopan 
+yaitu bapak Lasdon Uli Marbun"" 
+ 
+Tendy Huest House
+
+[Sumber 5 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+langsung ke danau. Keren buat foto.  
+Terutama pelayanam bapak security nya bagus, ramah, sopan 
+yaitu bapak Lasdon Uli Marbun"" 
+ 
+Tendy Huest House 
+Deskripsi   : Tendy Guest House menawarkan akomodasi nyaman berupa villa 
+berukuran 48 m² dengan 2 kamar tidur dan 1 kamar mandi 
+pribadi, cocok untuk tamu yang mencari ketenangan saat berlibur 
+di Balige. Fasilitas seperti parkir gratis, kamar yang dirancang 
+untuk kenyamanan, serta hiburan tambahan seperti TV, video 
+streaming, atau surat kabar harian membuat pengalaman 
+menginap semakin menyenangkan. 
+Long & Lat   :  2.45293474, 99.15167287 
+ 
+Lokasi : Jl. Siborongborong - Parapat, Patane V, Kec. Porsea, Toba, 
+Sumatera Utara 22384 
+Kategori : Guest House 
+ 
+Biaya masuk  :  Rp300.000 - Rp335.000",8.097,False,7.49,8.097,0.93,False
+Di mana bisa makan dengan pemandangan langsung ke Danau Toba?,"['restoran', 'tepi', 'menawarkan']","Banyak restoran di tepi Danau Toba menawarkan pemandangan indah, terutama di daerah Parapat dan Tomok. Beberapa di antaranya adalah restoran di Hotel Niagara dan restoran-restoran di sepanjang Jalan Lingkar Tuktuk Siadong.","Halo! Senang sekali bisa membantu Anda merencanakan perjalanan ke Danau Toba.
+
+Anda bisa menikmati hidangan lezat dengan pemandangan langsung ke Danau Toba di **Damar Toba**.
+
+Berikut detailnya:
+*   **Nama Lengkap:** Damar Toba
+*   **Deskripsi:** Hotel ini menghadap ke danau dan menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan. Damar Toba juga menyediakan kenyamanan modern dan pesona lokal, Damar Toba menjadi titik awal ideal untuk menikmati Balige dan menjelajahi keindahan Danau Toba.
+*   **Kategori:** Hotel
+*   **Lokasi:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+*   **Long & Lat:** 2.358818759, 99.04911658
+*   **Biaya Masuk:** Rp 834.000 – Rp 1.015.000 (kemungkinan biaya menginap, namun area makan terbuka dan tertutup tersedia)
+*   **Review:** Rating 4.8/5 ""Pelayanannya bagus, sangat teroganisir, dan para staff bya juga ramah sekali”.
+
+Ada pertanyaan lain seputar Danau Toba? Jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian N",0.012,True,3.472,0.012,296.05,True
+Adakah restoran halal di sekitar Lumban Bul-Bul?,"['halal', 'beberapa', 'restoran', 'sekitar', 'menemukan']","Ya, ada beberapa restoran halal di sekitar Lumban Bul-Bul. Anda bisa menemukan pilihan hidangan lokal dan internasional yang bersertifikat halal.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menemukan informasi terbaik untuk perjalanan Anda.
+
+Tentu saja! Jika Anda mencari restoran halal di sekitar Danau Toba, saya punya beberapa rekomendasi yang mungkin menarik untuk Anda:
+
+*   **Bakso Dorela**
+    *   **Menu:** Bakso, Misop, Mie Ayam, Mie Babi, Goreng
+    *   **Ulasan:** Rating 4.6/5. ""Makanan nya cukup enak, harga nya sesuai.""
+    *   **Alamat:** Jl. Gereja No.Kelurahan, Lumban Dolok Haume Bange, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia (83M8+9R Lumban Dolok Haume Bange, Toba, Sumatera Utara, Indonesia)
+    *   **Longitude, Latitude:** 2.333732036, 99.06701114
+
+*   **Damar Toba – Lakeside Eaterry & Stay**
+    *   **Menu:** Mie Gomak, Mie Goreng, Sate, Fried Rice with Chicken Wings, Kopi Latte. Mereka juga menyajikan masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan.
+    *   **Ulasan:** Rating 4.8/5 untuk layanannya di hotel.
+    *   **Alamat:** Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 22312, Indonesia (83R2+56 Lumban Silintong, Toba, Sumatera Utara, Indonesia)
+    *   **Longitude, Latitude:** 2.340638356, 99.05059712
+
+*   Ada juga sebuah **rumah makan Minang** yang direkomendasikan untuk makanan halal:
+    *   **Ulasan:** Rating 4.4/5. ""Located in the main road of Balige, approximately 15 minutes from downtown. Parking lot, clean toilet and musholla are available. I think this is the best Minang resto in Balige I've ever known. A little bit expensive but worth for starving stomach. The rendang meat was so tasty and original, as well as it's dendeng. Highly recommended place for halal food.""
+    *   Maaf, nama lengkap rumah makan Minang ini belum tersedia dalam informasi yang saya miliki.
+
+Semoga rekomendasi ini membantu perjalanan kuliner Anda di sekitar Danau Toba! Jika ada pertanyaan lain atau Anda ingin tahu lebih banyak tentang tempat spesifik, jangan ragu untuk bertanya.","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Menu  : Mie ayam bakso, Halal 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4.5/5. “Yang suka Mie ayam dan per baksoan, warung ini bisa jadi 
+pilihan saat berkunjung ke Balige. Harga makanan disini sangat terjangkau, rasa 
+enak dan bakso uratnya juga mantap dan pasti nya HALAL, INSYAALLAH. ” 
+ 
+Bakso Dorela 
+Alamat  Jl. Gereja No.Kelurahan, Lumban Dolok Haume Bange, Kec. Balige, Toba, 
+Sumatera Utara 22312, Indonesia (83M8+",0.001,True,4.47,0.001,8843.43,True
+Berapa harga makanan di Rumah Makan Islam Nauli?,['makanan'],"Harga makanan di Rumah Makan Islam Nauli umumnya terjangkau, dengan hidangan utama berkisar antara Rp 20.000 hingga Rp 40.000. Harga ini dapat bervariasi sedikit tergantung pada jenis lauk dan porsi yang dipilih.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan kekayaan kuliner di sini.
+
+Mengenai pertanyaan Anda tentang harga makanan di RM ISLAM “NAULI”, maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba atau tempat makan lainnya? Saya dengan senang hati akan membantu!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+rasa makanan ikan bakartnya mantaps, cumi goreng tepung mantaps, sukses ya 
+leon cafe, we’ll be back soon..       ” 
+ 
+Warung Mak Iwan 
+Alamat  : 83J8+MQR, Lumban Dolok Haume Bange, Kec. Balige, Toba, Sumatera 
+Utara, Indonesia 
+Longitude, Latitude : 2.331938077, 99.06682409 
+Menu  : Mie sop, Mie Goerng, Bakso 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4.2/5. “Ini tempat makan mi sop yang enak di Balige. Selain mi sop,,
+
+[Sumber 2 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+ada juga mi goreng atau bakso.  
+Harga terjangkau. Rasanya mantap dan enak. ” 
+ 
+RM Khas Batak Mata Mual 
+Alamat  : Jl. Lintas Sumatera No.Desa, Dolok Tolong, Kec. Balige, Toba, Sumatera 
+Utara 22313, Indonesia (82HP+58 Longat, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.328169837, 99.03569392 
+Menu  : Arsik Ikan Jahir, Arsik Ikan Mas 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 4/5. “Lokasi strategis, servis bagus dan cepat. ” 
+ 
+Rumah Makan Pondok Salero 
+Alamat  : Jl. Patuan Nagari No.Kelurahan, Sangkar Nihuta, Kec. Balige, Toba, 
+Sumatera Utara 22313, Indonesia (83M5+CX Sangkar Nihuta, Toba, Sumatera 
+Utara, Indonesia) 
+Longitude, Latitude : 2.333797116, 99.05988188 
+Menu  : Nasi Uduk, Lontong Gulai, Sate
+
+[Sumber 3 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Utara, Indonesia) 
+Longitude, Latitude : 2.333797116, 99.05988188 
+Menu  : Nasi Uduk, Lontong Gulai, Sate 
+Harga  : Rp 10.000,00 - Rp 25.000,00 
+Jam Operasional :  
+Ulasan  : Rating 4.2/5. “Untuk cita rasa makanan ini cukup enak dan layanannya juga 
+cukup ramah, model prasmanan, kita bebas pilih lauk yg di inginkan, kunjungan 
+kita saat itu suasana tidak ramai dan santai .” 
+ 
+Family Resto 
+Alamat  : Jl. Lintas Sumatera No.57a, Lumban Dolok Haume Bange, Kec. Balige, Toba, 
+Sumatera Utara 22312, Indonesia (83M7+HM Lumban Dolok Haume Bange, 
+Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.33118512, 99.05712281 
+Menu  : Nasi Goreng Ayam 
+Harga  : Rp 25.0000,00 - Rp 50.000,00 
+Jam Operasional :
+
+[Sumber 4 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Longitude, Latitude : 2.33118512, 99.05712281 
+Menu  : Nasi Goreng Ayam 
+Harga  : Rp 25.0000,00 - Rp 50.000,00 
+Jam Operasional :  
+Ulasan  : Rating 4.2/5. “Tempatnya sederhana, unik dan harga bersahabat .” 
+ 
+RM ISLAM “NAULI” 
+Alamat  : Jl. Bukit Barisan No.26, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia 
+(83Q7+25 Napitupulu Bagasan, Toba, Sumatera Utara, Indonesia)
+
+[Sumber 5 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Longitude, Latitude : 2.337908355, 99.062985 
+Menu  : Ayam Goreng, Rendang Kerbau, Ikan Mujahir Bakar, Sop Iga Kerbau 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Lokasi pas depan pelabuhan balige.dekat dengan lokasi wisata 
+pantai bulbul.kualitas rasa makanan enak dan bersih ” 
+ 
+RM ISLAM “NAULI” 
+Alamat  : Jl. Bukit Barisan No.26, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia 
+(83Q7+25 Napitupulu Bagasan, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.337908355, 99.062985 
+Menu  : Ayam Goreng, Rendang Kerbau, Ikan Mujahir Bakar, Sop Iga Kerbau 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Lokasi pas depan pelabuhan balige.dekat dengan lokasi wisata 
+pantai bulbul.kualitas rasa makanan enak dan bersih ”",6.978,False,8.445,6.978,1.21,False
+Jam berapa Rumah Makan Islam Nauli buka?,"['buka', 'hari']",Rumah Makan Islam Nauli buka setiap hari dari jam 07.00 pagi hingga 22.00 malam.,"Halo! Selamat datang di Danau Toba yang indah! Saya siap membantu Anda merencanakan perjalanan.
+
+Untuk pertanyaan Anda mengenai jam buka **RM ISLAM ""NAULI""**:
+
+*   **Jam Operasional**: Maaf, informasi tersebut belum tersedia.
+
+Namun, saya bisa berikan detail lain tentang **RM ISLAM ""NAULI""**:
+*   **Menu**: Nasi Goreng Ayam
+*   **Harga**: Rp 25.000,00 - Rp 50.000,00
+*   **Ulasan**: Rating 4.2/5. ""Tempatnya sederhana, unik dan harga bersahabat.""
+*   **Alamat**: Jl. Bukit Barisan No.26, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia (83Q7+25 Napitupulu Bagasan, Toba, Sumatera Utara, Indonesia)
+*   **Longitude, Latitude**: 2.33118512, 99.05712281
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba? Saya siap membantu!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Longitude, Latitude : 2.33118512, 99.05712281 
+Menu  : Nasi Goreng Ayam 
+Harga  : Rp 25.0000,00 - Rp 50.000,00 
+Jam Operasional :  
+Ulasan  : Rating 4.2/5. “Tempatnya sederhana, unik dan harga bersahabat .” 
+ 
+RM ISLAM “NAULI” 
+Alamat  : Jl. Bukit Barisan No.26, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia 
+(83Q7+25 Napitupulu Bagasan, Toba, Sumatera Utara, Indonesia)
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+beri",0.006,True,2.734,0.006,444.81,True
+Di mana saja tempat makan yang bagus di sekitar Danau Toba?,"['banyak', 'pilihan', 'tergantung', 'selera', 'hidangan', 'khas']","Ada banyak pilihan, tergantung selera Anda. Untuk hidangan khas Batak dengan pemandangan danau, coba restoran di Tomok atau Tuktuk Siadong. Jika ingin variasi internasional, beberapa hotel di Parapat juga menyediakannya.","Halo! Selamat datang di Danau Toba yang indah! Saya siap membantu Anda menemukan tempat makan yang bagus di sekitar sini.
+
+Berdasarkan informasi yang tersedia, berikut adalah beberapa tempat makan yang bisa Anda pertimbangkan:
+
+*   **Damar Toba ~ Lakeside Eatery & Stay** 🍽️
+    *   **Deskripsi**: Damar Toba adalah akomodasi dan tempat makan tepi Danau Toba di Pantai Lumban Silintong, Balige. Tempat ini menyediakan area makan terbuka dan tertutup dengan menu internasional, Asia, serta Damar Signatures, masakan Batak Toba halal yang diolah modern menggunakan bahan pilihan.
+    *   **Lokasi**: Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231
+    *   **Long & Lat**: 2.358818759, 99.04911658
+    *   **Review**: Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para staff bya juga ramah sekali”.
+
+*   **Pantai Lumban Silintong** 🏖️
+    *   **Review**: Rating 5/5. ""Tempat bagus, restoran nya banyak yang recommended"". Meskipun utamanya adalah pantai, ulasan menyebutkan banyak restoran yang direkomendasikan di sini.
+    *   **Lokasi**: Kecamatan Balige, Kabupaten Toba
+    *   **Alamat**: 82XR+J4W, Lumban Silintong, Kec. Balige, Toba, Sumatera Utara 22312
+
+Semoga rekomendasi ini membantu perjalanan kuliner Anda di Danau Toba! Jika ada pertanyaan lain atau ingin tahu lebih banyak tentang tempat-tempat lain, jangan ragu untuk bertanya.","[Data Terstruktur: Lokasi Database]
+
+Tempat 1: Swiss Van Toba
+- Kategori : danau
+- Deskripsi: Kawasan perairan menyerupai Danau Riffelsee Swiss. Garis pantai 28 km dengan air jernih dan sejuk. Cocok untuk berenang, berkeliling perahu, memancing, dan berkemah.
+- Lokasi   : Kecamatan Ajibata, Kabupaten Toba
+- Alamat   : JW59+FV, Horsik, Ajibata, Toba, North Sumatra
+- Harga    : Gratis
+- Jam Buka : 24 jam
+- Rating   : 5.0/5
+
+[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua ",0.014,True,3.912,0.014,275.87,True
+Apakah ada pertunjukan tari atau adat Batak yang bisa disaksikan di Toba?,"['pertunjukan', 'menyaksikan', 'tari', 'adat']","Tentu, Anda bisa menyaksikan pertunjukan tari dan adat Batak di berbagai tempat di sekitar Danau Toba, seperti di Tomok atau Ambarita. Pertunjukan ini sering menampilkan Tor-tor, tarian tradisional Batak, yang diiringi musik gondang. Beberapa hotel dan restoran juga rutin mengadakan pertunjukan serupa untuk para tamunya.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan pesona budaya di sini.
+
+Mengenai pertanyaan Anda tentang pertunjukan tari atau adat Batak yang bisa disaksikan di Toba, berdasarkan informasi yang saya miliki, Desa Wisata Jangga Dolok memiliki daya tarik utama pada keberadaan kompleks Rumah Bolon, rumah panggung tradisional Batak yang terbuat dari kayu dengan berbagai ornamen khas Batak (orga) yang memiliki makna filosofis tinggi. Rumah Bolon di Desa Jangga Dolok telah ada sejak 250-300 tahun lalu. Namun, dokumen tidak secara spesifik menyebutkan adanya pertunjukan tari atau adat Batak yang bisa disaksikan di sana.
+
+Jika Anda memiliki pertanyaan lain atau ingin tahu lebih banyak tentang tempat-tempat menarik di Danau Toba, jangan ragu untuk bertanya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231 
+Kategori :Hotel 
+ 
+Biaya masuk  : Rp 834.000 – Rp 1.015.000 
+ 
+Review  : Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para 
+staff bya juga ramah sekali”. 
+ 
+Villa Borneo 
+Deskripsi   : VILLA BORNEO berlokasi di Balige dan menawarkan taman, area
+
+[Sumber 2 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+pas libur lebaran 2025), kalo dulu (2018) masih kesentuh harga 10k hehehe. Pokoknya bagus 
+deng! Semoga makin membaik lagi! (Sc: google.com) 
+ 
+Desa Wisata Jangga Dolok 
+Deskripsi : Jangga Dolok merupakan desa wisata di Kecamatan Lumban 
+Julu, Kabupaten Toba. Daya tarik utama dari perkampungan yang berumur lebih dari 250 
+tahun ini terletak pada keberadaan kompleks Rumah Bolon, rumah panggung tradisional 
+Batak yang terbuat dari kayu dengan berbagai ornamen khas Batak (orga) yang memiliki 
+makna filosofis tinggi. Rumah Bolon di Desa Jangga Dolok telah ada sejak 250-300 tahun 
+lalu. 
+Longitude , Lattitude : 2.5550242790132556, 99.08355619659898 
+Lokasi : Kecamatan Lumban Julu, Kabupaten Toba
+
+[Sumber 3 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : Jl. Singgolom Raya, Lintong Nihuta, Kec. Tampahan, Toba, 
+Sumatera Utara 22312 82V9+43 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 5/5. Lokasi keren untuk melihat sunset dan menatap 
+keindahan danau toba dari sekitar kota balige (Sc: google.com) 
+ 
+Adian Nalambok 
+Deskripsi : Adian Nalambok hadir untuk para wisatawan yang ingin rehat 
+sejenak dalam perjalanan. Selain menyediakan tempat santai, area puncak perbukitan 
+menjadi titik pandang yang sudah banyak menarik minat pengunjung atas pesona alaminya. 
+Secara fungsional, Adian Nalambok merupakan rest area di Kab. Toba yang menjadi tempat
+
+[Sumber 4 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Sumatera Utara 22384 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 4.5/5. ""Tempat nya sangat bersih  
+Masih alami 
+Tapi belum ada wahana air nya"" 
+ 
+Bukit Tarabunga 
+Deskripsi : Bukit Tarabunga di Kecamatan Tampahan, dekat Balige, 
+menawarkan panorama Danau Toba yang menakjubkan, termasuk pemandangan Samosir, 
+Muara, dan Desa Meat. Kawasan perbukitan ini berpotensi dikembangkan sebagai area 
+wisata, termasuk arena motocross. Tarabunga terkenal sebagai lokasi favorit untuk 
+menikmati sunrise dan sunset, sebelum melanjutkan waktu bersantai ke kafe -kafe di 
+Lumban Silintong. 
+Longitude , Lattitude : 2.345042879, 99.01725513 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba
+
+[Sumber 5 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+kolam renang, area bermain anak, dan ruang pertemuan, serta 
+memiliki akses mudah ke tempat wisata di sekitar wilayah Toba 
+fantasi Toba. 
+Long & Lat   :  2.352903837, 99.12175214 
+ 
+Lokasi : Jl. Sisingamangaraja No.1, Ps. Laguboti, Kec. Laguboti, Toba, 
+Sumatera Utara 22381 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp499.000 - Rp575.000  
+ 
+Review  : Rating 4.1/5 ""Salah satu penginapan pilihan kalau ada acara di 
+porsea... suasana tenang, alam huta, kolam renang yg view sawah, 
+view kamar langsung ke luar teras open door yg lega, hamparan 
+hijaunya membuat betah, suasana resto yg nyaman..  
+Kamar5,0Layanan5,0Lokasi5,0  
+Sorotan hotelPemandangan yang indah · Tenang · Cocok untuk 
+anak-anak · Harga terbaik  
+KamarKamar bersih dan luas, air panas nya lancar",7.834,False,7.427,7.834,0.95,False
+Di mana saya bisa membeli ulos Batak asli di sekitar Balige?,"['toko', 'membeli', 'ulos', 'asli']","Anda bisa membeli ulos Batak asli di pasar tradisional Balige, seperti Pasar Balige, atau di toko-toko kerajinan tangan lokal di sekitar kota. Beberapa pengrajin juga menjual langsung dari rumah atau sanggar mereka.","Halo! Selamat datang di Danau Toba! Saya siap membantu perjalanan Anda.
+
+Berdasarkan informasi yang tersedia, saya belum menemukan tempat spesifik yang menjual ulos Batak asli di sekitar Balige.
+
+Namun, Anda bisa mengunjungi **Onan Balerong** di Balige. Meskipun fungsinya kini sebagai pasar tradisional yang aktif dan pusat aktivitas ekonomi, pasar ini sangat ramai terutama pada hari Jumat yang dikenal sebagai ""Hari Pekan"". Mungkin saja Anda bisa menemukan penjual ulos di sana.
+
+Berikut detail Onan Balerong:
+*   **Nama Lengkap:** Onan Balerong
+*   **Lokasi:** Kecamatan Balige, Kabupaten Toba
+*   **Alamat:** Jl. Lintas Sumatera No.88, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312
+*   **Longitude, Latitude:** 2.334614936, 99.06575814
+*   **Kategori:** Budaya
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00"" (Catatan: Review ini sepertinya salah alamat, merujuk ke kolam renang bukan pasar).
+
+Apakah ada hal lain yang ingin Anda tanyakan atau tempat lain yang ingin Anda ketahui?","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Onan Balerong, adalah kompleks bersejarah di pusat kota Balige yang memiliki enam 
+bangunan dengan desain atap dan ukiran khas rumah adat Batak. Awalnya berfungsi 
+sebagai tempat musyawarah para tokoh adat, kini Balerong menjadi pasar tradisional yang 
+aktif dan pusat aktivitas ekonomi di Balige. Pasar ini sangat ramai terutama pada hari 
+Jumat, yang dikenal sebagai ""Hari Pekan"". 
+Longitude , Lattitude : 2.334614936, 99.06575814 
+Lokasi : Kecamat",0.003,True,8.917,0.003,2962.42,True
+Apakah ada museum budaya Batak di sekitar Danau Toba?,['budaya'],"Ya, ada Museum Batak Tomok di Pulau Samosir yang menyimpan koleksi artefak dan peninggalan budaya Batak. Selain itu, Anda juga bisa mengunjungi Huta Bolon Simanindo yang merupakan museum hidup budaya Batak Toba.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan kekayaan budaya di sini.
+
+Tentu saja! Ada museum budaya Batak yang bisa Anda kunjungi di sekitar Danau Toba.
+
+*   **Museum Batak TB Silalahi Center**
+    *   **Deskripsi**: Museum ini merupakan salah satu fasilitas rekreasi di kompleks tersebut, selain kolam renang (Kolam Renang NaIas), restoran, dan tempat lainnya untuk menikmati alam Danau Toba.
+    *   **Lokasi**: Kecamatan Balige, Kabupaten Toba
+    *   **Alamat**: 82MW+RWJ, Silalahi Pagar Batu, Kec. Balige, Toba, Sumatera Utara 22312
+    *   **Kategori**: Wisata Rekreasi
+    *   **Longitude, Lattitude**: 2.330965357, 99.04951613
+    *   **Biaya Masuk**: Rp 15.000 – Rp 20.000 (Untuk kolam renang, tiket masuk hari Senin - Jumat Rp 15.000,00)
+    *   **Jam Operasional**: 09.00 WIB – 18.00 WIB
+    *   **Review**: Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00""
+
+Apakah ada hal lain yang ingin Anda ketahui tentang Danau Toba? Jangan ragu untuk bertanya! 😊","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian N",0.006,True,3.205,0.006,496.44,True
+Apa itu Huta Ginjang dan bagaimana cara ke sana?,"['sebuah', 'bukit', 'tepi']","Huta Ginjang adalah sebuah bukit di tepi Danau Toba yang menawarkan pemandangan indah dan menjadi lokasi menara telekomunikasi. Anda bisa mencapainya dengan berkendara sekitar 20-30 menit dari Balige, mengikuti jalan utama menuju arah barat daya.","Maaf, informasi tersebut belum tersedia dalam dokumen yang saya miliki. Silakan coba nama tempat lain atau ubah pertanyaan agar lebih spesifik.",,0.081,False,0.089,0.081,1.11,False
+Bagaimana sejarah Balige sebagai kota di tepi Danau Toba?,"['pusat', 'lama', 'perdagangan', 'administrasi', 'tepi']",Balige telah lama menjadi pusat perdagangan dan administrasi di tepi Danau Toba. Kota ini berkembang pesat di bawah pemerintahan kolonial Belanda sebagai pusat pendidikan dan penyebaran agama Kristen di wilayah Batak.,"Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan pesona tempat ini.
+
+Maaf, informasi mengenai sejarah Balige sebagai kota di tepi Danau Toba belum tersedia dalam dokumen yang saya miliki.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar tempat wisata, kuliner, atau penginapan di Danau Toba? Saya dengan senang hati akan membantu!","[Sumber 1 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+condong untuk take away. Overall 5 out of 5 lah untuk tempat ini. ” 
+ 
+Amora Cafe 
+Alamat  : 83CQ+GVR, Parsuratan, Kec. Balige, Toba, Sumatera Utara 22312, Indonesia  
+Longitude, Latitude : 2.321574998, 99.08961251 
+Menu  :  
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 3.8/5.  
+ 
+SATE MADURA Cabang Bundaran BALIGE 
+Alamat  : Di Sebrang Bank BRI, Di Sebrang Warkop Kak NOVA, Jl. Sisingamangaraja, 
+Balige Lama, Kec. Balige, Sumatera Utara 22312, Indonesia (83M9+J9 Balige 
+II, Toba, Sumatera Utara, Indonesia) 
+Longitude, Latitude : 2.334281876, 99.06836892 
+Menu  : Sate Kambing, Sate Ayam 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Sate kambing dan sate ayamnya enaaaak, lontongnyaa juga lembut
+
+[Sumber 2 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 5/5. “Sate kambing dan sate ayamnya enaaaak, lontongnyaa juga lembut 
+banget. Sayang gak ada nasi. Boleh dipesan utk di antar ke kedai kopi 
+Partungkoan karena seberangan jalan. Harganya juga sangat ramah di kantong. 
+Top lah kalau nyari sate kambing/ayam di Toba ” 
+ 
+BAKSO PAK RADIT (BAKSO KHAS MALANG) 
+Alamat  : 83M6+C8G, Pardede Onan, Kec. Balige, Toba, Sumatera Utara, Indonesia 
+Longitude, Latitude : 2.333721477, 99.0608357 
+Menu  : Bakso Kosong, Mie Ayam 
+Harga  :  
+Jam Operasional :  
+Ulasan  : Rating 3.6/5. “Baksonya enak, tapi mie ayamnya kurang menurut saya, kurang 
+kena gitu” 
+ 
+Hutanta Cafe 
+Alamat  : Jl. P. Siantar No.KM 2, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara
+
+[Sumber 3 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+kena gitu” 
+ 
+Hutanta Cafe 
+Alamat  : Jl. P. Siantar No.KM 2, Sibola Hotangsas, Kec. Balige, Toba, Sumatera Utara 
+22312, Indonesia (83QJ+8G Sibola Hotangsas, Toba, Sumatera Utara, 
+Indonesia) 
+Longitude, Latitude : 2.338481316, 99.08128734
+
+[Sumber 4 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+Menu  : Kopi Dingin, Juice Nanas Kue Nanas, Madu, Odeng, Nasi Goreng Ayam, Sate 
+Udang Pete, Eskrim Yogurt, Cafe Latte, Fish and Chips, Signature Bukit 
+Coffee, Mr Crab Cakes, Caffè Latte, Sandwich Hutanta, Sparkling Mojito, 
+Pakcoy Ayam, Sop IGA Sapi, Fettucine Carbonara Pasta, Sop Kambing 
+Harga  : Rp 25.000,00 - Rp 50.000,00 
+Jam Operasional :  
+Ulasan  : Rating 4.5/5. “Suasana yg nyaman, cocok buat family time, dan pastinya 
+menunya enak-enak        Yuk cobain.. … ” 
+ 
+Tepi Danau Bistro 
+Alamat  : Jl. Pemandian No.1, Sangkar Nihuta, Kec. Balige, Toba, Sumatera Utara 
+22312, Indonesia (83M4+PC Sangkar Nihuta, Toba, Sumatera Utara, 
+Indonesia) 
+Longitude, Latitude : 2.334642756, 99.05606368
+
+[Sumber 5 | Data Rumah Makan | hal. ?]
+[Sumber: data rumah makan.pdf]
+22312, Indonesia (83M4+PC Sangkar Nihuta, Toba, Sumatera Utara, 
+Indonesia) 
+Longitude, Latitude : 2.334642756, 99.05606368 
+Menu  : Nasi Goreng Andaliman, Nasi Blackpepper Sapi, Nasi Goreng Kampung, 
+Ayam Bakar Tepi Danau, Air Mineral, Kopi Sanger, Nasi Goreng Seafood, 
+Cappucino, Affogatto, Strawberry Float, Kwetiau Goreng Seafood, Tomyam, 
+Pisang Goreng, Mie Goreng Indonesia, Banana Smoothies, Kopi Tubruk, Thai 
+Iced Tea, Hot Milk, Americano 
+Harga  : Rp 25.000,00 - Rp 75.000,00 
+Jam Operasional :  
+Ulasan  : Rating 4.2/5. “Breakfast buffet has chicken porridge, bakso noodle, bread and 
+jam, local fruits. But this applies if guests exceed 10 pax.  
+Else it is basic bread, chocolate, coffee or tea delivered to room. ” 
+ 
+Kedai Mie Lily",8.796,False,6.887,8.796,0.78,False
+Adakah galeri seni atau pusat kerajinan tangan di Balige?,"['kerajinan', 'seni', 'tangan', 'toko', 'beberapa']","Ya, ada beberapa galeri seni dan pusat kerajinan tangan di Balige, seperti Balige Art Center dan toko-toko kerajinan lokal di sekitar pasar. Anda dapat menemukan berbagai macam seni dan kerajinan tangan Batak Toba di sana.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda menjelajahi keindahan dan kekayaan budaya di sini.
+
+Berdasarkan informasi yang tersedia, sayangnya tidak disebutkan secara spesifik mengenai galeri seni atau pusat kerajinan tangan di Balige.
+
+Namun, Balige memiliki **Onan Balerong** yang merupakan pasar tradisional aktif dan pusat aktivitas ekonomi di Balige. Pasar ini sangat ramai terutama pada hari Jumat yang dikenal sebagai ""Hari Pekan"". Mungkin Anda bisa menemukan kerajinan tangan lokal di sana.
+
+*   **Nama Lengkap:** Onan Balerong
+*   **Kategori:** Budaya
+*   **Lokasi:** Kecamatan Balige, Kabupaten Toba
+*   **Alamat:** Jl. Lintas Sumatera No.88, Napitupulu Bagasan, Kec. Balige, Toba, Sumatera Utara 22312
+*   **Longitude, Lattitude:** 2.334614936, 99.06575814
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 24 jam
+*   **Review:** Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari Senin - Jumat Rp 15.000,00"" (Catatan: Review ini tampaknya salah mengacu pada kolam renang, bukan Onan Balerong itu sendiri).
+
+Jika Anda ingin mencari tempat menginap di Balige, ada beberapa pilihan hotel yang dekat dengan berbagai fasilitas dan destinasi wisata:
+
+*   **Hotel di Balige (tanpa nama spesifik):**
+    *   Akses sangat mudah ke jalan utama.
+    *   Dekat dengan pelabuhan Ferry dan perkantoran Pemda.
+    *   Bisa jalan kaki ke pasar tradisional Balige dan kuliner malam hari.
+    *   Pagi hari tersedia warung makan muslim (lontong sayur, dll.).
+    *   Tersedia ruang parkir luas.
+    *   Beberapa kamar menawarkan view danau dengan balkon pribadi.
+    *   Ruang sarapan indah di tepi Danau Toba, namun variasi sarapan terbatas (nasi goreng, bihun goreng, telur dadar, buah slice, bubur kacang hijau).
+    *   Menawarkan fasilitas lengkap seperti restoran (hidangan lokal dan internasional), kolam renang luar ruangan, area lounge, pusat kebugaran, dan fasilitas pertemuan.
+    *   Sering menghadirkan aktivitas budaya (musik dan tarian Batak) serta tur lokal ke Museum TB Silalahi Center, Pasar Balige, dan kawasan wisata Danau Toba lainnya.
+
+*   **Hotel Santo Djaya:**
+    *   **Deskripsi:** Terletak di Jl. SM -Raja (No. 95), Pasar Porsea, Kabupaten Toba Samosir. Menawarkan akomodasi dengan tarif relatif terjangkau dan fasilitas dasar.
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang Danau Toba? Saya siap membantu!","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Onan Balerong, adalah kompleks bersejarah di pusat kota Balige yang memiliki enam 
+bangunan dengan desain atap dan ukiran khas rumah adat Batak. Awalnya berfungsi 
+sebagai tempat musyawarah para tokoh adat, kini Balerong menjadi pasar tradisional yang 
+aktif dan pusat aktivitas ekonomi di Balige. Pasar ini sangat ramai terutama pada hari 
+Jumat, yang dikenal sebagai ""Hari Pekan"". 
+Longitude , Lattitude : 2.334614936, 99.06575814 
+Lokasi : Kecamatan Balige, Kabupaten Toba 
+Alamat : Jl. Lintas Sumatera No.88, Napitupulu Bagasan, Kec. Balige, 
+Toba, Sumatera Utara 22312 
+Kategori : Budaya 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 4/5. ""Kolam renang ini menyediakan Tiket Masuk Hari 
+Senin - Jumat Rp 15.000,00"" 
+ 
+Bukit Dolok Tolong
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+dengan akses yang sangat mudah ke jalan utama. Dekat dengan 
+pelabuhan Ferry .  
+Juga berada di pusat kota Balige dekat dengan perkantoran 
+Pemda. Untuk ke pasar tradisional Balige bisa jalan kaki. Mencari 
+kuliner malam hari juga bisa dengan jalan kaki.  
+Pagi hari sekitar hotel tersedia warung makan muslim yang 
+menjual lontong sayur dan berbagai makanan lainnya  
+Tersedia ruang parkiran cukup luas.  
+Saya menempati deluxe room dengan view danau dilantai 2.  
+Kamar de ngan view danau hanya beberapa.  
+Ruang sarapan sangat indah ditepi danau Toba.  
+Namun sayang variasi sarapan terbatas. Hanya nasi goreng, bihun 
+goreng, telur dadar, dan buah slice serta bubur kacang hijau.""  
+ 
+""Lokasi nya enak, pinggir danau Toba,
+
+[Sumber 3 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+serta fasilitas lengkap yang dirancang untuk memberikan 
+pengalaman yang berkesan. Kamar -kamarnya dirancang nyaman, 
+dengan pilihan mulai dari kamar standar hingga suite mewah. 
+Beberapa kamar menawarkan pemandangan langsung ke Danau 
+Toba serta balkon pribadi. Fasilitas umum hotel meliputi restoran 
+dengan hidangan lokal dan internasional, kolam renang luar 
+ruangan, area lounge, pusat kebugaran, dan fasilitas pertemuan. 
+Hotel ini sering menghadirkan aktivitas budaya seperti 
+pertunjukan musik dan tarian Batak, serta menyediakan tur lokal 
+menuju destinasi sekitar Balige, termasuk Museum TB Silalahi 
+Center, Pasar Balige, dan kawasan wisata Danau Toba lainnya. 
+Lokasinya yang strategis memberikan akses mudah ke berbagai
+
+[Sumber 4 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+permata tersembunyi terbaik di sekitar Balige. Pasti akan kembali 
+lagi suatu hari nanti. Pertahankan pelayanannya yang baik."" 
+ 
+Hotel Santo Djaya 
+Deskripsi   : Hotel Santo Djaya terletak di Jl. SM -Raja (No. 95), Pasar Porsea, 
+Kabupaten Toba Samosir, menjadikannya salah satu pilihan 
+penginapan di Porsea. Hotel ini menawarkan akomodasi dengan 
+tarif relatif terjangkau dan menyediakan fasilitas dasar untuk",11.442,False,7.002,11.442,0.61,False
+Kapan waktu terbaik untuk mengunjungi festival budaya di Toba?,"['festival', 'bulan', 'terbaik']","Waktu terbaik untuk mengunjungi festival budaya di Toba adalah antara bulan Juni dan September, saat cuaca cerah dan banyak acara yang diselenggarakan. Beberapa festival besar seperti Pesta Danau Toba biasanya diadakan pada bulan September.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Maaf, informasi mengenai waktu terbaik untuk mengunjungi festival budaya di Toba belum tersedia dalam dokumen yang saya miliki. Namun, saya punya informasi menarik tentang **Asahan Whitewater Festival** yang diikuti atlet internasional.
+
+Berikut detailnya:
+*   **Nama Lengkap:** Asahan Whitewater Festival
+*   **Kategori:** Alam
+*   **Lokasi:** Pintu Pohan Meranti, Kabupaten Toba
+*   **Alamat:** Jalan Lintas Sigura - Gura, Parhitean, North Meranti, Pintu Pohan Merant, Toba, North Sumatra 21274
+*   **Longitude, Lattitude:** 2.561289177, 99.34421649
+*   **Biaya Masuk:** Gratis
+*   **Jam Operasional:** 08.00 WIB – 17.00 WIB
+*   **Review:** Rating 5/5. ""Salah satu ter the best Rafting di Dunia sangat seru dan luar biasa menegangkan PUAS PUAS PUAS""
+*   **Cara Mencapai Lokasi:** Pengunjung dapat mencapai lokasi melalui jalur Medan – Kisaran atau Medan – Porsea.
+*   **Penginapan:** Tersedia penginapan rumah warga di sekitar area arung jeram.
+
+Apakah ada hal lain yang ingin Anda tanyakan tentang tempat wisata atau akomodasi di Danau Toba?","[Sumber 1 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+penyelenggaraan Asahan Whitewater Festival yang diikuti atlet internasional. Pengunjung 
+dapat mencapai lokasi melalui jalur Medan –Kisaran atau Medan –Porsea, dan tersedia 
+penginapan rumah warga di sekitar area arung jeram. 
+Longitude , Lattitude : 2.561289177, 99.34421649 
+Lokasi : Pintu Pohan Meranti, Kabupaten Toba 
+Alamat : Jalan Lintas Sigura - Gura, Parhitean, North Meranti, Pintu Pohan 
+Merant, Toba, North Sumatra 21274 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 08.00 WIB – 17.00 WIB 
+Review : Rating 5/5. ""Salah satu ter the best Rafting di Dunia  
+sangat seru dan luar biasa menegangkan PUAS PUAS PUAS"" 
+ 
+Air Terjun Bukit Gibeon 
+Deskripsi : Bukit Gibeon di Desa Parsaoran Sibisa, Ajibata, Toba, adalah
+
+[Sumber 2 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+kolam renang, area bermain anak, dan ruang pertemuan, serta 
+memiliki akses mudah ke tempat wisata di sekitar wilayah Toba 
+fantasi Toba. 
+Long & Lat   :  2.352903837, 99.12175214 
+ 
+Lokasi : Jl. Sisingamangaraja No.1, Ps. Laguboti, Kec. Laguboti, Toba, 
+Sumatera Utara 22381 
+Kategori : Hotel 
+ 
+Biaya masuk  : Rp499.000 - Rp575.000  
+ 
+Review  : Rating 4.1/5 ""Salah satu penginapan pilihan kalau ada acara di 
+porsea... suasana tenang, alam huta, kolam renang yg view sawah, 
+view kamar langsung ke luar teras open door yg lega, hamparan 
+hijaunya membuat betah, suasana resto yg nyaman..  
+Kamar5,0Layanan5,0Lokasi5,0  
+Sorotan hotelPemandangan yang indah · Tenang · Cocok untuk 
+anak-anak · Harga terbaik  
+KamarKamar bersih dan luas, air panas nya lancar
+
+[Sumber 3 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : Jl. Singgolom Raya, Lintong Nihuta, Kec. Tampahan, Toba, 
+Sumatera Utara 22312 82V9+43 
+Kategori : Alam 
+Biaya Masuk : Gratis 
+Jam Operasional : 24 jam 
+Review : Rating 5/5. Lokasi keren untuk melihat sunset dan menatap 
+keindahan danau toba dari sekitar kota balige (Sc: google.com) 
+ 
+Adian Nalambok 
+Deskripsi : Adian Nalambok hadir untuk para wisatawan yang ingin rehat 
+sejenak dalam perjalanan. Selain menyediakan tempat santai, area puncak perbukitan 
+menjadi titik pandang yang sudah banyak menarik minat pengunjung atas pesona alaminya. 
+Secara fungsional, Adian Nalambok merupakan rest area di Kab. Toba yang menjadi tempat
+
+[Sumber 4 | Wisata | hal. ?]
+[Sumber: wisata.pdf]
+Secara fungsional, Adian Nalambok merupakan rest area di Kab. Toba yang menjadi tempat 
+istirahat pejalan dan wisatawan. Sisi menarik dari area ini tidak hanya datang dari fasilitas 
+yang modern, namun pemandangan menakjubkan yang membuat betah. 
+Longitude , Lattitude : 2.307658460798811, 99.01336656961286 
+Lokasi : Kecamatan Tampahan, Kabupaten Toba 
+Alamat : Jl. Lintas Sumatera No.126, Gurgur Aek Raja, Kec. Tampahan, 
+Toba, Sumatera Utara 22312 
+Kategori : Alam 
+Biaya Masuk : Rp 10.000 
+Jam Operasional : 08.00 WIB – 21.00 WIB
+
+[Sumber 5 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+menghadap ke danau. Semua kamar bebas rokok. Menyediakan 
+area makan terbuka dan tertutup dengan menu internasional, 
+Asia, serta Damar Signatures, masakan Batak Toba halal yang 
+diolah modern menggunakan bahan pilihan. Damar Toba juga 
+menyediakan kenyamanan modern dan pesona lokal, Damar Toba 
+menjadi titik awal ideal untuk menikmati Balige dan menjelajahi 
+keindahan Danau Toba. 
+Long & Lat   : 2.358818759, 99.04911658 
+ 
+Lokasi : Jl. Pemandian No.94, Kec. Balige, Sumatera Utara 2231 
+Kategori :Hotel 
+ 
+Biaya masuk  : Rp 834.000 – Rp 1.015.000 
+ 
+Review  : Rating 4.8/5 “Pelayanannya bagus, sangat teroganisir, dan para 
+staff bya juga ramah sekali”. 
+ 
+Villa Borneo 
+Deskripsi   : VILLA BORNEO berlokasi di Balige dan menawarkan taman, area",7.624,False,12.044,7.624,1.58,False
+Bagaimana cara mencapai Balige dari Bandara Silangit?,"['naik', 'taksi', 'umum', 'langsung']","Anda dapat naik taksi atau bus umum dari Bandara Silangit langsung ke Balige. Perjalanan biasanya memakan waktu sekitar 30-45 menit, tergantung lalu lintas.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Untuk mencapai Balige dari Bandara Silangit, Anda dapat menggunakan taksi atau transportasi online. Estimasi waktu tempuh adalah sekitar 15-20 menit.
+
+Jika Anda memiliki pertanyaan lain atau ingin tahu lebih banyak tentang tempat-tempat menarik di sekitar Danau Toba, jangan ragu untuk bertanya, ya!","[Sumber 1 | Hotel | hal. ?]
+[Sumber: hotel.pdf]
+Center, Pasar Balige, dan kawasan wisata Danau Toba lainnya. 
+Lokasinya yang strategis memberikan akses mudah ke berbagai 
+tempat wisata, pusat kota, fasilitas kuliner, dan transportasi. 
+Bandara Silangit dapat dicapai dalam waktu sekitar 15 –20 menit 
+menggunakan taksi atau transportasi online. Dengan kombinasi 
+pemandangan Danau Toba, layanan ramah, fasilitas lengkap, serta 
+aksesibilitas yang mudah, Hotel Dizon Balige menjadi pilihan 
+akomodasi ",0.007,True,2.756,0.007,417.07,True
+Berapa lama perjalanan dari Medan ke Balige menggunakan bus?,"['biasanya', 'memakan', 'waktu']","Perjalanan bus dari Medan ke Balige biasanya memakan waktu sekitar 5 hingga 7 jam, tergantung pada lalu lintas dan jumlah pemberhentian.","Halo! Selamat datang di Danau Toba! Saya siap membantu Anda merencanakan perjalanan yang tak terlupakan.
+
+Untuk perjalanan dari Medan ke Balige menggunakan bus, dokumen yang tersedia tidak secara spesifik menyebutkan estimasi waktu tempuh. Namun, Koperasi Bintang Tapanuli (KBT) adalah angkutan umum bus yang melayani rute dari Medan ke berbagai wilayah di Tapanuli, termasuk Balige.
+
+Anda dapat menemukan Koperasi Bintang Tapanuli (KBT) di:
+*   **Lokasi**: Pardede Onan, Kec. Balige, Toba, Sumatera Utara
+*   **Long & Lat**: 2.3340735, 99.0605884
+*   **Estimasi Biaya**: 70.000 - 80.000
+
+Jadwal keberangkatan KBT dari Medan adalah pada jam-jam tertentu, seperti pukul 07.00 dan 15.00 menuju Tantom, serta jadwal lainnya ke tujuan lain di Tapanuli.
+
+Selain itu, ada juga Sejahtera Transindo yang melayani rute di Medan dan sekitarnya, termasuk daerah tujuan seperti Prapat. Untuk informasi lebih lanjut mengenai jadwal keberangkatan Sejahtera Transindo, Anda dapat menghubungi kontak yang tertera di situs resmi mereka seperti Platinum Medan atau Perwakilan Pancing dan Terminal Amplas, atau melalui akun media sosial mereka.
+
+Apakah ada hal lain yang ingin Anda tanyakan seputar Danau Toba? Saya siap membantu!","[Sumber 1 | Transportasi | hal. ?]
+[Sumber: transportasi.pdf]
+Estimasi Biaya : 15.000/Orang ; 15.000/ Kendaraan 
+ 
+ 
+KBT 
+Deskripsi : Koperasi Bintang Tapanuli (KBT) adalah angkutan umum bus 
+yang melayani rute dari Medan ke berbagai wilayah di Tapanuli, 
+seperti Pematang Siantar, Parapat, Balige, Sibolga, hingga 
+Padangsidimpuan dan Penyabungan. Layanan ini menyediakan 
+jadwal keberangkatan tetap dari Medan pada jam -jam tertentu, 
+seperti pukul 07.00 dan 15.00 menuju Tantom, serta jadwal 
+lain",0.0,True,8.272,0.0,0.0,True
+Apakah ada layanan feri di sekitar Danau Toba untuk wisatawan?,"['layanan', 'feri', 'tersedia', 'sekitar']","Ya, ada layanan feri yang tersedia di sekitar Danau Toba untuk wisatawan. Feri menghubungkan Parapat di daratan utama dengan Tomok atau Tuk Tuk di Pulau Samosir, memberikan akses mudah ke berbagai objek wisata.","Halo! Tentu saja ada layanan feri di sekitar Danau Toba untuk wisatawan.
+
+Berikut informasinya:
+
+🚢 **KMP Ihan Batak**
+*   **Deskripsi**: KMP Ihan Batak adalah kapal ferry Ro-Ro pertama yang dibangun oleh pemerintah untuk Danau Toba. Kapal ini berkapasitas 300 Gross Tonage (GT) dan mampu mengangkut sekitar 280 penumpang serta 35-40 kendaraan. Dioperasikan oleh ASDP, kapal ini melayani rute penyeberangan penting di Danau Toba, seperti Ajibata-Ambarita, untuk meningkatkan konektivitas dan mendukung pariwisata di kawasan tersebut.
+*   **Long & Lat**: 2.659407, 98.9305859
+*   **Lokasi**: Jl. Bukit Barisan No.15, Kec. Balige, Toba, Sumatera Utara 22312
+*   **Kategori**: Kapal Ferry
+*   **Estimasi Biaya**:
+    *   Rp 15.000 - Rp 50.000 untuk kendaraan roda dua
+    *   Rp 170.000 - Rp 1.172.000 untuk tarif mobil
+
+Semoga informasi ini membantu perjalanan Anda! Jika ada pertanyaan lain, jangan ragu untuk bertanya.","[Sumber 1 | Transportasi | hal. ?]
+[Sumber: transportasi.pdf]
+digunakan untuk mengangkut warga dan merupakan bagian dari 
+aktivitas transportasi sehari-hari di wilayah sekitar Danau Toba. 
+Long & Lat   : 2.6671407,98.9371153 
+ 
+Lokasi  : Jl. Sisingamangaraja No.97, Pardamean Ajibata, Kec. Ajibata, 
+Toba, Sumatera Utara 21174 
+Kategori : Angkutan Umum 
+Estimasi Biaya : 65.000-70.000 
+ 
+Sejahtera 
+Deskripsi : Sejahtera Transindo adalah perusahaan penyedia layanan 
+transportasi darat, terutama bus,",0.004,True,3.049,0.004,759.19,True
