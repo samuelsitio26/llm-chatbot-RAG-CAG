@@ -1,0 +1,61 @@
+{
+  "timestamp": "20260408_160805",
+  "dataset_size": 200,
+  "rag": {
+    "time_avg": 6.859,
+    "time_std": 5.0969,
+    "time_min": 0.028,
+    "time_max": 39.369,
+    "chr": 0.0,
+    "bert": 0.6561,
+    "bert_std": 0.0338,
+    "comp": 0.5466,
+    "comp_std": 0.3484,
+    "hall": 0.4319,
+    "hall_std": 0.1553,
+    "hall_n": 192,
+    "irr": 0.1122,
+    "irr_std": 0.2153,
+    "rel": 0.8878,
+    "rel_std": 0.2153,
+    "recall": 0.4703,
+    "recall_std": 0.3495,
+    "eir": 0.1945,
+    "eir_std": 0.2207,
+    "em": 0.0,
+    "em_std": 0.0
+  },
+  "cag": {
+    "time_avg": 1.0345,
+    "time_std": 3.8809,
+    "time_min": 0.004,
+    "time_max": 41.094,
+    "chr": 88.5,
+    "bert": 0.8295,
+    "bert_std": 0.1745,
+    "comp": 0.7903,
+    "comp_std": 0.306,
+    "hall": 0.3919,
+    "hall_std": 0.1532,
+    "hall_n": 95,
+    "irr": 0.1232,
+    "irr_std": 0.1819,
+    "rel": 0.8768,
+    "rel_std": 0.1819,
+    "recall": 0.2384,
+    "recall_std": 0.2722,
+    "eir": 0.3675,
+    "eir_std": 0.2934,
+    "em": 0.5,
+    "em_std": 0.5013
+  },
+  "speedup_factor": 6.6303,
+  "scenario_faq": {
+    "total_hits": 176,
+    "avg_time": 0.011
+  },
+  "scenario_kvcache": {
+    "total_tested": 24,
+    "avg_speedup": 46.738
+  }
+}
