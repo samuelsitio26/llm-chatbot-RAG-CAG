@@ -73,7 +73,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Labersa Hotel & Convention Center Toba Balige, seperti: Kamar Deluxe, Deluxe, Deluxe Premiere, Junior Suite, Toba Suite, Royal Suite"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Labersa Hotel & Convention Center Toba Balige:\n1. Kamar Deluxe\n2. Deluxe\n3. Deluxe Premiere\n4. Junior Suite\n5. Toba Suite\n6. Royal Suite"
   },
   {
     "question": "Fasilitas kamar apa saja yang tersedia di Labersa Hotel & Convention Center Toba Balige?",
@@ -221,11 +221,11 @@
   },
   {
     "question": "Apa yang terdekat dari Sapadia Villa Balige?",
-    "answer": "Berikut adalah yang terdekat dari Sapadia Villa Balige: Museum Batak TB Silalahi, SMP N 4 Balige"
+    "answer": "Berikut adalah yang terdekat dari Sapadia Villa Balige:\n1. Museum Batak TB Silalahi\n2. SMP N 4 Balige"
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Sapadia Villa Balige?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Sapadia Villa Balige, seperti: Kamar Standar, Deluxe Room - Atas"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Sapadia Villa Balige:\n1. Kamar Standar\n2. Deluxe Room - Atas"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di Sapadia Villa Balige?",
@@ -285,7 +285,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Gemma Hotel Balige?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Gemma Hotel Balige, seperti: Superior Double Countryside View, Superior Twin Countryside View, Deluxe Double Lake View, Executive Room Lake View"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Gemma Hotel Balige:\n1. Superior Double Countryside View\n2. Superior Twin Countryside View\n3. Deluxe Double Lake View\n4. Executive Room Lake View"
   },
   {
     "question": "Fasilitas kamar apa saja yang tersedia di Gemma Hotel Balige?",
@@ -353,7 +353,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Hotel Tiara Bunga?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Tiara Bunga, seperti: Executive Lake View, Deluxe Lake View, Villa Ucok - 4 Bedroom Lake View, Villa Teluk Bunga - 7 Bedroom Lake View, Villa Tb - 8 Bedroom Lake View"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Tiara Bunga:\n1. Executive Lake View\n2. Deluxe Lake View\n3. Villa Ucok - 4 Bedroom Lake View\n4. Villa Teluk Bunga - 7 Bedroom Lake View\n5. Villa Tb - 8 Bedroom Lake View"
   },
   {
     "question": "Fasilitas kamar apa saja yang tersedia di Hotel Tiara Bunga?",
@@ -541,7 +541,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di RAP Hotel Balige?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di RAP Hotel Balige, seperti: Superior Queen, Superior Twin, Deluxe Terrace"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di RAP Hotel Balige:\n1. Superior Queen\n2. Superior Twin\n3. Deluxe Terrace"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di RAP Hotel Balige?",
@@ -825,7 +825,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Lago Hotel and Resto?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Lago Hotel and Resto, seperti: Twin, Single View Cafe Pemandangan, Single Ac Sawah"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Lago Hotel and Resto:\n1. Twin\n2. Single View Cafe Pemandangan\n3. Single Ac Sawah"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di Lago Hotel and Resto?",
@@ -941,7 +941,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Hotel Sere Nauli?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Sere Nauli, seperti: Executive Twin Road, Executive King, Superior King Garden And Mountain, Superior Twin Garden And Mountain, Deluxe King Garden And Mountain, Suite Garden And Mountain, Vila Garden, Mountain, Pool"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel Sere Nauli:\n1. Executive Twin Road\n2. Executive King\n3. Superior King Garden And Mountain\n4. Superior Twin Garden And Mountain\n5. Deluxe King Garden And Mountain\n6. Suite Garden And Mountain\n7. Vila Garden, Mountain, Pool"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di Hotel Sere Nauli?",
@@ -1057,7 +1057,7 @@
   },
   {
     "question": "Apa saja fasilitas utama di Hotel Nabasa?",
-    "answer": "Fasilitas paling populer di Hotel Nabasa meliputi: - Wi-Fi (gratis), - Tempat parkir (gratis), - Ber-AC, - Sarapan"
+    "answer": "Fasilitas paling populer di Hotel Nabasa meliputi:\n1. Wi-Fi (gratis)\n2. Tempat parkir (gratis)\n3. Ber-AC\n4. Sarapan"
   },
   {
     "question": "Apakah Hotel Nabasa menawarkan Wi-Fi gratis?",
@@ -1113,7 +1113,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Nabasa Hotel Balige?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Nabasa Hotel Balige, seperti: Standard B, Superior"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Nabasa Hotel Balige:\n1. Standard B\n2. Superior"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di Nabasa Hotel Balige?",
@@ -1145,7 +1145,7 @@
   },
   {
     "question": "Apa saja fasilitas utama di Mutiara Balige Hotel?",
-    "answer": "Fasilitas paling populer di Mutiara Balige Hotel meliputi: - Wi-Fi (gratis), - Tempat parkir (gratis), Sarapan, - Restoran"
+    "answer": "Fasilitas paling populer di Mutiara Balige Hotel meliputi:\n1. Wi-Fi (gratis)\n2. Tempat parkir (gratis)\n3. Sarapan\n4. Restoran"
   },
   {
     "question": "Apakah Mutiara Balige Hotel menawarkan Wi-Fi gratis?",
@@ -1201,7 +1201,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Mutiara Balige Hotel?",
-    "answer": "Jenis kamar yang tersedia di hotel ini antara lain adalah: Kamar Superior dengan Tanpa AC, - Kamar Deluks dengan AC"
+    "answer": "Jenis kamar yang tersedia di hotel ini antara lain adalah:\n1. Kamar Superior Tanpa AC\n2. Kamar Deluks dengan AC"
   },
   {
     "question": "Berapa kisaran harga kamar untuk menginap di Mutiara Balige Hotel?",
@@ -1353,7 +1353,7 @@
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Hotel O Balige City Near Tugu Juara Monang?",
-    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel O Balige City Near Tugu Juara Monang, seperti: Twin Standar, Kamar Double Standar, Deluxe Twin"
+    "answer": "Ada beberapa jenis kamar yang bisa kamu pesan di Hotel O Balige City Near Tugu Juara Monang:\n1. Twin Standar\n2. Kamar Double Standar\n3. Deluxe Twin"
   },
   {
     "question": "Ada berapa tamu yang dapat menginap di Hotel O Balige City Near Tugu Juara Monang?",
@@ -1365,7 +1365,7 @@
   },
   {
     "question": "Apa saja hotel populer di Kabupaten Toba?",
-    "answer": "Beberapa hotel populer di Kabupaten Toba dan sekitarnya antara lain: Hotel Sere Nauli, HW Hubers Laguboti, Tendy Guest House, Labersa Toba Hotel & Convention Centre, Baritaland Hotel, RAP Hotel, Hotel Ompu Herti, Bobocabin Kaldera Toba, ΟΥΟ 90645 Karisma Residence, Sapadia Villa Balige 2, Purnama Balige Hotel, Aluna Bay Hotel, Vany Villa Balige, Mutiara Balige Hotel, Gemma Hotel Balige, Sapadia Villa Lumban Silintong, The Boat Homestay And Spa, Damar Toba, Sapadia Villa Balige 1, Tiara Bunga Hotel & Villa."
+    "answer": "Beberapa hotel populer di Kabupaten Toba dan sekitarnya antara lain:\n1. Hotel Sere Nauli\n2. HW Hubers Laguboti\n3. Tendy Guest House\n4. Labersa Toba Hotel & Convention Centre\n5. Baritaland Hotel\n6. RAP Hotel\n7. Hotel Ompu Herti\n8. Bobocabin Kaldera Toba\n9. OYO 90645 Karisma Residence\n10. Sapadia Villa Balige 2\n11. Purnama Balige Hotel\n12. Aluna Bay Hotel\n13. Vany Villa Balige\n14. Mutiara Balige Hotel\n15. Gemma Hotel Balige\n16. Sapadia Villa Lumban Silintong\n17. The Boat Homestay And Spa\n18. Damar Toba\n19. Sapadia Villa Balige 1\n20. Tiara Bunga Hotel & Villa"
   },
   {
     "question": "Di mana alamat HW. Hubers Hotel, Bar & Resto?",
@@ -1381,7 +1381,7 @@
   },
   {
     "question": "Tipe kamar seperti apa yang bisa saya pesan di HW Hubers Laguboti?",
-    "answer": "Opsi kamar di HW Hubers Laguboti termasuk: Double, - Twin/Double"
+    "answer": "Opsi kamar di HW Hubers Laguboti termasuk:\n1. Double\n2. Twin/Double"
   },
   {
     "question": "Berapa harga menginap di HW Hubers Laguboti?",
@@ -1457,7 +1457,7 @@
   },
   {
     "question": "Apa yang terdekat dari Bobocabin Kaldera Toba?",
-    "answer": "Berikut adalah yang terdekat dari Bobocabin Kaldera, Toba: Bandar Udara Sibisa (SIW), Air Terjun Bukit Gibeon, Pelabuhan Parapat, Pelabuhan Ajibata, Terminal Sosor Saba Parapat"
+    "answer": "Berikut adalah yang terdekat dari Bobocabin Kaldera, Toba:\n1. Bandar Udara Sibisa (SIW)\n2. Air Terjun Bukit Gibeon\n3. Pelabuhan Parapat\n4. Pelabuhan Ajibata\n5. Terminal Sosor Saba Parapat"
   },
   {
     "question": "Jenis kamar apa saja yang tersedia di Bobocabin Kaldera Toba?",
@@ -1477,7 +1477,7 @@
   },
   {
     "question": "Apa saja fasilitas utama di Bobocabin Kaldera, Toba?",
-    "answer": "Fasilitas paling populer di Bobocabin Kaldera, Toba meliputi: - Wi-Fi (gratis), Ber-AC, Sarapan (biaya tambahan), - Tempat parkir"
+    "answer": "Fasilitas paling populer di Bobocabin Kaldera, Toba meliputi:\n1. Wi-Fi (gratis)\n2. Ber-AC\n3. Sarapan (biaya tambahan)\n4. Tempat parkir"
   },
   {
     "question": "Apakah Bobocabin Kaldera, Toba menawarkan Wi-Fi gratis?",
@@ -1525,7 +1525,7 @@
   },
   {
     "question": "Tipe kamar seperti apa yang bisa saya pesan di Aluna Bay Hotel?",
-    "answer": "Opsi kamar di Aluna Bay Hotel termasuk: - Double"
+    "answer": "Opsi kamar di Aluna Bay Hotel termasuk:\n1. Double"
   },
   {
     "question": "Berapa harga menginap di Aluna Bay Hotel?",
@@ -1533,7 +1533,7 @@
   },
   {
     "question": "Apa yang bisa dilakukan di Aluna Bay Hotel?",
-    "answer": "Aluna Bay Hotel menawarkan aktivitas/layanan berikut (mungkin dikenakan biaya): - Tepi pantai, - Pantai"
+    "answer": "Aluna Bay Hotel menawarkan aktivitas/layanan berikut (mungkin dikenakan biaya):\n1. Tepi pantai\n2. Pantai"
   },
   {
     "question": "Seberapa jauh Aluna Bay Hotel dari pusat Balige?",
@@ -1597,53 +1597,53 @@
   },
   {
     "question": "Destinasi wisata alam apa yang populer di Kabupaten Toba?",
-    "answer": "Beberapa destinasi wisata alam yang paling populer di Kabupaten Toba, yaitu : 1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) The Caldera Toba - The Caldera Toba Nomadic Escape adalah salah satu destinasi wisaata modern yang terletak di kawasan Danau Toba, Sumatera Utara. Destinasi ini dirancang sebagai tempat rekreasi yang menawarkan pengalaman wisata alam yang berpadu dengan konsep nomadik atau berkemah mewah. The Caldera Toba Nomadic Escape sangat cocok bagis wisatawan yang ingin menikmati keindahan Danau Toba dengan cara yang unik dan berkelas (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Air Terjun Situmurun - Air Terjun Situmurun adalah salah satu destinasi wisata alam yang memukau di Kabupaten Toba, Sumatera Utara. Air terjun ini memiliki keunikan karena langsung mengalirkan airnya ke Danau Toba, menjadikannya salah satu air terjun yang sangat istimewa di kawasan ini. Air Terjun Situmurun adalah destinasi yang wajib dikunjungi bagi para pecinta alam dan petualangan. Kombinasi keindahan air terjun dan panorama Danau Toba akan memberikan pengalaman tak terlupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Bukit Singgolom - Bukit Singgolom adalah salah satu destinasi wisata alam yang menakjubkan di kawasan Kabupaten Toba. Bukit ini terkenal dengan pemandangannya yang indah. Dari puncak Bukit Singgolom, pengunjung dapat menikmati pemandangan Danau Toba yang luas dan biru, lengkap dengan deretan bukit-bukit hijau di sekililingnya. Bukit Singgolom menawarkan perpaduan ketenangan alam dan keindahan panorama yang sulit dilupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 5) Pantai Parparean - Pantai Parparean menawarkan keindahan panorama Danau Toba yang memukau. Dengan hamparan pasir putih yang jarang ditemukan di sekitar Danau Toba, pantai ini menjadi tempat favorit untuk bersantai sambil menikmati keindahan alam. Keindahan Pantai Parparean membuatnya menjadi tempat uang sangat Instagrammable. Banyak wisatawan yang memanfaatkan pantai ini sebagai lokasi untuk foto prewedding atau sekadar mengabadikan momen liburan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 6) Bukit Senyum Motung - Dengan suasana yang tenang dan panorama yang memukau. Bukit Senyum Motung sangat cocok untuk piknik, camping, atau sekadar melepas penat dari eksibukan sehari-hari. Jangan lupa abadikan momen terbaikmu saat berada di sini! Waktu terbaik untuk mengunjungi Bukit Senyum Motung adalah pada pagi hari untuk menikmati matahari terbit atau sore hari menjelang matahari terbenam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 7) Desa Wisata Meat - Desa Wisata Meat yang terletak di Kecamatan Tampahan. Desa Meat berada di pinggiran Danau Toba dengan menawarkan keindahan alam yang sangat mempesona yang dapat di lihat dan dinikmati oleh wisatawan. Diapit oleh dua perbukitan yang di tumbuhi hutan pinus dan keanekaragaman tumbuhan lainnya, ditambah dengan hamparan sawah yang luas, membuat desa ini sangat indah. Desa ini juga terdapat hamparan pasir putih dan memiliki air yang jernih serta ombak yang tenang (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).  8) Tarabunga - Bukit Tarabunga adalah destiansi wisata alam di Kabupaten Toba, yang menawarkan panorama indah Danau Toba dari ketinggian. Dari puncaknya, kamu dapat menikmati pemandangan luas Danau Toba dengan latar belakang Pulau Samosir. Waktu terbaik untuk berkunjung adalah saat matahari terbit atau terbenam, di mana langit beradu dengan keindahan danau. Selain panorama alam, Bukit Tarabunga juga memiliki area pohon pinus yang rindang, cocok untuk bersantai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 9) River Side Juma Bulu - Desa Wisata River Side Juma Bulu di Pardomuan Ajibata, Kabupaten Toba, menawarkan pengalaman wisata alam yang memukau dengan pemandangan persawahan dan aliran sungai yang jernih. Berbagai aktvitas menarik dapat dinikmati oleh wisatawan seperti river tubing, berkemah serta trekking (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa destinasi wisata alam yang paling populer di Kabupaten Toba, yaitu :\n1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n2) The Caldera Toba - The Caldera Toba Nomadic Escape adalah salah satu destinasi wisaata modern yang terletak di kawasan Danau Toba, Sumatera Utara. Destinasi ini dirancang sebagai tempat rekreasi yang menawarkan pengalaman wisata alam yang berpadu dengan konsep nomadik atau berkemah mewah. The Caldera Toba Nomadic Escape sangat cocok bagis wisatawan yang ingin menikmati keindahan Danau Toba dengan cara yang unik dan berkelas (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n3) Air Terjun Situmurun - Air Terjun Situmurun adalah salah satu destinasi wisata alam yang memukau di Kabupaten Toba, Sumatera Utara. Air terjun ini memiliki keunikan karena langsung mengalirkan airnya ke Danau Toba, menjadikannya salah satu air terjun yang sangat istimewa di kawasan ini. Air Terjun Situmurun adalah destinasi yang wajib dikunjungi bagi para pecinta alam dan petualangan. Kombinasi keindahan air terjun dan panorama Danau Toba akan memberikan pengalaman tak terlupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n4) Bukit Singgolom - Bukit Singgolom adalah salah satu destinasi wisata alam yang menakjubkan di kawasan Kabupaten Toba. Bukit ini terkenal dengan pemandangannya yang indah. Dari puncak Bukit Singgolom, pengunjung dapat menikmati pemandangan Danau Toba yang luas dan biru, lengkap dengan deretan bukit-bukit hijau di sekililingnya. Bukit Singgolom menawarkan perpaduan ketenangan alam dan keindahan panorama yang sulit dilupakan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n5) Pantai Parparean - Pantai Parparean menawarkan keindahan panorama Danau Toba yang memukau. Dengan hamparan pasir putih yang jarang ditemukan di sekitar Danau Toba, pantai ini menjadi tempat favorit untuk bersantai sambil menikmati keindahan alam. Keindahan Pantai Parparean membuatnya menjadi tempat uang sangat Instagrammable. Banyak wisatawan yang memanfaatkan pantai ini sebagai lokasi untuk foto prewedding atau sekadar mengabadikan momen liburan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n6) Bukit Senyum Motung - Dengan suasana yang tenang dan panorama yang memukau. Bukit Senyum Motung sangat cocok untuk piknik, camping, atau sekadar melepas penat dari eksibukan sehari-hari. Jangan lupa abadikan momen terbaikmu saat berada di sini! Waktu terbaik untuk mengunjungi Bukit Senyum Motung adalah pada pagi hari untuk menikmati matahari terbit atau sore hari menjelang matahari terbenam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n7) Desa Wisata Meat - Desa Wisata Meat yang terletak di Kecamatan Tampahan. Desa Meat berada di pinggiran Danau Toba dengan menawarkan keindahan alam yang sangat mempesona yang dapat di lihat dan dinikmati oleh wisatawan. Diapit oleh dua perbukitan yang di tumbuhi hutan pinus dan keanekaragaman tumbuhan lainnya, ditambah dengan hamparan sawah yang luas, membuat desa ini sangat indah. Desa ini juga terdapat hamparan pasir putih dan memiliki air yang jernih serta ombak yang tenang (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). \n8) Tarabunga - Bukit Tarabunga adalah destiansi wisata alam di Kabupaten Toba, yang menawarkan panorama indah Danau Toba dari ketinggian. Dari puncaknya, kamu dapat menikmati pemandangan luas Danau Toba dengan latar belakang Pulau Samosir. Waktu terbaik untuk berkunjung adalah saat matahari terbit atau terbenam, di mana langit beradu dengan keindahan danau. Selain panorama alam, Bukit Tarabunga juga memiliki area pohon pinus yang rindang, cocok untuk bersantai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n9) River Side Juma Bulu - Desa Wisata River Side Juma Bulu di Pardomuan Ajibata, Kabupaten Toba, menawarkan pengalaman wisata alam yang memukau dengan pemandangan persawahan dan aliran sungai yang jernih. Berbagai aktvitas menarik dapat dinikmati oleh wisatawan seperti river tubing, berkemah serta trekking (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Destinasi apa yang cocok untuk wisata keluarga?",
-    "answer": "Beberapa destinasi wisata yang cocok untuk wisata keluarga, yaitu : 1) Waterpark Labersa, 2) Pantai Lumban Bulbul, 3) Bukit Senyum Motung, 4) Pantai Pakkodian, 5) Pemandian Bukti Gibeon."
+    "answer": "Beberapa destinasi wisata yang cocok untuk wisata keluarga, yaitu:\n1) Waterpark Labersa\n2) Pantai Lumban Bulbul\n3) Bukit Senyum Motung\n4) Pantai Pakkodian\n5) Pemandian Bukti Gibeon"
   },
-    {
+  {
     "question": "Destinasi apa yang merupakan tempat sejarah?",
-    "answer": "Beberapa tempat sejarah yang kini menjadi wisata sejarah sebagai berikut : 1) TB Silalahi Centre (Museum Balige), 2) Makam Pahlawan Nasional Raja Sisingamangaraja XII - Makam Pahlawan Nasional Raja Sisingamangaraja XII terletak di Desa Pagar Batu, Balige. Makam ini menjadi saksis sejarah perjuangan sang Pahlawan Nasional Sisingamangaraja XXI beserta putri-putir beliau. Hingga kini, makam ini menjadi tempat ziarah dan penghormatan, bukan hanya bagia masyarakat Batak, tetapi juga bagi seluruh bangsa Indonesia (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Gua Liang Sipege - Gua ini merupakan salah satu objek wisata yang memiliki cerita sejarah. Gua Liang Sipege ini merupakan tempat tinggal seorang Raja bernama Raja Situngo dan putranya yaitu Raja Sijorat Paralim Panjaitan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Sumur Raja Sisingamangaraja XII - Sumur Raja Sisingamangaraja XII ini berada di Desa Sibarani Nasampulu/Namungkup, Kecamatan Laguboti, Kabupaten Tobs. Sumur ini juga dikenal dengan nama Taor Mual Sipangolu. Menurut penuturan masyarakat sekitar, sumur ini dibuat langsung oleh Raja Sisingamangaraja XII saat bergerilya melawan penjajah Belanda di Toba, khususnya di Laguboti. Sumur ini menjadi sumber mata air seperti untuk air minum, kebutuhan mandi dan ibadah saat perang di wilayah Laguboti (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 5) Mual Sirambe Nauli - Mual Sirambe Nauli menjadi bagian dan warisan bidaya dan kearifan lokal yang terus dijaga hingga kini. Mual Sirame Nauli dulunya merupakan mata air alami yang dihuni ihan Batak. Menurut masyarakat, tempat ini masih sakral sehingga ikan-ikan tersebut tidak boleh ditangkap ataupun dimakan. Kepala Desan Bonan Dolok II juga menyampaikan bahwa ikan-ikan tersebut menyukai kacang sebagai makananya (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa tempat sejarah yang kini menjadi wisata sejarah sebagai berikut :\n1) TB Silalahi Centre (Museum Balige),\n2) Makam Pahlawan Nasional Raja Sisingamangaraja XII - Makam Pahlawan Nasional Raja Sisingamangaraja XII terletak di Desa Pagar Batu, Balige. Makam ini menjadi saksis sejarah perjuangan sang Pahlawan Nasional Sisingamangaraja XXI beserta putri-putir beliau. Hingga kini, makam ini menjadi tempat ziarah dan penghormatan, bukan hanya bagia masyarakat Batak, tetapi juga bagi seluruh bangsa Indonesia (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n3) Gua Liang Sipege - Gua ini merupakan salah satu objek wisata yang memiliki cerita sejarah. Gua Liang Sipege ini merupakan tempat tinggal seorang Raja bernama Raja Situngo dan putranya yaitu Raja Sijorat Paralim Panjaitan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n4) Sumur Raja Sisingamangaraja XII - Sumur Raja Sisingamangaraja XII ini berada di Desa Sibarani Nasampulu/Namungkup, Kecamatan Laguboti, Kabupaten Tobs. Sumur ini juga dikenal dengan nama Taor Mual Sipangolu. Menurut penuturan masyarakat sekitar, sumur ini dibuat langsung oleh Raja Sisingamangaraja XII saat bergerilya melawan penjajah Belanda di Toba, khususnya di Laguboti. Sumur ini menjadi sumber mata air seperti untuk air minum, kebutuhan mandi dan ibadah saat perang di wilayah Laguboti (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n5) Mual Sirambe Nauli - Mual Sirambe Nauli menjadi bagian dan warisan bidaya dan kearifan lokal yang terus dijaga hingga kini. Mual Sirame Nauli dulunya merupakan mata air alami yang dihuni ihan Batak. Menurut masyarakat, tempat ini masih sakral sehingga ikan-ikan tersebut tidak boleh ditangkap ataupun dimakan. Kepala Desan Bonan Dolok II juga menyampaikan bahwa ikan-ikan tersebut menyukai kacang sebagai makananya (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Destinasi wisata apa yang cocok untuk camping?",
-    "answer": "Beberapa destinasi wisata yang bisa digunakan untuk kegiatan camping, yaitu: 1.) Sibisa Hideway Camp - The Kaldera Toba Nomadic Escaope menghadirkan fasilitas Camping Ground serta akomodasi yang modern, bersih, dan nyaman untuk berbagai segmen wisatawan. Staf lokasi bersikap ramah dan tanggap sehingga pengalaman menginap terasa menyenangkan. Ketersediaan fasilitas rekreasi dan ruang terbuka membuat kunjungan bukan hanya sekadar bermalam tetapi juga menikmati suasana alam. 2.) Desa Meat, Tampahan - Di Desa Meat menyediakan area camping yang bisa menampung 1000 tenda seperti yang diselenggarkana baru-baru ini dan menjadi salah satu spot-foto yang dimiliki Toba (Jadesta Kemenparekraf). 3.) Desa Wisata River Side Juma Bulu - Riverside Juma Bulu memiliki keindahan alam yang dikelilingi persawahan serta menyediakan tempat camping disertai dengan alat-alat camping berupa tenda camping, panggangan, hingga tempat tidur (Jadesta Kemenparekraf)."
+    "answer": "Beberapa destinasi wisata yang bisa digunakan untuk kegiatan camping, yaitu:\n1.) Sibisa Hideway Camp - The Kaldera Toba Nomadic Escaope menghadirkan fasilitas Camping Ground serta akomodasi yang modern, bersih, dan nyaman untuk berbagai segmen wisatawan. Staf lokasi bersikap ramah dan tanggap sehingga pengalaman menginap terasa menyenangkan. Ketersediaan fasilitas rekreasi dan ruang terbuka membuat kunjungan bukan hanya sekadar bermalam tetapi juga menikmati suasana alam.\n2.) Desa Meat, Tampahan - Di Desa Meat menyediakan area camping yang bisa menampung 1000 tenda seperti yang diselenggarkana baru-baru ini dan menjadi salah satu spot-foto yang dimiliki Toba (Jadesta Kemenparekraf).\n3.) Desa Wisata River Side Juma Bulu - Riverside Juma Bulu memiliki keindahan alam yang dikelilingi persawahan serta menyediakan tempat camping disertai dengan alat-alat camping berupa tenda camping, panggangan, hingga tempat tidur (Jadesta Kemenparekraf)."
   },
-    {
+  {
     "question": "Destinasi wisata mana di Kabupaten Toba yang cocok untuk menikmati panorama?",
-    "answer": "Beberapa destinasi wisata di Kabupaten Toba yang cocok untuk menikmati panorama alam : 1.) The Kaldera Toba Nomadi Escape, Kecamatan Ajibata - The Kaldera Toba Nomadic Escape menghadirkan pengalaman menikmati panorama luas ke Danau Toba dari ketinggian yang benar-benar menawan. Lokasi dan pengaturan spot-foto membuat pemandangan danau menjadi lebih dramatis. Suasana sekitar yang hijau dan terbuka turut menambah kenyamanan visual dan relaksasi (Badan Pelaksana Otorita Danau Toba). 2.) Desa Wisata Meat di Toba - Desa Wisata Meat menyuguhkan pemandangan hamparan persawahan hijau dan tepian Danau Toba yang terang dan memukau dari lokasi sekitarnya. Udara yang sejuk dan panorama alam bebas poluasi menjadikan kunjungan terasa sangat menyegarkan. Keindahan alam yang ditawarkan di desa ini dianggap sebagai pengalaman yang sangat berbeda dibanding dengab wisata kota (Badan Pelaksana Otorita Danau Toba). 3.) Pantai Pakkodian di Toba - Pantai Pakkodian menampilkan panorama Danau Toba yang indah dengan bentang alam yang luas dan suasana tenang di sekitarnya. Area ini memberikan pengalaman menikmati keindahan danau dari sudut pandang yang berbeda, dengan air yang jernih dan udara yang sejuk (Badan Pelaksana Otorita Danau Toba). 4) Puncak Sibodiala - Puncak Sibodiala sendiri dikenal sebagai salah satu tempat dengan panorama yang indah di Kabupaten Toba. Dengan ketinggian yang memungkinkan pengunjung melihat pemandangan Danau Toba dari kejauhan, tempat ini memiliki daya tarik tersendiri bagi wisatawan lokal maupun mancanegara (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa destinasi wisata di Kabupaten Toba yang cocok untuk menikmati panorama alam :\n1.) The Kaldera Toba Nomadi Escape, Kecamatan Ajibata - The Kaldera Toba Nomadic Escape menghadirkan pengalaman menikmati panorama luas ke Danau Toba dari ketinggian yang benar-benar menawan. Lokasi dan pengaturan spot-foto membuat pemandangan danau menjadi lebih dramatis. Suasana sekitar yang hijau dan terbuka turut menambah kenyamanan visual dan relaksasi (Badan Pelaksana Otorita Danau Toba).\n2.) Desa Wisata Meat di Toba - Desa Wisata Meat menyuguhkan pemandangan hamparan persawahan hijau dan tepian Danau Toba yang terang dan memukau dari lokasi sekitarnya. Udara yang sejuk dan panorama alam bebas poluasi menjadikan kunjungan terasa sangat menyegarkan. Keindahan alam yang ditawarkan di desa ini dianggap sebagai pengalaman yang sangat berbeda dibanding dengab wisata kota (Badan Pelaksana Otorita Danau Toba).\n3.) Pantai Pakkodian di Toba - Pantai Pakkodian menampilkan panorama Danau Toba yang indah dengan bentang alam yang luas dan suasana tenang di sekitarnya. Area ini memberikan pengalaman menikmati keindahan danau dari sudut pandang yang berbeda, dengan air yang jernih dan udara yang sejuk (Badan Pelaksana Otorita Danau Toba).\n4) Puncak Sibodiala - Puncak Sibodiala sendiri dikenal sebagai salah satu tempat dengan panorama yang indah di Kabupaten Toba. Dengan ketinggian yang memungkinkan pengunjung melihat pemandangan Danau Toba dari kejauhan, tempat ini memiliki daya tarik tersendiri bagi wisatawan lokal maupun mancanegara (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Rekomendasi tempat belanja souvenir di Kabupaten Toba",
-    "answer": "Beberapa rekomendasi tempat belanja souvenir di Kabupaten Toba : 1) Batikta, 2) Dinar Aksesoris-Ulos Batak Toba, 3)Siregar Ulos Toba & Souvenir (Tripadvisor)"
+    "answer": "Beberapa rekomendasi tempat belanja souvenir di Kabupaten Toba:\n1) Batikta\n2) Dinar Aksesoris-Ulos Batak Toba\n3) Siregar Ulos Toba & Souvenir (Tripadvisor)"
   },
-    {
+  {
     "question": "Rekomendasi tempat rekreasi di Kabupaten Toba",
-    "answer": "Beberapa rekomendasi tempat rekreasi di Kabupaten Toba : 1) Motor Trail di Desa Wisata River Side Juma Bulu, 2) Kano di Pantai Lumban Bulbul, 3) Banana Boat di Pantai Lumban Bulbul, 4) Marsolu di Desa Wisata Meat, 5) 1000 Tenda di Desa Wisata Meat, 6) Asahan River Rafting"
+    "answer": "Beberapa rekomendasi tempat rekreasi di Kabupaten Toba:\n1) Motor Trail di Desa Wisata River Side Juma Bulu\n2) Kano di Pantai Lumban Bulbul\n3) Banana Boat di Pantai Lumban Bulbul\n4) Marsolu di Desa Wisata Meat\n5) 1000 Tenda di Desa Wisata Meat\n6) Asahan River Rafting"
   },
-    {
+  {
     "question": "Rekomendasi tempat wisata air terjun di Kabupaten Toba ",
-    "answer": "Beberapa rekomendasi tempat wisata air terjun di kawasan Kabupaten Toba : 1) Air Terjun Siboruon (Sisparnas Kemenpar) 2) Air Terjun Tamane Eden 100 - Taman Eden adalah kawasan ekowisata alam yang menawarkan keindahan air terjun yang menjadikannya tempat ideal untuk menikmati keindahan alam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Air Terjun Situmurun - Air Terjun Situmurun adalah destinasi alam yang menawarkan aliran air jernih di tengah suasana hutan hijau nan sejuk. Keindahan air terjun yang bertingkat menciptakan pemandangan menenangkan, cocok untuk bersantai, berfoto, atau menikmati kesejukan alami khas Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 4) Air Terjun Sialogo - Air Terjun Sialogo adalah salah satu destinasi alam yang tersembunyi di Kecamatan Pintu Pohan, Kabupaten Toba. Dikelilingi oleh hutan yang masih alami, air terjun ini menawarkan suasana yang sejuk dan menenangkan, cocok untuk melepas penat dari rutinitas. Keunikan Air Terjun Sialogo terletak pada kejernihan airnya serta pemandangan sekitar yang masih asri. Tempat ini cocok bagi pecinta alam dan petualangan yang ingin mengeksplorasi keindahan tersembunyi di daerah Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa rekomendasi tempat wisata air terjun di kawasan Kabupaten Toba :\n1) Air Terjun Siboruon (Sisparnas Kemenpar)\n2) Air Terjun Tamane Eden 100 - Taman Eden adalah kawasan ekowisata alam yang menawarkan keindahan air terjun yang menjadikannya tempat ideal untuk menikmati keindahan alam (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n3) Air Terjun Situmurun - Air Terjun Situmurun adalah destinasi alam yang menawarkan aliran air jernih di tengah suasana hutan hijau nan sejuk. Keindahan air terjun yang bertingkat menciptakan pemandangan menenangkan, cocok untuk bersantai, berfoto, atau menikmati kesejukan alami khas Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n4) Air Terjun Sialogo - Air Terjun Sialogo adalah salah satu destinasi alam yang tersembunyi di Kecamatan Pintu Pohan, Kabupaten Toba. Dikelilingi oleh hutan yang masih alami, air terjun ini menawarkan suasana yang sejuk dan menenangkan, cocok untuk melepas penat dari rutinitas. Keunikan Air Terjun Sialogo terletak pada kejernihan airnya serta pemandangan sekitar yang masih asri. Tempat ini cocok bagi pecinta alam dan petualangan yang ingin mengeksplorasi keindahan tersembunyi di daerah Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Rekomendasi destinasi wisata alam di kawaban Kabupaten Toba",
-    "answer": "1) Gua Liang Sipege - Liang Sipege terbentuk dari batu kapur hasil pelapukan dari dinding kalder Porsea. Gua ini terletak di Desa Sianjur, Hutagaol, Kecamatan Balige, Kabupaten Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) Batu Basiha - Secara geologi, Batu Basiha berasal dari letusan super vulkanik Gunung Toba. Lebih spesifik lagi adalah ignimbrit, yaitu batuan yang terbentuk dari endapan awan panas. Batu Basiha terletak di Desa Aek Bolon, Kecamatan Balige, Kabupaten Toba, Sumatera Utara ini menjadi lokasi ekowisata dan agrowisata sebagai upaya menarik lebih banyak wisatawan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa rekomendasi destinasi wisata alam di Kabupaten Toba:\n1) Gua Liang Sipege - Liang Sipege terbentuk dari batu kapur hasil pelapukan dari dinding kalder Porsea. Gua ini terletak di Desa Sianjur, Hutagaol, Kecamatan Balige, Kabupaten Toba (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n2) Batu Basiha - Secara geologi, Batu Basiha berasal dari letusan super vulkanik Gunung Toba. Lebih spesifik lagi adalah ignimbrit, yaitu batuan yang terbentuk dari endapan awan panas. Batu Basiha terletak di Desa Aek Bolon, Kecamatan Balige, Kabupaten Toba, Sumatera Utara ini menjadi lokasi ekowisata dan agrowisata sebagai upaya menarik lebih banyak wisatawan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Rekomendasi destinasi wisata pantai untuk rekreasi berenang di kawasan Kabupaten Toba",
-    "answer": "1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) Pantai Pasir Putih Parparean - Pantai Pasir Putih Parparean berada di Desa Parparean, Kecamatan Porsea, Kabupaten Toba. Lokasi yang mudah diakses dari jalan utama Porsea-Balige dan menjadi salah satu spot favorit untuk menikmati panorama Danau Toba dengan pasir putih alami (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
+    "answer": "Beberapa rekomendasi destinasi wisata pantai untuk berenang di Kabupaten Toba:\n1.) Pantai Lumban Bulbul - Pantai Lumban Bul-bul adalah salah satu destinasi wisata favorit di Kabupaten Toba, Sumatera Utara. Terletak di tepi Danau Toba, pantai ini menawarkan suasana santai dengan pemandangan indah, cocok untuk bersantai bersama keluarga dan teman-teman. Dengan kombinasi pasir putih, air jernih, dan pemandangan Danau Toba yang memukau, Pantai Lumban Bul-bul adalah destinasi yang sempurna untuk liburan santai (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n2) Pantai Pasir Putih Parparean - Pantai Pasir Putih Parparean berada di Desa Parparean, Kecamatan Porsea, Kabupaten Toba. Lokasi yang mudah diakses dari jalan utama Porsea-Balige dan menjadi salah satu spot favorit untuk menikmati panorama Danau Toba dengan pasir putih alami (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Rekomendasi destinasi wisata yang cocok untuk melakukan trekking di kawasan Kabupaten Toba",
-    "answer": "1) Taman Eden 100 - Taman Eden 100 yang berlokasi di Kecamatan Lumban Julu adalah salah satu destinasi alam yang paling lengkap di Toba. Mulai dari hutan pinus yang rimbun, udara segar, hingga jalu rtrekking yang menantang, ditambah lagi air terjun yang menenangkan, semuanya menyatu dalam satu kawasan yang terjaga keasriannya. Cocok untuk pengunjung yang ingin melepas penar sambil menikmati suasana alam yang masih murni (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 2) River Side Juma Bulu - Destinasi alam yang sejuk dikelilingi persawahan, cocok buat kamu yang suka petualangan. Serunya river tubing di aliran sungai jernih sambil menikmati pemandangan alam sekitar, plus camping yang seru dengan fasilitas lengkap. Buat yang suka jelajah, ada juga trekking ke Air Terjun Batu Papan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). 3) Puncak Sibodiala - Puncak Sibodiala sebagai salah satu destinasi wisata unggul di Kabupaten Toba. Dengan rute hiking yang menantang namun tetap aman, para peserta  dapat menikmati pemandangan alam yang asri serta udara khas pegunungan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba). "
+    "answer": "Beberapa rekomendasi destinasi wisata untuk trekking di Kabupaten Toba:\n1) Taman Eden 100 - Taman Eden 100 yang berlokasi di Kecamatan Lumban Julu adalah salah satu destinasi alam yang paling lengkap di Toba. Mulai dari hutan pinus yang rimbun, udara segar, hingga jalu rtrekking yang menantang, ditambah lagi air terjun yang menenangkan, semuanya menyatu dalam satu kawasan yang terjaga keasriannya. Cocok untuk pengunjung yang ingin melepas penar sambil menikmati suasana alam yang masih murni (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n2) River Side Juma Bulu - Destinasi alam yang sejuk dikelilingi persawahan, cocok buat kamu yang suka petualangan. Serunya river tubing di aliran sungai jernih sambil menikmati pemandangan alam sekitar, plus camping yang seru dengan fasilitas lengkap. Buat yang suka jelajah, ada juga trekking ke Air Terjun Batu Papan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba).\n3) Puncak Sibodiala - Puncak Sibodiala sebagai salah satu destinasi wisata unggul di Kabupaten Toba. Dengan rute hiking yang menantang namun tetap aman, para peserta  dapat menikmati pemandangan alam yang asri serta udara khas pegunungan (Facebook : Dinas Kebudayaan dan Pariwisata Kabupaten Toba)."
   },
-    {
+  {
     "question": "Kapan waktu biaya paling hemat untuk berkunjung ke Balige?",
     "answer": "Jika Anda ingin lebih menghemat pengeluaran, sebaiknya datang ke Balige pada bulan Juni sampai Agustus. Pada bulan-bulan tersebut, harga hotel biasanya sedang lebih rendah. Sedangkan pada bulan Desember sampai Februari, harga hotel biasanya lebih tinggi karena banyak orang yang berlibur pada periode tersebut."
   },
-    {
+  {
     "question": "Kapan waktu biaya paling hemat untuk mengunjungi Laguboti?",
     "answer": "Jika Anda adalah wisatawan yang ingin lebih hemat, Anda bisa mempertimbangkan untuk berkunjung ke Laguboti antara bulan Maret hingga Mei, karena pada periode tersebut harga hotel umumnya paling rendah. Harga hotel biasanya mulai meningkat pada musim ramai, yaitu antara bulan Desember hingga Februari."
   },
@@ -1659,11 +1659,11 @@
     "question": "Apa saja pilihan transportasi darat dari Medan menuju Kabupaten Toba?",
     "answer": "Terdapat beberapa alternatif transportasi darat dari Medan menuju Kabupaten Toba (Parapat/Balige), yang dapat dipilih berdasarkan anggaran, waktu tempuh, dan tingkat kenyamanan yang diinginkan.\n\n1) Naik Mobil Pribadi atau Sewa Mobil.\nPerjalanan dengan mobil pribadi melalui jalur Medan–Parapat membutuhkan waktu sekitar 4–5 jam.\nKelebihan:\n- Bisa berhenti di berbagai tempat wisata sepanjang jalan, seperti Kebun Teh Sidamanik atau Air Terjun Bah Biak.\n- Lebih nyaman dan privat, cocok untuk perjalanan keluarga.\n- Dapat menikmati pemandangan alam secara bebas.\n- Harga sewa mobil dari Medan ke Danau Toba berkisar antara Rp600.000 – Rp1.000.000 per hari, tergantung jenis mobil dan durasi sewa.\n\n2) Naik Bus Umum.\nUntuk wisatawan dengan budget terbatas, bus umum menjadi pilihan ekonomis. Dari Terminal Amplas Medan tarif sekitar Rp50.000 – Rp80.000 per orang. Beberapa operator bus yang melayani rute Medan–Parapat antara lain Sejahtera Transport, Rapi Transport, Intra, dan Parna Express.\nPerjalanan dengan bus memakan waktu sekitar 5–6 jam, tergantung kondisi jalan. Bus akan berhenti langsung di area Parapat, yang merupakan pintu gerbang menuju Danau Toba.\n\n3) Naik Shuttle atau Travel.\nAlternatif yang lebih nyaman dari bus umum adalah menggunakan jasa travel atau shuttle car. Kendaraan ini biasanya berupa mobil Hiace atau Avanza yang diisi 5–8 penumpang. Layanan ini bisa menjemput langsung dari hotel atau bandara di Medan dan mengantarkan sampai ke hotel di Parapat.\nTarif berkisar antara Rp100.000 – Rp150.000 per orang, dengan waktu tempuh sekitar 4 jam. Beberapa operator travel populer seperti Nice Trans, TOBA Shuttle, Raja Trans, dan Sumatera Trans.\n\n4) Naik Kereta Api.\nPilihan lain yang menarik adalah menggunakan kereta api dari Medan menuju Pematang Siantar, kemudian dilanjutkan dengan mobil atau bus ke Parapat.\n- Naik Kereta Api Siantar Ekspres dari Stasiun Medan ke Stasiun Pematang Siantar.\n- Waktu tempuh sekitar 4 jam.\n- Tarif sekitar Rp25.000 – Rp35.000.\nDari Stasiun Pematang Siantar, lanjutkan perjalanan sekitar 1,5 jam ke Parapat dengan mobil atau angkutan kota.\nOpsi ini cocok bagi wisatawan yang ingin pengalaman berbeda sambil menikmati pemandangan pedesaan khas Sumatera Utara dari jendela kereta."
   },
-    {
+  {
     "question": "Apa pilihan transportasi udara dari Medan ke Kabupaten Toba?",
     "answer": "Kamu bisa memilih penerbangan dari Medan (Kualanamu) ke Bandara Silangit (Tapanuli Utara). Waktu tempuh udara sekitar 45 menit, kemudian dilanjutkan perjalanan darat ke Danau Toba sekitar 1 jam 30 menit. Maskapai yang melayani rute ini antara lain Citilink, Batik Air, dan Wings Air. Rute ini cocok bagi wisatawan yang ingin langsung menuju bagian utara Danau Toba seperti Balige, Laguboti, atau Muara. (Ambisius Wiki)"
   },
-    {
+  {
     "question": "Apakah transportasi online seperti Grab tersedia di Kabupaten Toba?",
     "answer": "Ya, layanan transportasi online seperti GrabCar dan GrabBike tersedia di kawasan Danau Toba Samosir, terutama di sekitar Balige, Parapat, dan Samosir. Wisatawan dapat menggunakan layanan ini untuk berkeliling dengan lebih nyaman dan mudah.(Sumber: Grab)"
   },
@@ -1687,7 +1687,7 @@
     "question": "Apa saja tempat makan terbaik di Balige?",
     "answer": "Beberapa restoran paling populer di Balige antara lain:\n1) Damar Toba\n2) Kedai Mie Lily\n3) Timothy Cafe Terapung\n4) Cafe Hollywood\n5) Hutanta Cafe"
   },
-   {
+  {
     "question": "Rekomendasi kuliner khas di Kabupaten Toba",
     "answer": "Berikut adalah beberapa kuliner khas di sekitar Danau Toba:\n1) Arsik - Masakan ikan mas bumbu kuning yang kaya rempah, dengan bumbu khas seperti andaliman dan asam cikala.\n2) Sambal Tuk-tuk - Sambal khas Batak dengan campuran andaliman yang memberikan rasa pedas dan gurih.\n3) Mie Gomak - Mie yang dimasak dengan bumbu andaliman, memberikan sensasi pedas yang khas.\n4) Na Niura - Hidangan ikan yang diolah tanpa dimasak, dibumbui dengan rempah-rempah seperti kunyit, andaliman, dan jahe.\n5) Na Tinombur - Olahan ikan yang dibakar dan disiram dengan saus yang mengandung andaliman, kemiri, dan jahe bakar.\n6) Dali ni Horbo - Makanan tradisional khas Batak yang terbuat dari susu kerbau yang dimasak hingga menggumpal seperti keju."
   },
