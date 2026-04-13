@@ -288,14 +288,39 @@ class CAGSystem:
             if any(kw in query_lower for kw in keywords):
                 categories.append(category)
 
+        # Generic "wisata" / "tempat wisata" / "destinasi" without a specific category
+        # → return ALL attraction categories (not kuliner/hotel/homestay)
+        if not categories:
+            generic_attraction_signals = [
+                'wisata', 'destinasi', 'objek wisata', 'tempat wisata',
+                'tempat liburan', 'rekomendasi wisata', 'tempat berkunjung',
+                'jalan-jalan', 'jalan jalan', 'liburan',
+            ]
+            # Exclude: food-specific queries should NOT trigger attraction listing
+            culinary_signals = [
+                'makan', 'kuliner', 'restoran', 'restaurant', 'warung',
+                'rumah makan', 'cafe', 'kafe', 'kedai', 'menu',
+            ]
+            has_attraction = any(sig in query_lower for sig in generic_attraction_signals)
+            has_culinary = any(sig in query_lower for sig in culinary_signals)
+            if has_attraction and not has_culinary:
+                categories = list(self.ATTRACTION_CATEGORIES)
+
         # Remove duplicate categories while preserving order.
         return list(dict.fromkeys(categories))
+
+    # Categories that are tourist ATTRACTIONS (not food, hotel, or accommodation)
+    ATTRACTION_CATEGORIES = [
+        'pantai', 'air_terjun', 'bukit', 'alam', 'budaya', 'rekreasi',
+        'desa_wisata', 'geowisata', 'danau', 'tour',
+    ]
 
     def _is_listing_query(self, query: str) -> bool:
         """Return True if the user is asking for a *list* of places (not a single place)."""
         q = query.lower()
         listing_signals = ['apa saja', 'semua', 'daftar', 'list', 'sebutkan', 'rekomendasikan',
-                           'ada apa saja', 'apa aja', 'mana saja', 'berapa banyak']
+                           'ada apa saja', 'apa aja', 'mana saja', 'berapa banyak',
+                           'rekomendasi', 'tempat-tempat', 'tempat tempat']
         return any(sig in q for sig in listing_signals)
 
     def _load_locations(self) -> list:
@@ -311,9 +336,11 @@ class CAGSystem:
             print(f"⚠️ Could not load locations.json: {e}")
             return []
 
-    def _get_locations_json_context(self, query: str) -> str:
+    def _get_locations_json_context(self, query: str, user_preferences: list = None) -> str:
         """
         Build a structured context block from locations.json for category/listing queries.
+        Lokasi diurutkan menggunakan Content-Based Filtering (CB score) saat
+        user_preferences tersedia; fallback ke rating jika tidak ada preferensi.
         Returns empty string if no relevant locations found.
         """
         query_lower = query.lower()
@@ -337,13 +364,38 @@ class CAGSystem:
         if not matched:
             return ""
 
-        # Sort by rating descending
-        matched.sort(key=lambda x: x.get('rating', 0), reverse=True)
+        # ── Content-Based Filtering ranking ──────────────────────────────
+        # Gunakan DecisionMakingAgent untuk menghitung CB score tiap lokasi
+        # berdasarkan preferensi yang diekstrak dari query (budget, kategori,
+        # aktivitas, tipe grup).  Jika tidak ada preferensi eksplisit, CB score
+        # akan menggunakan nilai netral (0.5) sehingga rating tetap menentukan.
+        try:
+            from decision_agent import DecisionMakingAgent
+        except ImportError:
+            from src.decision_agent import DecisionMakingAgent
+
+        agent = DecisionMakingAgent()
+
+        # Gabungkan sinyal query + profile preferensi profil user (favorite_categories)
+        pref_query = query
+        if user_preferences:
+            # Tambahkan kata kunci kategori ke query agar preference extraction
+            # dapat mendeteksi kategori favorit user bahkan jika tidak disebut
+            # secara eksplisit di query saat ini.
+            pref_query = query + " " + " ".join(user_preferences)
+
+        scored_locations = agent.rank_locations_cb(matched, pref_query)
+
+        print(
+            f"🎯 CB Ranking: {len(scored_locations)} lokasi diurutkan "
+            f"(top cb_score={scored_locations[0]['cb_score'] if scored_locations else 'N/A'})"
+        )
 
         lines = ["[Data Terstruktur: Lokasi Database]"]
-        for i, loc in enumerate(matched, 1):
+        for i, loc in enumerate(scored_locations, 1):
+            cb_score = loc.get('cb_score', 0.0)
             lines.append(
-                f"Tempat {i}: {loc.get('name', 'N/A')}\n"
+                f"Tempat {i}: {loc.get('name', 'N/A')} [Skor Relevansi: {cb_score:.2f}]\n"
                 f"- Kategori : {loc.get('category', 'N/A')}\n"
                 f"- Deskripsi: {loc.get('description', 'N/A')}\n"
                 f"- Lokasi   : {loc.get('location', 'N/A')}\n"
@@ -818,7 +870,7 @@ class CAGSystem:
         if not relevant_docs:
             # For listing/category queries, try locations.json as a fallback source.
             if self._is_listing_query(retrieval_query):
-                structured_ctx = self._get_locations_json_context(retrieval_query)
+                structured_ctx = self._get_locations_json_context(retrieval_query, user_preferences)
                 if structured_ctx:
                     print(f"📍 FAISS returned nothing — using structured locations data for listing query")
                     context = structured_ctx
@@ -939,7 +991,7 @@ class CAGSystem:
         # For listing/category queries, prepend structured locations.json data so
         # all known places for that category are always included.
         if self._is_listing_query(retrieval_query):
-            structured_ctx = self._get_locations_json_context(retrieval_query)
+            structured_ctx = self._get_locations_json_context(retrieval_query, user_preferences)
             if structured_ctx:
                 context = structured_ctx + "\n\n" + context if context else structured_ctx
                 print(f"📍 Injected structured locations context ({len(structured_ctx)} chars)")

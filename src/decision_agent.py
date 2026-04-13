@@ -1,6 +1,7 @@
 """
 Decision-Making Agent for Tourism Recommendation
 Implements the agent logic from flowchart to provide ranked recommendations
+Includes Content-Based Filtering algorithm for structured location scoring.
 """
 
 import re
@@ -282,3 +283,189 @@ class DecisionMakingAgent:
 This destination scored {recommendation.score}/100 based on your preferences.
 """
         return explanation
+
+    # =========================================================================
+    # CONTENT-BASED FILTERING ALGORITHM
+    # =========================================================================
+    #
+    # Rumus gabungan (0.0 – 1.0):
+    #
+    #   score = w1 × CategoryMatch
+    #         + w2 × BudgetMatch
+    #         + w3 × RatingNorm
+    #         + w4 × ActivityMatch
+    #
+    # Bobot default: w1=0.40, w2=0.25, w3=0.20, w4=0.15
+    #
+    # CategoryMatch  = |kategori_item ∩ preferensi_user| / |preferensi_user|
+    # BudgetMatch    = 1.0 | 0.5 | 0.0  (sesuai / tidak ada info / tidak sesuai)
+    # RatingNorm     = rating_item / 5.0
+    # ActivityMatch  = |aktivitas_item ∩ aktivitas_user| / |aktivitas_user|
+    # =========================================================================
+
+    # Pemetaan kategori JSON locations.json → kategori DecisionAgent
+    _JSON_TO_AGENT_CATEGORY = {
+        'pantai':      'beach',
+        'bukit':       'mountain',
+        'budaya':      'culture',
+        'alam':        'nature',
+        'air_terjun':  'nature',
+        'danau':       'nature',
+        'geowisata':   'nature',
+        'rekreasi':    'urban',
+        'desa_wisata': 'culture',
+        'tour':        'nature',
+        'kuliner':     'culinary',
+        'hotel':       'urban',
+        'penginapan':  'urban',
+    }
+
+    # Aktivitas yang diasosiasikan dengan tiap kategori JSON
+    _CATEGORY_ACTIVITY_MAP = {
+        'pantai':      ['honeymoon', 'relaxation', 'adventure'],
+        'bukit':       ['adventure', 'relaxation'],
+        'alam':        ['adventure', 'family', 'relaxation'],
+        'air_terjun':  ['adventure', 'family'],
+        'danau':       ['family', 'relaxation', 'honeymoon'],
+        'budaya':      ['family'],
+        'rekreasi':    ['family'],
+        'desa_wisata': ['family'],
+        'geowisata':   ['adventure', 'family'],
+        'tour':        ['family', 'adventure'],
+        'kuliner':     ['family'],
+        'hotel':       ['family', 'honeymoon', 'relaxation'],
+        'penginapan':  ['family', 'honeymoon', 'relaxation'],
+    }
+
+    # Range harga per kategori budget (IDR / orang / malam atau tiket masuk)
+    _BUDGET_PRICE_RANGES = {
+        'low':    (0,          75_000),
+        'medium': (75_000,     300_000),
+        'high':   (300_000,    float('inf')),
+    }
+
+    def _parse_price_idr(self, price_str: str) -> float:
+        """
+        Ekstrak angka dari string harga seperti 'Rp 50.000', '50k', '1 juta', dsb.
+        Kembalikan None jika tidak dapat di-parse.
+        """
+        if not price_str or price_str in ('N/A', '-', ''):
+            return None
+        s = price_str.lower().replace('.', '').replace(',', '').strip()
+        # Bentuk 'gratis' / 'free'
+        if any(w in s for w in ['gratis', 'free', 'tidak dipungut']):
+            return 0.0
+        # Variasi ribuan / jutaan
+        m = re.search(r'(\d+(?:\.\d+)?)\s*(juta|ribu|rb|k\b)', s)
+        if m:
+            val = float(m.group(1))
+            unit = m.group(2)
+            if unit in ('juta',):
+                return val * 1_000_000
+            return val * 1_000
+        # Angka biasa (sudah bersih dari titik)
+        m = re.search(r'(\d+)', s)
+        if m:
+            return float(m.group(1))
+        return None
+
+    def content_based_score(
+        self,
+        location: Dict,
+        preferences: Dict,
+        *,
+        w_category: float = 0.40,
+        w_budget:   float = 0.25,
+        w_rating:   float = 0.20,
+        w_activity: float = 0.15,
+    ) -> float:
+        """
+        Hitung Content-Based Filtering score untuk satu item lokasi
+        berdasarkan preferensi pengguna yang diekstrak dari query.
+
+        Parameter
+        ---------
+        location    : dict dari locations.json  (name, category, price, rating, …)
+        preferences : dict dari extract_user_preferences()
+                      keys: budget, categories, activities, group_type
+
+        Return
+        ------
+        float dalam rentang [0.0, 1.0]
+        """
+        # ── 1. CategoryMatch ──────────────────────────────────────────────
+        loc_category_json = location.get('category', '')
+        loc_category_agent = self._JSON_TO_AGENT_CATEGORY.get(loc_category_json, '')
+
+        user_cats = preferences.get('categories', [])
+        if user_cats:
+            category_match = 1.0 if loc_category_agent in user_cats else 0.0
+        else:
+            # Tidak ada preferensi kategori → skor netral
+            category_match = 0.5
+
+        # ── 2. BudgetMatch ────────────────────────────────────────────────
+        user_budget = preferences.get('budget')  # 'low' | 'medium' | 'high' | None
+        price_val   = self._parse_price_idr(location.get('price', ''))
+
+        if user_budget is None or price_val is None:
+            budget_match = 0.5   # tidak ada info → netral
+        else:
+            lo, hi = self._BUDGET_PRICE_RANGES[user_budget]
+            if lo <= price_val <= hi:
+                budget_match = 1.0
+            else:
+                # Seberapa jauh? → hukuman proporsional tapi tidak terlalu keras
+                midpoint = (lo + hi) / 2 if hi != float('inf') else lo * 2
+                if midpoint == 0:
+                    budget_match = 0.0
+                else:
+                    distance_ratio = abs(price_val - midpoint) / midpoint
+                    budget_match = max(0.0, 1.0 - distance_ratio * 0.5)
+
+        # ── 3. RatingNorm ─────────────────────────────────────────────────
+        raw_rating  = location.get('rating', 0) or 0
+        rating_norm = min(float(raw_rating), 5.0) / 5.0
+
+        # ── 4. ActivityMatch ──────────────────────────────────────────────
+        user_activities = list(preferences.get('activities', []))
+        # group_type juga diperlakukan sebagai aktivitas implisit
+        group_type = preferences.get('group_type')
+        if group_type and group_type not in user_activities:
+            user_activities.append(group_type)
+
+        if user_activities:
+            loc_activities = self._CATEGORY_ACTIVITY_MAP.get(loc_category_json, [])
+            matches = sum(1 for a in user_activities if a in loc_activities)
+            activity_match = matches / len(user_activities)
+        else:
+            activity_match = 0.5   # tidak ada preferensi → netral
+
+        # ── Gabungkan dengan bobot ────────────────────────────────────────
+        score = (
+            w_category * category_match
+            + w_budget   * budget_match
+            + w_rating   * rating_norm
+            + w_activity * activity_match
+        )
+        return round(score, 4)
+
+    def rank_locations_cb(
+        self,
+        locations: List[Dict],
+        query: str,
+    ) -> List[Dict]:
+        """
+        Urutkan daftar lokasi dari locations.json menggunakan Content-Based
+        Filtering berdasarkan preferensi yang diekstrak dari query.
+
+        Return: list lokasi yang sama dengan tambahan key 'cb_score' (float),
+                diurutkan dari skor tertinggi ke terendah.
+        """
+        preferences = self.extract_user_preferences(query)
+        scored = []
+        for loc in locations:
+            cb = self.content_based_score(loc, preferences)
+            scored.append({**loc, 'cb_score': cb})
+        scored.sort(key=lambda x: x['cb_score'], reverse=True)
+        return scored

@@ -191,6 +191,24 @@ def find_location_by_name(query_text: str, threshold: float = 0.0) -> Optional[D
 
     if best and best_score >= threshold:
         return _loc_dict(best)
+
+    # Fallback: match against location/address field (kecamatan / area name)
+    # e.g. query "Silaen" matches location with "Kecamatan Silaen, ..."
+    area_best, area_best_score = None, 0.0
+    for loc in locations:
+        loc_area = loc.get('location', '') + ' ' + loc.get('address', '')
+        if not loc_area.strip():
+            continue
+        loc_area_lower = loc_area.lower()
+        # Only consider if query word appears as a word boundary in the area string
+        if clean_query and len(clean_query) >= 4 and re.search(r'\b' + re.escape(clean_query) + r'\b', loc_area_lower):
+            ratio = SequenceMatcher(None, clean_query, loc.get('name', '').lower()).ratio()
+            if ratio > area_best_score:
+                area_best_score = ratio
+                area_best = loc
+
+    if area_best:
+        return _loc_dict(area_best)
     return None
 
 
@@ -400,7 +418,10 @@ def extract_route_places(query: str) -> Tuple[Optional[str], Optional[str]]:
 def build_transport_context(origin_name: str, dest_name: str) -> Optional[str]:
     """
     Build a text context block about the route between two places.
-    This is injected into the LLM prompt so it can answer transport questions.
+    Hanya menyertakan info jarak & lokasi — TIDAK menyertakan rekomendasi
+    moda hardcoded (ojek/grab, sewa mobil). Rekomendasi moda transportasi
+    nyata (kapal ferry, bus, angkutan umum) diambil dari transportasi.pdf
+    melalui RAG retrieval, bukan dari tabel hardcoded berbasis jarak.
     Returns None if either location is unknown.
     """
     result = distance_between_locations(origin_name, dest_name)
@@ -410,10 +431,9 @@ def build_transport_context(origin_name: str, dest_name: str) -> Optional[str]:
     fr = result['from']
     to = result['to']
     dist = result['distance_km']
-    transports = result['transport']
 
     lines = [
-        f"[Data Rute & Transportasi]",
+        f"[Data Rute]",
         f"Dari     : {fr['name']}",
         f"  Lokasi : {fr.get('location', '-')}",
         f"  Alamat : {fr.get('address', '-')}",
@@ -425,10 +445,9 @@ def build_transport_context(origin_name: str, dest_name: str) -> Optional[str]:
         f"Jarak garis lurus  : {dist} km",
         f"Estimasi jarak jalan: {round(dist * 1.4, 1)} km",
         f"",
-        f"Rekomendasi Transportasi:",
+        f"Rekomendasikan semua moda transportasi yang tersedia: kapal ferry, bus, angkot,",
+        f"ojek, bentor/becak motor, sewa motor/mobil — berdasarkan dokumen maupun pengetahuan umum kawasan.",
     ]
-    for t in transports:
-        lines.append(f"  {t['icon']} {t['mode']} — estimasi {t['estimated_time']} ({t['estimated_road_km']} km jalan)")
 
     return '\n'.join(lines)
 

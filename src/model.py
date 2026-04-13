@@ -150,6 +150,33 @@ class GeminiChatModel:
         # Default: treat as general question
         return 'general_question'
 
+    def _is_attraction_query(self, query: str) -> bool:
+        """
+        Return True when the user is asking about tourist DESTINATIONS / ATTRACTIONS
+        (pantai, gunung, air terjun, museum, etc.) and NOT about food/dining places.
+        Used to prevent the LLM from mixing restaurants into a 'tempat wisata' answer.
+        """
+        q = query.lower()
+
+        # Explicit culinary signals — override: user DOES want food
+        culinary_signals = [
+            'makan', 'kuliner', 'restoran', 'restaurant', 'warung', 'rumah makan',
+            'cafe', 'kafe', 'kedai', 'menu', 'masakan', 'makanan', 'kulineran',
+        ]
+        for sig in culinary_signals:
+            if sig in q:
+                return False
+
+        # Attraction signals — user wants natural / cultural / artificial destinations
+        attraction_signals = [
+            'wisata', 'destinasi', 'objek wisata', 'tempat wisata', 'rekomendasi wisata',
+            'tempat liburan', 'tempat jalan', 'tempat berkunjung',
+            'pantai', 'gunung', 'air terjun', 'danau', 'hutan', 'alam',
+            'museum', 'candi', 'situs', 'sejarah', 'bersejarah', 'budaya',
+            'taman', 'wahana', 'desa wisata', 'agrowisata', 'ekowisata',
+        ]
+        return any(sig in q for sig in attraction_signals)
+
     def _extract_subject_from_query(self, query: str) -> str:
         """Extract the most likely subject/place mentioned in a document-grounded query."""
         query_clean = re.sub(r'\s+', ' ', query).strip(' ?!.,')
@@ -551,6 +578,18 @@ class GeminiChatModel:
                     "'yang tadi', 'saingannya', 'alternatif lain', dll.)\n"
                 )
 
+            # Build query type hint for rule #17
+            if self._is_attraction_query(query):
+                query_type_hint = (
+                    "\n\nTIPE QUERY SAAT INI: Pengguna bertanya tentang TEMPAT WISATA "
+                    "(destinasi alam, budaya, buatan). "
+                    "WAJIB hanya tampilkan destinasi wisata alam/budaya/buatan. "
+                    "DILARANG KERAS memasukkan restoran, warung, cafe, rumah makan, atau kedai "
+                    "sebagai rekomendasi tempat wisata.\n"
+                )
+            else:
+                query_type_hint = ""
+
             prompt = f"""Kamu adalah asisten wisata Danau Toba yang ramah, informatif, dan detail.
 
 INSTRUKSI PENTING:
@@ -558,8 +597,8 @@ INSTRUKSI PENTING:
 2. Untuk setiap tempat wisata/hotel/rumah makan, SELALU sebutkan NAMA LENGKAPNYA sebagaimana tertulis di dokumen
 3. Gunakan format yang rapi dengan emoji dan bullet points
 4. Berikan minimal 3-5 rekomendasi jika tersedia dalam dokumen
-5. Jika informasi BENAR-BENAR tidak ada sama sekali dalam dokumen, katakan "Maaf, informasi tersebut belum tersedia"
-6. JANGAN mengarang informasi yang tidak ada dalam dokumen
+5. Jika informasi BENAR-BENAR tidak ada sama sekali dalam dokumen DAN bukan tentang transportasi lokal, katakan "Maaf, informasi tersebut belum tersedia"
+6. JANGAN mengarang informasi wisata, harga tiket masuk, atau fakta tentang tempat yang tidak ada dalam dokumen. Khusus transportasi lokal umum (ojek, bentor, angkot, sewa motor/mobil), boleh gunakan estimasi pengetahuan umum dan sajikan secara natural.
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
 8. JANGAN pernah menulis teks placeholder seperti "(Tidak disebutkan namanya...)", "(Nama tidak tersedia)", atau sejenisnya — gunakan nama yang tertulis di dokumen apa adanya
 9. Akhiri dengan ajakan untuk bertanya lebih lanjut
@@ -569,15 +608,29 @@ INSTRUKSI PENTING:
 13. Untuk pertanyaan "apa saja" atau "daftar", tampilkan SELURUH tempat yang ada dalam konteks, bukan hanya sebagian.
 14. PARTIAL NAME MATCHING: Jika nama yang disebutkan pengguna hanya SEBAGIAN dari nama lengkap di dokumen, anggap itu tempat yang sama dan jawab lengkap. Misalnya jika pengguna menyebut sebagian nama dan di dokumen ada nama yang mengandung kata-kata tersebut, gunakan data tempat tersebut.
 15. QUERY LOKASI (dimana/alamat/lokasi): Jika konteks mengandung field Lokasi, Alamat, Long & Lat, atau koordinat dari tempat yang ditanyakan, WAJIB tampilkan semua data tersebut. DILARANG KERAS mengatakan "lokasi tidak tersedia" atau "belum tersedia secara rinci" jika data lokasi ADA dalam konteks.
-16. QUERY TRANSPORTASI / RUTE: Jika konteks mengandung "[Data Rute & Transportasi]", gunakan data tersebut untuk menjawab pertanyaan tentang jarak, rute, kendaraan, atau cara menuju dari satu tempat ke tempat lain. Sebutkan jarak estimasi, rekomendasi transportasi, dan estimasi waktu tempuh.
-{greeting_rule}
+16. QUERY TRANSPORTASI / RUTE: Jika konteks mengandung "[Data Rute]", gunakan data jarak dan lokasi tersebut untuk menjawab pertanyaan tentang rute, kendaraan, atau cara menuju. Ikuti panduan berikut:
+   a) PRIORITAS UTAMA: Jika dokumen memuat data transportasi spesifik (KBT, KPT, Kapal Pora Pora, Parisma, Kapal Kaldera, dll), sebutkan dengan nama, rute, dan tarifnya.
+   b) TRANSPORTASI LOKAL: Untuk transportasi lokal jarak dekat di kawasan Danau Toba / Kabupaten Toba yang TIDAK ada di dokumen (ojek, bentor/becak motor, angkot, sewa motor/mobil), kamu DIIZINKAN menggunakan pengetahuan umum untuk menyebut opsi tersebut beserta estimasi tarif realistis di kawasan tersebut. Sajikan secara natural tanpa memberi label sumber.
+   c) Selalu sebutkan jarak dan estimasi waktu tempuh berdasarkan [Data Rute] yang tersedia.
+   d) Urutkan dari yang paling relevan: transportasi lokal jarak dekat dulu, baru transportasi antar kota/kapal ferry jika relevan.
+   e) FORMAT JAWABAN TRANSPORTASI: Gunakan format terstruktur berikut:
+      - Baris pembuka: satu kalimat menyebut jarak total dan perkiraan waktu tempuh.
+      - Bagian **Pilihan Transportasi**: daftar bernomor; tiap opsi berisi nama moda, estimasi tarif, dan catatan singkat (cara naik / durasi).
+      - Bagian **Tips Perjalanan** (jika relevan): waktu terbaik berangkat, negosiasi tarif, koneksi antar moda, biaya masuk jika ada.
+      - Tutup dengan satu kalimat singkat ajakan tanya lebih lanjut.
+17. KATEGORI 'TEMPAT WISATA' vs 'KULINER': Ini SANGAT PENTING. Bedakan dua kategori ini secara tegas:
+   • "Tempat wisata" / "destinasi wisata" / "objek wisata" = DESTINASI ALAM (pantai, gunung, air terjun, danau, hutan, gua), WISATA BUDAYA (museum, situs sejarah, candi, rumah adat, desa wisata), dan WISATA BUATAN (taman hiburan, taman rekreasi, agrowisata, ekowisata). BUKAN tempat makan.
+   • "Kuliner" / "tempat makan" / "rekomendasi makan" = restoran, warung, rumah makan, cafe, kedai, dll. BUKAN tempat wisata alam/budaya.
+   Jika query pengguna mengandung kata 'wisata', 'destinasi', 'objek wisata', 'tempat liburan', atau 'rekomendasi wisata' TANPA menyebut 'makan/kuliner', JANGAN memasukkan restoran/warung/cafe/rumah makan sebagai rekomendasi.
+   Jika query pengguna mengandung 'kuliner', 'makan', 'restoran', 'warung', 'cafe', JANGAN memasukkan pantai/gunung/air terjun sebagai rekomendasi.
+{query_type_hint}{greeting_rule}
 {pref_hint}{history_section}
 INFORMASI DOKUMEN:
 {context[:6000]}
 
 PERTANYAAN: {query}
 
-JAWABAN (hanya berdasarkan dokumen di atas):"""
+JAWABAN:"""
             
             # Call Gemini — fallback model otomatis via _build_models_to_try
             result = self._call_gemini_api(prompt, max_tokens=max_new_tokens, temperature=temperature)
