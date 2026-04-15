@@ -1,6 +1,6 @@
-# 🏔️ Sistem Rekomendasi Wisata Danau Toba
+# 🏔️ Danau Toba Tourism Recommendation System
 
-Chatbot berbasis **Hybrid CAG–RAG** untuk rekomendasi wisata Danau Toba. Sistem mengambil konteks dari dokumen PDF, mempercepat respons dengan mekanisme caching berlapis, dilengkapi autentikasi pengguna, peta interaktif dengan lokasi pengguna, dan 3-Layer Hallucination Guard.
+Chatbot berbasis **Hybrid CAG-RAG** for Danau Toba tourism recommendations. Sistem mengambil konteks dari dokumen PDF, menggunakan layered cache untuk mempercepat response, menyimpan riwayat percakapan per thread, mendukung feedback dan answer regeneration, serta dilengkapi user authentication, interactive map dengan user location, dan 3-Layer Hallucination Guard.
 
 ## 🖼️ Preview UI
 
@@ -8,16 +8,16 @@ Chatbot berbasis **Hybrid CAG–RAG** untuk rekomendasi wisata Danau Toba. Siste
 
 ---
 
-## ✨ Fitur
+## ✨ Features / Fitur
 
-- 🤖 **RAG** — Jawaban berbasis dokumen wisata PDF (FAISS + cosine similarity)
-- ⚡ **CAG** — Staging cache → confirmed cache untuk respons cepat dan terverifikasi
-- 🛡️ **3-Layer Hallucination Guard** — Threshold retrieval (0.30), staging cache, net-likes gate
-- 🔄 **Auto-Regeneration** — Response buruk di-regen otomatis saat dislike (maks 3×)
-- 🗺️ **Peta Interaktif** — Lokasi wisata Leaflet + tombol "Lokasi Saya" (geolocation browser)
-- 📏 **Sort by Distance** — Marker diurutkan dari lokasi terdekat pengguna
-- 👤 **Autentikasi** — Register/login email+password dan Google OAuth
-- 🎨 **UI Batak Theme** — Desain terinspirasi budaya Batak
+- 🤖 **RAG** — Document-grounded answers dari PDF wisata (FAISS + cosine similarity)
+- ⚡ **CAG** — Staging cache → confirmed cache untuk fast and validated responses
+- 🛡️ **3-Layer Hallucination Guard** — Retrieval threshold (0.30), staging cache, net-likes gate
+- 🔄 **Auto-Regeneration** — Jawaban kurang baik bisa di-regenerate dan dibandingkan sebagai answer variants
+- 🗺️ **Interactive Map** — Lokasi wisata dengan Leaflet + "Lokasi Saya" button (browser geolocation)
+- 📏 **Sort by Distance** — Marker otomatis diurutkan dari lokasi user terdekat
+- 👤 **Authentication** — Register/login email+password + Google OAuth
+- 🎨 **Batak Theme UI** — Visual style terinspirasi budaya Batak
 - 📊 **Comprehensive Evaluation** — Quantitative & Qualitative metrics
 - 🔑 **Role-Based Access** — Role `admin`, `operator`, `user`
 
@@ -25,62 +25,63 @@ Chatbot berbasis **Hybrid CAG–RAG** untuk rekomendasi wisata Danau Toba. Siste
 
 ## 🛠️ Tech Stack
 
-| Komponen | Teknologi |
+| Component | Technology |
 |---|---|
-| **LLM** | Gemini 2.5 Flash / 2.5 Pro / 2.0 Flash (rotasi kunci) |
-| **Embeddings** | `sentence-transformers/all-MiniLM-L12-v2` |
-| **Vector Store** | FAISS (cosine similarity, threshold 0.30) |
+| **LLM** | Gemini 2.5 Flash / 2.5 Pro / 2.0 Flash (API key rotation) |
+| **Embeddings** | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
+| **Vector Store** | FAISS + BM25 hybrid retrieval (cosine similarity, threshold 0.30) |
 | **Backend** | FastAPI + Uvicorn + SQLite |
 | **Auth** | Session token (SHA-256+salt) + Google OAuth (Authlib) |
 | **Frontend** | React 18 + Vite 5 + React Router v7 |
-| **Maps** | Leaflet + React-Leaflet + OpenStreetMap (gratis, tanpa API key) |
-| **Geolocation** | Browser `navigator.geolocation` (gratis, tanpa API key) |
+| **Maps** | Leaflet + React-Leaflet + OpenStreetMap (free, no API key) |
+| **Geolocation** | Browser `navigator.geolocation` (free, no API key) |
 | **Evaluation** | BERTScore, ROUGE, NLTK, scikit-learn |
 
 ---
 
-## 📂 Struktur Project
+## 📂 Project Structure / Struktur Project
 
 ```
 ├── database/
-│   ├── avatars/               # Upload foto profil pengguna
-│   ├── documents/             # Dokumen PDF sumber RAG
+│   ├── avatars/               # User avatar uploads
+│   ├── documents/             # PDF documents as RAG knowledge source
 │   ├── FAQ/
-│   │   └── faq_tourism.json   # Dataset FAQ untuk pre-populate cache
+│   │   └── faq_tourism.json   # FAQ dataset for cache pre-population
 │   ├── kv_cache/
-│   │   └── cache_index.json   # Cache confirmed + staging
+│   │   └── cache_index.json   # Confirmed + staging cache storage
 │   └── Locations/
-│       └── locations.json     # Data lokasi wisata untuk peta
+│       └── locations.json     # Tourism location data for map
 ├── frontend/
-│   ├── public/                # Static assets (gambar, lagu)
+│   ├── public/                # Static assets (images, audio)
 │   ├── src/
-│   │   ├── App.jsx            # Halaman chat utama + modal peta
-│   │   ├── MapView.jsx        # Komponen peta Leaflet + geolocation
+│   │   ├── App.jsx            # Main chat page, feedback, regeneration, map modal
+│   │   ├── MapView.jsx        # Leaflet map component + geolocation
 │   │   ├── components/
-│   │   │   ├── AdminDashboard.jsx   # Panel admin
-│   │   │   ├── Login.jsx            # Halaman login/register
-│   │   │   ├── UserProfile.jsx      # Halaman profil pengguna
-│   │   │   ├── AuthCallback.jsx     # Callback Google OAuth
-│   │   │   ├── ProtectedRoute.jsx   # Guard rute login
-│   │   │   └── GuestRoute.jsx       # Guard rute tamu
+│   │   │   ├── AdminDashboard.jsx   # Admin panel
+│   │   │   ├── Login.jsx            # Login/register page
+│   │   │   ├── UserProfile.jsx      # User profile page
+│   │   │   ├── AuthCallback.jsx     # Google OAuth callback
+│   │   │   ├── ProtectedRoute.jsx   # Protected route guard
+│   │   │   └── GuestRoute.jsx       # Guest-only route guard
+│   │   ├── routes.jsx         # Public/auth/protected/admin route config
 │   │   └── context/
-│   │       └── AuthContext.jsx      # Global state autentikasi
+│   │       └── AuthContext.jsx      # Global authentication state
 │   ├── package.json
 │   └── vite.config.js
-├── logs/                      # Log lifecycle cache
+├── logs/                      # Cache lifecycle logs
 ├── notebooks/
-│   └── Evaluate.ipynb         # Notebook evaluasi lengkap
+│   └── Evaluate.ipynb         # Full evaluation notebook
 ├── src/
-│   ├── api.py                 # FastAPI — semua endpoint
+│   ├── api.py                 # FastAPI - all API endpoints
 │   ├── hybrid_system.py       # Orchestrator: Cache → FAQ → FAISS → LLM
-│   ├── model.py               # Wrapper Gemini REST API
+│   ├── model.py               # Gemini REST API wrapper
 │   ├── kv_cache_manager.py    # Staging + confirmed cache manager
-│   ├── manage_cache.py        # Lifecycle cache (hapus/promosi mingguan)
-│   ├── clear_invalid_cache.py # Utility bersihkan cache invalid
-│   ├── decision_agent.py      # Ekstraksi preferensi dari query
+│   ├── manage_cache.py        # Cache lifecycle (weekly cleanup/promotion)
+│   ├── clear_invalid_cache.py # Utility to clean invalid cache entries
+│   ├── decision_agent.py      # User preference extraction from query
 │   ├── database.py            # SQLite: users, sessions, chat history
-│   ├── evaluation.py          # Metrics evaluasi (BERTScore, ROUGE, dll.)
-│   └── faq_generator.py       # Generator dan pengelola FAQ
+│   ├── evaluation.py          # Evaluation metrics (BERTScore, ROUGE, etc.)
+│   └── faq_generator.py       # FAQ generator and manager
 ├── requirements.txt
 ├── setup_app.sh
 ├── setup_vps.sh
@@ -89,11 +90,11 @@ Chatbot berbasis **Hybrid CAG–RAG** untuk rekomendasi wisata Danau Toba. Siste
 
 ---
 
-## 🚀 Instalasi & Menjalankan (dari Nol)
+## 🚀 Installation & Run Guide (from scratch)
 
-### Prasyarat
+### Prerequisites / Prasyarat
 
-Pastikan sudah terinstal:
+Pastikan tools berikut sudah terinstal:
 
 | Software | Versi Minimum | Download |
 |---|---|---|
@@ -101,100 +102,100 @@ Pastikan sudah terinstal:
 | **Node.js** | 18+ (termasuk npm) | https://nodejs.org/ |
 | **Git** | (opsional) | https://git-scm.com/ |
 
-> Cek instalasi: `python --version` dan `node --version`
+> Verify installation: `python --version` and `node --version`
 
 ---
 
-### Langkah 1 — Clone / Ekstrak Project
+### Step 1 - Clone / Extract Project
 
 ```bash
-# Jika menggunakan Git
+# If using Git
 git clone <url-repo>
 cd Implementasi
 
-# Atau ekstrak ZIP dan masuk ke foldernya
+# Or extract ZIP and enter project folder
 cd Implementasi
 ```
 
 ---
 
-### Langkah 2 — Buat Virtual Environment Python
+### Step 2 - Create Python Virtual Environment
 
 ```bash
-# Buat virtual environment
+# Create virtual environment
 python -m venv .venv
 
-# Aktifkan (Windows)
+# Activate (Windows)
 .venv\Scripts\activate
 
-# Aktifkan (Linux / macOS)
+# Activate (Linux / macOS)
 source .venv/bin/activate
 ```
 
-> Setelah aktif, prompt terminal akan berubah menjadi `(.venv) ...`
+> After activation, terminal prompt biasanya berubah menjadi `(.venv) ...`
 
 ---
 
-### Langkah 3 — Install Dependensi Python
+### Step 3 - Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> Proses ini mengunduh semua library backend: FastAPI, LangChain, FAISS, sentence-transformers, Gemini client, dll. Bisa memakan waktu beberapa menit.
+> This will install backend libraries: FastAPI, LangChain, FAISS, sentence-transformers, Gemini client, dll. Proses bisa memakan beberapa menit.
 
 ---
 
-### Langkah 4 — Buat File `.env`
+### Step 4 - Create `.env` File
 
-Buat file `.env` di **root folder project** (sejajar dengan `requirements.txt`):
+Create `.env` file di **project root** (selevel dengan `requirements.txt`):
 
 ```env
-# ── WAJIB ──────────────────────────────────────────
-# Dapatkan API key Gemini di: https://aistudio.google.com/app/apikey
+# ── REQUIRED / WAJIB ───────────────────────────────
+# Get Gemini API key: https://aistudio.google.com/app/apikey
 GEMINI_API_KEY=your_gemini_api_key_here
 
-# String acak panjang untuk enkripsi session (isi bebas, jangan publish)
+# Random long secret for session encryption (jangan dipublish)
 SECRET_KEY=ganti-dengan-string-acak-yang-panjang-dan-aman
 
-# ── OPSIONAL: Multiple API Key (rotasi otomatis jika satu kena rate limit) ──
+# ── OPTIONAL: Multiple API Keys (automatic rotation on rate limit) ──
 # GEMINI_API_KEYS=key1,key2,key3
 
-# ── OPSIONAL: Google OAuth (login dengan akun Google) ──────────────────────
-# Jika tidak diisi, fitur "Login dengan Google" tidak aktif
-# tapi login email+password tetap berjalan normal
+# ── OPTIONAL: Google OAuth (login with Google account) ─────────────────────
+# If not set, "Login with Google" will be disabled
+# but email+password login tetap bisa digunakan
 # GOOGLE_CLIENT_ID=your_google_client_id
 # GOOGLE_CLIENT_SECRET=your_google_client_secret
 # GOOGLE_REDIRECT_URI=http://localhost:8000/api/auth/google/callback
 # FRONTEND_URL=http://localhost:3000
 ```
 
-> ⚠️ File `.env` **tidak boleh di-commit ke Git**. Sudah ada di `.gitignore`.
+> ⚠️ Never commit `.env` to Git. File ini sudah masuk `.gitignore`.
 
 ---
 
-### Langkah 5 — Install Dependensi Frontend
+### Step 5 - Install Frontend Dependencies
 
 ```bash
 cd frontend
 npm install
 ```
 
-> Proses ini mengunduh React, Vite, Leaflet, dll. ke folder `frontend/node_modules/`.
+> This installs React, Vite, Leaflet, dll. ke folder `frontend/node_modules/`.
 
 ---
 
-### Langkah 6 — Jalankan Sistem
+### Step 6 - Run the System
 
-Butuh **dua terminal** yang terbuka secara bersamaan.
+You need **two terminals** running in parallel.
 
-**Terminal 1 — Backend (FastAPI):**
+**Terminal 1 - Backend (FastAPI):**
 ```bash
-# Dari root folder project, dengan .venv aktif
+# From project root with active .venv
 python src/api.py
 ```
 
-Tunggu hingga muncul output seperti:
+Wait until output appears like:
 ```
 ✅ Model initialized
 ✅ Embedding model loaded
@@ -202,13 +203,13 @@ Tunggu hingga muncul output seperti:
 🚀 Server started at http://0.0.0.0:8000
 ```
 
-**Terminal 2 — Frontend (React + Vite):**
+**Terminal 2 - Frontend (React + Vite):**
 ```bash
 cd frontend
 npm run dev
 ```
 
-Tunggu hingga muncul:
+Wait until output appears like:
 ```
   VITE v5.x.x  ready in ...ms
   ➜  Local:   http://localhost:3000/
@@ -216,143 +217,156 @@ Tunggu hingga muncul:
 
 ---
 
-### Langkah 7 — Buka di Browser
+### Step 7 - Open in Browser
 
-| Akses | URL |
+| Access | URL |
 |---|---|
-| 🌐 Aplikasi | http://localhost:3000 |
+| 🌐 App | http://localhost:3000 |
 | 🔌 API | http://localhost:8000 |
 | 📚 Swagger Docs | http://localhost:8000/docs |
 
-> **Akun admin default** (dibuat otomatis saat pertama kali dijalankan):
+> **Default admin account** (created automatically on first run):
 > - Username: `admin`
 > - Password: `admin123`
-> - ⚠️ Segera ganti password setelah login pertama kali.
+> - ⚠️ Segera ganti password setelah first login.
 
 ---
 
-## 🗺️ Fitur Peta & Geolocation
+## 🗺️ Map & Geolocation Features
 
-Klik tombol **Peta Lokasi** di sidebar → Modal peta terbuka:
+Klik tombol **Peta Lokasi** di sidebar and map modal will open:
 
-- **Marker merah** — lokasi wisata dari `database/Locations/locations.json`
-- **Tombol "📍 Lokasi Saya"** — klik untuk menemukan posisi Anda menggunakan GPS browser (gratis, tanpa API key)
-- **Marker biru** — posisi Anda saat ini
-- **Jarak di popup** — setiap marker menampilkan jarak dari posisi Anda (km)
-- **Sort terdekat** — marker diurutkan otomatis dari yang paling dekat
+- **Red markers** - tourism points from `database/Locations/locations.json`
+- **"📍 Lokasi Saya" button** - detect your position via browser GPS (free, no API key)
+- **Blue marker** - your current location
+- **Distance in popup** - each marker shows distance from your position (km)
+- **Nearest-first sorting** - marker list otomatis diurutkan dari yang terdekat
 
-> Browser akan meminta izin akses lokasi. Klik "Izinkan" / "Allow".
+> Browser akan meminta location permission. Klik "Izinkan" / "Allow".   
 
 ---
 
 ## 📡 API Endpoints
 
-### Chat & Sistem
-| Endpoint | Method | Fungsi |
+### Chat & System
+| Endpoint | Method | Function |
 |---|---|---|
-| `/api/chat` | POST | Kirim pertanyaan ke chatbot |
-| `/api/status` | GET | Status sistem & model |
-| `/api/stats` | GET | Statistik cache |
-| `/api/locations` | GET | Data lokasi wisata |
-| `/api/feedback` | POST | Submit like/dislike |
-| `/api/feedback/stats` | GET | Statistik feedback |
+| `/api/chat` | POST | Send question to chatbot |
+| `/api/chat/regenerate` | POST | Regenerate answer for the same question |
+| `/api/chat/choose-variant` | POST | Choose original or regenerated answer |
+| `/api/status` | GET | System and model status |
+| `/api/stats` | GET | Cache statistics |
+| `/api/locations` | GET | Tourism location data |
+| `/api/feedback` | POST | Submit like/dislike feedback |
+| `/api/feedback/stats` | GET | Feedback statistics |
 
-### Autentikasi
-| Endpoint | Method | Fungsi |
+### Authentication / Autentikasi
+| Endpoint | Method | Function |
 |---|---|---|
-| `/api/auth/register` | POST | Daftar akun baru |
-| `/api/auth/login` | POST | Login email + password |
+| `/api/auth/register` | POST | Register new account |
+| `/api/auth/login` | POST | Login with email + password |
 | `/api/auth/logout` | POST | Logout |
-| `/api/auth/me` | GET | Data pengguna aktif |
-| `/api/auth/google/login` | GET | Redirect ke Google OAuth |
-| `/api/auth/google/callback` | GET | Callback Google OAuth |
+| `/api/auth/me` | GET | Get active user profile |
+| `/api/auth/validate` | GET | Validate session token |
+| `/api/auth/google/login` | GET | Redirect to Google OAuth |
+| `/api/auth/google/callback` | GET | Google OAuth callback |
 
-### Profil Pengguna
-| Endpoint | Method | Fungsi |
+### User Profile / Profil Pengguna
+| Endpoint | Method | Function |
 |---|---|---|
-| `/api/user/profile` | PUT | Update profil |
-| `/api/user/change-password` | POST | Ganti password |
-| `/api/user/history` | GET | Riwayat chat |
-| `/api/user/history` | DELETE | Hapus riwayat chat |
-| `/api/user/avatar/upload` | POST | Upload foto profil |
+| `/api/user/profile` | PUT | Update user profile |
+| `/api/user/change-password` | POST | Change password |
+| `/api/user/history` | GET | Get chat history |
+| `/api/user/history` | DELETE | Delete chat history |
+| `/api/user/avatar/upload` | POST | Upload avatar image |
+| `/api/user/avatar/base64` | POST | Update avatar via emoji/base64 |
+| `/api/conversations` | GET | List conversation threads |
+| `/api/conversations/{conversation_id}/history` | GET | Get conversation history |
 
 ### Admin (Role `admin`)
-| Endpoint | Method | Fungsi |
+| Endpoint | Method | Function |
 |---|---|---|
-| `/api/admin/users` | GET | Daftar semua pengguna |
-| `/api/admin/stats` | GET | Statistik sistem |
-| `/api/admin/user/{id}` | DELETE | Nonaktifkan pengguna |
-| `/api/admin/cache/lifecycle` | GET | Preview lifecycle cache |
-| `/api/admin/cache/lifecycle/execute` | POST | Jalankan lifecycle cache |
-| `/api/admin/cache/prepopulate` | POST | Pre-populate cache dari FAQ |
+| `/api/admin/users` | GET | List all users |
+| `/api/admin/stats` | GET | System statistics |
+| `/api/admin/analytics` | GET | Admin analytics |
+| `/api/admin/user/{id}` | DELETE | Deactivate user |
+| `/api/admin/cache/lifecycle` | GET | Preview cache lifecycle |
+| `/api/admin/cache/lifecycle/execute` | POST | Execute cache lifecycle |
+| `/api/admin/cache/prepopulate` | POST | Pre-populate cache from FAQ |
+| `/api/admin/cache/kv/wipe` | DELETE | Wipe all KV cache entries |
 
 ### Cache
-| Endpoint | Method | Fungsi |
+| Endpoint | Method | Function |
 |---|---|---|
-| `/api/clear` | POST | Bersihkan cache |
-| `/api/optimize` | POST | Optimasi cache |
+| `/api/clear` | POST | Clear cache |
+| `/api/optimize` | POST | Optimize cache |
 
 ---
 
-## 👤 Sistem Autentikasi
+## 👤 Authentication System / Sistem Autentikasi
 
 ### Email + Password
-- Password di-hash dengan SHA-256 + salt sebelum disimpan
+- Password di-hash menggunakan SHA-256 + salt sebelum disimpan
 - Login menghasilkan **session token** yang disimpan di SQLite
-- Token dikirim sebagai `Authorization: Bearer <token>` di setiap request
+- Token dikirim sebagai `Authorization: Bearer <token>` pada setiap request
 
 ### Google OAuth
-- Login dengan Google menyimpan `email` dan `name` dari akun Google
-- Jika email sudah terdaftar, akun terhubung otomatis
+- Login via Google akan menyimpan `email` dan `name` dari akun Google
+- Jika email sudah terdaftar, account akan otomatis terhubung
 
 ### Role
-| Role | Akses |
+| Role | Access |
 |---|---|
-| `user` | Chat, profil, riwayat |
-| `operator` | + manajemen cache |
-| `admin` | + semua endpoint admin |
+| `user` | Chat, profile, history |
+| `operator` | + cache management |
+| `admin` | + all admin endpoints |
 
 ---
 
-## ⚡ Sistem Cache (CAG)
+## ⚡ Cache System (CAG)
 
-Pipeline respons berjalan dalam urutan:
+Response pipeline berjalan dalam urutan berikut:
 
 ```
-Query Pengguna
+User Query
     │
     ▼
-[1] KV Cache (confirmed) ──── HIT ──▶ Kembalikan respons langsung
+[1] KV Cache (confirmed) ──── HIT ──▶ Return cached response directly
     │ MISS
     ▼
-[2] FAQ Search ─────────────── MATCH ▶ Kembalikan + simpan ke cache
+[2] FAQ Search ─────────────── MATCH ▶ Return answer + save to staging cache
     │ NO MATCH
     ▼
-[3] FAISS Retrieval (RAG) ─── score ≥ 0.30 ──▶ Kirim ke Gemini
+[3] FAISS + BM25 Retrieval (RAG) ─ score ≥ 0.30 ──▶ Send context to Gemini
     │ score < 0.30
     ▼
-[4] Gemini (tanpa konteks) ──▶ Jawaban umum
+[4] Gemini (without context) ──▶ General answer
     │
     ▼
-Respons → Staging Cache → (setelah like) → Confirmed Cache
+Response → Staging Cache → (after positive signal) → Confirmed Cache
 ```
 
-### Lifecycle Cache
-Dijalankan mingguan (`manage_cache.py`):
-- **Hapus**: akses < 5 kali DAN umur > 21 hari
-- **Promosi ke FAQ**: akses ≥ 5 kali DAN net-likes ≥ 1
-- **Hapus (buruk)**: akses ≥ 5 kali DAN net-likes < 0
+### Cache Lifecycle
+Dijalankan mingguan via `manage_cache.py`:
+- **Delete**: access < 5 kali AND age > 21 days
+- **Promote to FAQ**: access ≥ 5 kali AND net-likes ≥ 1
+- **Delete low quality**: access ≥ 5 kali AND net-likes < 0
+
+### Conversation Flow / Alur Percakapan
+- Setiap chat disimpan sebagai conversation thread, sehingga sidebar bisa menampilkan history per topik.
+- Follow-up query dengan kata seperti "nya" atau "itu" akan di-ground ke tempat terakhir yang dibahas.
+- Jika jawaban cache dianggap kurang baik, user bisa dislike lalu memilih hasil regeneration yang lebih sesuai.
 
 ---
 
-## 📊 Evaluasi
+## 📊 Evaluation / Evaluasi
 
 ```bash
-# Jalankan notebook evaluasi lengkap
+# Run full evaluation notebook
 jupyter notebook notebooks/Evaluate.ipynb
 ```
 
-**Metrics yang dihitung:**
+**Evaluated metrics:**
 1. **Efficiency**: Response Time, Cache Hit Rate (CHR)
 2. **Retrieval**: RAG Recall, Effective Information Rate (EIR)
 3. **Generation**: BERTScore (P/R/F1), Completeness, Hallucination Rate, Irrelevancy Score
@@ -360,19 +374,19 @@ jupyter notebook notebooks/Evaluate.ipynb
 
 ---
 
-## 🧹 Utilitas
+## 🧹 Utilities / Utilitas
 
 ```bash
-# Bersihkan cache yang invalid/korup
+# Clean invalid/corrupted cache
 python src/clear_invalid_cache.py
 
-# Preview lifecycle cache (dry-run, tidak ada perubahan)
+# Preview cache lifecycle (dry-run, no changes)
 python src/manage_cache.py
 
-# Jalankan lifecycle cache (hapus & promosi)
+# Execute cache lifecycle (deletion & promotion)
 python src/manage_cache.py --execute
 
-# Test respons chatbot dari terminal
+# Test chatbot response from terminal
 python test_response.py
 ```
 
@@ -380,14 +394,14 @@ python test_response.py
 
 ## ❓ Troubleshooting
 
-| Masalah | Solusi |
+| Problem | Solution |
 |---|---|
-| `ModuleNotFoundError` | Pastikan virtual environment aktif dan `pip install -r requirements.txt` sudah dijalankan |
-| `GEMINI_API_KEY not set` | Pastikan file `.env` ada di root folder dan berisi `GEMINI_API_KEY` |
-| Backend tidak start | Cek apakah port 8000 sudah dipakai: `netstat -ano \| findstr :8000` |
-| Frontend tidak terhubung ke backend | Pastikan backend sudah running di port 8000 sebelum membuka frontend |
-| Geolocation tidak bekerja | Izinkan akses lokasi di browser; tidak bekerja di HTTP non-localhost |
-| `npm: command not found` | Install Node.js dari https://nodejs.org/ |
+| `ModuleNotFoundError` | Pastikan virtual environment aktif dan jalankan `pip install -r requirements.txt` |
+| `GEMINI_API_KEY not set` | Ensure `.env` exists in project root and contains `GEMINI_API_KEY` |
+| Backend not starting | Check if port 8000 is already in use: `netstat -ano \| findstr :8000` |
+| Frontend cannot connect to backend | Pastikan backend berjalan di port 8000 sebelum menjalankan frontend |
+| Geolocation not working | Allow location permission in browser; HTTP non-localhost biasanya dibatasi |
+| `npm: command not found` | Install Node.js from https://nodejs.org/ |
 
 ---
 
