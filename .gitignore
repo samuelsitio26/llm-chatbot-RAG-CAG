@@ -7,3 +7,8 @@ __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+
+# Google Cloud Service Account credentials — JANGAN pernah di-commit!
+*service-account*.json
+*-sa.json
+credentials.json

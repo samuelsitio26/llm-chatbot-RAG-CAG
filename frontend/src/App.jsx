@@ -180,7 +180,21 @@ function App() {
               mapped[c.id] = { id: c.id, title: c.title, messages: [] };
             });
             setConversations(mapped);
-            setActiveConvId(serverConvs[0].id);
+
+            let restoredId = null;
+            try {
+              const lastRes = await axios.get(`${API_BASE_URL}/conversations/last`, {
+                headers: { Authorization: `Bearer ${token}` },
+              });
+              const lastConv = lastRes.data?.conversation;
+              if (lastConv?.id && mapped[lastConv.id]) {
+                restoredId = lastConv.id;
+              }
+            } catch (lastErr) {
+              console.warn('⚠️ Could not restore last conversation from DB:', lastErr.message);
+            }
+
+            setActiveConvId(restoredId || serverConvs[0].id);
           } else {
             // No conversations on server — start fresh
             const id = `conv_${Date.now()}`;
@@ -462,8 +476,20 @@ function App() {
     persistConversations(next);
   };
 
-  const selectConversation = (id) => {
+  const selectConversation = async (id) => {
     setActiveConvId(id);
+
+    if (isAuthenticated && token) {
+      try {
+        await axios.post(
+          `${API_BASE_URL}/conversations/${id}/activate`,
+          {},
+          { headers: getAuthHeaders() }
+        );
+      } catch (e) {
+        console.warn('⚠️ Failed to mark conversation active:', e.message);
+      }
+    }
   };
 
   const renameConversation = (id) => {

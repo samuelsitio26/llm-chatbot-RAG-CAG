@@ -10,7 +10,7 @@ import glob
 import uuid
 import base64
 from contextlib import asynccontextmanager
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from datetime import datetime
 
 from fastapi import FastAPI, HTTPException, Depends, Header, Request, UploadFile, File, BackgroundTasks
@@ -141,7 +141,7 @@ async def lifespan(app: FastAPI):
         
         # Initialize Gemini model
         print("📦 Loading Gemini API model...")
-        model = GeminiChatModel(model_name="gemini-2.5-flash")
+        model = GeminiChatModel(model_name="gemini-3-flash-preview")
         
         # Initialize encoder for embeddings
         # Model: paraphrase-multilingual-MiniLM-L12-v2
@@ -289,6 +289,54 @@ def classify_query_type(query: str) -> dict:
     return {'type': 'general', 'category': 'general'}
 
 
+def _merge_conversation_state(prev_state: Dict[str, Any], query: str, answer: str, query_type: str) -> Dict[str, Any]:
+    """Build compact state used for multi-turn context retention and coreference."""
+    state = dict(prev_state or {})
+    query_lower = (query or "").lower()
+
+    explicit_place = None
+    inferred_from_answer = None
+    keep_previous_place = False
+    try:
+        if cag_system and hasattr(cag_system, "_extract_place_name"):
+            explicit_place = cag_system._extract_place_name(query)
+
+        # Follow-up turns should keep previous anchor unless user clearly switches place.
+        if not explicit_place and state.get("last_place") and cag_system:
+            is_ref = hasattr(cag_system, "_is_followup_reference_query") and cag_system._is_followup_reference_query(query)
+            is_implicit = hasattr(cag_system, "_is_implicit_attribute_followup_query") and cag_system._is_implicit_attribute_followup_query(query)
+            has_compare = any(kw in query_lower for kw in ["selain", "alternatif", "yang lain", "lainnya", "bandingkan", "dibanding"])
+            keep_previous_place = bool(is_ref or is_implicit or has_compare)
+
+        if not explicit_place and not keep_previous_place and cag_system and hasattr(cag_system, "_extract_place_from_assistant_answer"):
+            inferred_from_answer = cag_system._extract_place_from_assistant_answer(answer)
+    except Exception:
+        explicit_place = None
+        inferred_from_answer = None
+
+    extracted_place = explicit_place or (None if keep_previous_place else inferred_from_answer)
+    if extracted_place:
+        state["last_place"] = extracted_place
+        state["last_entity"] = extracted_place
+        state["active_entity"] = extracted_place
+        state["last_topic"] = extracted_place
+
+    state["last_intent"] = query_type
+    state["last_query"] = query[:300] if query else ""
+    state["last_answer_preview"] = (answer or "")[:300]
+
+    excluded = state.get("excluded_entities") or []
+    if not isinstance(excluded, list):
+        excluded = []
+
+    if any(kw in query_lower for kw in ["selain", "alternatif", "yang lain", "lainnya"]):
+        candidate = state.get("last_place")
+        if candidate and candidate not in excluded:
+            excluded.append(candidate)
+    state["excluded_entities"] = excluded[-8:]
+    return state
+
+
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest, authorization: str = Header(None)):
     """Process chat request with smart location detection"""
@@ -308,11 +356,17 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
     if conv_id:
         title = request.query[:50] if len(request.query) <= 50 else request.query[:47] + '...'
         db.upsert_conversation(conv_id, user_id, title)
+        if user_id:
+            owned = db.mark_conversation_accessed(conv_id, user_id)
+            if not owned:
+                raise HTTPException(status_code=403, detail="Conversation access denied")
 
     # Load conversation context so the LLM can answer follow-up questions
     chat_history = []
-    if conv_id:
-        chat_history = db.get_conversation_context(conv_id, limit=8)
+    conversation_state = {}
+    if conv_id and user_id:
+        chat_history = db.get_conversation_context(conv_id, limit=8, user_id=user_id)
+        conversation_state = db.get_conversation_state(conv_id, user_id)
 
     result = None  # initialize so finally block can safely reference it
     try:
@@ -328,6 +382,7 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
         result = cag_system.get_response(
             query=request.query,
             chat_history=chat_history,
+            conversation_state=conversation_state,
             use_cache=request.use_cache,
             k=request.k,
             max_new_tokens=request.max_new_tokens,
@@ -389,6 +444,18 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
                     )
                 except Exception as db_err:
                     print(f"⚠️ DB save failed (non-fatal): {db_err}")
+
+        if user_id and conv_id and response_text:
+            try:
+                next_state = _merge_conversation_state(
+                    prev_state=conversation_state,
+                    query=request.query,
+                    answer=response_text,
+                    query_type=query_type,
+                )
+                db.upsert_conversation_state(conv_id, user_id, next_state)
+            except Exception as state_err:
+                print(f"⚠️ Conversation state save failed (non-fatal): {state_err}")
 
         return ChatResponse(
             response=response_text,
@@ -1001,10 +1068,29 @@ async def get_conversations(user: dict = Depends(require_auth)):
     return {"conversations": convs}
 
 
+@app.get("/api/conversations/last")
+async def get_last_conversation(user: dict = Depends(require_auth)):
+    """Return the last opened conversation for the logged-in user."""
+    conv = db.get_last_opened_conversation(user['id'])
+    return {"conversation": conv}
+
+
+@app.post("/api/conversations/{conversation_id}/activate")
+async def activate_conversation(conversation_id: str, user: dict = Depends(require_auth)):
+    """Mark a conversation as active/last-opened for this user."""
+    ok = db.mark_conversation_accessed(conversation_id, user['id'])
+    if not ok:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    return {"success": True, "conversation_id": conversation_id}
+
+
 @app.get("/api/conversations/{conversation_id}/history")
 async def get_conversation_history(conversation_id: str, user: dict = Depends(require_auth)):
     """Return full Q&A turns for a specific conversation (for reload from DB)."""
-    history = db.get_conversation_context(conversation_id, limit=100)
+    ok = db.mark_conversation_accessed(conversation_id, user['id'])
+    if not ok:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    history = db.get_conversation_context(conversation_id, limit=100, user_id=user['id'])
     return {"conversation_id": conversation_id, "history": history}
 
 
@@ -1314,14 +1400,21 @@ async def regenerate_answer(request: RegenerateRequest, authorization: str = Hea
 
     # Load conversation context
     chat_history = []
-    if request.conversation_id:
-        chat_history = db.get_conversation_context(request.conversation_id, limit=8)
+    conversation_state = {}
+    if request.conversation_id and user:
+        chat_history = db.get_conversation_context(
+            request.conversation_id,
+            limit=8,
+            user_id=user['id'],
+        )
+        conversation_state = db.get_conversation_state(request.conversation_id, user['id'])
 
     try:
         # Force fresh generation — skip cache
         result = cag_system.get_response(
             query=request.question,
             chat_history=chat_history,
+            conversation_state=conversation_state,
             use_cache=False,   # always bypass cache for regeneration
             k=8,
             max_new_tokens=2048,

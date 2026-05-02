@@ -5,8 +5,12 @@ python-dotenv>=1.0.0
 pydantic[email]>=2.0.0
 python-multipart>=0.0.6
 
-# HTTP requests for Gemini API
+# HTTP requests (Google OAuth & general)
 requests>=2.31.0
+
+# google-genai SDK — required for gemini-3-flash-preview (global endpoint)
+# Replaces google-cloud-aiplatform for LLM calls
+google-genai>=1.56.0
 
 # LangChain for RAG
 langchain>=0.1.0

@@ -89,6 +89,20 @@ def init_database():
             message_count INTEGER DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            last_accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ''')
+
+    # Conversation state table — compact memory for multi-turn context retention
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS conversation_state (
+            conversation_id TEXT PRIMARY KEY,
+            user_id INTEGER,
+            state_json TEXT DEFAULT '{}',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         )
     ''')
@@ -120,6 +134,8 @@ def init_database():
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_session ON chat_history(session_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_chat_conv ON chat_history(conversation_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_conv_user ON conversations(user_id)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_conv_last_accessed ON conversations(user_id, last_accessed_at DESC)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_conv_state_user ON conversation_state(user_id)')
 
     conn.commit()
 
@@ -166,6 +182,31 @@ def _migrate_schema(cursor, conn):
     if 'message_hash' not in fb_cols:
         cursor.execute('ALTER TABLE feedback ADD COLUMN message_hash TEXT')
         print("⬆️  Migration: added feedback.message_hash")
+
+    # 4. Add last_accessed_at to conversations for robust resume behavior
+    cursor.execute("PRAGMA table_info(conversations)")
+    conv_cols = {row['name'] for row in cursor.fetchall()}
+    if 'last_accessed_at' not in conv_cols:
+        cursor.execute('ALTER TABLE conversations ADD COLUMN last_accessed_at TIMESTAMP')
+        cursor.execute('''
+            UPDATE conversations
+            SET last_accessed_at = COALESCE(updated_at, created_at, CURRENT_TIMESTAMP)
+            WHERE last_accessed_at IS NULL
+        ''')
+        print("⬆️  Migration: added conversations.last_accessed_at")
+
+    # 5. Ensure conversation_state table exists for compact conversation memory
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS conversation_state (
+            conversation_id TEXT PRIMARY KEY,
+            user_id INTEGER,
+            state_json TEXT DEFAULT '{}',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ''')
 
     conn.commit()
 
@@ -704,7 +745,7 @@ def save_chat(user_id: Optional[int], session_id: str, question: str, answer: st
         # Keep conversations.message_count in sync
         if conversation_id:
             cursor.execute(
-                'UPDATE conversations SET message_count = message_count + 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+                'UPDATE conversations SET message_count = message_count + 1, updated_at = CURRENT_TIMESTAMP, last_accessed_at = CURRENT_TIMESTAMP WHERE id = ?',
                 (conversation_id,)
             )
 
@@ -778,11 +819,16 @@ def upsert_conversation(conversation_id: str, user_id: Optional[int], title: str
     cursor = conn.cursor()
     try:
         cursor.execute('''
-            INSERT INTO conversations (id, user_id, title, updated_at)
-            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            INSERT INTO conversations (id, user_id, title, updated_at, last_accessed_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
             ON CONFLICT(id) DO UPDATE SET
+                user_id = CASE
+                    WHEN conversations.user_id IS NULL AND excluded.user_id IS NOT NULL THEN excluded.user_id
+                    ELSE conversations.user_id
+                END,
                 title = excluded.title,
-                updated_at = CURRENT_TIMESTAMP
+                updated_at = CURRENT_TIMESTAMP,
+                last_accessed_at = CURRENT_TIMESTAMP
         ''', (conversation_id, user_id, title))
         conn.commit()
         return True
@@ -793,7 +839,7 @@ def upsert_conversation(conversation_id: str, user_id: Optional[int], title: str
         conn.close()
 
 
-def get_conversation_context(conversation_id: str, limit: int = 8) -> List[Dict[str, str]]:
+def get_conversation_context(conversation_id: str, limit: int = 8, user_id: Optional[int] = None) -> List[Dict[str, str]]:
     """Return the last `limit` Q&A turns for a conversation as [{role, content}] pairs.
 
     This list is passed directly to the LLM as conversation history so it can
@@ -803,13 +849,23 @@ def get_conversation_context(conversation_id: str, limit: int = 8) -> List[Dict[
     cursor = conn.cursor()
     try:
         # DESC to get the LAST `limit` turns (most recent), then reverse for chronological order
-        cursor.execute('''
-            SELECT question, answer
-            FROM chat_history
-            WHERE conversation_id = ?
-            ORDER BY created_at DESC
-            LIMIT ?
-        ''', (conversation_id, limit))
+        if user_id is not None:
+            cursor.execute('''
+                SELECT ch.question, ch.answer
+                FROM chat_history ch
+                JOIN conversations c ON c.id = ch.conversation_id
+                WHERE ch.conversation_id = ? AND c.user_id = ?
+                ORDER BY ch.created_at DESC
+                LIMIT ?
+            ''', (conversation_id, user_id, limit))
+        else:
+            cursor.execute('''
+                SELECT question, answer
+                FROM chat_history
+                WHERE conversation_id = ?
+                ORDER BY created_at DESC
+                LIMIT ?
+            ''', (conversation_id, limit))
         rows = cursor.fetchall()
         rows = list(reversed(rows))  # restore chronological order
         history = []
@@ -853,6 +909,112 @@ def get_user_conversations(user_id: int, limit: int = 50) -> List[Dict[str, Any]
     except Exception as e:
         print(f"get_user_conversations error: {e}")
         return []
+    finally:
+        conn.close()
+
+
+def mark_conversation_accessed(conversation_id: str, user_id: int) -> bool:
+    """Mark a conversation as the last opened thread for this user."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            UPDATE conversations
+            SET last_accessed_at = CURRENT_TIMESTAMP
+            WHERE id = ? AND user_id = ?
+        ''', (conversation_id, user_id))
+        conn.commit()
+        return cursor.rowcount > 0
+    except Exception as e:
+        print(f"mark_conversation_accessed error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def get_last_opened_conversation(user_id: int) -> Optional[Dict[str, Any]]:
+    """Get the most recently opened conversation for a user.
+
+    Falls back to updated_at order when legacy rows do not have access markers.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            SELECT c.id, c.title, c.created_at, c.updated_at, c.last_accessed_at,
+                   COUNT(ch.id) AS actual_count
+            FROM conversations c
+            LEFT JOIN chat_history ch ON ch.conversation_id = c.id
+            WHERE c.user_id = ?
+            GROUP BY c.id
+            ORDER BY COALESCE(c.last_accessed_at, c.updated_at, c.created_at) DESC,
+                     c.updated_at DESC
+            LIMIT 1
+        ''', (user_id,))
+        row = cursor.fetchone()
+        if not row:
+            return None
+        return {
+            "id": row["id"],
+            "title": row["title"],
+            "message_count": row["actual_count"],
+            "createdAt": row["created_at"],
+            "updatedAt": row["updated_at"],
+            "lastAccessedAt": row["last_accessed_at"],
+        }
+    except Exception as e:
+        print(f"get_last_opened_conversation error: {e}")
+        return None
+    finally:
+        conn.close()
+
+
+def get_conversation_state(conversation_id: str, user_id: int) -> Dict[str, Any]:
+    """Return compact multi-turn memory state for a conversation."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            SELECT state_json
+            FROM conversation_state
+            WHERE conversation_id = ? AND user_id = ?
+            LIMIT 1
+        ''', (conversation_id, user_id))
+        row = cursor.fetchone()
+        if not row:
+            return {}
+        raw = row["state_json"] or "{}"
+        try:
+            parsed = json.loads(raw)
+            return parsed if isinstance(parsed, dict) else {}
+        except Exception:
+            return {}
+    except Exception as e:
+        print(f"get_conversation_state error: {e}")
+        return {}
+    finally:
+        conn.close()
+
+
+def upsert_conversation_state(conversation_id: str, user_id: int, state: Dict[str, Any]) -> bool:
+    """Persist compact multi-turn memory state for a conversation."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        state_json = json.dumps(state or {}, ensure_ascii=False)
+        cursor.execute('''
+            INSERT INTO conversation_state (conversation_id, user_id, state_json, updated_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(conversation_id) DO UPDATE SET
+                user_id = excluded.user_id,
+                state_json = excluded.state_json,
+                updated_at = CURRENT_TIMESTAMP
+        ''', (conversation_id, user_id, state_json))
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"upsert_conversation_state error: {e}")
+        return False
     finally:
         conn.close()
 
