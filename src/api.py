@@ -243,7 +243,7 @@ async def root():
     return {
         "message": "Tourism Recommendation API",
         "version": "2.0.0",
-        "model": "Gemini 2.0 Flash",
+        "model": "Gemini 3 Flash",
         "status": "running"
     }
 
@@ -253,7 +253,7 @@ async def get_status():
     """Get system status"""
     return {
         "status": "online",
-        "model": "Gemini 2.5 Flash",
+        "model": "Gemini 3 Flash",
         "cache_enabled": True,
         "timestamp": datetime.now().isoformat()
     }
@@ -440,7 +440,7 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
                         answer=saved_response,
                         category=source,
                         response_time_ms=elapsed_ms,
-                        model_used="gemini-2.5-flash",
+                        model_used="gemini-3-flash-preview",
                     )
                 except Exception as db_err:
                     print(f"⚠️ DB save failed (non-fatal): {db_err}")
