@@ -27,7 +27,7 @@ Chatbot berbasis **Hybrid CAG-RAG** for Danau Toba tourism recommendations. Sist
 
 | Component | Technology |
 |---|---|
-| **LLM** | Gemini 2.5 Flash / 2.5 Pro / 2.0 Flash (API key rotation) |
+| **LLM** | Gemini 3 Flash Preview / 2.5 Flash / 2.0 Flash (Google Cloud Vertex AI) |
 | **Embeddings** | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
 | **Vector Store** | FAISS + BM25 hybrid retrieval (cosine similarity, threshold 0.30) |
 | **Backend** | FastAPI + Uvicorn + SQLite |
@@ -83,8 +83,10 @@ Chatbot berbasis **Hybrid CAG-RAG** for Danau Toba tourism recommendations. Sist
 │   ├── evaluation.py          # Evaluation metrics (BERTScore, ROUGE, etc.)
 │   └── faq_generator.py       # FAQ generator and manager
 ├── requirements.txt
+├── service-account.json       # Google Cloud Vertex AI credentials
 ├── setup_app.sh
-├── setup_vps.sh
+├── setup_vps.sh               # VPS deployment script
+├── deploy_to_vps.ps1          # Windows deployment script
 └── test_response.py
 ```
 
@@ -146,20 +148,20 @@ pip install -r requirements.txt
 
 ---
 
-### Step 4 - Create `.env` File
+### Step 4 - Create `.env` File & Service Account
 
-Create `.env` file di **project root** (selevel dengan `requirements.txt`):
+1. Buat Service Account di Google Cloud Console dengan role **Vertex AI User**.
+2. Download file JSON credentials, ubah namanya menjadi `service-account.json`, dan simpan di folder project root.
+3. Create `.env` file di **project root**:
 
 ```env
-# ── REQUIRED / WAJIB ───────────────────────────────
-# Get Gemini API key: https://aistudio.google.com/app/apikey
-GEMINI_API_KEY=your_gemini_api_key_here
+# ── REQUIRED / WAJIB: Google Cloud Vertex AI ───────────────────────────────
+GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
+GOOGLE_CLOUD_PROJECT=chatbot-toba
+VERTEX_LOCATION=global
 
 # Random long secret for session encryption (jangan dipublish)
 SECRET_KEY=ganti-dengan-string-acak-yang-panjang-dan-aman
-
-# ── OPTIONAL: Multiple API Keys (automatic rotation on rate limit) ──
-# GEMINI_API_KEYS=key1,key2,key3
 
 # ── OPTIONAL: Google OAuth (login with Google account) ─────────────────────
 # If not set, "Login with Google" will be disabled
@@ -170,7 +172,7 @@ SECRET_KEY=ganti-dengan-string-acak-yang-panjang-dan-aman
 # FRONTEND_URL=http://localhost:3000
 ```
 
-> ⚠️ Never commit `.env` to Git. File ini sudah masuk `.gitignore`.
+> ⚠️ Never commit `.env` and `service-account.json` to Git. File ini sudah masuk `.gitignore`.
 
 ---
 
@@ -397,7 +399,7 @@ python test_response.py
 | Problem | Solution |
 |---|---|
 | `ModuleNotFoundError` | Pastikan virtual environment aktif dan jalankan `pip install -r requirements.txt` |
-| `GEMINI_API_KEY not set` | Ensure `.env` exists in project root and contains `GEMINI_API_KEY` |
+| `DefaultCredentialsError` atau Error 401 | Ensure `service-account.json` exists in project root and `.env` has `GOOGLE_APPLICATION_CREDENTIALS=./service-account.json` |
 | Backend not starting | Check if port 8000 is already in use: `netstat -ano \| findstr :8000` |
 | Frontend cannot connect to backend | Pastikan backend berjalan di port 8000 sebelum menjalankan frontend |
 | Geolocation not working | Allow location permission in browser; HTTP non-localhost biasanya dibatasi |
