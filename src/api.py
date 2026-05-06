@@ -362,11 +362,14 @@ async def chat(request: ChatRequest, authorization: str = Header(None)):
                 raise HTTPException(status_code=403, detail="Conversation access denied")
 
     # Load conversation context so the LLM can answer follow-up questions
+    # NOTE: We load history for BOTH logged-in users AND guests (user_id may be None).
+    # Without this, guest/unauthenticated users get amnesia on every follow-up turn.
     chat_history = []
     conversation_state = {}
-    if conv_id and user_id:
-        chat_history = db.get_conversation_context(conv_id, limit=8, user_id=user_id)
-        conversation_state = db.get_conversation_state(conv_id, user_id)
+    if conv_id:
+        chat_history = db.get_conversation_context(conv_id, limit=16, user_id=user_id)
+        if user_id:
+            conversation_state = db.get_conversation_state(conv_id, user_id)
 
     result = None  # initialize so finally block can safely reference it
     try:

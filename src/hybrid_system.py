@@ -2223,6 +2223,40 @@ class CAGSystem:
                 print(
                     "⚠️ No chunks passed retrieval threshold — returning document-grounded unavailable response"
                 )
+                # ── Web Search Fallback for Tourism ──────────────────────────
+                # Sebelum menyerah dengan pesan "tidak tersedia", coba jawab
+                # menggunakan LLM general knowledge + DuckDuckGo web search.
+                # Ini krusial untuk entitas valid (Tomok, Samosir, dll.) yang
+                # tidak ada di PDF lokal namun merupakan destinasi wisata nyata.
+                #
+                # Kondisi yang memicu fallback ini:
+                #   1. contextual_followup=True → query adalah lanjutan percakapan
+                #      tentang entitas yang sudah dibahas (paling umum).
+                #   2. Tidak ada entitas sama sekali di query → query terlalu umum
+                #      untuk "document unavailable" yang personal.
+                #   3. Entitas ada tapi tidak di locations.json (sudah dicek di atas).
+                #
+                # Referensi: Trivedi et al. (2022) IRCoT — iterative retrieval
+                # from multiple sources prevents answer refusal.
+                print("🌐 [Tourism Web Fallback] Mencoba LLM/web sebelum menyerah...")
+                try:
+                    _web_answer = self.model._ask_gemini_general(query)
+                    if _web_answer and not self._is_invalid_response(_web_answer):
+                        print(f"✅ [Tourism Web Fallback] Berhasil: {len(_web_answer)} chars")
+                        if use_cache:
+                            self.kv_cache.put(query, _web_answer, "web_fallback", source="web_rag")
+                        return {
+                            "response": _web_answer,
+                            "source": "web_rag",
+                            "cache_used": False,
+                            "response_time": time.time() - start_time,
+                            "num_chunks": 0,
+                            "context": "",
+                            "cache_key": query_hash,
+                        }
+                except Exception as _web_err:
+                    print(f"⚠️ [Tourism Web Fallback] Gagal: {_web_err}")
+                # Semua fallback habis → baru kembalikan pesan "tidak tersedia"
                 return {
                     "response": self.model._build_document_unavailable_response(query),
                     "source": "no_relevant_context",

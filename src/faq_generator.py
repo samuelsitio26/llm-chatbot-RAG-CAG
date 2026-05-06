@@ -282,6 +282,8 @@ class FAQGenerator:
             }
             for f in subset
         ]
+
+    def populate_cag_cache(self, cag_system, verbose: bool = True):
         """
         Pre-populate CAG cache with FAQ answers
         This implements the "FAQ for CAG" → "CAG Cache Generation" flow

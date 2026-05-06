@@ -291,9 +291,9 @@ class GeminiChatModel:
 
         # Bangun konteks dari riwayat percakapan (ambil 4 pesan terakhir)
         history_text = ""
-        for msg in (chat_history or [])[-4:]:
+        for msg in (chat_history or [])[-8:]:
             role = "User" if msg.get("role") == "user" else "Asisten"
-            history_text += f"  {role}: {msg.get('content', '')[:200]}\n"
+            history_text += f"  {role}: {msg.get('content', '')[:300]}\n"
 
         last_place = ""
         if conversation_state and conversation_state.get("last_place"):
@@ -563,12 +563,14 @@ class GeminiChatModel:
 
         if web_context:
             prompt = (
-                "Kamu adalah asisten AI yang cerdas dan berwawasan luas.\n"
+                "Kamu adalah Asisten Wisata Danau Toba yang ramah dan informatif.\n"
                 f'Pengguna bertanya: "{query}"\n'
                 f"{web_context}"
-                "Gunakan [Hasil Pencarian Internet] di atas sebagai konteks utama untuk menjawab pertanyaan pengguna dengan akurat. "
-                "Jika informasinya relevan, jawablah dengan detail dan faktual.\n"
-                "Gunakan format rapi dan jawab dalam Bahasa Indonesia."
+                "Gunakan [Hasil Pencarian Internet] di atas sebagai referensi tambahan.\n"
+                "PENTING: Jika pertanyaan TIDAK BERKAITAN dengan pariwisata, kuliner, geologi, budaya, "
+                "atau informasi yang relevan dengan Sumatera Utara / Danau Toba (misal: resep masakan umum, coding, dsb), "
+                "TOLAK dengan sopan dan jelaskan bahwa kamu adalah asisten wisata Danau Toba.\n"
+                "Jawab dengan format rapi dan gunakan Bahasa Indonesia."
             )
         else:
             prompt = (
@@ -585,10 +587,10 @@ class GeminiChatModel:
 
         try:
             result = self._call_gemini_api(prompt, max_tokens=1024, temperature=0.7)
-            if result and len(result.strip()) > 20:
+            if result and len(result.strip()) > 10:
                 return result
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"⚠️ Error in _ask_gemini_general: {e}")
         return None
 
     def _get_out_of_scope_response(self, query: str) -> str:
@@ -766,7 +768,7 @@ class GeminiChatModel:
         has_context = context and len(context.strip()) > 100
 
         # For general queries without tourism context, be honest
-        if intent == "general" and not has_context:
+        if intent == "general_question" and not has_context:
             return self._get_out_of_scope_response(query)
 
         # Check if context is actually relevant
@@ -813,9 +815,9 @@ class GeminiChatModel:
             history_section = ""
             if chat_history and len(chat_history) > 0:
                 history_lines = []
-                for msg in chat_history[-8:]:  # Last 8 messages (4 turns)
+                for msg in chat_history[-12:]:  # Last 12 messages (6 turns)
                     role = "Pengguna" if msg.get("role") == "user" else "Asisten"
-                    content = msg.get("content", "")[:300]
+                    content = msg.get("content", "")[:600]
                     history_lines.append(f"  {role}: {content}")
                 history_section = (
                     "\n\nKONTEKS PERCAKAPAN SEBELUMNYA:\n"
