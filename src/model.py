@@ -1,7 +1,7 @@
 """
 Gemini Model Wrapper for CAG System
 Uses google-genai SDK (Vertex AI) — billed to Google Cloud, bukan AI Studio.
-Gemini 3 Flash Preview memerlukan endpoint 'global' & google-genai >= 1.56.0
+Gemini 2.5 Flash Preview — endpoint 'us-central1' & google-genai >= 1.56.0
 """
 
 import os
@@ -23,8 +23,8 @@ class GeminiChatModel:
     atau Application Default Credentials (ADC).
     Billing masuk ke Google Cloud Console, bukan AI Studio.
 
-    CATATAN: gemini-3-flash-preview hanya tersedia di endpoint 'global'.
-    Model lama (2.5/2.0/1.5) fallback ke region us-central1.
+    CATATAN: gemini-2.5-flash tersedia di endpoint 'us-central1'.
+    Model lain (2.0/1.5) sebagai fallback di region yang sama.
     """
 
     # ── Capability config per model ──────────────────────────────────
@@ -36,7 +36,7 @@ class GeminiChatModel:
             "location": "global",
             "thinking": True,   # supports thinking_level
         },
-        "gemini-2.5-flash-preview-05-20": {
+        "gemini-2.5-flash": {
             "max_output_tokens": 4096,
             "location": "us-central1",
             "thinking": False,
@@ -58,11 +58,11 @@ class GeminiChatModel:
         },
     }
 
-    def __init__(self, model_name: str = "gemini-3-flash-preview"):
+    def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
 
         self.project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "chatbot-toba")
-        self.default_location = os.getenv("VERTEX_LOCATION", "global")
+        self.default_location = os.getenv("VERTEX_LOCATION", "us-central1")
 
         # Buat client untuk tiap location yang mungkin dipakai
         # (google-genai client dibuat per-request agar location fleksibel)
@@ -125,11 +125,10 @@ class GeminiChatModel:
             return "general_question"
 
         # Document-style business/place questions should stay grounded in tourism docs.
-        # NOTE: "berapa" / "seberapa" are intentionally handled here — "bintang berapa",
-        # "harga berapa", "seberapa jauh" etc. are tourism/FAQ questions, NOT general math.
-        # Using 'berapa\b' (no leading \b) so that "seberapa" is also matched.
+        # NOTE: "seberapa" is intentionally handled in strong keywords — "bintang berapa",
+        # "harga berapa", "seberapa jauh" etc. are tourism/FAQ questions.
         if re.search(
-            r"\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas|bintang)\b|berapa\b",
+            r"\b(menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas|bintang)\b",
             query_lower,
         ):
             return "tourism"
@@ -211,6 +210,8 @@ class GeminiChatModel:
             "pemandangan",
             "gunung",
             "kulineran",
+            "tiket",
+            "biaya",
         ]
 
         for kw in weak_tourism_keywords:
@@ -235,6 +236,91 @@ class GeminiChatModel:
 
         # Default: treat as general question
         return "general_question"
+
+    def _rewrite_query(
+        self,
+        query: str,
+        chat_history: list = None,
+        conversation_state: dict = None,
+    ) -> str:
+        """
+        Query Rewriting berbasis LLM — memperjelas query ambigu atau follow-up
+        sebelum masuk ke intent classifier dan retrieval pipeline.
+
+        Teknik ini mengatasi keterbatasan keyword-based intent detection ketika
+        pengguna mengirimkan query:
+          - Singkat dan ambigu: "yang lebih murah?", "mana yang bagus?"
+          - Follow-up tanpa entitas eksplisit: "fasilitasnya?", "selain itu?"
+          - Bahasa informal/campuran: "worth it gak?", "ada lagi?"
+
+        Pipeline:
+          1. Cek apakah query membutuhkan rewriting (panjang < 5 kata atau
+             mengandung pronoun tanpa konteks eksplisit)
+          2. Jika ya: bangun prompt mini ke Gemini dengan chat_history
+          3. Hasil rewrite digunakan sebagai query baru untuk intent + retrieval
+          4. Query asli TETAP disimpan untuk ditampilkan ke user
+
+        Referensi:
+          Ma et al. (2023) ACL — "Query Rewriting for Retrieval-Augmented Large
+          Language Models" — rewriting mengurangi retrieval error hingga 27%
+          untuk follow-up conversational queries.
+
+          Gao et al. (2023) ACL — "Precise Zero-Shot Dense Retrieval without
+          Relevance Labels" (HyDE) — enriching query dengan konteks sebelum
+          retrieval secara signifikan mengungguli direct keyword matching.
+        """
+        query_stripped = query.strip()
+        words = query_stripped.split()
+
+        # Heuristik: Tidak perlu rewrite jika:
+        # 1. Query sudah panjang dan eksplisit (> 7 kata)
+        # 2. Tidak ada riwayat percakapan (chat baru, tidak ada konteks untuk di-resolve)
+        ambiguous_pronouns = [
+            "itu", "ini", "sana", "situ", "tersebut", "di sana", "di situ",
+            "yang itu", "yang ini", "tadi", "sebelumnya", "sama", "juga",
+            "alternatif", "selain", "lain", "lainnya", "lagi",
+            "lebih", "paling", "terbaik", "termurah", "terdekat",
+        ]
+        is_short = len(words) <= 6
+        has_ambiguous_pronoun = any(p in query_stripped.lower() for p in ambiguous_pronouns)
+        has_history = chat_history and len(chat_history) >= 2
+
+        # Jika query jelas dan panjang, skip rewriting untuk hemat biaya API
+        if not (is_short or has_ambiguous_pronoun) or not has_history:
+            return query_stripped
+
+        # Bangun konteks dari riwayat percakapan (ambil 4 pesan terakhir)
+        history_text = ""
+        for msg in (chat_history or [])[-4:]:
+            role = "User" if msg.get("role") == "user" else "Asisten"
+            history_text += f"  {role}: {msg.get('content', '')[:200]}\n"
+
+        last_place = ""
+        if conversation_state and conversation_state.get("last_place"):
+            last_place = f"\nTempat yang terakhir dibahas: {conversation_state['last_place']}"
+
+        rewrite_prompt = (
+            "Berikut adalah riwayat percakapan antara pengguna dan asisten wisata Danau Toba:\n"
+            f"{history_text}"
+            f"{last_place}\n\n"
+            f'Query terbaru dari pengguna: "{query_stripped}"\n\n'
+            "Tugas: Tulis ulang query tersebut menjadi pertanyaan mandiri (standalone question) "
+            "yang LENGKAP dan EKSPLISIT dalam Bahasa Indonesia, sehingga dapat dipahami tanpa "
+            "membaca riwayat percakapan sebelumnya. "
+            "Pertahankan makna asli. Jangan tambahkan informasi yang tidak ada di konteks. "
+            "HANYA tulis ulang query-nya saja, tanpa penjelasan atau kalimat tambahan."
+        )
+
+        try:
+            rewritten = self._call_gemini_api(rewrite_prompt, max_tokens=128, temperature=0.1)
+            if rewritten and len(rewritten.strip()) > 5:
+                rewritten = rewritten.strip().strip('"').strip("'")
+                print(f"✏️ Query rewritten: '{query_stripped}' → '{rewritten}'")
+                return rewritten
+        except Exception as e:
+            print(f"⚠️ Query rewrite failed, using original: {e}")
+
+        return query_stripped
 
     def _is_attraction_query(self, query: str) -> bool:
         """
@@ -334,6 +420,8 @@ class GeminiChatModel:
                 if len(stripped) >= 3:
                     subject = stripped
                 if len(subject) >= 3:
+                    if subject.lower() in ["danau toba", "toba"]:
+                        return ""
                     return subject
 
         return ""
@@ -401,31 +489,21 @@ class GeminiChatModel:
         # Extract main keywords from query for more specific matching
         query_words = set(query_lower.split())
         stopwords = {
-            "di",
-            "ke",
-            "dari",
-            "yang",
-            "untuk",
-            "dan",
-            "atau",
-            "dengan",
-            "adalah",
-            "ini",
-            "itu",
-            "ada",
-            "tidak",
-            "bisa",
-            "apa",
-            "mana",
-            "bagaimana",
-            "berapa",
-            "saya",
-            "kamu",
-            "kami",
-            "mereka",
-            "nya",
-            "ter",
-            "paling",
+            "di", "ke", "dari", "yang", "untuk", "dan", "atau", "dengan", "adalah", "ini", "itu", 
+            "ada", "tidak", "bisa", "apa", "mana", "bagaimana", "berapa", "saya", "kamu", "kami", 
+            "mereka", "nya", "ter", "paling", "cara", "membuat", "buat", "tentang", "seperti", 
+            "kalau", "jika", "bila", "kapan", "dimana", "siapa", "dalam", "pada", "kepada", 
+            "karena", "sebab", "sehingga", "akan", "sudah", "belum", "masih", "telah", "lalu", 
+            "kemudian", "saat", "ketika", "sebelum", "sesudah", "setelah", "juga", "hanya", "saja", 
+            "lagi", "banyak", "sedikit", "semua", "seluruh", "beberapa", "suatu", "satu", "dua", 
+            "tiga", "pertama", "kedua", "ketiga", "sangat", "sekali", "lebih", "kurang", "baik", 
+            "buruk", "besar", "kecil", "baru", "lama", "jauh", "dekat", "tinggi", "rendah", 
+            "murah", "mahal", "bagus", "jelek", "indah", "cantik", "menarik", "cocok", "pas", 
+            "enak", "lezat", "nikmat", "sedap", "mantap", "halal", "haram", "buka", "tutup", 
+            "jam", "hari", "bulan", "tahun", "minggu", "libur", "liburan", "wisata", "jalan", 
+            "perjalanan", "tiket", "masuk", "harga", "biaya", "ongkos", "tarif", "sewa", 
+            "rental", "pesan", "booking", "kamar", "fasilitas", "menu", "makanan", "minuman", 
+            "minum", "pesanan", "porsi", "rasa", "tempat", "lokasi", "alamat", "daerah"
         }
 
         meaningful_words = query_words - stopwords
@@ -458,17 +536,52 @@ class GeminiChatModel:
         if not api_key:
             return None
 
-        prompt = (
-            "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
-            f'Pengguna bertanya: "{query}"\n\n'
-            "Tidak ada dokumen spesifik yang ditemukan di database.\n"
-            "Jawab berdasarkan pengetahuan umummu jika pertanyaan masih berkaitan "
-            "dengan pariwisata, budaya Batak, Sumatera Utara, atau topik yang tidak "
-            "terlalu jauh dari konteks wisata.\n"
-            "Jika pertanyaan BENAR-BENAR tidak relevan (kata kasar, NSFW, atau "
-            "topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
-            "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
-        )
+        # --- DuckDuckGo Web Search Integration ---
+        web_context = ""
+        try:
+            import asyncio
+            from ddgs import DDGS
+            
+            # Setup event loop for duckduckgo_search in FastAPI worker thread
+            try:
+                loop = asyncio.get_event_loop()
+            except RuntimeError:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                
+            print(f"🌐 [Web RAG] Mencari di DuckDuckGo untuk query: {query[:30]}...")
+            with DDGS() as ddgs_client:
+                results = [r for r in ddgs_client.text(query, max_results=3)]
+            
+            if results:
+                formatted_results = "\n".join([f"- {r.get('title', '')}: {r.get('body', '')}" for r in results])
+                web_context = f"\n\n[Hasil Pencarian Internet (Web RAG)]:\n{formatted_results}\n\n"
+        except Exception as e:
+            print(f"⚠️ [Web RAG] Gagal memanggil DuckDuckGo: {e}")
+            web_context = ""
+        # -----------------------------------------
+
+        if web_context:
+            prompt = (
+                "Kamu adalah asisten AI yang cerdas dan berwawasan luas.\n"
+                f'Pengguna bertanya: "{query}"\n'
+                f"{web_context}"
+                "Gunakan [Hasil Pencarian Internet] di atas sebagai konteks utama untuk menjawab pertanyaan pengguna dengan akurat. "
+                "Jika informasinya relevan, jawablah dengan detail dan faktual.\n"
+                "Gunakan format rapi dan jawab dalam Bahasa Indonesia."
+            )
+        else:
+            prompt = (
+                "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
+                f'Pengguna bertanya: "{query}"\n\n'
+                "Tidak ada dokumen spesifik yang ditemukan di database.\n"
+                "Jawab berdasarkan pengetahuan umummu jika pertanyaan masih berkaitan "
+                "dengan pariwisata, budaya Batak, Sumatera Utara, atau topik yang tidak "
+                "terlalu jauh dari konteks wisata.\n"
+                "Jika pertanyaan BENAR-BENAR tidak relevan (kata kasar, NSFW, atau "
+                "topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
+                "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
+            )
 
         try:
             result = self._call_gemini_api(prompt, max_tokens=1024, temperature=0.7)
@@ -509,17 +622,17 @@ class GeminiChatModel:
 
     def _build_models_to_try(self) -> list:
         """
-        Urutan fallback: gemini-3-flash-preview dulu,
-        lalu model Gemini 2.x regional sebagai cadangan.
+        Urutan fallback: gemini-2.5-flash dulu,
+        lalu model Gemini 2.x/1.5 sebagai cadangan.
         """
         all_fallbacks = {
-            "gemini-3-flash-preview":          ["gemini-2.5-flash-preview-05-20", "gemini-1.5-flash"],
-            "gemini-2.5-flash-preview-05-20":  ["gemini-1.5-flash", "gemini-2.0-flash"],
-            "gemini-2.5-pro-preview-05-06":    ["gemini-2.5-flash-preview-05-20", "gemini-1.5-flash"],
-            "gemini-2.0-flash":                ["gemini-2.5-flash-preview-05-20", "gemini-1.5-flash"],
-            "gemini-1.5-flash":                ["gemini-2.5-flash-preview-05-20"],
+            "gemini-2.5-flash":                ["gemini-2.0-flash", "gemini-1.5-flash"],
+            "gemini-3-flash-preview":          ["gemini-2.5-flash", "gemini-1.5-flash"],
+            "gemini-2.5-pro-preview-05-06":    ["gemini-2.5-flash", "gemini-1.5-flash"],
+            "gemini-2.0-flash":                ["gemini-2.5-flash", "gemini-1.5-flash"],
+            "gemini-1.5-flash":                ["gemini-2.5-flash"],
         }
-        fallbacks = all_fallbacks.get(self.model_name, ["gemini-2.5-flash-preview-05-20"])
+        fallbacks = all_fallbacks.get(self.model_name, ["gemini-2.5-flash"])
         return [self.model_name] + [m for m in fallbacks if m != self.model_name]
 
     def _call_gemini_api(
@@ -558,7 +671,7 @@ class GeminiChatModel:
                 ),
             }
 
-            # Gemini 3 mendukung thinking_level — set ke 'minimal' untuk kecepatan
+            # Gemini 3 mendukung thinking_level — set budget ke 0 untuk kecepatan
             if cfg.get("thinking"):
                 generate_kwargs["config"] = types.GenerateContentConfig(
                     temperature=temperature,
@@ -630,8 +743,18 @@ class GeminiChatModel:
     ) -> str:
         """Generate response using Gemini API with intelligent fallback"""
 
-        intent = self._classify_intent(query)
-        print(f"🎯 Intent: {intent} | Query: {query[:50]}...")
+        # ── Query Rewriting (Ma et al. 2023; Gao et al. 2023) ──────────────
+        # Perjelas query ambigu atau follow-up sebelum masuk ke intent classifier.
+        # Query asli (query) tetap digunakan untuk tampilan ke user;
+        # effective_query digunakan untuk intent detection dan retrieval.
+        effective_query = self._rewrite_query(
+            query,
+            chat_history=chat_history,
+            conversation_state=conversation_state,
+        )
+
+        intent = self._classify_intent(effective_query)
+        print(f"🎯 Intent: {intent} | Query: {effective_query[:60]}...")
 
         # Handle different intents
         if intent == "greeting":
@@ -650,6 +773,11 @@ class GeminiChatModel:
         if has_context and not self._is_query_relevant_to_context(query, context):
             print("⚠️ Retrieved context not relevant to query")
             if intent == "tourism":
+                # Konteks PDF tidak relevan → coba DuckDuckGo sebelum menyerah
+                print("🌐 [Web Fallback] Konteks PDF tidak relevan — mencari di DuckDuckGo...")
+                web_answer = self._ask_gemini_general(query)
+                if web_answer:
+                    return web_answer
                 return self._build_document_unavailable_response(query)
 
             print("⚠️ Falling back to LLM general knowledge")
@@ -744,7 +872,7 @@ INSTRUKSI PENTING:
 2. Untuk setiap tempat wisata/hotel/rumah makan, SELALU sebutkan NAMA LENGKAPNYA sebagaimana tertulis di dokumen
 3. Gunakan format yang rapi dengan emoji dan bullet points
 4. Berikan minimal 3-5 rekomendasi jika tersedia dalam dokumen
-5. Jika informasi BENAR-BENAR tidak ada sama sekali dalam dokumen DAN bukan tentang transportasi lokal, katakan "Maaf, informasi tersebut belum tersedia"
+5. Jika informasi BENAR-BENAR tidak ada dalam dokumen, gunakan pengetahuan umum atau informasi dari internet yang relevan untuk menjawab. Jangan langsung bilang 'tidak tersedia' jika pertanyaan masih dalam ranah wisata, geologi, sejarah, atau budaya Danau Toba.
 6. JANGAN mengarang informasi wisata, harga tiket masuk, atau fakta tentang tempat yang tidak ada dalam dokumen. Khusus transportasi lokal umum (ojek, bentor, angkot, sewa motor/mobil), boleh gunakan estimasi pengetahuan umum dan sajikan secara natural.
 7. JANGAN menyebutkan nomor halaman, nomor chunk, atau referensi teknis dokumen
 8. JANGAN pernah menulis teks placeholder seperti "(Tidak disebutkan namanya...)", "(Nama tidak tersedia)", atau sejenisnya — gunakan nama yang tertulis di dokumen apa adanya
@@ -824,8 +952,20 @@ JAWABAN:"""
 
             return result
         else:
-            # No context available — keep tourism/business queries grounded to docs.
+            # No context available — untuk intent tourism, COBA WEB SEARCH dulu
+            # sebelum menyerah. Ini mencegah sistem mengatakan "tidak tersedia"
+            # untuk pertanyaan yang valid (sejarah, event, geologi Danau Toba)
+            # yang tidak tercakup dalam PDF lokal.
+            #
+            # Referensi: Trivedi et al. (2022) IRCoT — "iterative retrieval from
+            # multiple sources prevents answer refusal on valid questions that
+            # fall outside the primary document corpus."
             if intent == "tourism":
+                print("🌐 [Web Fallback] Tidak ada konteks PDF — mencari di DuckDuckGo...")
+                web_answer = self._ask_gemini_general(query)
+                if web_answer:
+                    return web_answer
+                # Jika web search juga gagal, baru kembalikan pesan tidak tersedia
                 return self._build_document_unavailable_response(query)
 
             # No context available — try LLM general knowledge

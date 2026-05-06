@@ -27,7 +27,7 @@ Chatbot berbasis **Hybrid CAG-RAG** for Danau Toba tourism recommendations. Sist
 
 | Component | Technology |
 |---|---|
-| **LLM** | Gemini 3 Flash Preview / 2.5 Flash / 2.0 Flash (Google Cloud Vertex AI) |
+| **LLM** | Gemini 2.5 Flash (GA) / 2.0 Flash / 1.5 Flash (Google Cloud Vertex AI) |
 | **Embeddings** | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
 | **Vector Store** | FAISS + BM25 hybrid retrieval (cosine similarity, threshold 0.30) |
 | **Backend** | FastAPI + Uvicorn + SQLite |
@@ -84,10 +84,8 @@ Chatbot berbasis **Hybrid CAG-RAG** for Danau Toba tourism recommendations. Sist
 │   └── faq_generator.py       # FAQ generator and manager
 ├── requirements.txt
 ├── service-account.json       # Google Cloud Vertex AI credentials
-├── setup_app.sh
-├── setup_vps.sh               # VPS deployment script
-├── deploy_to_vps.ps1          # Windows deployment script
-└── test_response.py
+├── setup_app.sh               # App deployment setup script
+└── setup_vps.sh               # VPS environment setup script
 ```
 
 ---
@@ -158,7 +156,7 @@ pip install -r requirements.txt
 # ── REQUIRED / WAJIB: Google Cloud Vertex AI ───────────────────────────────
 GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
 GOOGLE_CLOUD_PROJECT=chatbot-toba
-VERTEX_LOCATION=global
+VERTEX_LOCATION=us-central1
 
 # Random long secret for session encryption (jangan dipublish)
 SECRET_KEY=ganti-dengan-string-acak-yang-panjang-dan-aman
@@ -387,9 +385,6 @@ python src/manage_cache.py
 
 # Execute cache lifecycle (deletion & promotion)
 python src/manage_cache.py --execute
-
-# Test chatbot response from terminal
-python test_response.py
 ```
 
 ---
