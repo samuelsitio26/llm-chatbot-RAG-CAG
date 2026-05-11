@@ -1,0 +1,5 @@
+# Pyrefly configuration
+# Docs: https://pyrefly.org/en/docs/configuration/
+
+python_interpreter = ".venv/Scripts/python.exe"
+search_path = ["src"]

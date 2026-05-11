@@ -12,17 +12,18 @@ from typing import Dict, List, Optional
 try:
     from kv_cache_manager import KVCacheManager
 except ImportError:
-    from src.kv_cache_manager import KVCacheManager
+    from src.kv_cache_manager import KVCacheManager  # pyrefly: ignore
 
 try:
     from faq_generator import FAQGenerator
 except ImportError:
-    from src.faq_generator import FAQGenerator
+    from src.faq_generator import FAQGenerator  # pyrefly: ignore
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
 from langchain_core.documents import Document as LCDocument
+from langchain_core.embeddings import Embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
@@ -121,7 +122,7 @@ class CAGSystem:
 
     def __init__(self, model, encoder):
         self.model = model
-        self.encoder = encoder
+        self.encoder: Optional[Embeddings] = encoder
         self.kv_cache = KVCacheManager()
         self.faq_gen = FAQGenerator()
         self.database = None
@@ -162,8 +163,7 @@ class CAGSystem:
             r"(?:menu|alamat|harga|jam operasional|ulasan|review|fasilitas)\s+(?:makanan\s+)?di\s+(.+)$",
             r"(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$",
             r"(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$",
-            # Format tanpa 'di': "ulasan D'Barans Cafe", "menu dbarans cafe"
-            r"(?:menu|ulasan|review|alamat|harga|jam|fasilitas)\s+(.{4,})$",
+            r"^(?:apa\s+)?(?:menu|ulasan|review|alamat|harga|jam|fasilitas)(?:\s+operasional|\s+buka)?\s+(?:dari\s+)?(.{4,})$",
             # Format lokasi: "X berada dimana", "X ada dimana", "X terletak dimana"
             r"(.+?)\s+(?:berada|terletak|ada)\s+(?:di\s+)?(?:mana|dimana)\s*[?.]?$",
             # Format: "dimana X", "di mana letak X"
@@ -214,7 +214,7 @@ class CAGSystem:
             flags=re.IGNORECASE,
         ).strip(" ?!.,")
         cleaned = re.sub(
-            r",\s*(?:cocok|bagus|murah|mahal|gimana|bagaimana|apakah)\b.*$",
+            r"(?:,\s*|\s+)(?:cocok|bagus|murah|mahal|gimana|bagaimana|apakah)\b.*$",
             "",
             cleaned,
             flags=re.IGNORECASE,
@@ -236,6 +236,10 @@ class CAGSystem:
         stripped = re.sub(TYPE_PREFIX, "", cleaned, flags=re.IGNORECASE).strip(" ?!.,")
         if len(stripped) >= 3:
             cleaned = stripped
+            
+        # Hapus prefix preposisi yang sering tertinggal seperti "di laguboti" -> "laguboti"
+        cleaned = re.sub(r"^(?:di|ke|dari)\s+", "", cleaned, flags=re.IGNORECASE).strip(" ?!.,")
+        
         return cleaned
 
     def _is_generic_non_place_text(self, text: str) -> bool:
@@ -784,7 +788,7 @@ class CAGSystem:
             return []
 
     def _get_locations_json_context(
-        self, query: str, user_preferences: list = None
+        self, query: str, user_preferences: Optional[list] = None
     ) -> str:
         """
         Build a structured context block from locations.json for category/listing queries.
@@ -821,7 +825,7 @@ class CAGSystem:
         try:
             from decision_agent import DecisionMakingAgent
         except ImportError:
-            from src.decision_agent import DecisionMakingAgent
+            from src.decision_agent import DecisionMakingAgent  # pyrefly: ignore
 
         agent = DecisionMakingAgent()
 
@@ -1142,7 +1146,7 @@ class CAGSystem:
         entity: str,
         conversation_state: dict,
         chat_history: list,
-        user_preferences: list = None,
+        user_preferences: Optional[list] = None,
     ) -> None:
         """Lakukan predictive pre-fetching untuk probable follow-up queries.
 
@@ -1647,6 +1651,7 @@ class CAGSystem:
 
         # Build vector database
         print("🔨 Building vector database...")
+        assert self.encoder is not None, "Encoder must be set before loading documents"
         self.database = FAISS.from_documents(
             docs, self.encoder, distance_strategy=DistanceStrategy.COSINE
         )
@@ -1670,13 +1675,13 @@ class CAGSystem:
     def get_response(
         self,
         query: str,
-        chat_history: List[Dict] = None,
+        chat_history: Optional[List[Dict]] = None,
         conversation_state: Optional[Dict] = None,
         k: int = 8,
         max_new_tokens: int = 2048,
         use_cache: bool = True,
         temperature: float = 0.7,
-        user_preferences: list = None,
+        user_preferences: Optional[list] = None,
     ) -> Dict:
         """Get response using CAG system"""
         start_time = time.time()
@@ -2297,8 +2302,11 @@ class CAGSystem:
                     "Jika pertanyaan BENAR-BENAR tidak relevan (mengandung kata kasar, NSFW, "
                     "atau topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
                     f"{_greeting_rule_general}\n"
-                    f"{_history_general}"
-                    "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
+                    f"{_history_general}\n"
+                    "CRITICAL LANGUAGE REQUIREMENT:\n"
+                    "You MUST answer in the EXACT SAME LANGUAGE as the user's question.\n"
+                    "If the user asks in English, your entire response MUST be in English.\n"
+                    "If the user asks in Indonesian, your entire response MUST be in Indonesian."
                 )
                 llm_response = self.model._call_gemini_api(
                     general_prompt, max_tokens=max_new_tokens, temperature=temperature

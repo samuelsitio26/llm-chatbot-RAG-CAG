@@ -144,9 +144,9 @@ def _detect_category(query: str) -> str:
 def run_lifecycle(
     execute: bool = False,
     verbose: bool = True,
-    max_age_days: int = None,
-    max_entries: int = None,
-    min_access: int = None,
+    max_age_days: Optional[int] = None,
+    max_entries: Optional[int] = None,
+    min_access: Optional[int] = None,
 ) -> Dict:
     """
     Analisis semua entry cache dan terapkan policy lifecycle.
@@ -395,9 +395,9 @@ def _print_report(cache, staging, to_delete, to_promote, to_keep,
 # ════════════════════════════════════════════════════════════════════════════
 
 def get_lifecycle_report(
-    max_age_days: int = None,
-    max_entries: int = None,
-    min_access: int = None,
+    max_age_days: Optional[int] = None,
+    max_entries: Optional[int] = None,
+    min_access: Optional[int] = None,
 ) -> Dict:
     """Kembalikan laporan lifecycle tanpa mengeksekusi. Untuk endpoint admin."""
     return run_lifecycle(execute=False, verbose=False,
@@ -407,9 +407,9 @@ def get_lifecycle_report(
 
 
 def execute_lifecycle(
-    max_age_days: int = None,
-    max_entries: int = None,
-    min_access: int = None,
+    max_age_days: Optional[int] = None,
+    max_entries: Optional[int] = None,
+    min_access: Optional[int] = None,
 ) -> Dict:
     """Jalankan lifecycle dan terapkan semua perubahan. Untuk endpoint admin."""
     report = run_lifecycle(execute=True, verbose=False,

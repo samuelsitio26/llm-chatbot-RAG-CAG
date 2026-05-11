@@ -7,6 +7,7 @@ Gemini 2.5 Flash Preview — endpoint 'us-central1' & google-genai >= 1.56.0
 import os
 import re
 import time as time_module
+from typing import Optional, Union
 
 from dotenv import load_dotenv
 
@@ -69,7 +70,7 @@ class GeminiChatModel:
         self._clients: dict = {}  # cache: location -> genai.Client
 
         # Rate limiting
-        self.last_request_time = 0
+        self.last_request_time: Union[int, float] = 0
         self.min_request_interval = 2  # detik antar request
 
         print(f"Initializing google-genai (Vertex AI): {model_name}")
@@ -240,8 +241,8 @@ class GeminiChatModel:
     def _rewrite_query(
         self,
         query: str,
-        chat_history: list = None,
-        conversation_state: dict = None,
+        chat_history: Optional[list] = None,
+        conversation_state: Optional[dict] = None,
     ) -> str:
         """
         Query Rewriting berbasis LLM — memperjelas query ambigu atau follow-up
@@ -305,8 +306,9 @@ class GeminiChatModel:
             f"{last_place}\n\n"
             f'Query terbaru dari pengguna: "{query_stripped}"\n\n'
             "Tugas: Tulis ulang query tersebut menjadi pertanyaan mandiri (standalone question) "
-            "yang LENGKAP dan EKSPLISIT dalam Bahasa Indonesia, sehingga dapat dipahami tanpa "
-            "membaca riwayat percakapan sebelumnya. "
+            "yang LENGKAP dan EKSPLISIT. Tulis ulang DALAM BAHASA YANG SAMA dengan query asli "
+            "(misalnya jika query bahasa Inggris, tulis ulang dalam bahasa Inggris), sehingga dapat "
+            "dipahami tanpa membaca riwayat percakapan sebelumnya. "
             "Pertahankan makna asli. Jangan tambahkan informasi yang tidak ada di konteks. "
             "HANYA tulis ulang query-nya saja, tanpa penjelasan atau kalimat tambahan."
         )
@@ -388,8 +390,7 @@ class GeminiChatModel:
             r"(?:menu|alamat|harga|jam\s+operasional|jam\s+buka|jam\s+tutup|ulasan|review|fasilitas)\s+(?:makanan\s+)?di\s+(.+)$",
             r"(?:apa saja|apa|berapa|bagaimana)\s+.+?\s+di\s+(.+)$",
             r"(?:tentang|info(?:rmasi)?\s+(?:tentang)?)\s+(.+)$",
-            # Format tanpa 'di': "ulasan D'Barans Cafe", "menu dbarans cafe"
-            r"(?:menu|ulasan|review|alamat|harga|jam|fasilitas)\s+(.{4,})$",
+            r"^(?:apa\s+)?(?:menu|ulasan|review|alamat|harga|jam|fasilitas)(?:\s+operasional|\s+buka)?\s+(?:dari\s+)?(.{4,})$",
             # Format lokasi: "X berada dimana", "X ada dimana"
             r"(.+?)\s+(?:berada|terletak|ada)\s+(?:di\s+)?(?:mana|dimana)\s*[?.]?$",
             # Format: "dimana X", "di mana letak X"
@@ -419,6 +420,17 @@ class GeminiChatModel:
                 )
                 if len(stripped) >= 3:
                     subject = stripped
+                # Hapus trailing "cocok", dll
+                subject = re.sub(
+                    r"(?:,\s*|\s+)(?:cocok|bagus|murah|mahal|gimana|bagaimana|apakah|yang|dan)\b.*$",
+                    "",
+                    subject,
+                    flags=re.IGNORECASE,
+                ).strip(" ?!.,")
+                
+                # Buang prefix preposisi yang sering tertinggal seperti "di laguboti" -> "laguboti"
+                subject = re.sub(r"^(?:di|ke|dari)\s+", "", subject, flags=re.IGNORECASE).strip(" ?!.,")
+                
                 if len(subject) >= 3:
                     if subject.lower() in ["danau toba", "toba"]:
                         return ""
@@ -522,13 +534,13 @@ class GeminiChatModel:
         return has_tourism_context
 
     def _get_general_answer(self, query: str) -> str:
-        """Answer general questions via Gemini."""
+        """Answer general questions via DuckDuckGo + Gemini (unrestricted — supports HotpotQA/SQuAD)."""
         gemini_answer = self._ask_gemini_general(query)
         if gemini_answer:
             return gemini_answer
         return "Maaf, saya sedang tidak bisa memproses pertanyaan Anda. Silakan coba lagi. 🙏"
 
-    def _ask_gemini_general(self, query: str) -> str:
+    def _ask_gemini_general(self, query: str) -> Optional[str]:
         """Ask Gemini with general knowledge when no document context is available.
         Used as fallback when RAG retrieval finds no relevant chunks.
         """
@@ -563,26 +575,33 @@ class GeminiChatModel:
 
         if web_context:
             prompt = (
-                "Kamu adalah Asisten Wisata Danau Toba yang ramah dan informatif.\n"
+                "Kamu adalah asisten AI yang ramah, informatif, dan berpengetahuan luas.\n"
                 f'Pengguna bertanya: "{query}"\n'
                 f"{web_context}"
-                "Gunakan [Hasil Pencarian Internet] di atas sebagai referensi tambahan.\n"
-                "PENTING: Jika pertanyaan TIDAK BERKAITAN dengan pariwisata, kuliner, geologi, budaya, "
-                "atau informasi yang relevan dengan Sumatera Utara / Danau Toba (misal: resep masakan umum, coding, dsb), "
-                "TOLAK dengan sopan dan jelaskan bahwa kamu adalah asisten wisata Danau Toba.\n"
-                "Jawab dengan format rapi dan gunakan Bahasa Indonesia."
+                "INSTRUKSI PENTING:\n"
+                "1. PRIORITAS UTAMA: Gunakan [Hasil Pencarian Internet] di atas sebagai sumber UTAMA dan TERPERCAYA.\n"
+                "2. JANGAN menggunakan pengetahuan internal/training data jika topiknya menyangkut fakta terkini, "
+                "jabatan, nama pejabat, hasil pemilu, harga, atau informasi yang bisa berubah seiring waktu.\n"
+                "3. Jika hasil pencarian menyebutkan fakta X, WAJIB gunakan fakta X tersebut dalam jawaban, "
+                "bukan pengetahuan lama yang mungkin sudah kadaluarsa.\n"
+                "4. Jika hasil pencarian tidak relevan atau kosong, barulah gunakan pengetahuan umummu.\n"
+                "5. TOLAK hanya jika pertanyaan mengandung konten berbahaya, NSFW, atau melanggar etika.\n\n"
+                "CRITICAL LANGUAGE REQUIREMENT:\n"
+                "You MUST answer in the EXACT SAME LANGUAGE as the user's question.\n"
+                "If the user asks in English, your entire response MUST be in English.\n"
+                "If the user asks in Indonesian, your entire response MUST be in Indonesian."
             )
         else:
             prompt = (
-                "Kamu adalah asisten wisata Danau Toba yang ramah dan informatif.\n"
+                "Kamu adalah asisten AI yang ramah dan berpengetahuan luas.\n"
                 f'Pengguna bertanya: "{query}"\n\n'
-                "Tidak ada dokumen spesifik yang ditemukan di database.\n"
-                "Jawab berdasarkan pengetahuan umummu jika pertanyaan masih berkaitan "
-                "dengan pariwisata, budaya Batak, Sumatera Utara, atau topik yang tidak "
-                "terlalu jauh dari konteks wisata.\n"
-                "Jika pertanyaan BENAR-BENAR tidak relevan (kata kasar, NSFW, atau "
-                "topik berbahaya), tolak dengan sopan dan arahkan ke topik wisata Danau Toba.\n"
-                "Gunakan emoji dan format rapi. Jawab dalam Bahasa Indonesia."
+                "Tidak ada dokumen spesifik yang ditemukan di database lokal.\n"
+                "Jawab berdasarkan pengetahuan umummu secara akurat dan informatif.\n"
+                "TOLAK hanya jika pertanyaan mengandung konten berbahaya, NSFW, atau melanggar etika.\n\n"
+                "CRITICAL LANGUAGE REQUIREMENT:\n"
+                "You MUST answer in the EXACT SAME LANGUAGE as the user's question.\n"
+                "If the user asks in English, your entire response MUST be in English.\n"
+                "If the user asks in Indonesian, your entire response MUST be in Indonesian."
             )
 
         try:
@@ -594,7 +613,12 @@ class GeminiChatModel:
         return None
 
     def _get_out_of_scope_response(self, query: str) -> str:
-        """Response for questions outside our knowledge domain — via Gemini."""
+        """Answer general/out-of-scope questions via DuckDuckGo + Gemini.
+        
+        Tidak lagi menolak pertanyaan di luar Danau Toba — chatbot sekarang
+        dapat menjawab pertanyaan umum (HotpotQA, SQuAD, dsb) menggunakan
+        hasil pencarian internet sebagai konteks tambahan.
+        """
         gemini_answer = self._ask_gemini_general(query)
         if gemini_answer:
             return gemini_answer
@@ -606,7 +630,7 @@ class GeminiChatModel:
             "Kamu adalah asisten wisata Danau Toba yang ramah.\n"
             "Pengguna menyapa kamu. Balas dengan sapaan hangat yang singkat, "
             "perkenalkan diri sebagai Asisten Wisata Danau Toba, dan tanya apa yang ingin diketahui. "
-            "Gunakan emoji secukupnya. Jawab dalam Bahasa Indonesia, maksimal 5 baris."
+            "Gunakan emoji secukupnya. Jawab dalam bahasa yang sama dengan pertanyaan pengguna, maksimal 5 baris."
         )
         result = self._call_gemini_api(prompt, max_tokens=200, temperature=0.8)
         if result:
@@ -639,7 +663,7 @@ class GeminiChatModel:
 
     def _call_gemini_api(
         self, prompt: str, max_tokens: int = 512, temperature: float = 0.7
-    ) -> str:
+    ) -> Optional[str]:
         """Panggil Gemini via google-genai SDK (Vertex AI) — primary dulu, fallback jika gagal."""
 
         # Rate limiting sederhana
@@ -734,13 +758,13 @@ class GeminiChatModel:
         self,
         query: str,
         context: str = "",
-        chat_history: list = None,
-        conversation_state: dict = None,
+        chat_history: Optional[list] = None,
+        conversation_state: Optional[dict] = None,
         max_new_tokens: int = 2048,
         temperature: float = 0.7,
         top_p: float = 0.9,
         top_k: int = 50,
-        user_preferences: list = None,
+        user_preferences: Optional[list] = None,
         is_first_message: bool = True,
     ) -> str:
         """Generate response using Gemini API with intelligent fallback"""
@@ -767,7 +791,8 @@ class GeminiChatModel:
 
         has_context = context and len(context.strip()) > 100
 
-        # For general queries without tourism context, be honest
+        # Untuk pertanyaan umum (termasuk dataset HotpotQA/SQuAD) tanpa konteks PDF,
+        # langsung gunakan DuckDuckGo + Gemini general knowledge.
         if intent == "general_question" and not has_context:
             return self._get_out_of_scope_response(query)
 
