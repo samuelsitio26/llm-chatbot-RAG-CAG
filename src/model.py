@@ -73,10 +73,49 @@ class GeminiChatModel:
         self.last_request_time: Union[int, float] = 0
         self.min_request_interval = 2  # detik antar request
 
+        # ── Resolve GOOGLE_APPLICATION_CREDENTIALS ke absolute path ──────────
+        # Penting: saat dijalankan dari notebook (notebooks/) atau working dir
+        # yang berbeda, path relatif './service-account.json' akan gagal.
+        # Solusi: resolve relatif terhadap ROOT project (parent dari src/).
+        self._resolve_credentials_path()
+
         print(f"Initializing google-genai (Vertex AI): {model_name}")
         print(f"Project: {self.project_id} | Default location: {self.default_location}")
         print(f"Auth: GOOGLE_APPLICATION_CREDENTIALS atau ADC")
         print(f"Context-based fallback: ENABLED")
+
+    def _resolve_credentials_path(self) -> None:
+        """
+        Pastikan GOOGLE_APPLICATION_CREDENTIALS selalu menunjuk ke path absolut
+        yang valid, terlepas dari working directory saat runtime.
+
+        Urutan resolusi:
+          1. Jika sudah absolute dan file ada → tidak diubah
+          2. Jika relatif → coba resolve dari root project (parent of src/)
+          3. Jika tetap tidak ditemukan → cetak peringatan (ADC akan dicoba oleh google-auth)
+        """
+        creds_env = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "")
+        if not creds_env:
+            return
+
+        if os.path.isabs(creds_env) and os.path.exists(creds_env):
+            # Sudah absolute dan valid
+            return
+
+        # Hitung root project: model.py ada di src/, jadi parent-nya adalah root
+        src_dir  = os.path.dirname(os.path.abspath(__file__))
+        root_dir = os.path.dirname(src_dir)
+
+        # Normalisasi path relatif (hilangkan ./ atau .\\)
+        rel_part = creds_env.lstrip("./").lstrip(".\\")
+        abs_path = os.path.join(root_dir, rel_part)
+
+        if os.path.exists(abs_path):
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = abs_path
+            print(f"✅ Credentials resolved: {abs_path}")
+        else:
+            print(f"⚠️  service-account.json tidak ditemukan di: {abs_path}")
+            print(f"   Pastikan file ada di root project atau set GOOGLE_APPLICATION_CREDENTIALS")
 
     def _get_client(self, location: str) -> genai.Client:
         """Kembalikan (atau buat) genai.Client untuk location tertentu."""
