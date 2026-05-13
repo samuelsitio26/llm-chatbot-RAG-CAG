@@ -410,4 +410,6 @@ python src/manage_cache.py --execute
 
 MIT License © 2025
 
+update di vps:
 
+bash ~/llm-chatbot-RAG-CAG/deploy.sh
