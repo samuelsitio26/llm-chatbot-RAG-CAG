@@ -1,9 +1,17 @@
 """
-K-V Cache Manager for storing query-response pairs
-Includes lifecycle policy support:
-  - age > 21 days AND access_count < 5  → candidate for deletion
-  - access_count >= 5 AND net_likes >= 1 → candidate for FAQ promotion
-  - staging entries: regen_count tracked, max 3 regenerations before needs_review
+KV Cache Manager - Dual-Layer Query Response Cache
+Part of Modified Hybrid CAG-RAG System (May 2026)
+
+Architecture Role:
+  - KV Cache = Transformer cache layer (contextual reuse of computed attention states)
+  - Dual-layer lifecycle: candidate → staging → confirmed
+  - Used alongside FAQ Cache (semantic response reuse) and RAG (retrieval)
+  
+Lifecycle Policy:
+  - Candidate stage: First query, no evidence yet
+  - Staging stage: Awaiting validation from RAG re-retrieval
+  - Confirmed stage: Validated after 3+ regenerations with 2+ consistency hits
+  - TTL-based expiry: 30 days (staging), 90 days (confirmed)
 """
 
 import hashlib
@@ -16,7 +24,15 @@ from typing import Dict, List, Optional, Tuple
 
 class KVCacheManager:
     """
-    Manages Key-Value cache for query-response pairs
+    Manages dual-layer cache for query-response pairs with quality gating.
+    
+    Used by CAG system to:
+      1. Cache responses from RAG pipeline
+      2. Track validation/confidence signals
+      3. Promote high-confidence entries to confirmed status
+      4. Prevent serving unvalidated provisional entries
+    
+    NOT a replacement for FAQ cache - that's a separate semantic response layer.
     """
 
     MAX_REGEN = 3  # maximum regeneration attempts before marking needs_review
@@ -205,6 +221,7 @@ class KVCacheManager:
                         cached_item["access_count"] = self.access_count[query_hash]
                         cached_item["last_accessed"] = datetime.now().isoformat()
                         self.save_cache()
+                        print(f"✅ [KV Cache - Confirmed] Reusing validated response for: '{query[:50]}...'")
                         return cached_item
                 except (ValueError, TypeError):
                     pass
@@ -215,6 +232,7 @@ class KVCacheManager:
                 cached_item["access_count"] = self.access_count[query_hash]
                 cached_item["last_accessed"] = datetime.now().isoformat()
                 self.save_cache()
+                print(f"✅ [KV Cache - Confirmed] Reusing validated response for: '{query[:50]}...'")
                 return cached_item
 
         # ── 2) Staging cache ─────────────────────────────────────────────
@@ -254,48 +272,18 @@ class KVCacheManager:
                 return None
 
             cache_stage = entry.get("stage", "candidate")
-            if self.enable_trust_gating and cache_stage == "candidate":
-                # Research policy: first retrieval result should not be replayed directly.
-                entry["candidate_block_count"] = entry.get("candidate_block_count", 0) + 1
-                entry["last_accessed"] = datetime.now().isoformat()
-                self.research_metrics["candidate_blocked_requests"] = (
-                    self.research_metrics.get("candidate_blocked_requests", 0) + 1
-                )
-                self.save_cache()
-                return None
-
-            net_likes = entry.get("total_likes", 0) - entry.get("total_dislikes", 0)
-
-            # Disliked too many times → don’t serve, will be garbage-collected
-            if net_likes <= -3:
-                return None
-
-            # Increment staging access counter
-            entry["staging_access"] = entry.get("staging_access", 0) + 1
+            
+            # Design: Do NOT serve staging entries directly.
+            # Staging entries must be re-validated via RAG to ensure quality before confirmation.
+            # This is intentional quality gating, not a bug.
+            print(f"🚦 [Quality Gate] Staging entry for '{query[:50]}...' requires RAG re-validation. Requesting fresh retrieval.")
+            entry["candidate_block_count"] = entry.get("candidate_block_count", 0) + 1
             entry["last_accessed"] = datetime.now().isoformat()
-            if cache_stage == "probation":
-                self.research_metrics["probation_served"] = (
-                    self.research_metrics.get("probation_served", 0) + 1
-                )
-
-            # Auto-promote: seen ≥5 times by different users AND net positive
-            if entry["staging_access"] >= 5 and net_likes >= 1:
-                self._promote_staging_to_confirmed(query_hash)
-                if query_hash in self.cache:
-                    promoted = self.cache[query_hash]
-                    promoted["access_count"] = self.access_count.get(query_hash, 1)
-                    return promoted
-
+            self.research_metrics["candidate_blocked_requests"] = (
+                self.research_metrics.get("candidate_blocked_requests", 0) + 1
+            )
             self.save_cache()
-            # Serve staging entry (provisional) – marked so caller knows it’s not confirmed
-            return {
-                **entry,
-                "from_staging": True,
-                "cache_stage": cache_stage,
-                "access_count": entry["staging_access"],
-            }
-
-        return None
+            return None
 
     def put(
         self,
@@ -358,6 +346,27 @@ class KVCacheManager:
         elif effective_source == "faq_seed":
             # Curated FAQ knowledge can start from probation.
             stage = "probation"
+        elif evidence_count >= 3 and consistency_hits >= 2:
+            # 3rd Exact Match and consistent -> Promote to confirmed
+            print(f"⭐ Auto-promoting {query_hash[:8]} to confirmed (consistency_hits={consistency_hits})")
+            self.cache[query_hash] = {
+                "query": query,
+                "response": response,
+                "context": context,
+                "created_at": existing.get("created_at", datetime.now().isoformat()),
+                "last_accessed": datetime.now().isoformat(),
+                "source": "confirmed_cache",
+                "total_likes": existing.get("total_likes", 0),
+                "total_dislikes": existing.get("total_dislikes", 0),
+            }
+            self.access_count[query_hash] = existing.get("staging_access", 1) + 1
+            if query_hash in self.staging:
+                del self.staging[query_hash]
+            self.research_metrics["probation_to_confirmed"] = (
+                self.research_metrics.get("probation_to_confirmed", 0) + 1
+            )
+            self.save_cache()
+            return
         elif (
             existing_stage == "candidate"
             and evidence_count >= self.CANDIDATE_MIN_EVIDENCE

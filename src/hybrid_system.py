@@ -1358,37 +1358,26 @@ class CAGSystem:
 
     def _search_faq(self, query: str) -> Optional[Dict]:
         """
-        Search FAQ file for a question similar to `query`.
-
-        Menggunakan pendekatan dua tahap untuk efisiensi maksimal:
-
-          Tahap 1 — Text-based scoring (cepat, tanpa embedding):
-            • SequenceMatcher ratio  (bobot 0.50) — pencocokan karakter exact
-            • Word overlap / Jaccard  (bobot 0.30) — tumpang-tindih kata
-            • Keyword match           (bobot 0.20) — kata kunci FAQ terdekat
-
-          Tahap 2 — Semantic scoring via encoder embeddings (hanya jika perlu):
-            Dijalankan HANYA ketika text score berada di zona abu-abu (0.40–0.60).
-            Embedding FAQ di-cache per MD5(question) agar tidak dihitung ulang.
-            Referensi: Karpukhin et al. (2020) DPR — dense retrieval lebih unggul
-            untuk parafrase & sinonim dibanding string similarity murni.
-
-          Score akhir:
-            • Jika text_score >= TEXT_HIGH_THRESHOLD (0.60) → return langsung
-            • Jika text_score dalam zona abu-abu → blend (text * 0.55 + semantic * 0.45)
-            • Jika text_score < TEXT_LOW_THRESHOLD (0.40) → coba semantic saja
-              (return jika semantic >= 0.78)
-
-        Returns FAQ entry (dict dengan 'answer') jika cocok, else None.
+        Search FAQ file using HYBRID matching: semantic similarity + keyword overlap.
+        
+        Architecture clarification (May 2026):
+          FAQ Cache Layer = Response reuse layer (this method)
+          - CAN use semantic similarity + contextual matching
+          - NOT pure exact-match (that's too restrictive)
+          - Uses confidence thresholds to prevent low-quality collisions
+        
+        Strategy:
+          1. Try exact match first (fastest, highest confidence)
+          2. Try semantic + keyword blended score (catches paraphrases)
+          3. Use confidence thresholds to prevent false positives
+          4. Add specific safeguards for known problematic patterns
+        
+        Thresholds tuned to prevent the bug where:
+          "berikan rekomendasi tempat kuliner khas Toba yang terbaik"
+          incorrectly matched "tempat kuliner khas Toba" (different intent)
         """
-        import hashlib as _hl
         import re
-        from difflib import SequenceMatcher
-
-        TEXT_HIGH_THRESHOLD = 0.60  # text score tinggi → langsung return
-        TEXT_LOW_THRESHOLD = 0.40  # di bawah ini → coba semantic saja
-        BLEND_THRESHOLD = 0.52  # threshold blended score
-        SEMANTIC_ONLY_THR = 0.78  # threshold jika hanya pakai semantic
+        import hashlib
 
         try:
             faqs = self.faq_gen.load_faqs()
@@ -1398,176 +1387,120 @@ class CAGSystem:
         if not faqs:
             return None
 
-        query_lower = query.lower().strip()
-        q_clean = re.sub(r"[^\w\s]", " ", query_lower)
-        q_words = set(q_clean.split())
-
-        # ── Tahap 1: Text-based scoring ────────────────────────────────────
-        best_text_score = 0.0
-        best_faq = None
-        candidates = []  # (text_score, faq) untuk zona abu-abu
-
-        for faq in faqs:
-            answer = faq.get("answer", "").strip()
-            if not answer or len(answer) < 20:
-                continue
-
-            faq_q = faq.get("question", "").lower().strip()
-            fq_clean = re.sub(r"[^\w\s]", " ", faq_q)
-            fq_words = set(fq_clean.split())
-
-            seq_ratio = SequenceMatcher(None, q_clean, fq_clean).ratio()
-
-            kw_list = [k.lower() for k in faq.get("keywords", [])]
-            kw_hits = sum(1 for k in kw_list if k in query_lower)
-            kw_score = (kw_hits / max(len(kw_list), 1)) * 0.4 if kw_list else 0.0
-
-            common = q_words & fq_words
-            word_score = len(common) / max(len(q_words | fq_words), 1)
-
-            text_score = seq_ratio * 0.5 + word_score * 0.3 + kw_score * 0.2
-
-            if text_score > best_text_score:
-                best_text_score = text_score
-                best_faq = faq
-
-            # Kumpulkan kandidat zona abu-abu untuk semantic re-ranking
-            if TEXT_LOW_THRESHOLD <= text_score < TEXT_HIGH_THRESHOLD:
-                candidates.append((text_score, faq))
-
-        # Jika text score sangat tinggi, langsung return (hemat embedding call)
-        if best_text_score >= TEXT_HIGH_THRESHOLD and best_faq:
-            print(
-                f"📖 FAQ text-match (score={best_text_score:.3f}): "
-                f"{best_faq.get('question', '')[:60]}"
-            )
-            return best_faq
-
-        # ── Tahap 2: Semantic scoring (hanya jika encoder tersedia) ────────
-        # Dijalankan untuk zona abu-abu atau ketika text score rendah tapi
-        # mungkin masih ada kecocokan semantik (parafrase / sinonim).
-        has_encoder = self.encoder is not None and hasattr(self.encoder, "embed_query")
-        if not has_encoder:
-            # Fallback: gunakan text score saja
-            if best_text_score >= TEXT_HIGH_THRESHOLD and best_faq:
-                print(
-                    f"📖 FAQ text-match (score={best_text_score:.3f}): "
-                    f"{best_faq.get('question', '')[:60]}"
-                )
-                return best_faq
-            return None
-
-        # Ambil / hitung query embedding (di-cache singkat, maks 50 entri)
-        q_cache_key = query[:100]
-        if q_cache_key not in self._query_embed_temp:
-            try:
-                q_emb = self.encoder.embed_query(query)
-                if len(self._query_embed_temp) >= 50:
-                    # Hapus entri terlama (FIFO sederhana)
-                    oldest = next(iter(self._query_embed_temp))
-                    del self._query_embed_temp[oldest]
-                self._query_embed_temp[q_cache_key] = q_emb
-            except Exception:
-                q_emb = None
-        else:
-            q_emb = self._query_embed_temp[q_cache_key]
-
-        if q_emb is None:
-            return None
-
-        # Kandidat untuk semantic re-ranking:
-        # • Semua entry zona abu-abu (text_score 0.40–0.60)
-        # • Tambahkan best_faq jika text_score >= 0.40 (meski < 0.60)
-        rerank_set = dict()  # id(faq) → (text_score, faq)
-        for ts, f in candidates:
-            rerank_set[id(f)] = (ts, f)
-        if best_faq is not None and best_text_score >= TEXT_LOW_THRESHOLD:
-            rerank_set[id(best_faq)] = (best_text_score, best_faq)
-
-        if not rerank_set:
-            # Text score terlalu rendah dan tidak ada kandidat → tidak cocok
-            return None
-
-        # Hitung semantic similarity untuk setiap kandidat
-        import numpy as _np
-
+        # ── Step 1: Normalize query ──────────────────────────────────────────
+        query_clean = re.sub(r"[^\w\s]", " ", query).lower().strip()
+        query_clean = re.sub(r"\s+", " ", query_clean)
+        query_tokens = set(query_clean.split())
+        
+        best_match = None
         best_blend_score = 0.0
-        best_blend_faq = None
-
-        for _, (ts, faq) in rerank_set.items():
-            faq_q = faq.get("question", "").strip()
-            faq_hash = _hl.md5(faq_q.encode()).hexdigest()
-
-            # Ambil embedding FAQ dari cache; hitung jika belum ada
-            if faq_hash not in self._faq_embed_cache:
-                try:
-                    self._faq_embed_cache[faq_hash] = self.encoder.embed_query(faq_q)
-                except Exception:
-                    continue
-
-            faq_emb = self._faq_embed_cache[faq_hash]
-            if faq_emb is None:
+        
+        # ── Step 2: Exact match check (highest confidence) ──────────────────
+        for faq in faqs:
+            faq_q = faq.get("question", "")
+            if not faq_q:
                 continue
-
-            # Cosine similarity
-            try:
-                q_arr = _np.array(q_emb, dtype=float)
-                faq_arr = _np.array(faq_emb, dtype=float)
-                norm_q = float(_np.linalg.norm(q_arr))
-                norm_faq = float(_np.linalg.norm(faq_arr))
-                if norm_q < 1e-8 or norm_faq < 1e-8:
+            faq_clean = re.sub(r"[^\w\s]", " ", faq_q).lower().strip()
+            faq_clean = re.sub(r"\s+", " ", faq_clean)
+            
+            if query_clean == faq_clean and faq.get("answer"):
+                print(f"📖 FAQ [EXACT MATCH]: {faq_q[:60]}...")
+                return faq
+        
+        # ── Step 3: Semantic + keyword blended matching ──────────────────────
+        # Only proceed if encoder is available for embeddings
+        if self.encoder is None:
+            return None
+        
+        try:
+            # Get or compute query embedding
+            q_hash = hashlib.md5(query_clean.encode()).hexdigest()
+            if q_hash not in self._query_embed_temp:
+                q_emb = self.encoder.embed_query(query)
+                self._query_embed_temp[q_hash] = q_emb
+            else:
+                q_emb = self._query_embed_temp[q_hash]
+            
+            # Limit temp cache size
+            if len(self._query_embed_temp) > 50:
+                self._query_embed_temp.pop(next(iter(self._query_embed_temp)))
+            
+            # Score all FAQs
+            for faq in faqs:
+                faq_q = faq.get("question", "").strip()
+                if not faq_q or not faq.get("answer"):
                     continue
-                cos_sim = float(_np.dot(q_arr, faq_arr) / (norm_q * norm_faq))
-                cos_sim = max(0.0, cos_sim)  # clamp ke [0, 1]
-            except Exception:
-                continue
-
-            # Blended score: text (55%) + semantic (45%)
-            blended = ts * 0.55 + cos_sim * 0.45
-
-            print(
-                f"   🔬 FAQ semantic: '{faq_q[:50]}' "
-                f"text={ts:.3f} sem={cos_sim:.3f} blend={blended:.3f}"
-            )
-
-            if blended > best_blend_score:
-                best_blend_score = blended
-                best_blend_faq = faq
-
-        # Threshold untuk blended score
-        if best_blend_faq is not None and best_blend_score >= BLEND_THRESHOLD:
-            print(
-                f"📖 FAQ semantic-match (blend={best_blend_score:.3f}): "
-                f"{best_blend_faq.get('question', '')[:60]}"
-            )
-            return best_blend_faq
-
-        # Cek: jika hanya semantic saja sangat yakin (score ≥ 0.78) → return
-        # Ini menangkap kasus di mana wording sangat berbeda tapi maknanya sama.
-        if best_blend_faq is not None:
-            # Hitung ulang semantic-only score untuk best candidate
-            faq_q2 = best_blend_faq.get("question", "").strip()
-            faq_hash2 = _hl.md5(faq_q2.encode()).hexdigest()
-            faq_emb2 = self._faq_embed_cache.get(faq_hash2)
-            if faq_emb2 is not None:
+                    
+                faq_clean = re.sub(r"[^\w\s]", " ", faq_q).lower().strip()
+                faq_tokens = set(faq_clean.split())
+                
+                # --- Keyword overlap: Jaccard similarity ---
+                if not faq_tokens or not query_tokens:
+                    keyword_sim = 0.0
+                else:
+                    intersection = len(query_tokens & faq_tokens)
+                    union = len(query_tokens | faq_tokens)
+                    keyword_sim = float(intersection) / float(union) if union > 0 else 0.0
+                
+                # --- Semantic similarity: cosine distance on embeddings ---
+                faq_hash = hashlib.md5(faq_clean.encode()).hexdigest()
+                if faq_hash not in self._faq_embed_cache:
+                    faq_emb = self.encoder.embed_query(faq_q)
+                    self._faq_embed_cache[faq_hash] = faq_emb
+                else:
+                    faq_emb = self._faq_embed_cache[faq_hash]
+                
                 try:
-                    q_arr2 = _np.array(q_emb, dtype=float)
-                    faq_arr2 = _np.array(faq_emb2, dtype=float)
-                    n1, n2 = (
-                        float(_np.linalg.norm(q_arr2)),
-                        float(_np.linalg.norm(faq_arr2)),
-                    )
-                    if n1 > 1e-8 and n2 > 1e-8:
-                        sem_only = float(_np.dot(q_arr2, faq_arr2) / (n1 * n2))
-                        if sem_only >= SEMANTIC_ONLY_THR:
-                            print(
-                                f"📖 FAQ semantic-only (sem={sem_only:.3f}): "
-                                f"{faq_q2[:60]}"
-                            )
-                            return best_blend_faq
+                    import numpy as np
+                    q_arr = np.array(q_emb, dtype=float)
+                    faq_arr = np.array(faq_emb, dtype=float)
+                    q_norm = float(np.linalg.norm(q_arr))
+                    faq_norm = float(np.linalg.norm(faq_arr))
+                    
+                    if q_norm > 1e-8 and faq_norm > 1e-8:
+                        semantic_sim = float(np.dot(q_arr, faq_arr) / (q_norm * faq_norm))
+                        semantic_sim = max(0.0, min(1.0, semantic_sim))  # clamp [0,1]
+                    else:
+                        semantic_sim = 0.0
                 except Exception:
-                    pass
-
+                    semantic_sim = 0.0
+                
+                # --- Blended score: 70% semantic + 30% keyword ---
+                blend_score = 0.70 * semantic_sim + 0.30 * keyword_sim
+                
+                # --- Safeguard: detect problematic patterns that cause collisions ---
+                # Pattern 1: Query asks for "rekomendasi/saran" but FAQ is factual
+                has_rec_intent = any(
+                    word in query_tokens 
+                    for word in ["rekomendasi", "saran", "terbaik", "paling", "cocok"]
+                )
+                has_fact_only = all(
+                    word not in faq_tokens 
+                    for word in ["rekomendasi", "saran", "terbaik", "paling", "cocok"]
+                )
+                if has_rec_intent and has_fact_only:
+                    # Boost threshold for recommendation-vs-factual mismatches
+                    blend_score = max(0.0, blend_score - 0.15)
+                
+                # --- Decision: track best match if above threshold ---
+                BLEND_THRESHOLD = 0.82  # More conservative for FAQ reuse in dense tourism dataset
+                if blend_score > best_blend_score and blend_score >= BLEND_THRESHOLD:
+                    best_blend_score = blend_score
+                    best_match = faq
+        
+        except Exception as e:
+            print(f"⚠️ Semantic FAQ matching error: {e}")
+            return None
+        
+        # ── Step 4: Return best match if found ──────────────────────────────
+        if best_match is not None:
+            confidence = "HIGH" if best_blend_score >= 0.85 else "MEDIUM"
+            print(
+                f"📖 FAQ [SEMANTIC {confidence}] (score={best_blend_score:.3f}): "
+                f"{best_match.get('question', '')[:60]}..."
+            )
+            return best_match
+        
         return None
 
     def load_documents(self, pdf_paths: List[str], use_summaries: bool = False):
@@ -1871,10 +1804,9 @@ class CAGSystem:
                     faq_response = faq_hit["answer"]
                     _hash = self.kv_cache._hash_query(query)
                     self.kv_cache.put(query, faq_response, "from_faq")
-                    print(f"📖 FAQ match (general_question path): {query[:60]}...")
                     return {
                         "response": faq_response,
-                        "source": "cag_cache",
+                        "source": "faq_cache",
                         "cache_used": True,
                         "response_time": time.time() - start_time,
                         "num_chunks": 0,
@@ -1917,16 +1849,14 @@ class CAGSystem:
                     self.kv_cache.delete_entry(query_hash)
                     print(f"⚠️ Ignored invalid cached response: {query[:50]}...")
                 else:
-                    hit_type = "STAGING" if cached.get("from_staging") else "HIT"
                     ctx_tag = (
                         f" [ctx:{_routing_context_key[:20]}]"
                         if _routing_context_key
                         else ""
                     )
-                    print(f"✅ Cache {hit_type}{ctx_tag}: {query[:50]}...")
                     return {
                         "response": cached["response"],
-                        "source": "cag_cache",
+                        "source": "kv_cache",
                         "cache_used": True,
                         "response_time": time.time() - start_time,
                         "access_count": cached.get("access_count", 0),
@@ -1935,19 +1865,20 @@ class CAGSystem:
                         "cache_key": query_hash,
                         "routing_signals": _routing_signals,
                     }
+        print(f"🔍 [RAG Fallback] Cache miss or bypassed for '{query[:50]}...'. Invoking RAG pipeline.")
 
         # FAQ search — before hitting FAISS
         # Searches faq_tourism.json directly, bypassing vector retrieval.
-        # Entries with a real answer are returned immediately as CAG hits.
+        # Entries with a real answer are returned immediately as FAQ cache hits.
         if use_cache and not contextual_followup:
             faq_hit = self._search_faq(query)
             if faq_hit:
                 faq_response = faq_hit["answer"]
-                # Put in staging so it can be confirmed and tracked
+                # Put in KV cache staging so it can be confirmed and tracked
                 self.kv_cache.put(query, faq_response, "from_faq")
                 return {
                     "response": faq_response,
-                    "source": "cag_cache",
+                    "source": "faq_cache",
                     "cache_used": True,
                     "response_time": time.time() - start_time,
                     "num_chunks": 0,
