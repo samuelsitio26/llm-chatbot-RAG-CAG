@@ -413,3 +413,5 @@ MIT License © 2025
 update di vps:
 
 bash ~/llm-chatbot-RAG-CAG/deploy.sh
+
+Remove-Item -Recurse -Force "D:\Semester 8\TA II\Implementasi\database\kv_cache\*" -ErrorAction SilentlyContinue

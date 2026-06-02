@@ -40,7 +40,24 @@ class KVCacheManager:
     # Research mode: do not directly serve first-time staging entries.
     # Toggle with env var CAG_TRUST_GATING=0 for baseline comparison.
     CANDIDATE_MIN_EVIDENCE = 2
-    CONSISTENCY_THRESHOLD = 0.72
+
+    # CONSISTENCY_THRESHOLD: Ambang batas kemiripan teks antar 2 respons LLM.
+    # Diturunkan dari 0.72 → 0.48 karena:
+    #   - Gemini dengan temperature=0.7 menghasilkan respons semantik SAMA
+    #     tetapi susunan kalimat BERBEDA setiap panggilan.
+    #   - SequenceMatcher mengukur kesamaan karakter-per-karakter, bukan semantik.
+    #   - Eksperimen: respons ~700 karakter dengan isi sama rata-rata mendapat
+    #     SequenceMatcher ratio 0.40–0.65, jauh di bawah threshold lama 0.72.
+    #   - Dengan 0.48, promosi tetap memerlukan 2 respons yang setidaknya
+    #     berbagi separuh token yang sama — cukup ketat namun realistis.
+    CONSISTENCY_THRESHOLD = 0.48
+
+    # EVIDENCE_FALLBACK_COUNT: Jika query sudah dicoba N kali tanpa promosi,
+    # paksa promosi asal ada minimal 1 consistency hit.
+    # Mencegah pengguna terjebak di loop RAG selamanya hanya karena LLM
+    # sering berparafrase sehingga consistency_hits tidak pernah capai 2.
+    EVIDENCE_FALLBACK_COUNT = 5
+
     PROBATION_MIN_TRUST = 0.60
 
     # TTL (Time To Live) untuk cache entries — informasi wisata bisa berubah
@@ -347,25 +364,29 @@ class KVCacheManager:
             # Curated FAQ knowledge can start from probation.
             stage = "probation"
         elif evidence_count >= 3 and consistency_hits >= 2:
-            # 3rd Exact Match and consistent -> Promote to confirmed
-            print(f"⭐ Auto-promoting {query_hash[:8]} to confirmed (consistency_hits={consistency_hits})")
-            self.cache[query_hash] = {
-                "query": query,
-                "response": response,
-                "context": context,
-                "created_at": existing.get("created_at", datetime.now().isoformat()),
-                "last_accessed": datetime.now().isoformat(),
-                "source": "confirmed_cache",
-                "total_likes": existing.get("total_likes", 0),
-                "total_dislikes": existing.get("total_dislikes", 0),
-            }
-            self.access_count[query_hash] = existing.get("staging_access", 1) + 1
-            if query_hash in self.staging:
-                del self.staging[query_hash]
-            self.research_metrics["probation_to_confirmed"] = (
-                self.research_metrics.get("probation_to_confirmed", 0) + 1
+            # Primary promotion gate:
+            # Query sudah dicoba 3x DAN 2 dari 3 respons konsisten → promosi.
+            print(
+                f"⭐ [Cache Promote] Auto-promoting {query_hash[:8]} to confirmed "
+                f"(evidence={evidence_count}, consistency_hits={consistency_hits})"
             )
-            self.save_cache()
+            self._do_promote_to_confirmed(
+                query_hash, query, response, context, existing
+            )
+            return
+
+        elif evidence_count >= self.EVIDENCE_FALLBACK_COUNT and consistency_hits >= 1:
+            # Fallback promotion gate (anti-loop guard):
+            # Query sudah dicoba EVIDENCE_FALLBACK_COUNT kali (default 5) DAN
+            # setidaknya 1 kali respons konsisten → paksa promosi.
+            # Mencegah loop RAG tak terbatas ketika LLM sering berparafrase.
+            print(
+                f"⭐ [Cache Promote - Fallback] Force-promoting {query_hash[:8]} "
+                f"after {evidence_count} evidence attempts (consistency_hits={consistency_hits})"
+            )
+            self._do_promote_to_confirmed(
+                query_hash, query, response, context, existing
+            )
             return
         elif (
             existing_stage == "candidate"
@@ -407,6 +428,40 @@ class KVCacheManager:
     # ------------------------------------------------------------------
     # Staging helpers
     # ------------------------------------------------------------------
+
+    def _do_promote_to_confirmed(
+        self,
+        query_hash: str,
+        query: str,
+        response: str,
+        context: str,
+        existing: dict,
+    ) -> None:
+        """Helper internal: pindahkan entry dari staging ke confirmed cache.
+
+        Dipanggil oleh dua promotion gate di put():
+          - Primary gate : evidence >= 3 AND consistency_hits >= 2
+          - Fallback gate: evidence >= EVIDENCE_FALLBACK_COUNT AND consistency_hits >= 1
+        Menghindari duplikasi kode dan memastikan kedua gate menggunakan
+        logika penyimpanan yang identik.
+        """
+        self.cache[query_hash] = {
+            "query": query,
+            "response": response,
+            "context": context,
+            "created_at": existing.get("created_at", datetime.now().isoformat()),
+            "last_accessed": datetime.now().isoformat(),
+            "source": "confirmed_cache",
+            "total_likes": existing.get("total_likes", 0),
+            "total_dislikes": existing.get("total_dislikes", 0),
+        }
+        self.access_count[query_hash] = existing.get("staging_access", 1) + 1
+        if query_hash in self.staging:
+            del self.staging[query_hash]
+        self.research_metrics["probation_to_confirmed"] = (
+            self.research_metrics.get("probation_to_confirmed", 0) + 1
+        )
+        self.save_cache()
 
     def _promote_staging_to_confirmed(self, query_hash: str) -> bool:
         """Move a staging entry to the confirmed cache."""

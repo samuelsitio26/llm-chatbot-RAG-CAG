@@ -73,6 +73,9 @@ class GeminiChatModel:
         self.last_request_time: Union[int, float] = 0
         self.min_request_interval = 2  # detik antar request
 
+        # Backward compatibility stubs for legacy notebook evaluations
+        self.api_keys = ["vertex-ai"]
+
         # ── Resolve GOOGLE_APPLICATION_CREDENTIALS ke absolute path ──────────
         # Penting: saat dijalankan dari notebook (notebooks/) atau working dir
         # yang berbeda, path relatif './service-account.json' akan gagal.

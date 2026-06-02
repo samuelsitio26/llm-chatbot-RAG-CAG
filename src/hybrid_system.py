@@ -1842,6 +1842,27 @@ class CAGSystem:
         # Dengan Dual-Layer key, "bagaimana fasilitasnya?" di konteks Pantai Parbaba
         # TIDAK akan mendapat cache entry milik "bagaimana fasilitasnya?" di Hotel X.
         query_hash = self.kv_cache._hash_query(query, context_key=_routing_context_key)
+
+        # 1. FAQ search — sebelum mengecek dynamic KV Cache atau RAG (FAISS)
+        # Searches faq_tourism.json langsung, melewati vector retrieval dan dynamic cache.
+        # Jika ditemukan jawaban FAQ yang valid, langsung dikembalikan sebagai FAQ cache hit.
+        if use_cache and not contextual_followup:
+            faq_hit = self._search_faq(query)
+            if faq_hit:
+                faq_response = faq_hit["answer"]
+                # Simpan ke KV cache staging agar terkonfirmasi dan teratur
+                self.kv_cache.put(query, faq_response, "from_faq")
+                return {
+                    "response": faq_response,
+                    "source": "faq_cache",
+                    "cache_used": True,
+                    "response_time": time.time() - start_time,
+                    "num_chunks": 0,
+                    "context": "from_faq",
+                    "cache_key": query_hash,
+                }
+
+        # 2. Dynamic Cache Lookup (KV Cache) — jika FAQ miss atau dilewati
         if use_cache and not contextual_followup:
             cached = self.kv_cache.get(query, context_key=_routing_context_key)
             if cached:
@@ -1865,26 +1886,8 @@ class CAGSystem:
                         "cache_key": query_hash,
                         "routing_signals": _routing_signals,
                     }
-        print(f"🔍 [RAG Fallback] Cache miss or bypassed for '{query[:50]}...'. Invoking RAG pipeline.")
 
-        # FAQ search — before hitting FAISS
-        # Searches faq_tourism.json directly, bypassing vector retrieval.
-        # Entries with a real answer are returned immediately as FAQ cache hits.
-        if use_cache and not contextual_followup:
-            faq_hit = self._search_faq(query)
-            if faq_hit:
-                faq_response = faq_hit["answer"]
-                # Put in KV cache staging so it can be confirmed and tracked
-                self.kv_cache.put(query, faq_response, "from_faq")
-                return {
-                    "response": faq_response,
-                    "source": "faq_cache",
-                    "cache_used": True,
-                    "response_time": time.time() - start_time,
-                    "num_chunks": 0,
-                    "context": "from_faq",
-                    "cache_key": query_hash,
-                }
+        print(f"🔍 [RAG Fallback] Cache miss or bypassed for '{query[:50]}...'. Invoking RAG pipeline.")
 
         # For listing queries (apa saja, daftar, etc.), retrieve more FAISS chunks
         if self._is_listing_query(retrieval_query):
