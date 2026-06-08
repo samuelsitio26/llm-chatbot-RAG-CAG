@@ -1,0 +1,201 @@
+query,time,cache,rel,em,eir,recall,bert,comp,hall
+In what year was the university where Sergei Aleksandrovich Tokarev was a profes,0.000658,True,0.28923924513070404,1.0,0.22119130143207202,,1.0000001192092896,,0.778808698567928
+Black Book starred the actress and writer of what heritage?,9.3e-05,True,0.08774009978442598,1.0,0.14673793537185384,1.0,1.0000001192092896,1.0,0.8532620646281461
+Which actor does American Beauty and American Beauty have in common?,0.0001,True,0.18796473188333038,1.0,0.06383478775221389,1.0,1.0000001192092896,1.0,0.9361652122477861
+Ken Pruitt  was a Republican member of an upper house of the legislature with ho,0.000158,True,0.26461816493165574,1.0,0.22689497819343946,1.0,1.0000003576278687,1.0,0.7731050218065605
+"Between Greyia and Calibanus, which genus contains more species?",6.1e-05,True,0.45766521672181865,1.0,0.23863348446122237,1.0,1.0,1.0,0.7613665155387777
+Did John Updike and Tom Clancy both publish more than 15 bestselling novels?,0.000104,True,0.058083473853760385,1.0,0.043763690961111,0.0,1.0000004768371582,1.0,0.956236309038889
+Who was hung for assisting the attempted surrender of a defector from the Americ,6.7e-05,True,0.29290725069050455,1.0,0.21270266765728105,0.5,1.0,1.0,0.7872973323427189
+which Mexican and American film actress is Ethel Houbiers  French voice of,9.8e-05,True,0.26282553815231785,1.0,0.22908949414077803,1.0,1.000000238418579,1.0,0.7709105058592219
+Which major international airport in south-east England ranks as the 8th busiest,8.3e-05,True,0.5782748931294796,1.0,0.5422506361080967,1.0,1.0,1.0,0.45774936389190335
+Isabella Kelly was born at a ruined castle characterized as one of the most isol,8.3e-05,True,0.355099175530857,1.0,0.3415132730498809,0.0,1.0,1.0,0.6584867269501191
+The facility where Robert Croft worked as a navy instructor was also known as?,4e-05,True,0.5635857832056045,1.0,0.4250610639105046,1.0,1.0,1.0,0.5749389360894954
+"Who released the song ""With or Without You"" first, Jai McDowall or U2?",5.9e-05,True,0.44189849611324084,1.0,0.4252678909818971,,1.0,,0.5747321090181029
+"Which ""Roseanne"" star is in Scream 2?",0.00011,True,0.3126649635469976,1.0,0.3477660316737244,1.0,1.0,1.0,0.6522339683262757
+In what city is the company that Fastjet Tanzania was originally founded as a pa,3.9e-05,True,0.4737009979238669,1.0,0.42388448110267685,1.0,1.0,1.0,0.5761155188973232
+What is the name of the Australian specialist electronic music magazine that fea,8.2e-05,True,0.06193097995095374,1.0,0.19379627721340192,0.0,1.0,1.0,0.8062037227865981
+What is the population of the city that Munsonville is in the northwest corner o,0.0001,True,0.3963451003618547,1.0,0.2733172382166767,1.0,1.0,1.0,0.7266827617833234
+A Pair of Brown Eyes and Wild Mountain Thyme is based from what artists song?,8.3e-05,True,0.19256305326489312,1.0,0.3864944279522518,1.0,1.0,1.0,0.6135055720477482
+Armageddon in Retrospect was written by the author who was best known for what 1,0.000427,True,0.21787404856429526,1.0,0.3224602556855291,1.0,1.0,1.0,0.6775397443144708
+What class of instrument does Apatim Majumdar play?,0.00042,True,0.1539414820253233,1.0,0.15044121218079237,1.0,1.0000004768371582,1.0,0.8495587878192077
+"Which movie did Disney produce first,  The Many Adventures of Winnie the Pooh or",2.7e-05,True,0.4767660003482875,1.0,0.6483111353457784,0.6666666666666666,0.9999998211860657,1.0,0.35168886465422156
+Pandikona and Berger Blanc Suisse are both what kinds of animals?,5.4e-05,True,0.4773910974699016,1.0,0.22732908506753363,1.0,0.9999996423721313,1.0,0.7726709149324664
+The Prussian General Carl von Clausewitz is associated with what type of realism,0.0001,True,0.903179606788429,1.0,0.552548765609877,1.0,1.0000001192092896,1.0,0.447451234390123
+What where both Hawker Hurricane and No. 1455 Flight apart of?,0.000435,True,0.23521175476631118,1.0,0.27385409529773397,1.0,0.9999999403953552,1.0,0.726145904702266
+what language did the ethnic group which Torstein Ellingsen was its drumer  spea,0.000108,True,0.3931415080262487,1.0,0.2764509465836733,1.0,1.0,1.0,0.7235490534163267
+"From March 631 to April 631, Farrukhzad Khosrau V was the king of an empire that",9e-05,True,0.5392062789482345,1.0,0.5069559308321295,0.5,1.000000238418579,1.0,0.49304406916787047
+"Beer Wars covers the differences between large corporate breweries, and small br",0.000806,True,0.3668872763457023,1.0,0.30825059673829497,0.5,0.9999997615814209,1.0,0.6917494032617051
+"Which head coach has led their team for a longer period of time, Tim Cluess or S",0.000146,True,0.35961261119563026,1.0,0.17757940125446897,1.0,1.0,1.0,0.8224205987455311
+During what war were the Russia-United Kingdom relations in a state of rivalry a,6.8e-05,True,0.5391958356455475,1.0,0.26117213689675484,0.5,1.0000001192092896,1.0,0.7388278631032452
+How far from Sacramento is the flight school in Atwater?,4.6e-05,True,0.3520890944818458,1.0,0.15978682402182945,1.0,1.0000001192092896,1.0,0.8402131759781706
+Baraki Barak District is situated in the western part of a province whose capita,8.1e-05,True,0.34593747210708564,1.0,0.36410552652766115,1.0,0.9999998211860657,1.0,0.6358944734723389
+What was the 2010 population of the town where Black Crescent Mountain was locat,4e-05,True,0.1350969821857606,1.0,0.10086223527339384,,0.9999997615814209,,0.8991377647266061
+"In the NASA mission where Moon trees were taken into space, what was the nicknam",9.2e-05,True,0.2999266844581387,1.0,0.1411506570110392,0.0,1.0,1.0,0.8588493429889608
+Which comic series involves characters such as Nick Fury and Baron von Strucker?,0.000101,True,0.37789098441899105,1.0,0.4267956470961032,1.0,1.000000238418579,1.0,0.5732043529038968
+College Humor is a 1933 American pre-Code musical comedy film that starred what ,5.8e-05,True,0.2047246436440274,1.0,0.20671201191007613,0.75,1.0,1.0,0.7932879880899238
+Who is writing a book about the Koch family who control the second-largest priva,4.9e-05,True,0.20645567291378664,1.0,0.20347672264510627,0.0,0.9999997615814209,1.0,0.7965232773548937
+New York State Route 9R rejoins its parent in a hamlet located  in what New York,0.000265,True,0.3807273343399158,1.0,0.3865999517728462,1.0,1.0000001192092896,1.0,0.6134000482271538
+12 Years a Slave starred what British actor born 10 July 1977),8.7e-05,True,0.1325458686332437,1.0,0.18752897463393206,0.0,0.9999998807907104,1.0,0.812471025366068
+What was the capital of India when the Taj Mahal was commissioned?,6.1e-05,True,0.48150879063630964,1.0,0.4281694894522714,1.0,1.0,1.0,0.5718305105477286
+"In what city did the ""Prince of tenors"" star in a film based on an opera by Giac",7.1e-05,True,0.4697408794836117,1.0,0.14566021454327208,0.0,0.9999997019767761,1.0,0.854339785456728
+What river can a  large African bovine be seen bathing in in the Mwabvi Wildlife,7.6e-05,True,0.4673005971069271,1.0,0.09615918341041739,0.0,1.000000238418579,1.0,0.9038408165895826
+Jalen Jones plays basketball for an NBA team that plays their home games in what,0.000383,True,0.3247620681827949,1.0,0.23441985614074926,1.0,1.0,1.0,0.7655801438592508
+The On Tour Forever album gave Blues Traveler the opportunity to display what mu,5e-05,True,0.023705956681658046,1.0,0.022127838772245636,1.0,0.9999998807907104,1.0,0.9778721612277543
+Which Victorian poet was born in a 15th-century castle home to the Earl of South,0.000126,True,0.21137149581867007,1.0,0.09404226725426686,0.5,0.9999997019767761,1.0,0.9059577327457331
+Alexander Petrovich Nikolayev received the title Hero of the Soviet Union and th,6.9e-05,True,0.3364830388532742,1.0,0.48947346326526875,1.0,1.0,1.0,0.5105265367347313
+Where did Cale Gundy's brother play football in college?,0.000102,True,0.24901022594963956,1.0,0.3107074765176571,1.0,0.9999998211860657,1.0,0.6892925234823428
+"Who has released more solo albums, Nick Carter or Brady Seals?",5.9e-05,True,0.476039744075228,1.0,0.42368897367380604,1.0,0.9999999403953552,1.0,0.5763110263261939
+"Which Istanbul mosque is unique for retaining a Baroque style of architecture, t",0.000149,True,0.6340804067517218,1.0,0.7058228908048855,1.0,1.0,1.0,0.29417710919511453
+What university did the last Detroit Pistons player to wear the number retired i,5e-05,True,0.3157654727730309,1.0,0.12427182388510875,1.0,1.0,1.0,0.8757281761148913
+The Atik Valide Mosque and Valens Aqueduct are found in what country?,8.1e-05,True,0.18379465504878395,1.0,0.4035709336524325,1.0,0.9999998211860657,1.0,0.5964290663475675
+Which of the four US Presidents who have been assinated was shot on the grounds ,7.3e-05,True,0.40331152345892735,1.0,0.30152166079718157,0.5,1.000000238418579,1.0,0.6984783392028184
+Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo ,0.000106,True,0.3968826614927524,1.0,0.43383579688292945,1.0,1.0,1.0,0.5661642031170706
+Were Halldór Laxness and Timothy Leary from the same country?,0.000134,True,0.11586571920915048,1.0,0.14479164810105585,,1.000000238418579,,0.8552083518989442
+Do both Korematsu v. United States and Chaplinsky v. New Hampshire cases regard ,0.000145,True,0.1453102120596696,1.0,0.23434122360488152,0.0,1.0000004768371582,1.0,0.7656587763951185
+What is the title of the memoir written by the honoree of the Black and White Ba,5.7e-05,True,0.42494244521008057,1.0,0.34474661885318947,1.0,0.9999998807907104,1.0,0.6552533811468105
+What country is the theme park served by the Huis Ten Bosch train service themed,7.3e-05,True,0.36957372125878984,1.0,0.3241654716789095,1.0,1.000000238418579,1.0,0.6758345283210905
+The Distribution of Industry act was passed by a man who was prime minister when,8.9e-05,True,0.4165702436827379,1.0,0.1422196866556774,,1.0000001192092896,,0.8577803133443226
+"What Cantonese slang term can mean both ""ghost man"" and to refer to Westerners?",5.7e-05,True,0.06285368464118081,1.0,0.48869403299615927,1.0,1.000000238418579,1.0,0.5113059670038407
+In what year was the most famous statute at Po Lin Monastery built?,9.1e-05,True,0.33773661580016806,1.0,0.3871916335727644,1.0,1.0,1.0,0.6128083664272356
+"The Nike Hoop Summit has had many current NBA players as former participants, in",7.9e-05,True,0.3550605746342155,1.0,0.1199963919280451,0.0,1.0,1.0,0.8800036080719549
+Which actor from the South Korean-Thai drama film Final Recipe debuted as a memb,5.6e-05,True,0.1698585123799071,1.0,0.16739842310531014,1.0,1.0,1.0,0.8326015768946898
+Are Phlebodium and Pieris both species of ferns?,2.5e-05,True,0.05733645521324135,1.0,0.0824478367994133,,1.000000238418579,,0.9175521632005867
+Who was the great grandfather of Franklin Seaver Pratt's wife?,0.000128,True,0.04596408999728189,1.0,0.2217135158415383,0.0,1.000000238418579,1.0,0.7782864841584617
+At what age did Cieli di Toscana's singer become blind?,6.8e-05,True,0.5067596229782886,1.0,0.5677218295931641,1.0,0.9999999403953552,1.0,0.4322781704068359
+Which late 1980s and 1990s English super model was featured in the song nasty gi,4e-05,True,0.26391957227462925,1.0,0.16988598242962116,1.0,0.9999998211860657,1.0,0.8301140175703788
+What is the name of the film directed by Alex Cox  adapted from a 1606 play star,0.000196,True,0.13729042715600856,1.0,0.741113083645245,1.0,1.0,1.0,0.258886916354755
+Josh Trank and Mike Valerio both work in what industry?,3e-05,True,0.2223879410237103,1.0,0.3969122702246805,0.0,0.9999996423721313,1.0,0.6030877297753194
+"Which American comedian born on March 21, 1962, appeared in the movie ""Sleepless",6.8e-05,True,0.10950746488521791,1.0,0.16804973457167488,1.0,1.0,1.0,0.8319502654283251
+Any Questions for Ben? was directed by which Australian producer and actor?,0.000563,True,0.38385407955230105,1.0,0.4224452584307549,0.75,1.0,1.0,0.577554741569245
+What American indie rock group first had Jesse Sandoval as the drummer and now h,4e-05,True,0.10910869879865491,1.0,0.3605475519882748,1.0,1.0,1.0,0.6394524480117252
+What 3 countries are part of the legal name of the airline that merged with Braa,9.3e-05,True,0.3337062477792895,1.0,0.16930036576729837,0.6666666666666666,1.0000001192092896,1.0,0.8306996342327017
+What is the ratio of flow velocity past a boundary to the local speed of sound f,7.7e-05,True,0.07743781395884393,1.0,0.17346656766262267,,0.9999999403953552,,0.8265334323373773
+"SWX Right Now airs on the station that broadcasts on what channel in Billings, M",0.000705,True,0.11530309521110133,1.0,0.14636862262996667,,1.0,,0.8536313773700334
+"Which player, who also played for the New Jersey Nets and the Golden State Warri",0.000133,True,0.08812206756868157,1.0,0.64531409197367,1.0,1.0,1.0,0.35468590802633004
+Saltillo Engine is an engine plant in Ramos Arizpe that belongs to the American ,6.4e-05,True,0.3287425846524075,1.0,0.5734731119089974,1.0,1.0000001192092896,1.0,0.4265268880910026
+"What type of television show did Dylan Everett star in, in 2015?",7.1e-05,True,0.20033633299611603,1.0,0.24728808904819097,0.0,1.0000001192092896,1.0,0.752711910951809
+"Which plant, the Chaerophyllum or the Cryptanthus, can be found in various place",3.8e-05,True,0.6367543806123855,1.0,0.7390999653715492,1.0,1.0,1.0,0.2609000346284508
+"Johnny Mathis: Wonderful Wonderful aired at what luxury hotel, casino and spa re",4.5e-05,True,0.4681755294941493,1.0,0.19739673624868592,1.0,1.0,1.0,0.8026032637513141
+Who wrote the lyrics for Linda Eder's Broadway debut?,7.6e-05,True,0.08593640662787519,1.0,0.018334638634973977,1.0,1.0,1.0,0.981665361365026
+"The Company They Keep is a book written by Diana Pavlac Glyer, who is a professo",0.000109,True,0.25625549354766525,1.0,0.38999125303614024,1.0,0.9999997615814209,1.0,0.6100087469638598
+For One Night Only was hosted by the man most well-known for hosting what show f,6.5e-05,True,0.543155854945364,1.0,0.4448792684039075,1.0,0.9999998211860657,1.0,0.5551207315960924
+What was the slogan  that came about from the idea of Lebensraum which had its m,9.5e-05,True,0.022610683473210623,1.0,0.08540917486170566,0.0,1.0,1.0,0.9145908251382944
+Olivia DeJonge starred in an American horror film directed by Shyamalan called w,3.3e-05,True,0.08578884319092696,1.0,0.21760560301082957,1.0,0.9999998807907104,1.0,0.7823943969891705
+Who conducted the negotiations  with the owners and the longest serving commanda,0.000162,True,0.39604970003752266,1.0,0.5552880546058905,1.0,0.9999998807907104,1.0,0.4447119453941095
+What genre is the novel from which the fast-food restaurant specializing in seaf,7.1e-05,True,0.3291631695720281,1.0,0.07132486261165788,0.0,0.9999997615814209,1.0,0.9286751373883422
+What kind of musicians are Mark Gaudet and Jan Axel Blomberg?,7.4e-05,True,0.3192796803272996,1.0,0.16962531323615881,1.0,0.9999997615814209,1.0,0.8303746867638412
+A Wind in the Door is part of a series written by who?,7.9e-05,True,0.29648292807180093,1.0,0.08044642609763315,1.0,1.0000001192092896,1.0,0.9195535739023668
+The Airport located next to the A13 handled how many passengers in 2016 ?,7e-05,True,0.43518491207653837,1.0,0.14214578356183658,1.0,1.0000001192092896,1.0,0.8578542164381634
+"The town of Sinclair, West Virginia, is named after the founder of the local oil",4.4e-05,True,0.053374752600748726,1.0,0.023307004333134748,1.0,1.0000005960464478,1.0,0.9766929956668653
+Jihad: A Story of the Others is a documentary by the director who is of what des,7e-05,True,0.3999196337184634,1.0,0.2721599933721603,1.0,1.0,1.0,0.7278400066278397
+Minor league baseball games that were played between the rivalling teams of the ,5.3e-05,True,0.47997528242172766,1.0,0.17402719961663596,1.0,1.0000001192092896,1.0,0.8259728003833641
+Cooperative Living Organization is located in a city that is the county seat of ,9.2e-05,True,0.08709328258400716,1.0,0.24057429842737646,1.0,1.0,1.0,0.7594257015726236
+"What is the pen name of author Carolyn Janice Cherry, who wrote the Fortress Ser",6.2e-05,True,0.6203978890266355,1.0,0.2302063141946011,0.3333333333333333,1.0,1.0,0.7697936858053989
+"Which dog is believed to dispel ghosts and evil spirits, Segugio Italiano or Sap",6.3e-05,True,0.23893472692953793,1.0,0.24859579432960296,1.0,1.0000001192092896,1.0,0.751404205670397
+Which French aristocrat and military officer who fought in the American Revoluti,9.5e-05,True,0.498076504690211,1.0,0.25551572017871466,1.0,0.9999998807907104,1.0,0.7444842798212854
+What sports team included both of the brothers Case McCoy and Colt McCoy during ,0.000113,True,0.24289080306121855,1.0,0.0,1.0,1.0000001192092896,1.0,1.0
+Which member of The New Russian School was both a doctor and a chemist besides b,0.000127,True,0.4310365988462879,1.0,0.28559031368067833,1.0,1.0,1.0,0.7144096863193217
+"Susanna Thompson appeared in the courtroom drama film Ghosts of Mississippi, dir",5.4e-05,True,0.11385351025206476,1.0,0.12483536889425291,0.0,1.000000238418579,1.0,0.875164631105747
+Live Wire Radio will possibly be considered as a replacement for a variety show ,0.000104,True,0.16404920938688347,1.0,0.19097896562880848,,1.0000001192092896,,0.8090210343711915
+Luke Rockhold defeated the MMA fighter who was the first to earn a win against w,8.8e-05,True,0.2613290380690165,1.0,0.3548039292575382,1.0,0.9999998807907104,1.0,0.6451960707424618
+What type of art does The Consul and Arlecchino have in common?,4.7e-05,True,0.23180722481606378,1.0,0.4373676172114892,1.0,1.0000001192092896,1.0,0.5626323827885108
+Who is a Brazilian mixed martial artist in the UFC who Namsaknoi Yudthagarngamto,0.000191,True,0.43996770530475127,1.0,0.28060149726531136,1.0,1.0000001192092896,1.0,0.7193985027346886
+"Which has more species, Lysiloma or Hydrocotyle umbellata?",5.9e-05,True,0.6256484950986099,1.0,0.6518874310094407,1.0,1.0000001192092896,1.0,0.3481125689905593
+Are the films Gasland from 2010 and Pumping Iron from 1977 both documentaries?,0.000112,True,0.16045984920044248,1.0,0.11180318413748039,0.0,1.0000004768371582,1.0,0.8881968158625196
+"Rosemary Willis was seen in the grass in what Texas town, where John F. Kennedy ",0.000105,True,0.282739668677054,1.0,0.1459270635673463,1.0,0.9999998807907104,1.0,0.8540729364326537
+"Which king of Northumbria did The ""Historia"" gives the abbot central place in hi",0.000116,True,0.2180140728257807,1.0,0.19209843707772553,1.0,0.9999998807907104,1.0,0.8079015629222744
+"Mooreville, Mississippi is located on which Interstate highway that follows US R",9.3e-05,True,0.5838747185014374,1.0,0.3727625355088467,1.0,0.9999997019767761,1.0,0.6272374644911534
+Where is the casino that Summer Nights takes place in?,4.6e-05,True,0.5269994898431747,1.0,0.05542916253876832,1.0,0.9999999403953552,1.0,0.9445708374612317
+who was the anthropologist who thought that the plaster casts that were discover,0.000106,True,0.15994876443789754,1.0,0.12134931535404096,0.5,0.9999998807907104,1.0,0.8786506846459591
+What type of license is the open source roguelike video game video released 2012,3.8e-05,True,0.29243396986266895,1.0,0.2799982271899853,0.0,0.9999999403953552,1.0,0.7200017728100148
+Mía Maestro had a role in the 2002 biopic directed by whom?,4.1e-05,True,0.26545530069147044,1.0,0.1180927425229526,1.0,1.0,1.0,0.8819072574770475
+UFO Magazine covers what subject named for Charles Hoy Fort?,6.2e-05,True,0.2708727384223616,1.0,0.21977186171253132,1.0,0.9999998807907104,1.0,0.7802281382874687
+Are both The Straight Story and Frozen films of the same genre?,9e-05,True,0.12400803969689247,1.0,0.11545823274053998,,1.000000238418579,,0.88454176725946
+What 1876 battle featured the Other Magpie?,5.2e-05,True,0.540882838546389,1.0,0.5927650880952797,1.0,0.9999999403953552,1.0,0.4072349119047203
+What Disney movie was the wrestler with the real name of John William Minton in?,8.1e-05,True,0.10918526311022327,1.0,0.2052499743003373,0.0,0.9999998807907104,1.0,0.7947500256996627
+Who covered the song I Love You by Chris Write?,5.9e-05,True,0.20512828356874907,1.0,0.23056521307249767,1.0,1.0000001192092896,1.0,0.7694347869275023
+"Who was born first, Javier Frana or Sherwood Stewart?",0.000158,True,0.48576489739637385,1.0,0.6468216116586115,1.0,0.9999998807907104,1.0,0.3531783883413885
+Are Dogo Cubano and the Dutch Shepherd both breeds of dog?,7.5e-05,True,0.09925880615704866,1.0,0.09569896507986907,0.0,1.0000004768371582,1.0,0.9043010349201309
+"Spawn, a fictional character who Mustafa Shakir has expressed interest in playin",0.000138,True,0.14288255534672922,1.0,0.23512707790173049,1.0,1.0,1.0,0.7648729220982695
+To where did the war criminal who is the fictional defendant in the film After t,8e-05,True,0.06268140462763183,1.0,0.0,0.5,0.9999998807907104,1.0,1.0
+What company did Rex Maughan aquire?,7.7e-05,True,0.26049752723945396,1.0,0.24169762444741086,1.0,1.0,1.0,0.7583023755525892
+"The 249th episode of ""The Simpsons"" was aired on what date?",7.7e-05,True,0.46803102979046773,1.0,0.2846173629548982,1.0,0.9999998211860657,1.0,0.7153826370451017
+Which was built first Woolworth Building or 1 New York Plaza?,0.001991,True,0.6939821797471986,1.0,0.27786821312124926,1.0,1.000000238418579,1.0,0.7221317868787507
+"Where is the concert venue which hosted the first US performance of ""Libuše"" loc",6.7e-05,True,0.23251001015639985,1.0,0.1036912439167668,1.0,1.0,1.0,0.8963087560832332
+When was the advisor of Alpher–Bethe–Gamow paper died?,7.7e-05,True,0.4243698101840891,1.0,0.2385567737527042,1.0,1.000000238418579,1.0,0.7614432262472958
+"What competition held in Kathmandu, Nepal did Julian Bolling compete in 1984?",6.4e-05,True,0.4172383764694847,1.0,0.26719487700571964,0.0,1.000000238418579,1.0,0.7328051229942804
+The Nike Mercurial Vapor is endorsed by a Stoke City football player who also pl,0.000102,True,0.3577058455964875,1.0,0.12102848381224672,0.6666666666666666,0.9999999403953552,1.0,0.8789715161877533
+"Which aired first, Life After People or Werner Herzog Eats His Shoe?",6.1e-05,True,0.708643702002018,1.0,0.22358331333234183,0.5,1.0,1.0,0.7764166866676582
+What NIFL Premier Intermediate League team did Sean Connor play for?,6.4e-05,True,0.03326473839682599,1.0,0.3876685641877002,1.0,1.0000001192092896,1.0,0.6123314358122998
+The first female correspondent for Inside the NFL was replaced by who on the sho,6.3e-05,True,0.4088291196418892,1.0,0.18912035288697204,0.0,1.000000238418579,1.0,0.810879647113028
+Bridgewater Triangle is an area where the phenomenon associated with what type o,4.1e-05,True,0.2852318836796718,1.0,0.04850607115854681,1.0,1.000000238418579,1.0,0.9514939288414532
+"The band who released the debut album ""Tinted Windows"" had their first performan",8.9e-05,True,0.08463668427921199,1.0,0.11978903692904835,0.0,1.000000238418579,1.0,0.8802109630709516
+"In the 1970s, which group acquired this department store group in the United Kin",7.7e-05,True,0.43686374059651284,1.0,0.22925296657549074,1.0,0.9999998807907104,1.0,0.7707470334245092
+The Dogwoman telemovies were created by an actress born in what year?,7.7e-05,True,0.2955465127919886,1.0,0.1729629968300016,,0.9999996423721313,,0.8270370031699984
+Who fills in occasionally for the meteorologist who replaced  Ginger Zee ?,5.7e-05,True,0.2205248279494113,1.0,0.17125254378758817,1.0,0.9999996423721313,1.0,0.8287474562124119
+In Ancient Egyptian religion how would a citizen be weighted to decide if they w,0.000112,True,0.2469713392839687,1.0,0.13789042077512892,0.0,1.000000238418579,1.0,0.8621095792248711
+Which town near the county border with North Yorkshire was this Lancashire mill ,4.4e-05,True,0.39237834037160646,1.0,0.4130031069203519,1.0,1.0000001192092896,1.0,0.5869968930796481
+"The Prodigal Daughter, though a book about an American, is by a novelist of what",7.8e-05,True,0.30209586789747606,1.0,0.13753519627384145,1.0,1.0,1.0,0.8624648037261585
+At what height does State Route 160 start?,0.000142,True,0.4162990408631537,1.0,0.2332988601788619,,1.0,,0.7667011398211381
+The alcoholic drink that shares a name with Quintessentially Unreal's 1996 album,6.5e-05,True,0.24356847212234495,1.0,0.0,0.0,1.0,1.0,1.0
+What actor replaced the Welch actor born in 1978 who played Robin Hood in the fi,0.000282,True,0.18310089339735514,1.0,0.12340937826978657,1.0,0.9999997615814209,1.0,0.8765906217302134
+"Which year was the more recent engine series, the Honda K or Honda H, introduced",9.9e-05,True,0.30614027781583014,1.0,0.1792873970090416,,1.0,,0.8207126029909584
+Who is the film dedicated to that Paramount Classics and MTV Films co-purchased ,4.5e-05,True,0.1490327079772919,1.0,0.29807328917391757,0.5,1.0000001192092896,1.0,0.7019267108260825
+What are some foods that may have been served at the Hawaiin Cottage?,0.000101,True,0.524321913462365,1.0,0.2993838027974282,0.0,1.0000001192092896,1.0,0.7006161972025717
+In what year was the coach who led the 2007 South Carolina Gamecocks football te,7.6e-05,True,0.20387694019144942,1.0,0.04803683192168849,,1.0,,0.9519631680783115
+What team did Travis Cortez Mays play on which currently compete in the Big 12 C,6.8e-05,True,0.40337718614164625,1.0,0.8713034659081897,1.0,1.0000001192092896,1.0,0.12869653409181026
+"Which film does ""Naked Weapon"" follow in the ""Naked"" series?",9.9e-05,True,0.7019233501535058,1.0,0.4461657536932959,0.5,0.9999999403953552,1.0,0.5538342463067041
+Which award David Hersey had got for Equus a play by Peter Shaffer ?,4.1e-05,True,0.06923439206917506,1.0,0.05519763369384871,0.0,1.0,1.0,0.9448023663061513
+"What mine was operated by Royal Oak Mines at at earlier date, Kemess Mine or Col",9.1e-05,True,0.6591935364371986,1.0,0.27660055792056376,1.0,1.0,1.0,0.7233994420794363
+Are The Man from Snowy River II and Miracle of the White Stallions filmed in dif,4.8e-05,True,0.25114048788631355,1.0,0.24012188261511497,0.0,1.0000004768371582,1.0,0.759878117384885
+Do Lush and P.O.D. both consist of four band members?,5.2e-05,True,0.18687218490932714,1.0,0.10866992818262,0.0,1.0000004768371582,1.0,0.89133007181738
+What actor from the show Murphy Brown also had a role in a show with fellow acto,0.000107,True,0.2195773136432564,1.0,0.18871870889337483,1.0,0.9999998211860657,1.0,0.8112812911066252
+What year was Playford B Power Station permanently closed in by its Australian o,5e-05,True,0.10716314310408782,1.0,0.13040811083866424,,1.000000238418579,,0.8695918891613358
+Which English actor starred in the 1995 american romantic drama film The Scarlet,2.7e-05,True,0.18713414543482773,1.0,0.23373016153351775,1.0,1.000000238418579,1.0,0.7662698384664822
+"Which tennis player is older, Emilio Sánchez or Andrei Olhovskiy?",0.000126,True,0.5007229506094015,1.0,0.14257397668660202,0.5,1.0000001192092896,1.0,0.857426023313398
+Henderson Executive Airport got its name in 1996 when it was purchased by Clark ,9e-05,True,0.24188886400460874,1.0,0.15787693738065364,1.0,1.0000001192092896,1.0,0.8421230626193463
+"Where is the county seat for people living in Henderson Point, Mississippi?",0.000101,True,0.2193366259810451,1.0,0.2429940529730656,1.0,1.0,1.0,0.7570059470269344
+Carrie Coon plays Margo Dunne in a 2014 film set in what state?,0.000147,True,0.11222929514057992,1.0,0.09726824891263514,1.0,0.9999996423721313,1.0,0.9027317510873649
+What do both Spider-Man and Spider-Man in film have in comman,4.5e-05,True,0.35871769411526105,1.0,0.26893166794996387,1.0,1.0,1.0,0.7310683320500362
+"Which has more species, Sonerila or Scaevola?",0.0001,True,0.540266294652872,1.0,0.3461691091436415,0.0,1.0000001192092896,1.0,0.6538308908563585
+What party was Johan Henrik Deuntzer a part of before the party that translates ,0.000101,True,0.6091961973738805,1.0,0.37381087152876213,1.0,1.0000001192092896,1.0,0.6261891284712379
+What other film did the star of 127 Hours act in?,3e-05,True,0.026316752778885993,1.0,0.09363810948865704,0.0,0.9999999403953552,1.0,0.906361890511343
+What school was the actress who appeared with Michelle Williams in the last play,8.2e-05,True,0.2752404929695437,1.0,0.025815238302799266,1.0,0.9999999403953552,1.0,0.9741847616972007
+What is the capacity of the stadium that is the home ground of the Lahore Eagles,9e-05,True,0.1704631106984877,1.0,0.0,,1.0000004768371582,,1.0
+St Dionis Backchurch was rebuilt after a major conflagration that consumed how m,4.4e-05,True,0.1810788843277465,1.0,0.10074316334471066,,1.0000001192092896,,0.8992568366552893
+"What career did the British actor born in 1965  and star of Lock, Stock and Two ",8.5e-05,True,0.22069706732845384,1.0,0.14159646461842348,1.0,0.9999997615814209,1.0,0.8584035353815765
+Curt Menefee is the host of the Fox network's NFL show with co-host Michael Anth,0.000149,True,0.34706193967982796,1.0,0.3019830413417311,1.0,1.0,1.0,0.698016958658269
+Lake Wales Ridge National Wildlife Refuge is on the US route that runs between a,3.6e-05,True,0.2002940900097458,1.0,0.0878033918605552,0.0,0.9999995231628418,1.0,0.9121966081394448
+"Which film director is younger, Robert Z. Leonard or Sinclair Hill?",0.000104,True,0.516463168836694,1.0,0.20053595211857606,1.0,1.0000001192092896,1.0,0.7994640478814239
+What city is between Normanby le Wold and the A46 Junction between Lincoln and G,5.3e-05,True,0.20336003767203378,1.0,0.2352765927460407,1.0,1.0,1.0,0.7647234072539593
+Milo Parker starred in which 2014 movie alongside Gillian Anderson?,9.8e-05,True,0.06770077872041042,1.0,0.2068124010052737,1.0,1.000000238418579,1.0,0.7931875989947264
+The Lady Craved Excitement was a film that featured the British character actor ,0.00013,True,0.18809319487087536,1.0,0.20232738788190857,1.0,1.0,1.0,0.7976726121180915
+...Ready for It? is a Taylor Swift song from the album scheduled to be released ,5.5e-05,True,0.16125632490520167,1.0,0.08694989071717345,1.0,0.9999999403953552,1.0,0.9130501092828266
+"Jal Pari, which translated in another language refers to which legendary creatur",5.8e-05,True,0.3800445390356041,1.0,0.1633388872378088,1.0,1.0,1.0,0.8366611127621912
+What is the brand who makes canned meats that had its own cook off in Austin unt,0.000109,True,0.48823517494947644,1.0,0.36690378324031747,1.0,1.0000001192092896,1.0,0.6330962167596825
+Multiculturalism in the Netherlands reached new heights following the murder in ,0.000144,True,0.33923574658029676,1.0,0.3818639190083914,0.5,1.0,1.0,0.6181360809916085
+"Which movie directed by James Gunn portrayed the fictional character, Ego the Li",4e-05,True,0.3946337430570423,1.0,0.2449858067691264,1.0,1.0,1.0,0.7550141932308736
+Which film was not a 3D computer-animation Cars 3 or Smith!?,0.00012,True,0.4014414616486865,1.0,0.21533416863028196,1.0,0.9999998211860657,1.0,0.784665831369718
+The city that hosted the Olympics where Taiwan competed as Chinese Taipei is sit,8.8e-05,True,0.2868182253872548,1.0,0.0,0.0,1.0000003576278687,1.0,1.0
+Penny Rae Bridges starred in a television sitcom with what other actor?,0.000119,True,0.1872307342746165,1.0,0.2884317330816829,1.0,0.9999998807907104,1.0,0.7115682669183171
+Were Ulrich Walter and Léopold Eyharts both from Germany?,8.4e-05,True,0.07616659602553494,1.0,0.08273337832621487,,1.000000238418579,,0.9172666216737851
+"Who has a wider scope of profession, Christopher Guest or  Roman Karmen?",0.000192,True,0.4038610804834513,1.0,0.07708326445356926,1.0,0.9999998807907104,1.0,0.9229167355464307
+Giovanna d'Arco is an opera that was created by the composer of what nationality,9.1e-05,True,0.4659790305445311,1.0,0.516659772822082,1.0,0.9999997615814209,1.0,0.483340227177918
+Kim Dong-won's directorial debut film was a sequal to what 2001 film?,7.9e-05,True,0.14644082589873492,1.0,0.3188956585718119,0.0,1.000000238418579,1.0,0.6811043414281881
+Millennium Greens were funded in part by a what type of lottery?,4e-05,True,0.38332398929396433,1.0,0.252785784382418,0.0,1.0,1.0,0.7472142156175821
+"In what month is the annual documentary film festival, that is presented by the ",3.5e-05,True,0.38373405759682,1.0,0.1870969017514255,1.0,0.9999997019767761,1.0,0.8129030982485745
+"Palm Springs lies in Palm Beach County, the third most populated county in its s",0.00069,True,0.31712746917570783,1.0,0.33126059196069435,1.0,1.000000238418579,1.0,0.6687394080393056
+Candace Flynn was voiced by the actress who achieved mainstream success on what ,3.2e-05,True,0.3363875418981843,1.0,0.48363719984809156,1.0,1.0000001192092896,1.0,0.5163628001519085
+"In regards to Value premium an expert argued that no value premium exisits, what",6e-05,True,0.238999647055248,1.0,0.17035357121666123,1.0,1.0,1.0,0.8296464287833387
+Professor A. Selvanathan is a professor at a university that is public or privat,7.6e-05,True,0.3670213103624775,1.0,0.12412308425872097,1.0,1.0000003576278687,1.0,0.875876915741279
+Fighting Cock is produced in what Kentucky county?,0.000117,True,0.283175725048544,1.0,0.06726291903222457,0.5,0.9999998211860657,1.0,0.9327370809677754
+What was the official religion of the lands of the husband of Dorothea of Denmar,0.000101,True,0.46113564401057483,1.0,0.3255912376666595,1.0,1.0000001192092896,1.0,0.6744087623333406
+Frank Blake's longtime protégé was also the chairman and CEO of what company in ,0.000105,True,0.16714109383686118,1.0,0.09802609667788446,0.0,0.9999995827674866,1.0,0.9019739033221156
+Armie Hammer stars as Oliver in a film directed by who ?,9e-05,True,0.13219486783725487,1.0,0.1490017878698574,0.0,0.9999999403953552,1.0,0.8509982121301426
+In what city did the 23rd overall pick of the 2015 NHL Entry Draft helped the Un,0.000167,True,0.36220597004397637,1.0,0.20165589985178817,0.0,0.9999998807907104,1.0,0.7983441001482119
+Mariana Kovacevic used horse placenta treatment to heal the captian of what team,4.8e-05,True,0.14489399075745577,1.0,0.12314610161600609,1.0,1.000000238418579,1.0,0.876853898383994
+What instrument of war was only used by the President of the United States who w,0.000208,True,0.2847583846279717,1.0,0.03384135794189877,0.0,1.0,1.0,0.9661586420581012
+Brian Olsen was the lst WEC heavyweight champion before the promotion company fo,4.4e-05,True,0.3119944944270909,1.0,0.17659190140236702,0.0,1.0,1.0,0.823408098597633
+Mr. & Mrs. Mxyzptlk is an episode of the superhero TV series that originally air,0.000119,True,0.3476676198369194,1.0,0.1698969823062819,0.0,1.000000238418579,1.0,0.8301030176937181
+When was the singer of Miss Emily's Picture born?,0.000113,True,0.30210947246456704,1.0,0.2046899998281467,1.0,1.0,1.0,0.7953100001718533
+Kete Krachi is a town in what region?,0.000239,True,0.1288753595480894,1.0,0.19354562671009987,1.0,0.9999998807907104,1.0,0.8064543732899001

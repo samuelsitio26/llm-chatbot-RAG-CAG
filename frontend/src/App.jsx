@@ -83,6 +83,11 @@ function App() {
     "🏨 Hotel dan penginapan nyaman budget menengah di Toba",
     "📸 Spot foto terbaik untuk Instagram di Danau Toba"
   ]);
+
+  // Quick Replies / FAQ Suggestions state
+  const [allFaqQuestions, setAllFaqQuestions] = useState([]);
+  const [suggestedQuestions, setSuggestedQuestions] = useState([]);
+  const faqPoolRef = useRef([]); // stable ref to avoid stale closure in async callbacks
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -130,16 +135,138 @@ function App() {
       const res = await axios.get(`${API_BASE_URL}/faqs`);
       const faqs = (res.data.faqs || []).filter(f => f.question?.trim());
       if (faqs.length === 0) return;
-      // Acak dan ambil 6
+      // Simpan semua FAQ untuk digunakan sebagai quick replies
+      setAllFaqQuestions(faqs);
+      faqPoolRef.current = faqs; // stable ref untuk async callbacks
+      // Acak dan ambil 6 untuk welcome screen
       const shuffled = [...faqs].sort(() => Math.random() - 0.5);
       const picked = shuffled.slice(0, 6).map(f => {
         const emoji = getEmojiForQuestion(f.question);
         return `${emoji} ${f.question}`;
       });
       setExampleQueries(picked);
+      // Set initial quick replies (4 pertanyaan acak)
+      pickSuggestedQuestions(faqs);
     } catch (err) {
       console.warn('⚠️ Gagal load FAQ untuk example queries:', err.message);
       // Biarkan fallback default tetap tampil
+    }
+  };
+
+  // Pilih N pertanyaan acak dari FAQ pool untuk quick replies
+  const pickSuggestedQuestions = (pool, count = 4) => {
+    // Gunakan pool yang diberikan, atau fallback ke ref (stabil di async callbacks)
+    const source = pool || faqPoolRef.current;
+    if (!source || source.length === 0) return;
+    const shuffled = [...source].sort(() => Math.random() - 0.5);
+    const picked = shuffled.slice(0, count).map(f => ({
+      text: f.question,
+      emoji: getEmojiForQuestion(f.question),
+    }));
+    setSuggestedQuestions(picked);
+  };
+
+  // Handle quick reply click - langsung submit pertanyaan
+  const handleQuickReply = (question) => {
+    if (isLoading) return;
+    // Cek apakah ada comparison yang belum diselesaikan
+    const pendingComparison = messages.some(
+      m => m.role === 'assistant' && m.variants && m.chosenVariant === undefined
+    );
+    if (pendingComparison) return;
+    handleSubmitWithQuery(question);
+  };
+
+  // Submit dengan query spesifik (untuk quick replies)
+  const handleSubmitWithQuery = async (queryText) => {
+    if (!queryText.trim() || isLoading) return;
+
+    const userMessage = {
+      id: `m_${Date.now()}`,
+      role: 'user',
+      content: queryText,
+      timestamp: new Date().toISOString()
+    };
+
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
+    setInput('');
+    if (activeConvId) {
+      const next = { ...conversations };
+      next[activeConvId] = { ...next[activeConvId], messages: newMessages };
+      setConversations(next);
+      persistConversations(next);
+    }
+
+    setIsLoading(true);
+    setSuggestedQuestions([]); // Sembunyikan quick replies saat loading
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/chat`, {
+        query: queryText,
+        session_id: sessionId,
+        conversation_id: activeConvId,
+        use_cache: true,
+        k: 8,
+        max_new_tokens: 2048,
+        temperature: 0.7,
+        favorite_categories: user?.favoriteCategories || []
+      }, {
+        headers: getAuthHeaders(),
+        timeout: 120000
+      });
+
+      const assistantMessage = {
+        id: `m_${Date.now()+1}`,
+        role: 'assistant',
+        content: response.data.response,
+        metadata: {
+          ...(response.data.metadata || {}),
+          cache_key: response.data.cache_key || null,
+          chat_db_id: response.data.chat_db_id || null,
+        },
+        source: response.data.source,
+        cache_used: response.data.cache_used,
+        response_time: response.data.response_time,
+        relevant_locations: response.data.sources || [],
+        timestamp: new Date().toISOString(),
+      };
+
+      const updatedMessages = [...newMessages, assistantMessage];
+      setMessages(updatedMessages);
+      if (activeConvId) {
+        const next = { ...conversations };
+        next[activeConvId] = { ...next[activeConvId], messages: updatedMessages };
+        setConversations(next);
+        persistConversations(next);
+      }
+
+      if (isAuthenticated && updateUserStats) {
+        updateUserStats('chat', { query: queryText });
+      }
+      // Refresh quick replies setelah mendapat jawaban
+      pickSuggestedQuestions();
+    } catch (error) {
+      console.error('❌ Error:', error);
+      const errorMessage = {
+        id: `m_${Date.now()+2}`,
+        role: 'assistant',
+        content: `Maaf, terjadi kesalahan: ${error.response?.data?.detail || error.message || 'Network error'}.`,
+        metadata: {},
+        source: 'error',
+        timestamp: new Date().toISOString()
+      };
+      const updatedMessages = [...newMessages, errorMessage];
+      setMessages(updatedMessages);
+      if (activeConvId) {
+        const next = { ...conversations };
+        next[activeConvId] = { ...next[activeConvId], messages: updatedMessages };
+        setConversations(next);
+        persistConversations(next);
+      }
+      pickSuggestedQuestions();
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -464,6 +591,8 @@ function App() {
       }
     } finally {
       setIsLoading(false);
+      // Refresh quick replies setelah mendapat jawaban
+      pickSuggestedQuestions();
     }
   };
 
@@ -1125,6 +1254,37 @@ function App() {
             
             <div ref={messagesEndRef} />
           </div>
+
+          {/* ═══════ Quick Replies / FAQ Suggestions ═══════ */}
+          {!isLoading && suggestedQuestions.length > 0 && messages.length > 0 && !hasPendingComparison && (
+            <div className="quick-replies-wrapper">
+              <div className="quick-replies-label">
+                <Sparkles size={13} />
+                <span>Pertanyaan yang mungkin ingin Anda tanyakan</span>
+              </div>
+              <div className="quick-replies-list">
+                {suggestedQuestions.map((q, i) => (
+                  <button
+                    key={i}
+                    className="quick-reply-btn"
+                    onClick={() => handleQuickReply(q.text)}
+                    title={q.text}
+                  >
+                    <span className="quick-reply-emoji">{q.emoji}</span>
+                    <span className="quick-reply-text">{q.text}</span>
+                  </button>
+                ))}
+                <button
+                  className="quick-reply-btn quick-reply-refresh"
+                  onClick={() => pickSuggestedQuestions()}
+                  title="Tampilkan pertanyaan lain"
+                >
+                  <RefreshCw size={13} />
+                  <span>Lainnya</span>
+                </button>
+              </div>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className={`input-form ${hasPendingComparison ? 'input-form--blocked' : ''}`}>
             {hasPendingComparison && (

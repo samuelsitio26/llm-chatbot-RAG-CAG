@@ -59,6 +59,15 @@ class GeminiChatModel:
         },
     }
 
+    DEFAULT_FALLBACKS = {
+        # Keep evaluation stable: only use explicit fallback models when configured.
+        "gemini-2.5-flash": [],
+        "gemini-3-flash-preview": ["gemini-2.5-flash"],
+        "gemini-2.5-pro-preview-05-06": ["gemini-2.5-flash"],
+        "gemini-2.0-flash": ["gemini-2.5-flash"],
+        "gemini-1.5-flash": ["gemini-2.5-flash"],
+    }
+
     def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
 
@@ -690,18 +699,22 @@ class GeminiChatModel:
 
     def _build_models_to_try(self) -> list:
         """
-        Urutan fallback: gemini-2.5-flash dulu,
-        lalu model Gemini 2.x/1.5 sebagai cadangan.
+        Bangun urutan model yang dicoba.
+
+        Secara default hanya gunakan fallback yang aman untuk project Vertex aktif.
+        Fallback tambahan bisa diaktifkan eksplisit via VERTEX_FALLBACK_MODELS.
         """
-        all_fallbacks = {
-            "gemini-2.5-flash":                ["gemini-2.0-flash", "gemini-1.5-flash"],
-            "gemini-3-flash-preview":          ["gemini-2.5-flash", "gemini-1.5-flash"],
-            "gemini-2.5-pro-preview-05-06":    ["gemini-2.5-flash", "gemini-1.5-flash"],
-            "gemini-2.0-flash":                ["gemini-2.5-flash", "gemini-1.5-flash"],
-            "gemini-1.5-flash":                ["gemini-2.5-flash"],
-        }
-        fallbacks = all_fallbacks.get(self.model_name, ["gemini-2.5-flash"])
-        return [self.model_name] + [m for m in fallbacks if m != self.model_name]
+        fallback_override = os.getenv("VERTEX_FALLBACK_MODELS", "").strip()
+        if fallback_override:
+            fallbacks = [m.strip() for m in fallback_override.split(",") if m.strip()]
+        else:
+            fallbacks = self.DEFAULT_FALLBACKS.get(self.model_name, [])
+
+        models_to_try = [self.model_name]
+        for model_name in fallbacks:
+            if model_name != self.model_name and model_name not in models_to_try:
+                models_to_try.append(model_name)
+        return models_to_try
 
     def _call_gemini_api(
         self, prompt: str, max_tokens: int = 512, temperature: float = 0.7
@@ -759,11 +772,14 @@ class GeminiChatModel:
 
                     if response and response.text:
                         full_text = response.text.strip()
-                        if len(full_text) > 10:
+                        if len(full_text) > 0:
                             print(f"Response from [{model_name}] ({len(full_text)} chars)")
                             return full_text
 
-                    print(f"[{model_name}] Empty response, skipping...")
+                    print(f"[{model_name}] Empty response on attempt {attempt + 1}/3")
+                    if attempt < 2:
+                        time_module.sleep(1)
+                        continue
                     break
 
                 except Exception as e:
