@@ -1,9 +1,0 @@
-Metric,N,RAG_mean,CAG_mean,t_stat,p_value,Cohen_d,significant,direction_ok
-Response Time,200,1.8977,0.0,28.4333,0.0,2.0105,True,True
-Relevance Score,200,0.4811,0.309,10.979,0.0,0.7763,True,False
-Exact Match,200,0.44,1.0,-15.9145,0.0,-1.1253,True,True
-EIR,200,0.4606,0.333,8.2766,0.0,0.5852,True,False
-RAG Recall,168,0.9607,0.995,-2.3006,0.0226,-0.1775,True,True
-BERTScore F1,200,0.9146,1.0,-17.9019,0.0,-1.2659,True,True
-Completeness,168,0.9152,1.0,-4.3589,0.0,-0.3363,True,True
-Hallucination Rate,200,0.5394,0.667,-8.2766,0.0,-0.5852,True,False
