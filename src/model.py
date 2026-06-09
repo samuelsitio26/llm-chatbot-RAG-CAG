@@ -71,7 +71,6 @@ class GeminiChatModel:
     def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
 
-        self.project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "chatbot-toba")
         self.default_location = os.getenv("VERTEX_LOCATION", "us-central1")
 
         # Buat client untuk tiap location yang mungkin dipakai
@@ -90,6 +89,16 @@ class GeminiChatModel:
         # yang berbeda, path relatif './service-account.json' akan gagal.
         # Solusi: resolve relatif terhadap ROOT project (parent dari src/).
         self._resolve_credentials_path()
+
+        # ── Baca project_id: env → JSON credentials → fallback ───────────────
+        # Prioritas: GOOGLE_CLOUD_PROJECT di .env (jika ada)
+        # Fallback 1: baca 'project_id' dari file JSON service account
+        # Fallback 2: string kosong (biarkan google-auth resolve sendiri)
+        self.project_id = (
+            os.getenv("GOOGLE_CLOUD_PROJECT")
+            or self._read_project_from_credentials()
+            or ""
+        )
 
         print(f"Initializing google-genai (Vertex AI): {model_name}")
         print(f"Project: {self.project_id} | Default location: {self.default_location}")
@@ -128,6 +137,31 @@ class GeminiChatModel:
         else:
             print(f"⚠️  service-account.json tidak ditemukan di: {abs_path}")
             print(f"   Pastikan file ada di root project atau set GOOGLE_APPLICATION_CREDENTIALS")
+
+    def _read_project_from_credentials(self) -> str:
+        """
+        Baca 'project_id' langsung dari file JSON service account.
+        Dipanggil sebagai fallback jika GOOGLE_CLOUD_PROJECT tidak ada di .env.
+
+        Urutan pencarian:
+          1. Ambil path dari GOOGLE_APPLICATION_CREDENTIALS (sudah di-resolve ke absolute)
+          2. Baca field 'project_id' dari JSON
+          3. Gagal → kembalikan string kosong
+        """
+        import json
+        creds_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "")
+        if not creds_path or not os.path.exists(creds_path):
+            return ""
+        try:
+            with open(creds_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            project_id = data.get("project_id", "")
+            if project_id:
+                print(f"📋 Project ID dibaca dari credentials JSON: {project_id}")
+            return project_id
+        except Exception as e:
+            print(f"⚠️  Gagal membaca project_id dari credentials JSON: {e}")
+            return ""
 
     def _get_client(self, location: str) -> genai.Client:
         """Kembalikan (atau buat) genai.Client untuk location tertentu."""

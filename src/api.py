@@ -6,6 +6,13 @@ Uses Gemini API for LLM with SQLite User Management
 import os
 import sys
 import time
+
+# Fix UnicodeEncodeError pada Windows (cp1252 tidak support emoji)
+# Paksa stdout & stderr pakai UTF-8 agar print() dengan emoji tidak crash
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if sys.stderr and hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import glob
 import uuid
 import base64
@@ -1475,10 +1482,21 @@ async def choose_variant(request: ChooseVariantRequest, authorization: str = Hea
 
 if __name__ == "__main__":
     import uvicorn
+    import asyncio
+
+    # ── Fix WinError 64 "The specified network name is no longer available" ──
+    # Default Windows asyncio menggunakan IocpProactor yang tidak handle
+    # network interruption dengan baik → server mati tiba-tiba.
+    # WindowsSelectorEventLoopPolicy lebih stabil untuk server lokal
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
     uvicorn.run(
         "api:app",
         host="0.0.0.0",
         port=8000,
         reload=False,
-        workers=1
+        workers=1,
+        # Tambahan timeout untuk koneksi yang terputus
+        timeout_keep_alive=30,
     )
