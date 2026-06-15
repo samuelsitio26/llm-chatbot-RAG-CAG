@@ -79,7 +79,7 @@ class GeminiChatModel:
 
         # Rate limiting
         self.last_request_time: Union[int, float] = 0
-        self.min_request_interval = 2  # detik antar request
+        self.min_request_interval = 0.5  # detik antar request
 
         # Backward compatibility stubs for legacy notebook evaluations
         self.api_keys = ["vertex-ai"]

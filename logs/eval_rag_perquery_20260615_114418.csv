@@ -1,0 +1,201 @@
+query,time,cache,retrieval_time,ctx_source,answer_source,rel,em,eir,recall,bert,comp,hall
+Apa yang membuat Balige terkenal?,10.7369,False,0.060945,system,rag,0.5184306238156827,0.0,0.0658682634730539,0.058823529411764705,0.6386229395866394,0.058823529411764705,0.0625
+Apa saja Cafe & Resto paling populer di Balige?,44.153061,False,0.149868,system,rag,0.6765724557388002,0.0,0.012048192771084338,0.2857142857142857,0.60367351770401,0.0,0.0
+Hotel terbaik yang ada di Balige?,6.795456,False,0.267673,system,rag,0.6807905984817542,0.0,0.014522821576763486,0.0,0.6115836501121521,0.0,0.06666666666666667
+Berapa lama waktu perjalanan dari Labersa Hotel & Convention Center ke Bandar Ud,2.85172,False,0.384828,system,rag,0.44302559427332067,0.0,0.022,0.25,0.6803416609764099,0.0,0.0
+Berapa harga menginap di Labersa Hotel & Convention Center ?,3.211746,False,0.379447,system,rag,0.6598647160038171,0.0,0.016544117647058824,0.0,0.6704821586608887,0.0,0.14285714285714285
+Berapa harga menginap di Damar Toba ~ Lakeside Eatery & Stay?,3.837305,False,0.526152,system,rag,0.8313744314230422,0.0,0.01073345259391771,0.16666666666666666,0.7004563808441162,0.0,0.0
+Berapa lama waktu perjalanan dari Damar Toba ~ Lakeside Eatery & Stay ke Pantai ,13.655193,False,1.052702,system,rag,0.7325735762894784,0.0,0.016260162601626018,0.0,0.6495342254638672,0.0,0.2916666666666667
+Berapa harga menginap di Sapadia Villa Balige?,3.396352,False,0.426548,system,rag,0.7179531778069107,0.0,0.016304347826086956,0.2,0.6186102032661438,0.2,0.0
+Berapa harga menginap di Gemma Hotel Balige?,2.514679,False,0.318702,system,rag,0.8019380706796513,0.0,0.014336917562724014,0.2,0.6164493560791016,0.2,0.1111111111111111
+Berapa lama waktu perjalanan dari Gemma Hotel Balige ke Pantai Lumban Bul-bul Ba,14.076006,False,0.147776,system,rag,0.6491982205432442,0.0,0.014388489208633094,0.0,0.6240506768226624,0.25,0.18518518518518517
+Berapa harga menginap di Hotel Tiara Bunga?,4.750636,False,0.319284,system,rag,0.5774318007305955,0.0,0.014586709886547812,0.2,0.6266248822212219,0.2,0.18181818181818182
+Berapa lama waktu perjalanan dari Tiara Bunga Hotel ke Bandar Udara Raja Sisinga,12.229072,False,0.468197,system,rag,0.6679257562691792,0.0,0.02147239263803681,0.5,0.6995862126350403,0.5,0.2857142857142857
+Di mana alamat Nauli Inn Balige?,3.347785,False,0.317243,system,rag,0.526458786354238,0.0,0.027642276422764227,0.6666666666666666,0.7520953416824341,0.4444444444444444,0.2222222222222222
+Berapa harga menginap di RAP Hotel Balige?,3.511635,False,0.326625,system,rag,0.6491442600540657,0.0,0.011326860841423949,0.2,0.6644862294197083,0.2,0.0
+Di mana alamat Balige J&J Guesthouse 1?,4.760772,False,0.203703,system,rag,0.6052828658163798,0.0,0.0111731843575419,0.125,0.7007196545600891,0.125,0.0
+Di mana alamat Brussels Homestay?,6.131712,False,0.324819,system,rag,0.7640349730374091,0.0,0.013657056145675266,0.2,0.6968804001808167,0.2,0.2222222222222222
+Berapa harga menginap di Vany Villa Balige?,3.056857,False,0.361372,system,rag,0.7435337142452606,0.0,0.01615508885298869,0.0,0.6176186800003052,0.2,0.09090909090909091
+Di mana alamat Vany Villa Balige?,3.149508,False,0.370649,system,rag,0.47110011811500824,0.0,0.017770597738287562,0.375,0.7037166357040405,0.125,0.1111111111111111
+Berapa lama waktu perjalanan dari Lago Hotel & Resto ke Bandar Udara Raja Sising,11.133043,False,0.20297,system,rag,0.6941561584126749,0.0,0.006837606837606838,0.0,0.6021403074264526,0.5,0.23809523809523808
+Dimana alamat Lago Hotel and Resto?,3.493463,False,0.412646,system,rag,0.6934658743192251,0.0,0.014285714285714285,0.4,0.6210172176361084,0.2,0.14285714285714285
+Apa saja fasilitas utama di Hotel Sere Nauli?,2.699571,False,0.260362,system,rag,0.5144954947178229,0.0,0.03153153153153153,0.3611111111111111,0.6647329330444336,0.05555555555555555,0.0
+Berapa lama waktu perjalanan dari Hotel Sere Nauli ke Pantai Lumban Bul-bul Bali,10.187069,False,0.284205,system,rag,0.7648866308886352,0.0,0.015698587127158554,0.25,0.5998791456222534,0.25,0.04
+Berapa lama waktu perjalanan dari Hotel Sere Nauli ke Bandar Udara Raja Sisingam,14.765629,False,0.317152,system,rag,0.5977961677669312,0.0,0.016897081413210446,0.0,0.6354807615280151,0.0,0.13043478260869565
+Berapa harga menginap di Hotel Sere Nauli?,6.404397,False,0.322992,system,rag,0.6758582831106742,0.0,0.013266998341625208,0.0,0.6236305832862854,0.2,0.0
+Dimana alamat Sere Nauli Hotel?,2.588557,False,0.375744,system,rag,0.78749663629376,0.0,0.01824212271973466,0.5,0.7270403504371643,0.375,0.0
+Apa saja fasilitas utama di Purnama Balige Hotel?,3.727012,False,0.353374,system,rag,0.8195197640327236,0.0,0.050400916380297825,0.2909090909090909,0.6718120574951172,0.01818181818181818,0.09090909090909091
+Berapa lama waktu perjalanan dari Purnama Balige Hotel ke Pantai Lumban Bul-bul ,15.985188,False,0.439233,system,rag,0.6932646042810321,0.0,0.014227642276422764,0.0,0.6006205081939697,0.0,0.15384615384615385
+Berapa lama waktu perjalanan dari Purnama Balige Hotel ke Bandar Udara Raja Sisi,16.96347,False,0.533311,system,rag,0.7763559866530921,0.0,0.01603206412825651,0.5,0.6379776000976562,0.5,0.08333333333333333
+Di mana alamat Purnama Balige Hotel?,3.470317,False,0.351472,system,rag,0.6462676586061789,0.0,0.023076923076923078,0.5,0.7021084427833557,0.3333333333333333,0.2222222222222222
+Di mana alamat Tendy Guest House?,3.643507,False,0.358661,system,rag,0.6945130236660394,0.0,0.025925925925925925,0.2857142857142857,0.710776686668396,0.14285714285714285,0.1111111111111111
+Apa saja fasilitas yang tersedia di Tendy Guest House?,2.639373,False,0.407804,system,rag,0.7384037601239009,0.0,0.030864197530864196,0.43478260869565216,0.682250440120697,0.0,0.16666666666666666
+Berapa harga menginap di Nabasa Hotel Balige?,8.90039,False,0.370665,system,rag,0.6116108823680824,0.0,0.015384615384615385,0.2,0.6015171408653259,0.0,0.0
+Berapa kisaran harga kamar untuk menginap di Mutiara Balige Hotel?,2.22385,False,0.352811,system,rag,0.8088320627007851,0.0,0.015384615384615385,0.25,0.6697403788566589,0.25,0.14285714285714285
+Di mana alamat Mutiara Balige Hotel?,2.93906,False,0.317834,system,rag,0.6780936854696934,0.0,0.018803418803418803,0.6,0.668920636177063,0.6,0.14285714285714285
+Berapa lama waktu perjalanan dari Hotel Dizon ke Pantai Lumban Bul-bul Balige?,8.329814,False,0.245497,system,rag,0.7343980457284852,0.0,0.011627906976744186,0.0,0.5848519802093506,0.5,0.041666666666666664
+Berapa lama waktu perjalanan dari Hotel Dizon ke Bandar Udara Raja Sisingamangar,7.555905,False,0.226425,system,rag,0.6957265239567078,0.0,0.011647254575707155,0.0,0.603539228439331,0.5,0.05263157894736842
+Destinasi wisata alam apa yang populer di Kabupaten Toba?,18.712602,False,0.15983,system,rag,0.7532646497081912,0.0,0.05065666041275797,0.09302325581395349,0.7010827660560608,0.18604651162790697,0.09090909090909091
+Destinasi apa yang cocok untuk wisata keluarga?,8.33842,False,0.163154,system,rag,0.4989079105291549,0.0,0.029227557411273485,0.0,0.6939332485198975,0.1724137931034483,0.3888888888888889
+Destinasi apa yang merupakan tempat sejarah?,5.253106,False,0.081774,system,rag,0.5376260879681519,0.0,0.13953488372093023,0.030303030303030304,0.6569104194641113,0.0,0.06666666666666667
+Destinasi wisata mana di Kabupaten Toba yang cocok untuk menikmati panorama?,13.043929,False,0.373018,system,rag,0.8022081160572263,0.0,0.02119460500963391,0.0,0.7642039656639099,0.4375,0.25
+Rekomendasi tempat belanja souvenir di Kabupaten Toba,8.615647,False,0.167629,system,rag,0.8491449647785322,0.0,0.018396846254927726,0.0,0.647428035736084,0.4375,0.0625
+Rekomendasi tempat rekreasi di Kabupaten Toba,21.420208,False,0.077979,system,rag,0.7904590845709604,0.0,0.009395973154362415,0.3333333333333333,0.6312425136566162,0.0,0.047619047619047616
+Rekomendasi tempat wisata air terjun di Kabupaten Toba,14.777157,False,0.559451,system,rag,0.7804496550938831,0.0,0.042876901798063624,0.3333333333333333,0.632451593875885,0.09523809523809523,0.0
+Rekomendasi destinasi wisata alam di kawasan Kabupaten Toba,7.024488,False,0.232186,system,rag,0.7940006912641088,0.0,0.013559322033898305,0.0,0.650053858757019,0.0,0.0
+Rekomendasi destinasi wisata pantai untuk rekreasi berenang di kawasan Kabupaten,14.032174,False,0.388397,system,rag,0.8368847358229334,0.0,0.03549571603427173,0.5,0.6711474657058716,0.42857142857142855,0.09090909090909091
+Rekomendasi destinasi wisata yang cocok untuk melakukan trekking di kawasan Kabu,12.817115,False,0.198598,system,rag,0.8090753064063538,0.0,0.027855153203342618,0.09090909090909091,0.6396676898002625,0.045454545454545456,0.043478260869565216
+Apakah ada bandara terdekat dari Kabupaten Toba?,3.620651,False,0.125366,system,rag,0.7545551543693024,0.0,0.025440313111545987,0.125,0.6859806776046753,0.25,0.0
+Apakah transportasi online seperti Grab tersedia di Kabupaten Toba?,8.902812,False,0.126011,system,rag,0.7245295244133569,0.0,0.026905829596412557,0.0,0.6784347295761108,0.0,0.125
+Rekomendasi restoran unggulan di Kabupaten Toba,17.423766,False,0.380049,system,rag,0.7032945772394146,0.0,0.008083140877598153,0.16666666666666666,0.5959888696670532,0.08333333333333333,0.09090909090909091
+Restoran mana saja yang memiliki view Danau Toba di Kabupaten Toba?,7.501566,False,0.605931,system,rag,0.8179492642401364,0.0,0.015046296296296295,0.5555555555555556,0.5901901721954346,0.6666666666666666,0.07142857142857142
+Rekomendasi Rumah Makan Khas Batak di Kabupaten Toba,11.507901,False,0.580247,system,rag,0.6560151711951169,0.0,0.028014616321559074,0.08333333333333333,0.635569155216217,0.16666666666666666,0.06896551724137931
+Rekomendasi Rumah Makan atau Restoran dengan Menu Sehat di kawasan Kabupaten Tob,19.050772,False,0.60068,system,rag,0.800585238221211,0.0,0.017185821697099892,0.22727272727272727,0.6424921154975891,0.18181818181818182,0.0
+Apa saja tempat makan terbaik di Balige?,18.841499,False,0.228573,system,rag,0.6897698009718836,0.0,0.012972972972972972,0.18181818181818182,0.6017677783966064,0.18181818181818182,0.0
+Rekomendasi kuliner khas di Kabupaten Toba,15.861933,False,0.123312,system,rag,0.818172455416458,0.0,0.02040816326530612,0.07142857142857142,0.7088139653205872,0.07142857142857142,0.0
+Destinasi wisata apa yang cocok untuk camping?,13.093018,False,0.120207,system,rag,0.58059007381822,0.0,0.0761904761904762,0.07692307692307693,0.6277219653129578,0.11538461538461539,0.08333333333333333
+Apa saja fasilitas yang tersedia di Hotel Almonsari?,11.493011,False,0.32877,system,rag,0.725524135605538,0.0,0.03048780487804878,0.3,0.6407200694084167,0.0,0.0
+Seberapa jauh Aluna Bay Hotel dari pusat Kota Balige?,8.056958,False,0.669614,system,rag,0.7949591469143106,0.0,0.0074487895716946,0.0,0.6520671844482422,1.0,0.1111111111111111
+"Berapa lama waktu perjalanan dari Bobocabin Kaldera, Toba ke Bandar Udara Raja S",17.55056,False,0.131763,system,rag,0.8237371873543331,0.0,0.013729977116704805,0.0,0.6453012824058533,1.0,0.15384615384615385
+"Apa saja fasilitas utama di Bobocabin Kaldera, Toba?",9.695406,False,0.545291,system,rag,0.7720263616874113,0.0,0.008633093525179856,0.0,0.6436817049980164,0.16666666666666666,0.07142857142857142
+"Di mana alamat Bobocabin Kaldera, Toba?",7.552296,False,0.700672,system,rag,0.7740512695300183,0.0,0.015317286652078774,0.16666666666666666,0.6762773394584656,0.16666666666666666,0.0
+Apa yang objek wisata terdekat dari Bobocabin Kaldera Toba?,42.373837,False,0.372975,system,rag,0.6873976089630522,0.0,0.01702127659574468,0.42857142857142855,0.61301589012146,0.0,0.0
+Jenis kamar apa saja yang tersedia di Bobocabin Kaldera Toba?,7.534232,False,0.347788,system,rag,0.6649534204877025,0.0,0.022556390977443608,0.5714285714285714,0.6798160672187805,0.14285714285714285,0.0
+Hotel bintang berapa Bobocabin Kaldera Toba?,12.932564,False,0.268042,system,rag,0.5734810354476497,0.0,0.006355932203389831,0.0,0.6566392779350281,0.0,0.16666666666666666
+Berapa harga menginap di Bobocabin Kaldera Toba?,5.956182,False,0.541063,system,rag,0.657450952696406,0.0,0.0056925996204933585,0.0,0.6749915480613708,0.0,0.25
+Seberapa dekat Bobocabin Kaldera Toba ke pusat Kota Balige?,15.935302,False,0.103964,system,rag,0.7471981427517895,0.0,0.0064516129032258064,0.0,0.635536253452301,1.0,0.25
+Apakah Bobocabin Kaldera Toba memiliki pemandangan yang bagus?,3.95892,False,0.097384,system,rag,0.7046974532571736,0.0,0.011904761904761904,0.75,0.6814312934875488,0.75,0.1
+Di mana alamat Hotel Baritaland Balige?,4.546729,False,0.367207,system,rag,0.6101421670462094,0.0,0.01232394366197183,1.0,0.6436576247215271,0.5,0.0
+Berapa lama waktu perjalanan dari Hubers Hotel ke Pantai Lumban Bul-bul Balige?,13.414296,False,1.129949,system,rag,0.5649651276137448,0.0,0.012195121951219513,0.0,0.614723801612854,0.0,0.3333333333333333
+Berapa lama waktu perjalanan dari Hubers Hotel ke Bandar Udara Raja Sisingamanga,12.605742,False,1.088338,system,rag,0.6033679283489786,0.0,0.020348837209302327,0.0,0.6338688731193542,0.0,0.0
+Apa saja hotel populer di Kabupaten Toba?,11.463668,False,0.229413,system,rag,0.8079950161680889,0.0,0.02383654937570942,0.6086956521739131,0.620276153087616,0.17391304347826086,0.0
+Berapa harga menginap di Hotel O Balige City Near Tugu Juara Monang?,5.525366,False,1.308633,system,rag,0.540150102706317,0.0,0.018329938900203666,0.2,0.6734599471092224,0.2,0.2
+Fasilitas apa saja yang tersedia di Hotel O Balige City Near Tugu Juara Monang?,11.522417,False,1.457602,system,rag,0.6266713551059288,0.0,0.043583535108958835,0.23809523809523808,0.6373143792152405,0.11904761904761904,0.0
+Di mana alamat HOTEL ITA SOPOSURUNG?,7.034839,False,0.497238,system,rag,0.645896743753016,0.0,0.009174311926605505,1.0,0.5844641923904419,0.5,0.2222222222222222
+Berapa lama waktu perjalanan dari Hotel O Balige City Near Tugu Juara Monang ke ,12.26548,False,1.336945,system,rag,0.8426797627183711,0.0,0.014492753623188406,0.25,0.6201373934745789,0.25,0.09523809523809523
+Apa saja fasilitas utama di Ita Soposurung Hotel?,4.901962,False,0.587418,system,rag,0.8143303113696668,0.0,0.008717310087173101,0.5,0.6731722354888916,0.25,0.0
+Berapa harga menginap di Bahagia Hotel?,3.455848,False,0.642034,system,rag,0.6240340436537644,0.0,0.014732965009208104,0.0,0.6559455990791321,0.2,0.0
+Di mana alamat The Boat Homestay and Spa?,4.424235,False,1.051012,system,rag,0.7458958042024494,0.0,0.015901060070671377,0.3333333333333333,0.6416414380073547,0.16666666666666666,0.0
+Ada berapa lantai yang tersedia di Hotel Almonsari?,8.716216,False,0.33872,system,rag,0.6011091725052526,0.0,0.005870841487279843,0.0,0.6528019905090332,0.0,0.0
+Ada berapa kamar yang tersedia di Hotel Almonsari?,4.361609,False,0.285946,system,rag,0.562047968203114,0.0,0.003898635477582846,0.0,0.6614359021186829,0.0,0.0
+Seberapa dekat Aluna Bay Hotel dengan pantai?,8.183413,False,0.733626,system,rag,0.7666120939028699,0.0,0.005012531328320802,0.0,0.6167744994163513,0.5,0.2
+Apakah Labersa Hotel & Convention Center menawarkan Wi-Fi gratis?,9.285283,False,1.380183,system,rag,0.5010134996588954,0.0,0.012244897959183673,0.0,0.6859593391418457,0.3333333333333333,0.3333333333333333
+Apakah Hotel Sere Nauli menyediakan parkir?,6.774084,False,0.935976,system,rag,0.516712678901755,0.0,0.01338432122370937,0.0,0.7006621956825256,0.5,0.0
+Apakah Hotel Sere Nauli menyediakan kolam renang?,4.698639,False,1.168896,system,rag,0.6842593002032644,0.0,0.008517887563884156,0.0,0.6031434535980225,1.0,0.0
+Berapa jumlah kamar yang tersedia di Hotel Sere Nauli?,10.520107,False,0.68539,system,rag,0.6192647604635122,0.0,0.007680491551459293,0.0,0.5877221822738647,0.0,0.0
+Jenis kamar apa saja yang tersedia di Hotel Sere Nauli?,8.016403,False,0.608078,system,rag,0.7061804713003873,0.0,0.006349206349206349,0.09090909090909091,0.6357311606407166,0.36363636363636365,0.0
+Damar Toba ~ Lakeside Eatery & Stay bintang berapa?,15.175314,False,0.116605,system,rag,0.7857541144977263,0.0,0.030710172744721688,0.5,0.6717419028282166,0.3333333333333333,0.04
+Jenis kamar apa saja yang tersedia di Lago Hotel and Resto?,9.290465,False,0.738143,system,rag,0.6004596175820968,0.0,0.010741138560687433,1.0,0.6503089666366577,1.0,0.0
+Berapa harga menginap di Lago Hotel and Resto?,3.840809,False,0.810169,system,rag,0.7268581741024864,0.0,0.012698412698412698,0.16666666666666666,0.6271414756774902,0.16666666666666666,0.125
+Apakah tempat parkir tersedia di Labersa Hotel & Convention Center?,10.069372,False,0.495055,system,rag,0.6333583927994542,0.0,0.010033444816053512,0.0,0.611828625202179,0.0,0.14285714285714285
+Di mana alamat Grand Mareda Hotel?,3.510881,False,0.717578,system,rag,0.7577091175490182,0.0,0.017488076311605722,0.2857142857142857,0.7436454892158508,0.2857142857142857,0.0
+Jenis kamar apa saja yang tersedia di Damar Toba ~ Lakeside Eatery & Stay?,8.507031,False,0.492836,system,rag,0.8276144504826981,0.0,0.011213047910295617,0.75,0.6159331798553467,0.25,0.0
+Jenis kamar apa saja yang tersedia di Sapadia Villa Balige?,4.404923,False,0.75015,system,rag,0.6750099681022665,0.0,0.010123734533183352,0.6,0.6392939686775208,0.0,0.0
+Gemma Hotel Balige bintang berapa?,4.828717,False,0.502714,system,rag,0.41722839724580624,0.0,0.01694915254237288,0.0,0.6775480508804321,0.0,0.14285714285714285
+Berapa lama waktu perjalanan dari J&J Guest House 1 Rumah ke Bandar Udara Raja S,9.741089,False,0.0,eval_only_faiss,general_answer,0.8008708379816046,0.0,,,0.723520815372467,0.0,0.5
+Hotel apa di Balige yang menyediakan sarapan terbaik?,16.183308,False,0.294109,system,rag,0.7934687072776517,0.0,0.020134228187919462,0.42857142857142855,0.6509741544723511,0.2857142857142857,0.047619047619047616
+Dimana alamat Hotel Adela?,7.207871,False,0.408596,system,rag,0.620479771504524,0.0,0.009771986970684038,0.6,0.6307376623153687,1.0,0.0
+Jenis kamar apa saja yang tersedia di RAP Hotel Balige?,2.728279,False,0.631858,system,rag,0.7762766937285887,0.0,0.010089686098654708,0.5,0.6951643228530884,0.25,0.0
+Apa saja objek wisata dekat Labersa Hotel & Convention Centre?,17.045044,False,1.160224,system,rag,0.6445827364279063,0.0,0.042198233562315994,0.125,0.6269617676734924,0.041666666666666664,0.0
+Berapa lama waktu perjalanan dari Brain Homestay ke Air Terjun Situmurun?,14.136459,False,0.881657,system,rag,0.5657318764551872,0.0,0.01841620626151013,0.0,0.6033223271369934,0.3333333333333333,0.10714285714285714
+Hotel apa di Balige yang memiliki kolam renang?,14.339581,False,0.311752,system,rag,0.7201875165695636,0.0,0.015100671140939598,0.5,0.6362319588661194,0.5,0.047619047619047616
+"kulineran yang paling sering dikunjungi di sekitar Tarutung dimana, sertakan bia",11.403604,False,0.036763,system,rag,0.47176043268214424,,,,,,0.0
+Di manakah tempat makan terenak serta pemandangannya indah di sekitaran Toba?,7.653522,False,0.093475,system,rag,0.7469372038700848,,,,,,0.07692307692307693
+Apa daya tarik utama wisatawan berkunjung ke kawasan wisata Toba?,4.999596,False,0.108995,system,rag,0.7451254970807061,,,,,,0.0
+Apakah ada ukm yang menyediakan aksesoris lokal?,5.450869,False,0.0,eval_only_faiss,general_answer,0.47046100884614905,,,,,,0.8571428571428571
+Ada berapa kamar yang tersedia di Hotel Sere Nauli?,5.39879,False,0.52672,system,rag,0.772608626950206,,,,,,0.08333333333333333
+bagaimana pengaruh transportasi terhadap destinasi Toba?,11.79988,False,0.066127,system,rag,0.7170665906704637,,,,,,0.045454545454545456
+Wisata Toba apa saja yang paling cocok dikunjungi oleh para pengunjung baru?,15.082251,False,0.139433,system,rag,0.728569472275388,,,,,,0.022727272727272728
+Berapa tarif penginapan di Danau Toba?,5.443748,False,0.126656,system,rag,0.8188407256049649,,,,,,0.07142857142857142
+Jam operasional destinasi wisata nya bagaimana?,2.984184,False,0.4667,system,rag,0.5050184413501343,,,,,,0.2
+Bagaimana kami bisa mengatahui lokasi asli dari pariwisatanya?,11.375205,False,0.069676,system,rag,0.4997371638675194,,,,,,0.0
+berapa harga tiket masuk ke Pantai Bebas Balige dan fasilitas apa yang tersedia?,9.49914,False,0.650535,system,rag,0.6465794987381198,,,,,,0.06666666666666667
+Apakah destinasi wisata Toba aman untuk balita?,6.332242,False,0.285421,system,rag,0.7567132620591669,,,,,,0.3125
+Apa saja fasilitas penginapan yang tersedia di sekitar Danau Toba?,16.95661,False,0.492833,system,rag,0.7997107288852691,,,,,,0.06666666666666667
+Wisata apa yang cocok dikunjungi oleh turis untuk memperkenalkan budaya toba?,11.389286,False,0.031106,system,rag,0.690142626603654,,,,,,0.0
+Bagaimana kondisi fasilitas dan akses menuju objek wisata di Toba?,14.337279,False,0.051749,system,rag,0.768296842518459,,,,,,0.2692307692307692
+apa yang menjadi daya tarik utama pariwisata Danau Toba?,7.59561,False,0.15466,system,rag,0.7629457241930324,,,,,,0.09090909090909091
+Apa kendala utama dalam pengembangan pariwisata Toba?,7.419664,False,0.067734,system,rag,0.782774789851237,,,,,,0.23076923076923078
+Bagaimana terkait rating dari masing-masing Wisata Toba?,3.393624,False,0.055712,system,rag,0.6907583673635289,,,,,,0.07692307692307693
+Berapa harga transportasi jika kita dari Siantar menuju ke masing masjng Pariwis,14.352295,False,0.05409,system,rag,0.6827915167282769,,,,,,0.4444444444444444
+Apakah masyarakat luar datang ke wisata Toba ini selain wisatawan domestik?,4.386366,False,0.784843,system,rag,0.728624960199471,,,,,,0.1111111111111111
+Apakah ada tempat wisata di Toba yang cocok untuk camping?,4.544383,False,0.108264,system,rag,0.6543738292114292,,,,,,0.2222222222222222
+Apa saja rute perjalanan ataupun transportasi yang di gunakan untuk berkeliling ,23.920731,False,0.392,system,rag,0.5515100652645653,,,,,,0.041666666666666664
+Apa saja destinasi wisata paling populer di kawasan Danau Toba?,10.879472,False,0.46217,system,rag,0.7685318006593009,,,,,,0.0
+Apakah tersedia area parkir dan fasilitas umum seperti toilet atau mushola?,4.117886,False,0.058652,system,rag,0.7420317908449792,,,,,,0.125
+bagaimana dengan fasilitas setiap tempat parawisata yang ada?,11.898725,False,0.131082,system,rag,0.3209793330935039,,,,,,0.15
+Transportasi apa yang dapat digunakan menuju destinasi wisata?,20.394543,False,0.032648,system,rag,0.5049598852733482,,,,,,0.08333333333333333
+Bagaimana dengan akses jalan menuju lokasi destinasi?,9.759719,False,0.021449,system,rag,0.5776986226643488,,,,,,0.0
+apa aja yang menjadi kendala saat berkunjung ke danau Toba?,11.739397,False,0.145192,system,rag,0.7560626879907982,,,,,,0.058823529411764705
+Dimana tempat terekomendasi untuk dikunjungi di toba?,7.357228,False,0.266963,system,rag,0.6787113725925957,,,,,,0.05263157894736842
+Bagaimana caranya mencari penginapan atau kendaraan yang valid?,14.937461,False,0.24263,system,rag,0.3950236004016074,,,,,,0.44
+dimana tempat paling populer yg sering dikunjungi di toba?,12.869304,False,1.234796,system,rag,0.708128396939734,,,,,,0.0
+bagaimana dengan ciri khas rasa makanan yang ada?,14.711065,False,0.021044,system,rag,0.515806084362978,,,,,,0.0
+"Jika saya wisatawan baru, beritahu saya tempat pariwisata yang cocok tidak hanya",15.28426,False,0.07073,system,rag,0.5386019638877592,,,,,,0.2857142857142857
+Destinasi wisata Toba mana yang paling murah tapi tetap worth it di sekitar Bali,13.921272,False,0.323994,system,rag,0.7501814195655121,,,,,,0.11538461538461539
+Apa masakan kuliner terenak di sekitaran toba?,8.396861,False,0.231112,system,rag,0.441680201094086,,,,,,0.037037037037037035
+Pariwisata apa yang sangat worth it untuk jalan jalan ke daerah toba dengan budg,21.75221,False,0.68715,system,rag,0.5978418484026983,,,,,,0.08235294117647059
+Apa saja sih fasilitas yang ada di Hotel Sere Nauli? apa yang buat hotel itu ter,7.227419,False,0.558699,system,rag,0.7557064492632526,,,,,,0.0
+Berapa budget yang perlu disiapkan untuk liburan selama seminggu?,22.595365,False,0.054249,system,rag,0.534686153300092,,,,,,0.16129032258064516
+bagaimana tarif harga hotel dengan detail di setiap hotelnya?,10.135037,False,0.609199,system,rag,0.6118451840374689,,,,,,0.0
+Bagaimana rute atau akses menuju objek wisata di Kabupaten Toba?,10.979195,False,0.195373,system,rag,0.778980386693444,,,,,,0.19230769230769232
+Kapan waktu terbaik untuk pergi ke Wisata Lumban Bul bul Balige?,10.759923,False,0.855359,system,rag,0.6342620771052161,,,,,,0.2
+Transportasi darat dan laut yang murah dan terpercaya,15.999527,False,0.082386,system,rag,0.6123218997355745,,,,,,0.03333333333333333
+apa saja destinasi wisata yang paling direkomendasikan di Kabupaten Toba?,13.437545,False,0.157379,system,rag,0.8368264083842116,,,,,,0.0
+apa yang perlu diperbaiki supaya wisata di Danau Toba makin menarik dan tetap ny,14.318656,False,0.662069,system,rag,0.8830990989267355,,,,,,0.11538461538461539
+Di mana tempat terbaik untuk melihat pertunjukan budaya asli Batak?,9.259232,False,0.400488,system,rag,0.7116960907914511,,,,,,0.3333333333333333
+berapa biaya yang dibutuhkan jika ingin berwisata 5 hari dengan akomodasi yang b,23.41691,False,0.326902,system,rag,0.5957308193593763,,,,,,0.0
+Bagaimana perbandingan harga dari masing masing hotel di Pariwisata Toba?,16.530559,False,0.236042,system,rag,0.778804956921835,,,,,,0.0
+Apa rekomendasi pariwisata yang cocok untuk kumpulan remaja,18.800671,False,0.116588,system,rag,0.6853402344776524,,,,,,0.0
+Jika aku belum paham ttg wisata gituu saranin yg mana yg bagus,11.536621,False,0.860726,system,rag,0.456147368976606,,,,,,0.6818181818181818
+apakah layanan umkm di sekitatan parawisata toba bagus?,9.921734,False,0.10491,system,rag,0.4399137093825266,,,,,,0.3684210526315789
+Infrastruktur apa saja yang perlu ditingkatkan di kawasan Danau Toba agar dapat ,21.312689,False,1.226071,system,rag,0.8298062630543717,,,,,,0.0
+Bagaimana rute yang menjadi rekomendasi sekitar pulau samosir?,19.387185,False,0.073991,system,rag,0.6164028918127226,,,,,,0.03571428571428571
+Saya tertarik dengan kawasan di Balige jadi apa wisata yang paling di minati jug,8.241555,False,0.448167,system,rag,0.6562512960307398,,,,,,0.22727272727272727
+Apa saja yang di perkenalkan di di TB Silalahi,8.052403,False,0.0,eval_only_faiss,general_answer,0.38871268092250105,,,,,,0.0
+Apakah ada tempat sewa motor di Balige ini? dimanakan  tempatnya?,3.919622,False,0.034478,system,rag,0.5753433151657431,,,,,,0.0
+Apa saja wisata yang ada di balige?,8.55311,False,0.175346,system,rag,0.5617859723084043,,,,,,0.0
+Apa saja rekomendasi destinasi wisata alam dan budaya terbaik di sekitar Danau T,18.429084,False,0.245687,system,rag,0.8018398899531709,,,,,,0.0
+Apa saja makanan khas Toba yang wajib dicoba oleh wisatawan?,16.484044,False,0.071123,system,rag,0.7567980989514638,,,,,,0.0
+Hotel yang family friendly dan cocok di kantong mahasiswa,11.055844,False,0.254523,system,rag,0.49348099361676656,,,,,,0.03571428571428571
+Dimana kedai islam rahayu?,2.694071,False,0.432034,system,rag,0.608412040174255,,,,,,0.14285714285714285
+Apakah warga lokal ramah dan tempat nya nyaman?,7.426343,False,0.021065,system,rag,0.5959708625079627,,,,,,0.0
+List Kuliner paling di cari di Toba?,15.961367,False,0.044659,system,rag,0.7270296610679085,,,,,,0.023809523809523808
+Biaya transport dari Medan menuju Pariwisata Toba sekitaran berapa?,12.350773,False,0.144415,system,rag,0.7373786889444406,,,,,,0.42857142857142855
+Apa saja kuliner di Danau Toba?,7.46837,False,0.239312,system,rag,0.7379413650915885,,,,,,0.0
+"Jika saya wisatawan baru, berapa tarif yang diperlukan dari lokasi saya saat ini",8.990716,False,0.28248,system,rag,0.34736701667249187,,,,,,0.0
+Bagaimana akses transportasi menuju kawasan wisata Danau Toba?,19.820979,False,0.235869,system,rag,0.8299196453451415,,,,,,0.4
+berapa banyak wisatawan per tahun yang mengunjungi Wisata Pakkodian?,6.812528,False,0.402923,system,rag,0.36784167257329503,,,,,,0.2857142857142857
+Terkait Makanan paling diminati di kawasan toba,16.465658,False,0.065199,system,rag,0.4820826421675064,,,,,,0.0
+Perbandingan harga wisata tobaa gimanaa,19.889744,False,0.578026,system,rag,0.48782886062893366,,,,,,0.13043478260869565
+tempat makan terenak dan menu menu terenak,16.549493,False,0.06265,system,rag,0.6021349569998742,,,,,,0.0
+Bagaimana peran masyarakat lokal Batak dalam menjaga kelestarian budaya dan alam,16.070385,False,0.204754,system,rag,0.8918463791790253,,,,,,0.21875
+Apakah sistem ini terintegritas dan sesuai dengan apa yang diharapkan pengguna?,12.834842,False,0.0,eval_only_faiss,general_answer,0.6227668360103252,,,,,,0.625
+Adakah rekomendasi wisata alam terbaik di Kabupaten Toba?,4.928147,False,0.689804,system,rag,0.8435484291272424,,,,,,0.0
+Bagaimana Perbandingan antara beberapa tempat misal hotel a vs hotel b dengan pe,17.833144,False,0.312696,system,rag,0.509590891969675,,,,,,0.017241379310344827
+Apa saja spot wisata atau tempat bersantai di Danau Toba yang cocok dijadikan ti,13.074717,False,0.267157,system,rag,0.7916104160926705,,,,,,0.05263157894736842
+"Dengan budget 500.000 dalam sehari, kemana perjalanan destinasi yang cocok untuk",20.444243,False,0.075915,system,rag,0.6041756691554127,,,,,,0.14705882352941177
+dimana destinasi yang rekomended untuk dikunjungi?,13.540307,False,0.168537,system,rag,0.5359106632098716,,,,,,0.0
+Bagaimana peran masyarakat lokal Batak dalam menjaga kelestarian budaya dan alam,19.191607,False,0.315123,system,rag,0.8999668927877387,,,,,,0.15384615384615385
+Kuliner Toba yang Halal dan murah di kantong mahasiswa,8.832483,False,0.054817,system,rag,0.6348129409850338,,,,,,0.0
+Bagaimana terkait rating dari wisata yang ada di toba?,2.854017,False,0.105091,system,rag,0.7100021559223785,,,,,,0.1111111111111111
+Apa saja destinasi wisata unggulan di sekitar Danau Toba selain Pulau Samosir ya,11.534426,False,1.212472,system,rag,0.77983981479171,,,,,,0.0
+Hotel atau Cafe  apa yang memiliki pemandangan langsung ke Danau Toba?,7.247017,False,0.501045,system,rag,0.8074241833393003,,,,,,0.0
+hotel murah dan worth itu,10.088637,False,0.513636,system,rag,0.5046987778212202,,,,,,0.0
+Apa rekomendasi penginapan di sekitar kawasan Balige atau Toba yang paling mudah,22.332415,False,0.898491,system,rag,0.8612950212583274,,,,,,0.0
+Perbandingan harga tempat wisata dan kuliner toba,22.515133,False,0.361793,system,rag,0.6261175469847323,,,,,,0.13043478260869565
+Bagaimana cara pemerintah menjaga kebersihan dan kelestarian wisata Danau Toba?,11.261945,False,0.243257,system,rag,0.8570543262838616,,,,,,0.375
+"Selain Danau Toba, apa yang membuat wisatawan banyak berkunjung ke Toba?",18.976835,False,0.234611,system,rag,0.7886924042253712,,,,,,0.08333333333333333
+Pariwisata apa yang murah untuk dikunjungi di sekitar Samosir?,12.469361,False,0.619812,system,rag,0.6805629932954486,,,,,,0.11538461538461539
+Bagaimana dengan fasilitas yang ditawarkan oleh penginapan di daerah Toba?,7.418707,False,0.354192,system,rag,0.7327636438576168,,,,,,0.2631578947368421
+Kuliner khas apa yang paling banyak diminati wisatawan di Danau Toba?,13.782278,False,0.252724,system,rag,0.8622929266922252,,,,,,0.0
+Bagaimana kondisi jalan menuju objek wisata utama di Kabupaten Toba?,6.827923,False,0.211893,system,rag,0.7494156434930457,,,,,,0.0
+Jam berapa saja angkutan bekerja secara aktif di sana? Agar menghindari keterlam,8.436005,False,0.0,eval_only_faiss,general_answer,0.6783329957943153,,,,,,0.0
+adakah wisata budaya atau festival tradisional yang bisa dikunjungi di Kabupaten,9.596945,False,0.878744,system,rag,0.793713210145517,,,,,,0.043478260869565216
+Bagaimana harga tiket destinasi wisata nya,12.424068,False,0.0,eval_only_faiss,web_rag,0.6855619381491787,,,,,,0.0
+Di mana tempat makan atau restoran terdekat yang menyajikan kuliner khas lokal t,14.042314,False,0.978794,system,rag,0.8559434588963762,,,,,,0.0
+Rumah makan Sinar Minang itu buka jam berapa aja sih ?,5.809501,False,0.621165,system,rag,0.629330372412151,,,,,,0.2
+jam jam angkutan umum biasanya lewat kapan ajaa?,8.879827,False,0.0,eval_only_faiss,general_answer,0.6460208913184557,,,,,,0.0
+Apa destinasi yang paling unik?,13.593512,False,0.107315,system,rag,0.48220555061909093,,,,,,0.0
+"Apa saja kuliner khas Toba yang wajib dicoba, dan di mana rekomendasi rumah maka",27.305427,False,1.167558,system,rag,0.7703005279823573,,,,,,0.0
+"Jenis kamar apa saja yang tersedia di Nabasa Hotel Balige, dan bagaimana akses t",14.433103,False,0.382558,system,rag,0.7985292374879304,,,,,,0.047619047619047616
