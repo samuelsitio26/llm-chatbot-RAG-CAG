@@ -289,7 +289,7 @@ class FAQGenerator:
         This implements the "FAQ for CAG" → "CAG Cache Generation" flow
         
         Args:
-            cag_system: CAGSystem instance
+            cag_system: HybridSystem instance
             verbose: Print progress
         """
         if verbose:

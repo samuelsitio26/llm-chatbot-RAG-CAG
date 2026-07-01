@@ -38,7 +38,7 @@ from starlette.middleware.sessions import SessionMiddleware
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from model import GeminiChatModel
-from hybrid_system import CAGSystem
+from hybrid_system import HybridSystem
 import database as db
 import manage_cache as cache_lifecycle
 import location_service as loc_svc
@@ -165,7 +165,7 @@ async def lifespan(app: FastAPI):
         
         # Initialize CAG system (with model and encoder)
         print("🔧 Initializing CAG system...")
-        cag_system = CAGSystem(model=model, encoder=encoder)
+        cag_system = HybridSystem(model=model, encoder=encoder)
         
         # Load PDF documents
         print("📚 Loading PDF documents...")

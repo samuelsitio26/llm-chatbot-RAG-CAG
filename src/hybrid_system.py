@@ -27,7 +27,7 @@ from langchain_core.embeddings import Embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
-class CAGSystem:
+class HybridSystem:
     """Complete Cache-Augmented Generation System"""
 
     # ──────────────────────────────────────────────────────────────────────────
@@ -1507,7 +1507,7 @@ class CAGSystem:
         """Load documents and build vector database"""
         start_time = time.time()
 
-        print(f"📚 Loading {len(pdf_paths)} documents for CAG...")
+        print(f"📚 Loading {len(pdf_paths)} documents for Hybrid System...")
 
         # --- Load PDFs: merge all pages per file into ONE document so that
         #     chunk_overlap can bridge page boundaries (fixes entity-name/
@@ -1597,7 +1597,7 @@ class CAGSystem:
 
         elapsed = time.time() - start_time
 
-        print(f"✅ CAG ready: {len(docs)} chunks in {elapsed:.2f}s")
+        print(f"✅ Hybrid System database ready: {len(docs)} chunks in {elapsed:.2f}s")
 
         return {
             "num_chunks": len(docs),
